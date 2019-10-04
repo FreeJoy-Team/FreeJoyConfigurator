@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FreeJoy_Configurator
+namespace FreeJoyConfigurator
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -23,6 +23,12 @@ namespace FreeJoy_Configurator
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        //Scroll to bottom when text is changed
+        public void ActivityLogTextChangedHandler(object sender, EventArgs e)
+        {
+            ActivityLogScrollViewer.ScrollToBottom();
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿<Application x:Class="FreeJoy_Configurator.App"
+﻿<Application x:Class="FreeJoyConfigurator.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:FreeJoy_Configurator"
+             xmlns:local="clr-namespace:FreeJoyConfigurator"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

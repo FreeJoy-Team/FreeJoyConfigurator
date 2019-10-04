@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace FreeJoy_Configurator
+namespace FreeJoyConfigurator
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml
