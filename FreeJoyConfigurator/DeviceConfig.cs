@@ -20,11 +20,23 @@ namespace FreeJoyConfigurator
         public UInt16 CalibMin;
         public UInt16 CalibCenter;
         public UInt16 CalibMax;
-        public bool CutoCalib;
+        public bool AutoCalib;
         public bool IsInverted;
 
         public byte[] CurveShape;
         public FilterLvl FilterLevel;
+
+        public AxisConfig()
+        {
+            CalibMin = 0;
+            CalibCenter = 2047;
+            CalibMax = 4095;
+            AutoCalib = false;
+            IsInverted = false;
+
+            CurveShape = new byte[10];
+            FilterLevel = FilterLvl.FilterNo;
+        }
 
     }
 
@@ -93,13 +105,26 @@ namespace FreeJoyConfigurator
     public class DeviceConfig
     {
         public UInt16 FirmwareVersion;
-        public AxisConfig[] AxisConfig;
-        public PinType[] PinConfig;
-        public ButtonType[] Buttons;
-        public EncoderConfig EncoderConfig;
-        public char[] DeviceName;
+        public string DeviceName;
         public UInt16 ButtonDebounceMs;
         public UInt16 TogglePressMs;
         public UInt16 EncoderPressMs;
+        public UInt16 ExchangePeriod;
+        public PinType[] PinConfig;
+
+        public AxisConfig[] AxisConfig;
+        
+        public ButtonType[] Buttons;
+
+        public EncoderConfig[] EncoderConfig;
+
+
+        public DeviceConfig()
+        {
+            AxisConfig = new AxisConfig[8];
+            PinConfig = new PinType[30];
+            Buttons = new ButtonType[128];
+            EncoderConfig = new EncoderConfig[12];
+        }
     }
 }

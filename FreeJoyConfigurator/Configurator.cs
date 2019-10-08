@@ -104,5 +104,25 @@ namespace FreeJoyConfigurator
             }
         }
         #endregion
+
+        #region Hid data sending
+
+        public void GetConfigSend (byte packetNumber)
+        {
+            HidReport hr;
+            byte[] buffer = new byte[2];
+            buffer[1] = packetNumber;
+
+            hr = new HidReport(2, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success));
+            hr.ReportId = (byte)ReportID.CONFIG_REPORT;
+
+            HidDevice.WriteReport(hr);
+
+            // raise event
+            PacketSent(this, hr);
+            Console.WriteLine("Report sent: ReportID = CONFIG, PacketNumber = {0}", packetNumber);
+        }
+
+        #endregion
     }
 }

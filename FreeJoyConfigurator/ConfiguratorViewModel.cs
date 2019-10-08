@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using HidLibrary;
-using UiCommand;
 using MessageBoxServicing;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -19,9 +18,14 @@ namespace FreeJoyConfigurator
 
     public class ConfiguratorViewModel : INotifyPropertyChanged
     {
-
+        
         private Configurator configurator;
         private DispatcherTimer timer;
+
+        private UiCommand GetConfigCommand;
+
+        private DeviceConfig receivedConfig;
+        private byte configPacketNumber = 0;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
@@ -33,16 +37,13 @@ namespace FreeJoyConfigurator
         #region VM Properties
 
         public string ActivityLogVM { get; private set; }
-
         public string ConnectionStatusVM
         {
             get
             {
                 return string.Format("{0}", configurator.IsConnected ? "Connected" : "Disconnected");
             }
-
         }
-
         public bool IsConnectedVM
         {
             get
@@ -56,6 +57,22 @@ namespace FreeJoyConfigurator
 
         #endregion
 
+        #region Commands
+
+        public ICommand ReadConfigButton_Click
+        {
+            get
+            {
+                if (GetConfigCommand == null)
+                {
+                    GetConfigCommand = new UiCommand((obj) => this.GetConfigRequest(obj));
+                }
+                return GetConfigCommand;
+            }
+        }
+
+        #endregion
+
         #region Constructor
 
         public ConfiguratorViewModel()
@@ -65,6 +82,8 @@ namespace FreeJoyConfigurator
             configurator.DeviceRemoved += DeviceRemovedEventHandler;
             configurator.PacketReceived += PacketReceivedEventHandler;
             configurator.PacketSent += PacketSentEventHandler;
+
+            receivedConfig = new DeviceConfig();
 
             ButtonCollectonVM = new ObservableCollection<ButtonVM>();
             for (int i=0; i<128; i++)
@@ -113,6 +132,7 @@ namespace FreeJoyConfigurator
         {
             MessageBoxService mbs = new MessageBoxService();
             HidReport hr = report;
+            
 
             switch ((ReportID)hr.ReportId)
             {
@@ -133,6 +153,16 @@ namespace FreeJoyConfigurator
                     }
                     break;
 
+                case ReportID.CONFIG_REPORT:
+
+                    configPacketNumber = hr.Data[0];
+                    ConfigReport configReport = new ConfigReport(ref receivedConfig, hr);
+                    if (configPacketNumber < 10)
+                    {
+                        configurator.GetConfigSend(++configPacketNumber);
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -145,6 +175,23 @@ namespace FreeJoyConfigurator
 
             WriteLog(string.Format("Report sent: {0}, Data = {1}", (ReportID)hr.ReportId,
                                     string.Join(", ", Array.ConvertAll(hr.Data, x => "0x" + x.ToString("X2")))), false);
+        }
+
+        #endregion
+
+        #region Hid Requests
+
+        void GetConfigRequest (object parameter)
+        {
+            if (configurator.HidDevice.IsConnected)
+            {
+                WriteLog("Getting configuration..", false);
+
+                configPacketNumber = 1;
+                configurator.GetConfigSend(configPacketNumber);
+
+                // TODO: timeout
+            }
         }
 
         #endregion
