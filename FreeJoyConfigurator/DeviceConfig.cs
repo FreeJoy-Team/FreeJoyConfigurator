@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HidLibrary;
+using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 namespace FreeJoyConfigurator
 {
 
-    public class AxisConfig
+    public class AxisConfig : BindableBase
     {
         public enum FilterLvl
         {
@@ -17,14 +19,14 @@ namespace FreeJoyConfigurator
             FilterHigh,
         };
 
-        public UInt16 CalibMin;
-        public UInt16 CalibCenter;
-        public UInt16 CalibMax;
-        public bool AutoCalib;
-        public bool IsInverted;
+        public UInt16 CalibMin { get; set; }
+        public UInt16 CalibCenter { get; set; }
+        public UInt16 CalibMax { get; set; }
+        public bool AutoCalib { get; set; }
+        public bool IsInverted { get; set; }
 
-        public byte[] CurveShape;
-        public FilterLvl FilterLevel;
+        public byte[] CurveShape { get; set; }
+        public FilterLvl FilterLevel { get; set; }
 
         public AxisConfig()
         {
@@ -104,19 +106,21 @@ namespace FreeJoyConfigurator
 
     public class DeviceConfig
     {
-        public UInt16 FirmwareVersion;
-        public string DeviceName;
-        public UInt16 ButtonDebounceMs;
-        public UInt16 TogglePressMs;
-        public UInt16 EncoderPressMs;
-        public UInt16 ExchangePeriod;
-        public PinType[] PinConfig;
+        private Hid hid;
+        private DeviceConfig config;
+        private byte configPacketNumber = 0;
+        private ConfigReport configReport;
 
-        public AxisConfig[] AxisConfig;
-        
-        public ButtonType[] Buttons;
-
-        public EncoderConfig[] EncoderConfig;
+        public UInt16 FirmwareVersion { get; set; }
+        public string DeviceName { get; set; }
+        public UInt16 ButtonDebounceMs { get; set; }
+        public UInt16 TogglePressMs { get;  set; }
+        public UInt16 EncoderPressMs { get;  set; }
+        public UInt16 ExchangePeriod { get;  set; }
+        public PinType[] PinConfig { get;  set; }
+        public AxisConfig[] AxisConfig { get;  set; }
+        public ButtonType[] Buttons { get;  set; }
+        public EncoderConfig[] EncoderConfig { get;  set; }
 
 
         public DeviceConfig()
@@ -125,6 +129,24 @@ namespace FreeJoyConfigurator
             PinConfig = new PinType[30];
             Buttons = new ButtonType[128];
             EncoderConfig = new EncoderConfig[12];
+
+            hid = new Hid();
+            hid.PacketReceived += PacketReceivedEventHandler;
+        }
+
+        public void PacketReceivedEventHandler(object sender, HidReport report)
+        {
+            HidReport hr = report;
+
+            if ((ReportID)hr.ReportId == (ReportID.CONFIG_REPORT))
+            {
+                configPacketNumber = hr.Data[0];
+                configReport = new ConfigReport(ref config, hr);
+                if (configPacketNumber < 10)
+                {
+                    hid.ReportSend((byte)ReportID.CONFIG_REPORT, new byte[1] { ++configPacketNumber });
+                }
+            }
         }
     }
 }

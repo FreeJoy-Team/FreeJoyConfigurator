@@ -17,25 +17,26 @@ namespace FreeJoyConfigurator
     class JoyReport
     {
         const byte ReportId = (byte) ReportID.JOY_REPORT;
-        public Joystick Joystick;
+
+        public List<Button> Buttons;
+        public List<Axis> Axes;
 
         public JoyReport(HidReport hr)
         {
-            Joystick = new Joystick();
+            Buttons = new List<Button>();
+            Axes = new List<Axis>();
 
             if (hr != null)
             {
-
                 for (int i=0; i<128; i++)
                 {
-                    Joystick.Buttons[i] = (hr.Data[1 + (i & 0xF8)>>3] & (1<<i & 0x07)) > 0 ? true : false;
+                    Buttons.Add(new Button((hr.Data[1 + (i & 0xF8)>>3] & (1<<i & 0x07)) > 0 ? true : false));
                 }
 
-                for (int i=0; i<8; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    Joystick.Axis[i] = (ushort) (hr.Data[17 + 2 * i] << 8 |  hr.Data[18 + 2 * i]);
+                    Axes.Add(new Axis( (ushort) (hr.Data[17 + 2 * i] << 8 |  hr.Data[18 + 2 * i])));
                 }
-                
             }
         }
     }
