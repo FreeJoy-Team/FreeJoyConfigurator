@@ -8,36 +8,27 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
-        <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding JoystickVM.Axes, Mode=OneWay}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type local:Axis}">
-                        <Border BorderThickness="0.4" BorderBrush="LightGray">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+        <Border BorderThickness="0.4" BorderBrush="LightGray">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                                <CheckBox Grid.Column="1" Grid.Row="0" Content="Autocalibration" VerticalAlignment="Bottom" />
+                <CheckBox Grid.Column="1" Grid.Row="0" Content="Autocalibration" VerticalAlignment="Bottom" />
 
-                                <Label Grid.Column="0" Grid.Row="1"  Content="Axis data" VerticalAlignment="Bottom" HorizontalContentAlignment="Right"/>
-                                <Label Grid.Column="0" Grid.Row="2"  Content="Raw data" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalContentAlignment="Right"/>
+                <Label Grid.Column="0" Grid.Row="1"  Content="Axis data" VerticalAlignment="Bottom" HorizontalContentAlignment="Right"/>
+                <Label Grid.Column="0" Grid.Row="2"  Content="Raw data" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalContentAlignment="Right"/>
 
-                                <ProgressBar Grid.Column="1" 
+                <ProgressBar Grid.Column="1" 
                                              Grid.Row="0" 
                                              Grid.RowSpan="2"
                                              Minimum="0"  
@@ -46,7 +37,7 @@
                                              Value="{Binding Path=Value, Mode=OneWay}"  
                                              HorizontalAlignment="Stretch"  
                                              VerticalAlignment="Bottom" />
-                                <ProgressBar Grid.Column="1" 
+                <ProgressBar Grid.Column="1" 
                                              Grid.Row="2" 
                                              Minimum="0" 
                                              Maximum="4095" 
@@ -57,19 +48,14 @@
 
 
 
-                                <Label Grid.Column="2" Grid.Row="0" Content="Minimum" VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
-                                <Label Grid.Column="2" Grid.Row="1"  Content="Maximum" VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
-                                <Label Grid.Column="2" Grid.Row="2"  Content="Center"  VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
+                <Label Grid.Column="2" Grid.Row="0" Content="Minimum" VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
+                <Label Grid.Column="2" Grid.Row="1"  Content="Maximum" VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
+                <Label Grid.Column="2" Grid.Row="2"  Content="Center"  VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
 
-                                <TextBox Grid.Column="3" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                <TextBox Grid.Column="3" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                <TextBox Grid.Column="3" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-
-            </ItemsControl>
-        </ScrollViewer>
+                <TextBox Grid.Column="3" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <TextBox Grid.Column="3" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <TextBox Grid.Column="3" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

@@ -17,6 +17,7 @@ namespace FreeJoyConfigurator
 {
     public class MainVM : BindableBase
     {
+        public DeviceConfigVM DeviceConfigVM {get; set; }
         public JoystickVM JoystickVM { get; private set; }
 
         public string ActivityLogVM { get; private set; }
@@ -24,78 +25,63 @@ namespace FreeJoyConfigurator
         {
             get
             {
-                return string.Format("{0}", hid.IsConnected ? "Connected" : "Disconnected");
+                return string.Format("{0}", Hid.IsConnected ? "Connected" : "Disconnected");
             }
         }
         public bool IsConnectedVM
         {
             get
             {
-                return hid.IsConnected;
+                return Hid.IsConnected;
             }
         }
 
-        private Hid hid;
-        //private UiCommand GetConfigCommand;
-
-        //#region Commands
-        //public ICommand ReadConfigButton_Click
-        //{
-        //    get
-        //    {
-        //        if (GetConfigCommand == null)
-        //        {
-        //            GetConfigCommand = new UiCommand((obj) => this.GetConfigRequest(obj));
-        //        }
-        //        return GetConfigCommand;
-        //    }
-        //}
-        //#endregion
 
 
         public MainVM()
         {
-            hid = new Hid();
-            hid.DeviceAdded += DeviceAddedEventHandler;
-            hid.DeviceRemoved += DeviceRemovedEventHandler;
-            hid.PacketReceived += PacketReceivedEventHandler;
-            hid.PacketSent += PacketSentEventHandler;
+            Hid.Connect();
+            Hid.DeviceAdded += DeviceAddedEventHandler;
+            Hid.DeviceRemoved += DeviceRemovedEventHandler;
+            //Hid.PacketReceived += PacketReceivedEventHandler;
+            //Hid.PacketSent += PacketSentEventHandler;
 
+            DeviceConfigVM = new DeviceConfigVM(new DeviceConfig());
             JoystickVM = new JoystickVM(new Joystick());
             
 
             WriteLog("Program started", true);
         }
 
-        private static void Watch<T, T2>(ReadOnlyObservableCollection<T> collToWatch, ObservableCollection<T2> collToUpdate,
-                Func<T2, object> modelProperty)
-        {
-            ((INotifyCollectionChanged)collToWatch).CollectionChanged += (s, a) =>
-            {
-                if (a.NewItems?.Count == 1) collToUpdate.Add((T2)Activator.CreateInstance(typeof(T2), (T)a.NewItems[0], null));
-                if (a.OldItems?.Count == 1) collToUpdate.Remove(collToUpdate.First(mv => modelProperty(mv) == a.NewItems[0]));
-            };
-        }
+        //private static void Watch<T, T2>(ReadOnlyObservableCollection<T> collToWatch, ObservableCollection<T2> collToUpdate,
+        //        Func<T2, object> modelProperty)
+        //{
+        //    ((INotifyCollectionChanged)collToWatch).CollectionChanged += (s, a) =>
+        //    {
+        //        if (a.NewItems?.Count == 1) collToUpdate.Add((T2)Activator.CreateInstance(typeof(T2), (T)a.NewItems[0], null));
+        //        if (a.OldItems?.Count == 1) collToUpdate.Remove(collToUpdate.First(mv => modelProperty(mv) == a.NewItems[0]));
+        //    };
+        //}
 
         #region HidEvents
-        public void DeviceAddedEventHandler(object sender, HidDevice hd)
+        public void DeviceAddedEventHandler(HidDevice hd)
         {
             WriteLog("Device added", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
         }
 
-        public void DeviceRemovedEventHandler(object sender, HidDevice hd)
+        public void DeviceRemovedEventHandler(HidDevice hd)
         {
             WriteLog("Device removed", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
         }
-        public void PacketReceivedEventHandler(object sender, HidReport hr)
+        public void PacketReceivedEventHandler(HidReport hr)
         {
             //MessageBoxService mbs = new MessageBoxService();
             //WriteLog("Report received", false);
         }
 
-        public void PacketSentEventHandler(object sender, HidReport hr)
+        public void PacketSentEventHandler(HidReport hr)
         {
             WriteLog("Report sent", false);
         }

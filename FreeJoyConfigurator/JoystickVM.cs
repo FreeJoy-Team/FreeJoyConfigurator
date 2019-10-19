@@ -22,8 +22,6 @@ namespace FreeJoyConfigurator
             Axes = new ObservableCollection<Axis>(joystick.Axes);
             Buttons = new ObservableCollection<Button>(joystick.Buttons);
 
-            joystick.PropertyChanged += (s, a) => { RaisePropertyChanged(nameof(Joystick.Axes)); };
-
         }
     }
 }

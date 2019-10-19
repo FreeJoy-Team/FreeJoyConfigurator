@@ -8,25 +8,26 @@ using HidLibrary;
 
 namespace FreeJoyConfigurator
 {
-    public class Hid
+    static class Hid
     {
         #region Fields
-        private HidDevice hidDevice { get; set; }
-        private int vid { get; set; }
-        private int pid { get; set; }
+        private const int vid = 0x0483;
+        private const int pid = 0x2619;
 
-        public delegate void PacketReceivedEventHandler(object sender, HidReport hr);
-        public delegate void PacketSentEventHandler(object sender, HidReport hr);
-        public delegate void DeviceAddedEventHandler(object sender, HidDevice hd);
-        public delegate void DeviceRemovedEventHandler(object sender, HidDevice hd);
+        private static HidDevice hidDevice { get; set; }
 
-        public event PacketReceivedEventHandler PacketReceived;
-        public event PacketSentEventHandler PacketSent;
-        public event DeviceAddedEventHandler DeviceAdded;
-        public event DeviceRemovedEventHandler DeviceRemoved;
+        public delegate void PacketReceivedEventHandler(HidReport hr);
+        public delegate void PacketSentEventHandler(HidReport hr);
+        public delegate void DeviceAddedEventHandler(HidDevice hd);
+        public delegate void DeviceRemovedEventHandler(HidDevice hd);
+
+        public static event PacketReceivedEventHandler PacketReceived;
+        public static event PacketSentEventHandler PacketSent;
+        public static event DeviceAddedEventHandler DeviceAdded;
+        public static event DeviceRemovedEventHandler DeviceRemoved;
 
         
-        public bool IsConnected
+        public static bool IsConnected
         {
             get
             {
@@ -35,65 +36,53 @@ namespace FreeJoyConfigurator
                 else
                     return false;
             }
-            private set
-            {
-
-            }
         }
         #endregion
 
-        #region Constructor
-        public Hid()
+        static public void Connect()
         {
-
-            vid = 0x0483;
-            pid = 0x2619;
-            IsConnected = false;
-
-            Task.Run(() =>
+            if (!IsConnected)
             {
-                while (hidDevice == null)
+                Task.Run(() =>
                 {
-                    hidDevice = HidDevices.Enumerate(vid, pid).FirstOrDefault();
-                    Thread.Sleep(500);
-                }
+                    while (hidDevice == null)
+                    {
+                        hidDevice = HidDevices.Enumerate(vid, pid).FirstOrDefault();
+                        Thread.Sleep(500);
+                    }
 
-                if (!hidDevice.IsOpen)
-                {
+                    if (!hidDevice.IsOpen)
+                    {
 
                         hidDevice.OpenDevice();
 
                         hidDevice.Inserted += HidDeviceAddedEventHandler;
                         hidDevice.Removed += HidDeviceRemovedEventHandler;
                         hidDevice.MonitorDeviceEvents = true;
-                }
-                else
-                {
-
-                }
-            });
+                    }
+                });
+            }
         }
-        #endregion
 
         #region HID Callbacks
-        private void HidDeviceAddedEventHandler()
+        static private void HidDeviceAddedEventHandler()
         {
-            DeviceAdded(this, hidDevice);
+            DeviceAdded?.Invoke(hidDevice);
             hidDevice.ReadReport(ReadReportCallback);
         }
 
-        private void HidDeviceRemovedEventHandler()
+        static private void HidDeviceRemovedEventHandler()
         {
-            DeviceRemoved(this, hidDevice);
+            DeviceRemoved?.Invoke(hidDevice);
         }
 
-        private void ReadReportCallback(HidReport report)
+        static private void ReadReportCallback(HidReport report)
         {
             HidReport hr = report;
 
             // raise event for received packet
-            PacketReceived(this, hr);
-            Console.WriteLine("Report received");
+            PacketReceived?.Invoke(hr);
+            
             // wait for new packet
             if (hidDevice.IsConnected)
             {
@@ -103,10 +92,12 @@ namespace FreeJoyConfigurator
         #endregion
 
         #region Hid data sending
-        public void ReportSend(byte reportId, byte[] data)
+        static public void ReportSend(byte reportId, byte[] data)
         {
             HidReport hr;
             byte[] buffer = new byte[data.Length + 1];
+            Array.ConstrainedCopy(data, 0, buffer, 1, data.Length);
+
 
             hr = new HidReport(buffer.Length, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success));
             hr.ReportId = (byte)reportId;
@@ -114,8 +105,7 @@ namespace FreeJoyConfigurator
             hidDevice.WriteReport(hr);
 
             // raise event
-            PacketSent(this, hr);
-            Console.WriteLine("Report sent");
+            PacketSent?.Invoke(hr);
         }
         #endregion
     }

@@ -100,11 +100,15 @@
     <Compile Include="ButtonView.xaml.cs">
       <DependentUpon>ButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeviceConfigVM.cs" />
     <Compile Include="JoystickVM.cs" />
     <Compile Include="DeviceConfig.cs" />
     <Compile Include="Joystick.cs" />
     <Compile Include="MainVM.cs" />
-    <Compile Include="Report.cs" />
+    <Compile Include="Pins.xaml.cs">
+      <DependentUpon>Pins.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportConverter.cs" />
     <Compile Include="UiCommand.cs" />
     <Page Include="AxisView.xaml">
       <SubType>Designer</SubType>
@@ -127,6 +131,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -185,6 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bluepill.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

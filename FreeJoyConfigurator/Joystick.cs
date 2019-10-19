@@ -11,13 +11,11 @@ namespace FreeJoyConfigurator
 {
     public class Joystick : BindableBase
     {
-        private JoyReport joyReport;
+        //private JoyReport joyReport;
 
         public ObservableCollection<Axis> Axes { get; private set; }
         public ObservableCollection<Button> Buttons { get; private set; }
         //public byte[] Povs { get; private set; }
-
-        private Hid hid;
 
         public Joystick()
         {
@@ -31,52 +29,38 @@ namespace FreeJoyConfigurator
             {
                 Buttons.Add(new Button());
             }
-            hid = new Hid();
-            hid.DeviceAdded += DeviceAddedEventHandler;
-            hid.DeviceRemoved += DeviceRemovedEventHandler;
-            hid.PacketReceived += PacketReceivedEventHandler;
-            hid.PacketSent += PacketSentEventHandler;
+
+            //Hid.Connect();
+
+            //Hid.DeviceAdded += DeviceAddedEventHandler;
+            // Hid.DeviceRemoved += DeviceRemovedEventHandler;
+            Hid.PacketReceived += PacketReceivedEventHandler;
+            //Hid.PacketSent += PacketSentEventHandler;
         }
 
-        public void DeviceAddedEventHandler(object sender, HidDevice hd)
+        public void DeviceAddedEventHandler(HidDevice hd)
         {
 
         }
 
-        public void DeviceRemovedEventHandler(object sender, HidDevice hd)
+        public void DeviceRemovedEventHandler(HidDevice hd)
         {
 
         }
 
-        public void PacketSentEventHandler(object sender, HidReport hr)
+        public void PacketSentEventHandler(HidReport hr)
         {
 
         }
 
-        public void PacketReceivedEventHandler(object sender, HidReport report)
+        public void PacketReceivedEventHandler(HidReport report)
         {
+            var joystick = this;
             HidReport hr = report;
 
             if ((ReportID)hr.ReportId == (ReportID.JOY_REPORT))
             {
-                int i = 0;
-                joyReport = new JoyReport(hr);
-
-                foreach (var item in joyReport.Buttons)
-                {
-                    if (Buttons[i] != null)
-                        Buttons[i++].State = item.State;
-                }
-
-                i = 0;
-                foreach (var item in joyReport.Axes)
-                {
-                    if (Axes[i] != null)
-                    {
-                        Axes[i].Value = item.Value;
-                        Axes[i++].RawValue = item.RawValue;
-                    }                      
-                }
+                ReportConverter.ReportToJoystick(ref joystick, hr);
             }          
         }
 
