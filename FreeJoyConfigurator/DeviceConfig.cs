@@ -21,25 +21,157 @@ namespace FreeJoyConfigurator
             FilterHigh,
         };
 
-        public UInt16 CalibMin { get; set; }
-        public UInt16 CalibCenter { get; set; }
-        public UInt16 CalibMax { get; set; }
-        public bool AutoCalib { get; set; }
-        public bool IsInverted { get; set; }
+        private ushort _calibMin;
+        private ushort _calibCenter;
+        private ushort _calibMax;
+        private bool _isAutocalib;
+        private bool _isInverted;
+        private byte[] _curveShape;
+        private FilterLvl _filterLevel;
 
-        public byte[] CurveShape { get; set; }
-        public FilterLvl FilterLevel { get; set; }
+        private bool _isCalibCenterUnlocked;
+
+        public ushort CalibMin
+        {
+            get
+            {
+                return _calibMin;
+            }
+            set
+            {
+                if (value < 0) SetProperty(ref _calibMin, (ushort)0);
+                else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (ushort)(CalibCenter - 1));
+                else if (value >= CalibMax) SetProperty(ref _calibMin, (ushort)(CalibMax - 2));
+                else SetProperty(ref _calibMin, value);
+
+                if (!IsCalibCenterUnlocked)
+                {
+                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                }
+            }
+        }
+        public ushort CalibCenter
+        {
+            get
+            {
+                return _calibCenter;
+            }
+            set
+            {
+                if (IsCalibCenterUnlocked)
+                {
+                    if (value <= CalibMin)
+                    {
+                        SetProperty(ref _calibCenter, (ushort)(CalibMin + 1));
+                    }
+                    else if (value >= CalibMax)
+                    {
+                        SetProperty(ref _calibCenter, (ushort)(CalibMax - 1));
+                    }
+                    else SetProperty(ref _calibCenter, value);
+                }
+                else
+                {
+                    SetProperty(ref _calibCenter, (ushort)((CalibMax - CalibMin) / 2));
+                }
+            }
+        }
+        public ushort CalibMax
+        {
+            get
+            {
+                return _calibMax;
+            }
+            set
+            {
+                if (value <= CalibMin) SetProperty(ref _calibMax, (ushort)(CalibMin + 2));
+                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (ushort)(CalibCenter + 1));
+                else if (value > 4095) SetProperty(ref _calibMax, (ushort) 4095);
+                else SetProperty(ref _calibMax, value);
+
+                if (!IsCalibCenterUnlocked)
+                {
+                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                }
+            }
+        }
+      
+        public bool IsAutoCalib
+        {
+            get
+            {
+                return _isAutocalib;
+            }
+            set
+            {
+                SetProperty(ref _isAutocalib, value);
+            }
+        }
+      
+        public bool IsInverted
+        {
+            get
+            {
+                return _isInverted;
+            }
+            set
+            {
+                SetProperty(ref _isInverted, value);
+            }
+        }
+
+        public byte[] CurveShape
+        {
+            get
+            {
+                return _curveShape;
+            }
+            set
+            {
+                SetProperty(ref _curveShape, value);
+            }
+        }
+
+        public FilterLvl FilterLevel
+        {
+            get
+            {
+                return _filterLevel;
+            }
+            set
+            {
+                SetProperty(ref _filterLevel, value);
+            }
+        }
+
+        public bool IsCalibCenterUnlocked
+        {
+            get
+            {
+                return _isCalibCenterUnlocked;
+            }
+            set
+            {
+                SetProperty(ref _isCalibCenterUnlocked, value);
+                if (!_isCalibCenterUnlocked)
+                {
+                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                }
+            }
+        }
 
         public AxisConfig()
         {
-            CalibMin = 0;
-            CalibCenter = 2047;
-            CalibMax = 4095;
-            AutoCalib = false;
-            IsInverted = false;
+            _calibMin = 0;
+            _calibCenter = 2047;
+            _calibMax = 4095;
+            _isAutocalib = false;
+            _isInverted = false;
 
-            CurveShape = new byte[10];
-            FilterLevel = FilterLvl.FilterNo;
+            _curveShape = new byte[10];
+            _filterLevel = FilterLvl.FilterNo;
+
+            _isCalibCenterUnlocked = false;
         }
 
     }
@@ -53,21 +185,22 @@ namespace FreeJoyConfigurator
         ButtonColumn,
 
         AxisAnalog,
-        AxisToButtons,
+        //AxisToButtons,
 
-        EncoderSingleInput,
-        EncoderChainedInput,
-        EncoderChainedCommon,
+        //EncoderSingleInput,
+        //EncoderChainedInput,
+        //EncoderChainedCommon,
     };
 
 
     public enum ButtonType
     {
-        Normal = 0,
-        Inverted,
-        Toggle,
-        ToggleOn,
-        ToggleOff,
+        BtnNormal = 0,
+        BtnInverted,
+        BtnToggle,
+        ToggleSw,
+        ToggleSwOn,
+        ToggleSwOff,
 
         Pov1Up,
         Pov1Right,
@@ -107,7 +240,7 @@ namespace FreeJoyConfigurator
 
         public ButtonConfig()
         {
-            _type = ButtonType.Normal;
+            _type = ButtonType.BtnNormal;
         }
 
         public ButtonConfig (ButtonType type)
@@ -180,10 +313,10 @@ namespace FreeJoyConfigurator
                     configPacketNumber = hr.Data[0];
                     Console.WriteLine("Config packet received: {0}", configPacketNumber);
 
-                    //App.Current.Dispatcher.BeginInvoke((Action)(() =>
-                    //{
+                    App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    {
                         ReportConverter.ReportToConfig(ref config, hr);
-                    //}));
+                    }));
                
                 
                     RaisePropertyChanged(nameof(config));

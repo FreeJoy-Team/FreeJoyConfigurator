@@ -28,8 +28,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0.4*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="2.1*"/>
+            <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>

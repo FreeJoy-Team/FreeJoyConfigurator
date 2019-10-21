@@ -34,7 +34,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Label MinWidth="30" MaxWidth="30" MinHeight="30" MaxHeight="30" HorizontalContentAlignment="Right"
                                    Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                            <ComboBox MinWidth="80" MaxWidth="80" MinHeight="30" MaxHeight="30" 
+                            <ComboBox MinWidth="100" MaxWidth="100" MinHeight="30" MaxHeight="30" 
                                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}"
                                   SelectedItem="{Binding Path=Type}">
                             </ComboBox>

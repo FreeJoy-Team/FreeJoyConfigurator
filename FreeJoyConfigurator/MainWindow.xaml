@@ -28,9 +28,9 @@
 
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="200"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
             <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="*" MinWidth="200"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -55,7 +55,7 @@
                 </Grid.RowDefinitions>
 
                 <!--Row 0-->
-                <ComboBox Name="Devices_ComboBox" Grid.Row="0"   
+                <ComboBox Name="Devices_ComboBox" Grid.Row="0" IsEnabled="False"  
                     Text="Devices" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="146" Height="59">
 
                 </ComboBox>
@@ -108,7 +108,7 @@
                 <ScrollViewer>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="3.5*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
@@ -133,7 +133,7 @@
             </Grid.RowDefinitions>
 
             <ComboBox Name="Language_ComboBox" Grid.Row="0"   
-                    Text="Language" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="43,10,41,27" Width="155" Height="25" >
+                    Text="Language" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="43,10,41,27" Width="155" Height="25" IsEnabled="False">
             </ComboBox>
 
             <GroupBox Header="Current Config" Name ="Info_GroupBox" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10">

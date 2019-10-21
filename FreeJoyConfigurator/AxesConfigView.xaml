@@ -4,10 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FreeJoyConfigurator"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="200">
-    
-    
+
+    <UserControl.Resources>
+        <local:InvertBooleanConverter  x:Key="boolConvert"/>
+    </UserControl.Resources>
+
     <ItemsControl ItemsSource="{Binding AxesVM.Config.AxisConfig, Mode=OneWay}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -19,7 +24,7 @@
                 <Border BorderThickness="0.4" BorderBrush="LightGray" Height="100">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*" MaxWidth="80"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
@@ -32,20 +37,30 @@
 
                         <CheckBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
                                   Content="Autocalibration" 
-                                  VerticalAlignment="Bottom" 
                                   HorizontalAlignment="Center" 
-                                  IsChecked="{Binding AutoCalib}"/>
+                                  IsChecked="{Binding IsAutoCalib}"/>
+                        
+                        <CheckBox Grid.Column="0" Grid.Row="2"
+                                  IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
+                                  Content="Center" 
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right"
+                                  IsChecked="{Binding IsCalibCenterUnlocked}"/>
 
-                        <Label Grid.Column="0" Grid.Row="1" Content="Minimum" VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
-                        <Label Grid.Column="0" Grid.Row="2"  Content="Center" VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
-                        <Label Grid.Column="0" Grid.Row="3"  Content="Maximum"  VerticalAlignment="Stretch" HorizontalContentAlignment="Right"/>
 
-                        <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
-                                         Text="{Binding CalibMin}"/>
-                        <TextBox Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
-                                 Text="{Binding CalibCenter}"/>
-                        <TextBox Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
-                                 Text="{Binding CalibMax}"/>
+                        <Label Grid.Column="0" Grid.Row="1" Content="Minimum" VerticalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+
+                        <Label Grid.Column="0" Grid.Row="3"  Content="Maximum"  VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                                            IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
+                                            Value="{Binding CalibMin, UpdateSourceTrigger=LostFocus}"/>
+                        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                                            IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
+                                            IsReadOnly="{Binding IsCalibCenterUnlocked, Mode=TwoWay, Converter={StaticResource boolConvert}}"
+                                            Value="{Binding CalibCenter, UpdateSourceTrigger=LostFocus}"/>
+                        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                                            IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
+                                            Value="{Binding CalibMax, UpdateSourceTrigger=LostFocus}"/>
                     </Grid>
                 </Border>
 
