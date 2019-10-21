@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FreeJoyConfigurator.Pins"
+﻿<UserControl x:Class="FreeJoyConfigurator.PinsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,8 +7,8 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="833"
-             MinHeight="500" MaxHeight="500">
+             d:DesignHeight="500" d:DesignWidth="500"
+             MinHeight="500" MaxHeight="500" MinWidth="500" MaxWidth="500">
     
     <!--<UserControl.DataContext>
         <local:MainVM/>
@@ -27,9 +27,9 @@
     <Grid d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -98,57 +98,57 @@
         <Label Grid.Column="3" Grid.Row="16" HorizontalContentAlignment="Left" Content="C15"/>
         <Label Grid.Column="3" Grid.Row="17" HorizontalContentAlignment="Left" Content="C14"/>
         <Label Grid.Column="3" Grid.Row="18" HorizontalContentAlignment="Left" Content="C13"/>
-        <Label Grid.Column="3" Grid.Row="19" HorizontalContentAlignment="Left" Content="VBUS"/>
+        <Label Grid.Column="3" Grid.Row="19" HorizontalContentAlignment="Left" Content="VB"/>
 
 
         
         <ComboBox Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[23], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[23], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[24], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[24], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[25], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[25], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[26], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[26], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[8], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[8], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[9], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[9], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[10], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[10], Mode=TwoWay}"/>
         <Button Grid.Column="0" Grid.Row="7" Content="USB_D-" IsEnabled="False"/>
         <Button Grid.Column="0" Grid.Row="8" Content="USB_D+" IsEnabled="False"/>
         <ComboBox Grid.Column="0" Grid.Row="9" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[11], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[11], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="10" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[14], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[14], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="11" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[15], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[15], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="12" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[16], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[16], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="13" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[17], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[17], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="14" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[18], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[18], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="15" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[19], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[19], Mode=TwoWay}"/>
         <ComboBox Grid.Column="0" Grid.Row="16" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[20], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[20], Mode=TwoWay}"/>
         <Button Grid.Column="0" Grid.Row="17"  Content="5V" IsEnabled="False"/>
         <Button Grid.Column="0" Grid.Row="18" Content="GND" IsEnabled="False"/>
         <Button Grid.Column="0" Grid.Row="19" Content="3.3V" IsEnabled="False"/>
@@ -159,49 +159,49 @@
         <Button Grid.Column="4" Grid.Row="3" Content="RESET" IsEnabled="False"/>
         <ComboBox Grid.Column="4" Grid.Row="4" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[22], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[22], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="5" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[21], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[21], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="6" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[13], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[13], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="7" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[12], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[12], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="8" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[7], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[7], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="9" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[6], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[6], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="10" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[5], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[5], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="11" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[4], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[4], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="12" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[3], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[3], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="13" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[2], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[2], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="14" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[1], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[1], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="15" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[0], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[0], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="16" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[29], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[29], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="17" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[28], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[28], Mode=TwoWay}"/>
         <ComboBox Grid.Column="4" Grid.Row="18" HorizontalContentAlignment="Center"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                  SelectedItem="{Binding DeviceConfigVM.Config.PinConfig[27], Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Config.PinConfig[27], Mode=TwoWay}"/>
         <Button Grid.Column="4" Grid.Row="19" Content="VBUS" IsEnabled="False"/>
 
     </Grid>

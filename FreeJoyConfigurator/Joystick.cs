@@ -68,6 +68,7 @@ namespace FreeJoyConfigurator
 
     public class Button : BindableBase
     {
+        
         private bool _state;
         public bool State
         {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HidLibrary;
 using Prism.Mvvm;
+using System.Windows.Threading;
 
 namespace FreeJoyConfigurator
 {
@@ -31,6 +32,11 @@ namespace FreeJoyConfigurator
                 for (int i = 0; i < joystick.Axes.Count; i++)
                 {
                     joystick.Axes[i].Value =  (ushort) (hr.Data[17 + 2 * i] << 8 |  hr.Data[18 + 2 * i]);
+                }
+
+                for (int i = 0; i < joystick.Axes.Count; i++)
+                {
+                    joystick.Axes[i].RawValue = (ushort)(hr.Data[37 + 2 * i] << 8 | hr.Data[38 + 2 * i]);
                 }
             }
         }
@@ -168,21 +174,21 @@ namespace FreeJoyConfigurator
             {
                 for (int i=0;i<62;i++)
                 {
-                    config.Buttons[i] = (ButtonType)hr.Data[i + 1];
+                    config.ButtonConfig[i].Type = (ButtonType)hr.Data[i + 1];
                 }
             }
             else if (hr.Data[0] == 7)
             {
                 for (int i = 0; i < 62; i++)
                 {
-                    config.Buttons[i + 62] = (ButtonType)hr.Data[i + 1];
+                    config.ButtonConfig[i + 62].Type = (ButtonType)hr.Data[i + 1];
                 }
             }
             else if (hr.Data[0] == 8)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    config.Buttons[i + 124] = (ButtonType)hr.Data[i + 1];
+                    config.ButtonConfig[i + 124].Type = (ButtonType)hr.Data[i + 1];
                 }
 
                 for (int i = 0; i<12; i++)
@@ -212,18 +218,18 @@ namespace FreeJoyConfigurator
 
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = (byte) 0x01;
-            buffer[2] = (byte) (config.FirmwareVersion >> 8);
-            buffer[3] = (byte)(config.FirmwareVersion & 0xFF);
+            buffer[2] = (byte)(config.FirmwareVersion & 0xFF);
+            buffer[3] = (byte) (config.FirmwareVersion >> 8);            
             chars = Encoding.ASCII.GetBytes(config.DeviceName);
             Array.ConstrainedCopy(chars, 0, buffer, 4, (chars.Length > 10) ? 10 : chars.Length);
-            buffer[14] = (byte)(config.ButtonDebounceMs >> 8);
-            buffer[15] = (byte)(config.ButtonDebounceMs & 0xFF);
-            buffer[16] = (byte)(config.TogglePressMs >> 8);
-            buffer[17] = (byte)(config.TogglePressMs & 0xFF);
-            buffer[18] = (byte)(config.EncoderPressMs >> 8);
-            buffer[19] = (byte)(config.EncoderPressMs & 0xFF);
-            buffer[20] = (byte)(config.ExchangePeriod >> 8);
-            buffer[21] = (byte)(config.ExchangePeriod & 0xFF);
+            buffer[14] = (byte)(config.ButtonDebounceMs & 0xFF);
+            buffer[15] = (byte)(config.ButtonDebounceMs >> 8);
+            buffer[16] = (byte)(config.TogglePressMs & 0xFF);
+            buffer[17] = (byte)(config.TogglePressMs >> 8);
+            buffer[18] = (byte)(config.EncoderPressMs & 0xFF);
+            buffer[19] = (byte)(config.EncoderPressMs >> 8);
+            buffer[20] = (byte)(config.ExchangePeriod & 0xFF);
+            buffer[21] = (byte)(config.ExchangePeriod >> 8);           
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 33] = (byte)config.PinConfig[i];
@@ -233,12 +239,12 @@ namespace FreeJoyConfigurator
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x02;
-            buffer[2] = (byte)(config.AxisConfig[0].CalibMin >> 8);
-            buffer[3] = (byte)(config.AxisConfig[0].CalibMin & 0xFF);
-            buffer[4] = (byte)(config.AxisConfig[0].CalibCenter >> 8);
-            buffer[5] = (byte)(config.AxisConfig[0].CalibCenter & 0xFF);
-            buffer[6] = (byte)(config.AxisConfig[0].CalibMax >> 8);
-            buffer[7] = (byte)(config.AxisConfig[0].CalibMax & 0xFF);
+            buffer[2] = (byte)(config.AxisConfig[0].CalibMin & 0xFF);
+            buffer[3] = (byte)(config.AxisConfig[0].CalibMin >> 8);
+            buffer[4] = (byte)(config.AxisConfig[0].CalibCenter & 0xFF);
+            buffer[5] = (byte)(config.AxisConfig[0].CalibCenter >> 8);
+            buffer[6] = (byte)(config.AxisConfig[0].CalibMax & 0xFF);
+            buffer[7] = (byte)(config.AxisConfig[0].CalibMax >> 8);            
             buffer[8] = (byte)(config.AxisConfig[0].AutoCalib? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[0].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[0].FilterLevel);
@@ -246,12 +252,12 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = config.AxisConfig[0].CurveShape[i];
             }
-            buffer[32] = (byte)(config.AxisConfig[1].CalibMin >> 8);
-            buffer[33] = (byte)(config.AxisConfig[1].CalibMin & 0xFF);
-            buffer[34] = (byte)(config.AxisConfig[1].CalibCenter >> 8);
-            buffer[35] = (byte)(config.AxisConfig[1].CalibCenter & 0xFF);
-            buffer[36] = (byte)(config.AxisConfig[1].CalibMax >> 8);
-            buffer[37] = (byte)(config.AxisConfig[1].CalibMax & 0xFF);
+            buffer[32] = (byte)(config.AxisConfig[1].CalibMin & 0xFF);
+            buffer[33] = (byte)(config.AxisConfig[1].CalibMin >> 8);
+            buffer[34] = (byte)(config.AxisConfig[1].CalibCenter & 0xFF);
+            buffer[35] = (byte)(config.AxisConfig[1].CalibCenter >> 8);
+            buffer[36] = (byte)(config.AxisConfig[1].CalibMax & 0xFF);
+            buffer[37] = (byte)(config.AxisConfig[1].CalibMax >> 8);            
             buffer[38] = (byte)(config.AxisConfig[1].AutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[1].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[1].FilterLevel);
@@ -264,12 +270,12 @@ namespace FreeJoyConfigurator
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x03;
-            buffer[2] = (byte)(config.AxisConfig[2].CalibMin >> 8);
-            buffer[3] = (byte)(config.AxisConfig[2].CalibMin & 0xFF);
-            buffer[4] = (byte)(config.AxisConfig[2].CalibCenter >> 8);
-            buffer[5] = (byte)(config.AxisConfig[2].CalibCenter & 0xFF);
-            buffer[6] = (byte)(config.AxisConfig[2].CalibMax >> 8);
-            buffer[7] = (byte)(config.AxisConfig[2].CalibMax & 0xFF);
+            buffer[2] = (byte)(config.AxisConfig[2].CalibMin & 0xFF);
+            buffer[3] = (byte)(config.AxisConfig[2].CalibMin >> 8);
+            buffer[4] = (byte)(config.AxisConfig[2].CalibCenter & 0xFF);
+            buffer[5] = (byte)(config.AxisConfig[2].CalibCenter >> 8);
+            buffer[6] = (byte)(config.AxisConfig[2].CalibMax & 0xFF);
+            buffer[7] = (byte)(config.AxisConfig[2].CalibMax >> 8);
             buffer[8] = (byte)(config.AxisConfig[2].AutoCalib ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[2].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[2].FilterLevel);
@@ -277,12 +283,12 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = config.AxisConfig[2].CurveShape[i];
             }
-            buffer[32] = (byte)(config.AxisConfig[3].CalibMin >> 8);
-            buffer[33] = (byte)(config.AxisConfig[3].CalibMin & 0xFF);
-            buffer[34] = (byte)(config.AxisConfig[3].CalibCenter >> 8);
-            buffer[35] = (byte)(config.AxisConfig[3].CalibCenter & 0xFF);
-            buffer[36] = (byte)(config.AxisConfig[3].CalibMax >> 8);
-            buffer[37] = (byte)(config.AxisConfig[3].CalibMax & 0xFF);
+            buffer[32] = (byte)(config.AxisConfig[3].CalibMin & 0xFF);
+            buffer[33] = (byte)(config.AxisConfig[3].CalibMin >> 8);
+            buffer[34] = (byte)(config.AxisConfig[3].CalibCenter & 0xFF);
+            buffer[35] = (byte)(config.AxisConfig[3].CalibCenter >> 8);
+            buffer[36] = (byte)(config.AxisConfig[3].CalibMax & 0xFF);
+            buffer[37] = (byte)(config.AxisConfig[3].CalibMax >> 8);
             buffer[38] = (byte)(config.AxisConfig[3].AutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[3].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[3].FilterLevel);
@@ -295,12 +301,12 @@ namespace FreeJoyConfigurator
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x04;
-            buffer[2] = (byte)(config.AxisConfig[4].CalibMin >> 8);
-            buffer[3] = (byte)(config.AxisConfig[4].CalibMin & 0xFF);
-            buffer[4] = (byte)(config.AxisConfig[4].CalibCenter >> 8);
-            buffer[5] = (byte)(config.AxisConfig[4].CalibCenter & 0xFF);
-            buffer[6] = (byte)(config.AxisConfig[4].CalibMax >> 8);
-            buffer[7] = (byte)(config.AxisConfig[4].CalibMax & 0xFF);
+            buffer[2] = (byte)(config.AxisConfig[4].CalibMin & 0xFF);
+            buffer[3] = (byte)(config.AxisConfig[4].CalibMin >> 8);
+            buffer[4] = (byte)(config.AxisConfig[4].CalibCenter & 0xFF);
+            buffer[5] = (byte)(config.AxisConfig[4].CalibCenter >> 8);
+            buffer[6] = (byte)(config.AxisConfig[4].CalibMax & 0xFF);
+            buffer[7] = (byte)(config.AxisConfig[4].CalibMax >> 8);
             buffer[8] = (byte)(config.AxisConfig[4].AutoCalib ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[4].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[4].FilterLevel);
@@ -308,12 +314,12 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = config.AxisConfig[4].CurveShape[i];
             }
-            buffer[32] = (byte)(config.AxisConfig[5].CalibMin >> 8);
-            buffer[33] = (byte)(config.AxisConfig[5].CalibMin & 0xFF);
-            buffer[34] = (byte)(config.AxisConfig[5].CalibCenter >> 8);
-            buffer[35] = (byte)(config.AxisConfig[5].CalibCenter & 0xFF);
-            buffer[36] = (byte)(config.AxisConfig[5].CalibMax >> 8);
-            buffer[37] = (byte)(config.AxisConfig[5].CalibMax & 0xFF);
+            buffer[32] = (byte)(config.AxisConfig[5].CalibMin & 0xFF);
+            buffer[33] = (byte)(config.AxisConfig[5].CalibMin >> 8);
+            buffer[34] = (byte)(config.AxisConfig[5].CalibCenter & 0xFF);
+            buffer[35] = (byte)(config.AxisConfig[5].CalibCenter >> 8);
+            buffer[36] = (byte)(config.AxisConfig[5].CalibMax & 0xFF);
+            buffer[37] = (byte)(config.AxisConfig[5].CalibMax >> 8);
             buffer[38] = (byte)(config.AxisConfig[5].AutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[5].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[5].FilterLevel);
@@ -326,12 +332,12 @@ namespace FreeJoyConfigurator
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x05;
-            buffer[2] = (byte)(config.AxisConfig[6].CalibMin >> 8);
-            buffer[3] = (byte)(config.AxisConfig[6].CalibMin & 0xFF);
-            buffer[4] = (byte)(config.AxisConfig[6].CalibCenter >> 8);
-            buffer[5] = (byte)(config.AxisConfig[6].CalibCenter & 0xFF);
-            buffer[6] = (byte)(config.AxisConfig[6].CalibMax >> 8);
-            buffer[7] = (byte)(config.AxisConfig[6].CalibMax & 0xFF);
+            buffer[2] = (byte)(config.AxisConfig[6].CalibMin & 0xFF);
+            buffer[3] = (byte)(config.AxisConfig[6].CalibMin >> 8);
+            buffer[4] = (byte)(config.AxisConfig[6].CalibCenter & 0xFF);
+            buffer[5] = (byte)(config.AxisConfig[6].CalibCenter >> 8);
+            buffer[6] = (byte)(config.AxisConfig[6].CalibMax & 0xFF);
+            buffer[7] = (byte)(config.AxisConfig[6].CalibMax >> 8);
             buffer[8] = (byte)(config.AxisConfig[6].AutoCalib ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[6].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[6].FilterLevel);
@@ -339,12 +345,12 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = config.AxisConfig[6].CurveShape[i];
             }
-            buffer[32] = (byte)(config.AxisConfig[7].CalibMin >> 8);
-            buffer[33] = (byte)(config.AxisConfig[7].CalibMin & 0xFF);
-            buffer[34] = (byte)(config.AxisConfig[7].CalibCenter >> 8);
-            buffer[35] = (byte)(config.AxisConfig[7].CalibCenter & 0xFF);
-            buffer[36] = (byte)(config.AxisConfig[7].CalibMax >> 8);
-            buffer[37] = (byte)(config.AxisConfig[7].CalibMax & 0xFF);
+            buffer[32] = (byte)(config.AxisConfig[7].CalibMin & 0xFF);
+            buffer[33] = (byte)(config.AxisConfig[7].CalibMin >> 8);
+            buffer[34] = (byte)(config.AxisConfig[7].CalibCenter & 0xFF);
+            buffer[35] = (byte)(config.AxisConfig[7].CalibCenter >> 8);
+            buffer[36] = (byte)(config.AxisConfig[7].CalibMax & 0xFF);
+            buffer[37] = (byte)(config.AxisConfig[7].CalibMax >> 8);
             buffer[38] = (byte)(config.AxisConfig[7].AutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[7].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[7].FilterLevel);
@@ -359,7 +365,7 @@ namespace FreeJoyConfigurator
             buffer[1] = 0x06;
             for (int i=0; i<62; i++)
             {
-                buffer[i + 2] = (byte) config.Buttons[i];
+                buffer[i + 2] = (byte) config.ButtonConfig[i].Type;
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
@@ -368,7 +374,7 @@ namespace FreeJoyConfigurator
             buffer[1] = 0x07;
             for (int i = 0; i < 62; i++)
             {
-                buffer[i + 2] = (byte)config.Buttons[i + 62];
+                buffer[i + 2] = (byte)config.ButtonConfig[i + 62].Type;
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
@@ -377,7 +383,7 @@ namespace FreeJoyConfigurator
             buffer[1] = 0x08;
             for (int i = 0; i < 4; i++)
             {
-                buffer[i + 2] = (byte)config.Buttons[i + 124];
+                buffer[i + 2] = (byte)config.ButtonConfig[i + 124].Type;
             }
             for (int i = 0; i < 12; i++)
             {

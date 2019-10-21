@@ -34,7 +34,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
 
         <!--Row 0-->
@@ -67,13 +67,13 @@
                 <!--Row 3-->
                 <Button Name="Button_ReadConfig" Grid.Row="3"  Content="Read Config from Device"
                         IsEnabled="{Binding IsConnectedVM}"
-                        Command="{Binding DeviceConfigVM.GetDeviceConfig}" Background="White" Margin="10,6,10,5">
+                        Command="{Binding GetDeviceConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 
                 <!--Row 4-->
                 <Button Name="Button_WriteConfig" Grid.Row="4"  Content="Write Config to Device"
                         IsEnabled="{Binding IsConnectedVM}"
-                        Command="{Binding DeviceConfigVM.SendDeviceConfig}" Background="White" Margin="10,6,10,5">
+                        Command="{Binding SendDeviceConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 
                 <!--Row 5-->
@@ -102,50 +102,27 @@
 
         <TabControl Grid.Column="1" Margin="10" >
             <TabItem Header="Pin Config">
-                
-                    <local:Pins/>
+                <local:PinsView/>
+            </TabItem>
+            <TabItem Header="Axes Config">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <local:AxesView Grid.Column="0"/>
+                        <local:AxesConfigView Grid.Column="1"/>
+                    </Grid>
+                </ScrollViewer>
                 
             </TabItem>
-            
-            <TabItem Header="Axis Config">
-                <Border BorderBrush="LightGray" BorderThickness="0.5">
-                    <ScrollViewer>
-                        <ItemsControl ItemsSource="{Binding JoystickVM.Axes, Mode=OneWay}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type local:Axis}">
-                                    <local:AxisView/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-
-                        </ItemsControl>
-                    </ScrollViewer>
-                </Border>
-            </TabItem>
-
-
             <TabItem Header="Button Config">
-                <ItemsControl ItemsSource="{Binding JoystickVM.Buttons}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:ButtonView/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <local:ButtonsView/>
             </TabItem>
-
             <TabItem Header="Encoder Config">
-                
-                
+                <!--<local:EncoderView/>-->
             </TabItem>
         </TabControl>
 

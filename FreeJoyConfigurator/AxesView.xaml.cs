@@ -18,9 +18,9 @@ namespace FreeJoyConfigurator
     /// <summary>
     /// Логика взаимодействия для AxisView.xaml
     /// </summary>
-    public partial class AxisView : UserControl
+    public partial class AxesView : UserControl
     {
-        public AxisView()
+        public AxesView()
         {
             InitializeComponent();
         }

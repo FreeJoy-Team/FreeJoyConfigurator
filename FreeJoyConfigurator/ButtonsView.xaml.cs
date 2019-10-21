@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FreeJoyConfigurator
 {
     /// <summary>
-    /// Логика взаимодействия для Pins.xaml
+    /// Логика взаимодействия для ButtonView.xaml
     /// </summary>
-    public partial class Pins : UserControl
+    public partial class ButtonsView : UserControl
     {
-        public Pins()
+        public ButtonsView()
         {
             InitializeComponent();
         }

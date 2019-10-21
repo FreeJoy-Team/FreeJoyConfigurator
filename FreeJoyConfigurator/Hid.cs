@@ -102,7 +102,17 @@ namespace FreeJoyConfigurator
             hr = new HidReport(buffer.Length, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success));
             hr.ReportId = (byte)reportId;
 
-            hidDevice.WriteReport(hr);
+            hidDevice.WriteReport(hr, 1000000);
+
+            // raise event
+            PacketSent?.Invoke(hr);
+        }
+
+        static public void ReportSend(HidReport report)
+        {
+            HidReport hr = report;
+
+            hidDevice.WriteReport(hr, 1000000);
 
             // raise event
             PacketSent?.Invoke(hr);

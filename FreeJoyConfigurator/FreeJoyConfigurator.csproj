@@ -94,27 +94,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AxisView.xaml.cs">
-      <DependentUpon>AxisView.xaml</DependentUpon>
+    <Compile Include="AxesConfigView.xaml.cs">
+      <DependentUpon>AxesConfigView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ButtonView.xaml.cs">
-      <DependentUpon>ButtonView.xaml</DependentUpon>
+    <Compile Include="AxesView.xaml.cs">
+      <DependentUpon>AxesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DeviceConfigVM.cs" />
-    <Compile Include="JoystickVM.cs" />
+    <Compile Include="ButtonsVM.cs" />
+    <Compile Include="ButtonsView.xaml.cs">
+      <DependentUpon>ButtonsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PinsVM.cs" />
+    <Compile Include="AxesVM.cs" />
     <Compile Include="DeviceConfig.cs" />
     <Compile Include="Joystick.cs" />
     <Compile Include="MainVM.cs" />
-    <Compile Include="Pins.xaml.cs">
-      <DependentUpon>Pins.xaml</DependentUpon>
+    <Compile Include="PinsView.xaml.cs">
+      <DependentUpon>PinsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReportConverter.cs" />
     <Compile Include="UiCommand.cs" />
-    <Page Include="AxisView.xaml">
+    <Page Include="AxesConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ButtonView.xaml">
+    <Page Include="AxesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,7 +139,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pins.xaml">
+    <Page Include="PinsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

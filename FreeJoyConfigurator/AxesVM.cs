@@ -8,19 +8,20 @@ using Prism.Mvvm;
 
 namespace FreeJoyConfigurator
 {
-    public class JoystickVM : BindableBase
+    public class AxesVM : BindableBase
     {
+        
         public Joystick Joystick;
+        public DeviceConfig Config { get; set; }
 
         public ObservableCollection<Axis> Axes { get; private set; }
-        public ObservableCollection<Button> Buttons { get; private set; }
 
-        public JoystickVM(Joystick joystick)
+        public AxesVM(Joystick joystick, DeviceConfig deviceConfig)
         {
             Joystick = joystick;
+            Config = deviceConfig;
 
             Axes = new ObservableCollection<Axis>(joystick.Axes);
-            Buttons = new ObservableCollection<Button>(joystick.Buttons);
 
         }
     }

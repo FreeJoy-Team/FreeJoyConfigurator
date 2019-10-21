@@ -11,14 +11,19 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using HidLibrary;
 using MessageBoxServicing;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace FreeJoyConfigurator
 {
     public class MainVM : BindableBase
     {
-        public DeviceConfigVM DeviceConfigVM {get; set; }
-        public JoystickVM JoystickVM { get; private set; }
+        private DeviceConfig _devConfig;
+        private Joystick _joystick;
+
+        public PinsVM PinsVM {get; set; }
+        public AxesVM AxesVM { get; private set; }
+        public ButtonsVM ButtonsVM { get; private set; }
 
         public string ActivityLogVM { get; private set; }
         public string ConnectionStatusVM
@@ -36,6 +41,10 @@ namespace FreeJoyConfigurator
             }
         }
 
+        #region Commands
+        public DelegateCommand GetDeviceConfig { get; }
+        public DelegateCommand SendDeviceConfig { get; }
+        #endregion
 
 
         public MainVM()
@@ -43,37 +52,42 @@ namespace FreeJoyConfigurator
             Hid.Connect();
             Hid.DeviceAdded += DeviceAddedEventHandler;
             Hid.DeviceRemoved += DeviceRemovedEventHandler;
-            //Hid.PacketReceived += PacketReceivedEventHandler;
-            //Hid.PacketSent += PacketSentEventHandler;
 
-            DeviceConfigVM = new DeviceConfigVM(new DeviceConfig());
-            JoystickVM = new JoystickVM(new Joystick());
-            
+            _joystick = new Joystick();
+            _devConfig = new DeviceConfig();
+
+            PinsVM = new PinsVM(_devConfig);
+            AxesVM = new AxesVM(_joystick, _devConfig);
+            ButtonsVM = new ButtonsVM(_joystick, _devConfig);
+
+            GetDeviceConfig = new DelegateCommand(() =>
+            {
+                _devConfig.GetConfigRequest();
+                WriteLog("Requesting config..", false);
+            });
+            SendDeviceConfig = new DelegateCommand(() =>
+            {
+                _devConfig.SendConfig();
+                WriteLog("Writting config..", false);
+            });
 
             WriteLog("Program started", true);
         }
 
-        //private static void Watch<T, T2>(ReadOnlyObservableCollection<T> collToWatch, ObservableCollection<T2> collToUpdate,
-        //        Func<T2, object> modelProperty)
-        //{
-        //    ((INotifyCollectionChanged)collToWatch).CollectionChanged += (s, a) =>
-        //    {
-        //        if (a.NewItems?.Count == 1) collToUpdate.Add((T2)Activator.CreateInstance(typeof(T2), (T)a.NewItems[0], null));
-        //        if (a.OldItems?.Count == 1) collToUpdate.Remove(collToUpdate.First(mv => modelProperty(mv) == a.NewItems[0]));
-        //    };
-        //}
 
         #region HidEvents
         public void DeviceAddedEventHandler(HidDevice hd)
         {
             WriteLog("Device added", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
+            RaisePropertyChanged(nameof(IsConnectedVM));
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)
         {
             WriteLog("Device removed", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
+            RaisePropertyChanged(nameof(IsConnectedVM));
         }
         public void PacketReceivedEventHandler(HidReport hr)
         {

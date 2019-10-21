@@ -6,13 +6,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace FreeJoyConfigurator
 {
 
     public class AxisConfig : BindableBase
     {
-        public enum FilterLvl
+        public enum FilterLvl : byte
         {
             FilterNo = 0,
             FilterLow,
@@ -43,7 +44,7 @@ namespace FreeJoyConfigurator
 
     }
 
-    public enum PinType
+    public enum PinType : byte
     {
         NotUsed = 0,
         ButtonGnd,
@@ -62,11 +63,11 @@ namespace FreeJoyConfigurator
 
     public enum ButtonType
     {
-        ButtonNormal = 0,
-        ButtonInverted,
-        ButtonToggle,
-        ButtonToggleOn,
-        ButtonToggleOff,
+        Normal = 0,
+        Inverted,
+        Toggle,
+        ToggleOn,
+        ToggleOff,
 
         Pov1Up,
         Pov1Right,
@@ -78,16 +79,42 @@ namespace FreeJoyConfigurator
         Pov2Left,
         Pov3Up,
         Pov3Right,
-        Pov31Down,
+        Pov3Down,
         Pov3Left,
         Pov4Up,
         Pov4Right,
         Pov4Down,
         Pov4Left,
 
-        ButtonToAnalog,
-        ButtonShift,
+        //BtnToAnalog,
+        //Shift,
     };
+
+    public class ButtonConfig : BindableBase
+    {
+        private ButtonType _type;
+        public ButtonType Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                SetProperty(ref _type, value);
+            }
+        }
+
+        public ButtonConfig()
+        {
+            _type = ButtonType.Normal;
+        }
+
+        public ButtonConfig (ButtonType type)
+        {
+            _type = type;
+        }
+    }
 
 
     public class EncoderConfig : BindableBase
@@ -109,88 +136,31 @@ namespace FreeJoyConfigurator
     {
         static private byte configPacketNumber = 0;
 
-        private UInt16 _firmwareVersion;
-        private string _deviceName;
-        private UInt16 _buttonDebounceMs;
-        private UInt16 _togglePressMs;
-        private UInt16 _encoderPressMs;
-        private UInt16 _exchangePeriod;
-        private ObservableCollection<PinType> _pinConfig;
-        private ObservableCollection<AxisConfig> _axisConfig;
-        private ObservableCollection<ButtonType> _buttons;
-        private ObservableCollection<EncoderConfig> _encoderConfig;
-
-        public UInt16 FirmwareVersion
-        {
-            get { return _firmwareVersion; }
-            set { SetProperty(ref _firmwareVersion, value); }
-        }
-        public string DeviceName
-        {
-            get { return _deviceName; }
-            set { SetProperty(ref _deviceName, value); }
-        }
-        public UInt16 ButtonDebounceMs
-        {
-            get { return _buttonDebounceMs; }
-            set { SetProperty(ref _buttonDebounceMs, value); }
-        }
-        public UInt16 TogglePressMs
-        {
-            get { return _togglePressMs; }
-            set { SetProperty(ref _togglePressMs, value); }
-        }
-        public UInt16 EncoderPressMs
-        {
-            get { return _encoderPressMs; }
-            set { SetProperty(ref _encoderPressMs, value); }
-        }
-        public UInt16 ExchangePeriod
-        {
-            get { return _exchangePeriod; }
-            set { SetProperty(ref _exchangePeriod, value); }
-        }
-        public ObservableCollection<PinType> PinConfig
-        {
-            get {
-                return _pinConfig;
-            }
-            set
-            {
-                SetProperty(ref _pinConfig, value);
-            }
-        }
-        public ObservableCollection<AxisConfig> AxisConfig
-        {
-            get { return _axisConfig; }
-            set { SetProperty(ref _axisConfig, value); }
-        }
-        public ObservableCollection<ButtonType> Buttons
-        {
-            get { return _buttons; }
-            set { SetProperty(ref _buttons, value); }
-        }
-        public ObservableCollection<EncoderConfig> EncoderConfig
-        {
-            get { return _encoderConfig; }
-            set { SetProperty(ref _encoderConfig, value); }
-        }
-
+        public UInt16 FirmwareVersion { get; set; }
+        public string DeviceName { get; set; }
+        public UInt16 ButtonDebounceMs { get; set; }
+        public UInt16 TogglePressMs { get; set; }
+        public UInt16 EncoderPressMs { get; set; }
+        public UInt16 ExchangePeriod { get; set; }
+        public ObservableCollection<PinType> PinConfig { get; set; }
+        public ObservableCollection<AxisConfig> AxisConfig { get; set; }
+        public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
+        public ObservableCollection<EncoderConfig> EncoderConfig { get; set; }
 
         public DeviceConfig()
         {
-            _deviceName = "FreeJoy";
-            _axisConfig = new ObservableCollection<AxisConfig>();
-            for (int i=0; i<8; i++) _axisConfig.Add(new AxisConfig());
+            DeviceName = "FreeJoy";
+            AxisConfig = new ObservableCollection<AxisConfig>();
+            for (int i=0; i<8; i++) AxisConfig.Add(new AxisConfig());
 
-            _pinConfig = new ObservableCollection<PinType>();
-            for (int i = 0; i < 30; i++) _pinConfig.Add(PinType.NotUsed);
+            PinConfig = new ObservableCollection<PinType>();
+            for (int i = 0; i < 30; i++) PinConfig.Add(PinType.NotUsed);
 
-            _buttons = new ObservableCollection<ButtonType>();
-            for (int i = 0; i < 128; i++) _buttons.Add(ButtonType.ButtonNormal);
+            ButtonConfig = new ObservableCollection<ButtonConfig>();
+            for (int i = 0; i < 128; i++) ButtonConfig.Add(new ButtonConfig());
 
-                _encoderConfig = new ObservableCollection<EncoderConfig>();
-            for (int i = 0; i < 12; i++) _encoderConfig.Add(new EncoderConfig());
+                EncoderConfig = new ObservableCollection<EncoderConfig>();
+            for (int i = 0; i < 12; i++) EncoderConfig.Add(new EncoderConfig());
 
 
             //Hid.Connect();
@@ -200,21 +170,43 @@ namespace FreeJoyConfigurator
         public void PacketReceivedEventHandler(HidReport report)
         {
             var config = this;
+            List<HidReport> hrs;
             HidReport hr = report;
             byte[] buffer = new byte[1];
 
-            if ((ReportID)hr.ReportId == (ReportID.CONFIG_IN_REPORT))
+            switch ((ReportID)hr.ReportId)               
             {
-                configPacketNumber = hr.Data[0];
-                Console.WriteLine("Config packet received: {0}", configPacketNumber);
+                case ReportID.CONFIG_IN_REPORT:
+                    configPacketNumber = hr.Data[0];
+                    Console.WriteLine("Config packet received: {0}", configPacketNumber);
 
-                ReportConverter.ReportToConfig(ref config, hr);
-                RaisePropertyChanged(nameof(config));
-                if (configPacketNumber < 10)
-                {
-                    buffer[0] = ++configPacketNumber;
-                    Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
-                }           
+                    //App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    //{
+                        ReportConverter.ReportToConfig(ref config, hr);
+                    //}));
+               
+                
+                    RaisePropertyChanged(nameof(config));
+                    if (configPacketNumber < 10)
+                    {
+                        buffer[0] = ++configPacketNumber;
+                        Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
+                        Console.WriteLine("Requesting config packet..: {0}", configPacketNumber);
+                    }
+                    break;
+
+                case ReportID.CONFIG_OUT_REPORT:
+                    configPacketNumber = hr.Data[0];
+                    hrs = ReportConverter.ConfigToReports(config);
+
+                    Console.WriteLine("Config packet requested: {0}", configPacketNumber);
+
+                    Hid.ReportSend(hrs[configPacketNumber-1]);
+                    Console.WriteLine("Sending config packet..: {0}", configPacketNumber);
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -224,7 +216,7 @@ namespace FreeJoyConfigurator
 
             buffer[0] = 1;
             Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
-            Console.WriteLine("Config requested");
+            Console.WriteLine("Requesting config packet..: 1");
         }
 
         public void SendConfig()
@@ -234,7 +226,8 @@ namespace FreeJoyConfigurator
 
             hr = ReportConverter.ConfigToReports(config);
 
-            Hid.ReportSend((byte)ReportID.CONFIG_OUT_REPORT, hr[0].Data);
+            Hid.ReportSend(hr[0]);
+            Console.WriteLine("Sending config packet..: 1");
         }
     }
 }
