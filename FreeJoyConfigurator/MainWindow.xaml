@@ -95,7 +95,7 @@
 
                 <!--Row 9-->
                 <Button Name="Button_ResetPins" Grid.Row="10"  Content="Reset All Pins"
-                        Command="{Binding WriteConfigButton_Click}" Background="White" Margin="10,6,10,5">
+                        Command="{Binding ResetAllPins}" Background="White" Margin="10,6,10,5">
                 </Button>
             </Grid>
         </GroupBox>
@@ -137,7 +137,47 @@
             </ComboBox>
 
             <GroupBox Header="Current Config" Name ="Info_GroupBox" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Number of axes:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PinsVM.AxesCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Single buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PinsVM.SingleBtnCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Rows of buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PinsVM.RowCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Columns of buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding PinsVM.ColCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Total buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding PinsVM.TotalBtnCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
             </GroupBox>
         </Grid>
 

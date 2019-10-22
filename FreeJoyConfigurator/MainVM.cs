@@ -44,6 +44,7 @@ namespace FreeJoyConfigurator
         #region Commands
         public DelegateCommand GetDeviceConfig { get; }
         public DelegateCommand SendDeviceConfig { get; }
+        public DelegateCommand ResetAllPins { get; }
         #endregion
 
 
@@ -70,6 +71,8 @@ namespace FreeJoyConfigurator
                 _devConfig.SendConfig();
                 WriteLog("Writting config..", false);
             });
+
+            ResetAllPins = new DelegateCommand(() => PinsVM.ResetPins());
 
             WriteLog("Program started", true);
         }

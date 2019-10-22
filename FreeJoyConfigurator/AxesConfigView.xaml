@@ -21,7 +21,7 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type local:AxesConfigView}">
-                <Border BorderThickness="0.4" BorderBrush="LightGray" Height="100">
+                <Border BorderThickness="0.5" BorderBrush="LightGray" Height="100">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MaxWidth="80"/>
@@ -37,7 +37,7 @@
 
                         <CheckBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
                                   Content="Autocalibration" 
-                                  HorizontalAlignment="Center" 
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"
                                   IsChecked="{Binding IsAutoCalib}"/>
                         
                         <CheckBox Grid.Column="0" Grid.Row="2"
