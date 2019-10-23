@@ -80,17 +80,17 @@
 
                 <!--Row 6-->
                 <Button Name="Button_SetDefaultConfig" Grid.Row="6"  Content="Set Default Config"
-                        Command="{Binding WriteConfigButton_Click}" Background="White" Margin="10,6,10,5">
+                        Command="{Binding SetDefault}" Background="White" Margin="10,6,10,5">
                 </Button>
 
                 <!--Row 7-->
-                <Button Name="Button_LoadFileConfig" Grid.Row="7"  Content="Load Config form File"
-                        Command="{Binding WriteConfigButton_Click}" Background="White" Margin="10,6,10,5">
+                <Button Name="Button_LoadFileConfig" Grid.Row="7"  Content="Load Config from File"
+                        Command="{Binding LoadConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 
                 <!--Row 8-->
                 <Button Name="Button_SaveFIleConfig" Grid.Row="8"  Content="Save Config to File"
-                        Command="{Binding WriteConfigButton_Click}" Background="White" Margin="10,6,10,5">
+                        Command="{Binding SaveConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 
                 <!--Row 9-->

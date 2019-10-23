@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using System.Xml.Serialization;
 
 namespace FreeJoyConfigurator
 {
-
+    
     public class AxisConfig : BindableBase
     {
         public enum FilterLvl : byte
@@ -267,20 +268,32 @@ namespace FreeJoyConfigurator
 
     public class DeviceConfig : BindableBase
     {
+        [XmlIgnore]
         static private byte configPacketNumber = 0;
 
+        [XmlElement("Firmware_Version")]
         public UInt16 FirmwareVersion { get; set; }
+        [XmlElement("Device_Name")]
         public string DeviceName { get; set; }
+        [XmlElement("Button_Debounce_Time")]
         public UInt16 ButtonDebounceMs { get; set; }
+        [XmlElement("Toggle_Press_Time")]
         public UInt16 TogglePressMs { get; set; }
+        [XmlElement("Encoder_Press_Time")]
         public UInt16 EncoderPressMs { get; set; }
+        [XmlElement("Exchange_Period")]
         public UInt16 ExchangePeriod { get; set; }
+        [XmlElement("Pin_Config")]
         public ObservableCollection<PinType> PinConfig { get; set; }
+        [XmlElement("Axis_Config")]
         public ObservableCollection<AxisConfig> AxisConfig { get; set; }
+        [XmlElement("Button_Config")]
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
+        [XmlElement("Encoder_Config")]
         public ObservableCollection<EncoderConfig> EncoderConfig { get; set; }
 
         public delegate void ConfigReceivedEventHandler(DeviceConfig deviceConfig);
+
         public delegate void ConfigSentEventHandler(DeviceConfig deviceConfig);
 
         public event ConfigReceivedEventHandler Received;

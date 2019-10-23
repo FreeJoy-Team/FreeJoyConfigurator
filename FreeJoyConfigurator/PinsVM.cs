@@ -114,10 +114,15 @@ namespace FreeJoyConfigurator
             }
         }
 
-        
+
         #endregion
 
         #region Public methods
+        public void Update()
+        {
+            ConfigReceived(Config);
+        }
+
         public void ResetPins()
         {
             for (int i = 0; i < Pins.Count; i++)

@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Xml;
+using System.Xml.Serialization;
 using HidLibrary;
 using MessageBoxServicing;
+using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -45,6 +49,9 @@ namespace FreeJoyConfigurator
         public DelegateCommand GetDeviceConfig { get; }
         public DelegateCommand SendDeviceConfig { get; }
         public DelegateCommand ResetAllPins { get; }
+        public DelegateCommand SaveConfig { get; }
+        public DelegateCommand LoadConfig { get; }
+        public DelegateCommand SetDefault { get; }
         #endregion
 
 
@@ -78,8 +85,76 @@ namespace FreeJoyConfigurator
             });
 
             ResetAllPins = new DelegateCommand(() => PinsVM.ResetPins());
+            SaveConfig = new DelegateCommand(() => SaveConfigToFile());
+            LoadConfig = new DelegateCommand(() => ReadConfigFromFile());
+            SetDefault = new DelegateCommand(() => LoadDefaultConfig());
 
             WriteLog("Program started", true);
+        }
+
+        private void SaveConfigToFile()
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+
+            dlg.FileName = "default";
+            dlg.DefaultExt = ".conf";
+            dlg.Filter = "Config files (.conf)|*.conf";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                if (File.Exists(dlg.FileName)) File.Delete(dlg.FileName);
+                SerializeObject<DeviceConfig>( _config, dlg.FileName);
+            }
+
+        }
+
+        private void ReadConfigFromFile()
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+
+            dlg.DefaultExt = ".conf";
+            dlg.Filter = "Config files (.conf)|*.conf";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                {   // TODO: fix serialization
+                    DeviceConfig tmp = DeSerializeObject<DeviceConfig>(dlg.FileName);
+                    for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
+                    for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
+                    for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
+                    for (int i = 0; i < 12; i++) tmp.EncoderConfig.RemoveAt(0);
+
+                    _config = tmp;  
+                }
+                PinsVM.Config = _config;
+                AxesVM.Config = _config;
+                ButtonsVM.Config = _config;
+
+                PinsVM.Update();
+                ButtonsVM.Update();
+            }
+
+        }
+
+        private void LoadDefaultConfig()
+        {
+            {   // TODO: fix serialization
+                DeviceConfig tmp = DeSerializeObject<DeviceConfig>("./default.conf");
+                for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
+                for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
+                for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
+                for (int i = 0; i < 12; i++) tmp.EncoderConfig.RemoveAt(0);
+
+                _config = tmp;
+            }
+            PinsVM.Config = _config;
+            AxesVM.Config = _config;
+            ButtonsVM.Config = _config;
+
+            PinsVM.Update();
+            ButtonsVM.Update();
         }
 
         private void PinConfigChanged()
@@ -131,7 +206,74 @@ namespace FreeJoyConfigurator
             }
             RaisePropertyChanged("ActivityLogVM");
         }
+
+        /// <summary>
+        /// Serializes an object.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="serializableObject"></param>
+        /// <param name="fileName"></param>
+        public void SerializeObject<T>(T serializableObject, string fileName)
+        {
+            if (serializableObject == null) { return; }
+
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                XmlSerializer serializer = new XmlSerializer(serializableObject.GetType());
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    serializer.Serialize(stream, serializableObject);
+                    stream.Position = 0;
+                    xmlDocument.Load(stream);
+                    xmlDocument.Save(fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Log exception here
+            }
+        }
+
+
+        /// <summary>
+        /// Deserializes an xml file into an object list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public T DeSerializeObject<T>(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName)) { return default(T); }
+
+            T objectOut = default(T);
+
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(fileName);
+                string xmlString = xmlDocument.OuterXml;
+
+                using (StringReader read = new StringReader(xmlString))
+                {
+                    Type outType = typeof(T);
+
+                    XmlSerializer serializer = new XmlSerializer(outType);
+                    using (XmlReader reader = new XmlTextReader(read))
+                    {
+                        objectOut = (T)serializer.Deserialize(reader);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Log exception here
+            }
+
+            return objectOut;
+        }
         #endregion
     }
+
 }
 
