@@ -61,6 +61,7 @@ namespace FreeJoyConfigurator
             if ((ReportID)hr.ReportId == (ReportID.JOY_REPORT))
             {
                 ReportConverter.ReportToJoystick(ref joystick, hr);
+                RaisePropertyChanged(nameof(joystick));
             }          
         }
 
@@ -68,8 +69,14 @@ namespace FreeJoyConfigurator
 
     public class Button : BindableBase
     {
-        
+        private ButtonType _type;
         private bool _state;
+
+        public ButtonType Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
         public bool State
         {
             get { return _state; }
@@ -78,11 +85,18 @@ namespace FreeJoyConfigurator
 
         public Button()
         {
+            _type = ButtonType.BtnNormal;
             _state = false;
         }
 
         public Button(bool state)
         {
+            _type = ButtonType.BtnNormal;
+            _state = state;
+        }
+        public Button(bool state, ButtonType type)
+        {
+            _type = type;
             _state = state;
         }
     }

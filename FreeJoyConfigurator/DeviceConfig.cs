@@ -280,6 +280,12 @@ namespace FreeJoyConfigurator
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
         public ObservableCollection<EncoderConfig> EncoderConfig { get; set; }
 
+        public delegate void ConfigReceivedEventHandler(DeviceConfig deviceConfig);
+        public delegate void ConfigSentEventHandler(DeviceConfig deviceConfig);
+
+        public event ConfigReceivedEventHandler Received;
+        public event ConfigSentEventHandler Sent;
+
         public DeviceConfig()
         {
             DeviceName = "FreeJoy";
@@ -318,13 +324,20 @@ namespace FreeJoyConfigurator
                         ReportConverter.ReportToConfig(ref config, hr);
                     }));
                
-                
-                    RaisePropertyChanged(nameof(config));
                     if (configPacketNumber < 10)
                     {
                         buffer[0] = ++configPacketNumber;
                         Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
                         Console.WriteLine("Requesting config packet..: {0}", configPacketNumber);
+                    }
+                    else
+                    {
+
+                        RaisePropertyChanged(nameof(config));
+                        App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                        {
+                            Received(this);
+                        }));
                     }
                     break;
 
@@ -336,6 +349,14 @@ namespace FreeJoyConfigurator
 
                     Hid.ReportSend(hrs[configPacketNumber-1]);
                     Console.WriteLine("Sending config packet..: {0}", configPacketNumber);
+
+                    if (configPacketNumber >= 10)
+                    {
+                        App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                        {
+                            Sent(this);
+                        }));
+                    }
                     break;
 
                 default:

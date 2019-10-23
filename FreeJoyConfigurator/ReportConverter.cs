@@ -26,7 +26,7 @@ namespace FreeJoyConfigurator
             {
                 for (int i=0; i<joystick.Buttons.Count; i++)
                 {
-                    joystick.Buttons[i].State = (hr.Data[1 + (i & 0xF8)>>3] & (1<<i & 0x07)) > 0 ? true : false;
+                    joystick.Buttons[i].State = (hr.Data[1 + (i & 0xF8)>>3] & (1<<(i & 0x07))) > 0 ? true : false;
                 }
 
                 for (int i = 0; i < joystick.Axes.Count; i++)

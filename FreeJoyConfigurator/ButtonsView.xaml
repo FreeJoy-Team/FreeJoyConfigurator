@@ -21,7 +21,7 @@
     </UserControl.Resources>
 
     <ScrollViewer d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
-        <ItemsControl ItemsSource="{Binding Path=ButtonsVM.Config.ButtonConfig}"
+        <ItemsControl ItemsSource="{Binding Path=ButtonsVM.Buttons}"
                   AlternationCount="{Binding ButtonsVM.Buttons.Count}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -31,15 +31,36 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
                     <Border BorderBrush="LightGray" BorderThickness="1">
-                        <StackPanel Orientation="Horizontal">
-                            <Label MinWidth="30" MaxWidth="30" MinHeight="30" MaxHeight="30" HorizontalContentAlignment="Right"
-                                   Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                            <ComboBox MinWidth="100" MaxWidth="100" MinHeight="30" MaxHeight="30" 
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="95"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="15"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding State}" Value="True">
+                                            <Setter Property="Background" Value="LightGreen"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+
+                            <Label Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"
+                                   Content="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                
+                            </Label>
+                            <ComboBox Grid.Column="1" Grid.Row="0" 
                                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}"
                                   SelectedItem="{Binding Path=Type}">
                             </ComboBox>
-                                  
-                        </StackPanel>
+
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

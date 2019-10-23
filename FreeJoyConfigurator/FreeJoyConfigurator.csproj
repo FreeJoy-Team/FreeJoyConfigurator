@@ -119,6 +119,7 @@
     <Compile Include="ButtonsView.xaml.cs">
       <DependentUpon>ButtonsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InvertBooleenConverter.cs" />
     <Compile Include="PinsVM.cs" />
     <Compile Include="AxesVM.cs" />
     <Compile Include="DeviceConfig.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="PinsView.xaml.cs">
       <DependentUpon>PinsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PinVMConverter.cs" />
     <Compile Include="ReportConverter.cs" />
     <Compile Include="UiCommand.cs" />
     <Page Include="AxesConfigView.xaml">

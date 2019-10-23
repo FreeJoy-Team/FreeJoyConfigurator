@@ -18,7 +18,7 @@ namespace FreeJoyConfigurator
 {
     public class MainVM : BindableBase
     {
-        private DeviceConfig _devConfig;
+        private DeviceConfig _config;
         private Joystick _joystick;
 
         public PinsVM PinsVM {get; set; }
@@ -55,26 +55,46 @@ namespace FreeJoyConfigurator
             Hid.DeviceRemoved += DeviceRemovedEventHandler;
 
             _joystick = new Joystick();
-            _devConfig = new DeviceConfig();
+            _config = new DeviceConfig();
 
-            PinsVM = new PinsVM(_devConfig);
-            AxesVM = new AxesVM(_joystick, _devConfig);
-            ButtonsVM = new ButtonsVM(_joystick, _devConfig);
+            _config.Received += ConfigReceived;
+            _config.Sent += ConfigSent;
+
+            PinsVM = new PinsVM(_config);
+            PinsVM.ConfigChanged += PinConfigChanged;
+
+            AxesVM = new AxesVM(_joystick, _config);
+            ButtonsVM = new ButtonsVM(_joystick, _config);
 
             GetDeviceConfig = new DelegateCommand(() =>
             {
-                _devConfig.GetConfigRequest();
+                _config.GetConfigRequest();
                 WriteLog("Requesting config..", false);
             });
             SendDeviceConfig = new DelegateCommand(() =>
             {
-                _devConfig.SendConfig();
+                _config.SendConfig();
                 WriteLog("Writting config..", false);
             });
 
             ResetAllPins = new DelegateCommand(() => PinsVM.ResetPins());
 
             WriteLog("Program started", true);
+        }
+
+        private void PinConfigChanged()
+        {
+            ButtonsVM.Update();
+        }
+
+        private void ConfigSent(DeviceConfig deviceConfig)
+        {
+            WriteLog("Config written", false);
+        }
+
+        private void ConfigReceived(DeviceConfig deviceConfig)
+        {
+            WriteLog("Config received", false);
         }
 
 
@@ -91,16 +111,6 @@ namespace FreeJoyConfigurator
             WriteLog("Device removed", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
-        }
-        public void PacketReceivedEventHandler(HidReport hr)
-        {
-            //MessageBoxService mbs = new MessageBoxService();
-            //WriteLog("Report received", false);
-        }
-
-        public void PacketSentEventHandler(HidReport hr)
-        {
-            WriteLog("Report sent", false);
         }
         #endregion
 
