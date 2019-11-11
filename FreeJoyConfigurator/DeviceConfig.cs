@@ -302,6 +302,11 @@ namespace FreeJoyConfigurator
         public DeviceConfig()
         {
             DeviceName = "FreeJoy";
+            ButtonDebounceMs = 50;
+            TogglePressMs = 300;
+            EncoderPressMs = 100;
+            ExchangePeriod = 10;
+
             AxisConfig = new ObservableCollection<AxisConfig>();
             for (int i=0; i<8; i++) AxisConfig.Add(new AxisConfig());
 

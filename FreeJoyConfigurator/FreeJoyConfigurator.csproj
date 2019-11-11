@@ -119,6 +119,11 @@
     <Compile Include="ButtonsView.xaml.cs">
       <DependentUpon>ButtonsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FirmwareUpdater.cs" />
+    <Compile Include="FirmwareUpdaterView.xaml.cs">
+      <DependentUpon>FirmwareUpdaterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FirmwareUpdaterVM.cs" />
     <Compile Include="InvertBooleenConverter.cs" />
     <Compile Include="PinsVM.cs" />
     <Compile Include="AxesVM.cs" />
@@ -140,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ButtonsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FirmwareUpdaterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

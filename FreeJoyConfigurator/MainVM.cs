@@ -21,13 +21,26 @@ using Prism.Mvvm;
 namespace FreeJoyConfigurator
 {
     public class MainVM : BindableBase
-    {
-        private DeviceConfig _config;
+    { 
         private Joystick _joystick;
+        private DeviceConfig _config;
+        
 
+        public DeviceConfig Config
+        {
+            get
+            {
+                return _config;
+            }
+            set
+            {
+                SetProperty(ref _config, value);
+            }
+        }
         public PinsVM PinsVM {get; set; }
         public AxesVM AxesVM { get; private set; }
         public ButtonsVM ButtonsVM { get; private set; }
+        public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
         public string ActivityLogVM { get; private set; }
         public string ConnectionStatusVM
@@ -52,6 +65,7 @@ namespace FreeJoyConfigurator
         public DelegateCommand SaveConfig { get; }
         public DelegateCommand LoadConfig { get; }
         public DelegateCommand SetDefault { get; }
+        
         #endregion
 
 
@@ -63,24 +77,27 @@ namespace FreeJoyConfigurator
 
             _joystick = new Joystick();
             _config = new DeviceConfig();
+            
 
-            _config.Received += ConfigReceived;
-            _config.Sent += ConfigSent;
+            Config.Received += ConfigReceived;
+            Config.Sent += ConfigSent;
 
-            PinsVM = new PinsVM(_config);
+            PinsVM = new PinsVM(Config);
             PinsVM.ConfigChanged += PinConfigChanged;
 
-            AxesVM = new AxesVM(_joystick, _config);
-            ButtonsVM = new ButtonsVM(_joystick, _config);
+            AxesVM = new AxesVM(_joystick, Config);
+            ButtonsVM = new ButtonsVM(_joystick, Config);
+
+            FirmwareUpdaterVM = new FirmwareUpdaterVM();
 
             GetDeviceConfig = new DelegateCommand(() =>
             {
-                _config.GetConfigRequest();
+                Config.GetConfigRequest();
                 WriteLog("Requesting config..", false);
             });
             SendDeviceConfig = new DelegateCommand(() =>
             {
-                _config.SendConfig();
+                Config.SendConfig();
                 WriteLog("Writting config..", false);
             });
 
@@ -88,6 +105,7 @@ namespace FreeJoyConfigurator
             SaveConfig = new DelegateCommand(() => SaveConfigToFile());
             LoadConfig = new DelegateCommand(() => ReadConfigFromFile());
             SetDefault = new DelegateCommand(() => LoadDefaultConfig());
+            
 
             WriteLog("Program started", true);
         }
@@ -104,7 +122,7 @@ namespace FreeJoyConfigurator
             if (result == true)
             {
                 if (File.Exists(dlg.FileName)) File.Delete(dlg.FileName);
-                SerializeObject<DeviceConfig>( _config, dlg.FileName);
+                SerializeObject<DeviceConfig>( Config, dlg.FileName);
             }
 
         }
@@ -126,11 +144,11 @@ namespace FreeJoyConfigurator
                     for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
                     for (int i = 0; i < 12; i++) tmp.EncoderConfig.RemoveAt(0);
 
-                    _config = tmp;  
+                    Config = tmp;  
                 }
-                PinsVM.Config = _config;
-                AxesVM.Config = _config;
-                ButtonsVM.Config = _config;
+                PinsVM.Config = Config;
+                AxesVM.Config = Config;
+                ButtonsVM.Config = Config;
 
                 PinsVM.Update();
                 ButtonsVM.Update();
@@ -147,11 +165,11 @@ namespace FreeJoyConfigurator
                 for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
                 for (int i = 0; i < 12; i++) tmp.EncoderConfig.RemoveAt(0);
 
-                _config = tmp;
+                Config = tmp;
             }
-            PinsVM.Config = _config;
-            AxesVM.Config = _config;
-            ButtonsVM.Config = _config;
+            PinsVM.Config = Config;
+            AxesVM.Config = Config;
+            ButtonsVM.Config = Config;
 
             PinsVM.Update();
             ButtonsVM.Update();
@@ -170,6 +188,7 @@ namespace FreeJoyConfigurator
         private void ConfigReceived(DeviceConfig deviceConfig)
         {
             WriteLog("Config received", false);
+            RaisePropertyChanged(nameof(Config));
         }
 
 

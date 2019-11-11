@@ -15,6 +15,7 @@ namespace FreeJoyConfigurator
         JOY_REPORT = 1,
         CONFIG_IN_REPORT,
         CONFIG_OUT_REPORT,
+        FIRMWARE_REPORT,
     };
 
     public static class ReportConverter
