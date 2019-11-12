@@ -104,12 +104,16 @@
             <TabItem Header="Pin Config">
                 <local:PinsView/>
             </TabItem>
+            <TabItem Header="Button Config">
+                <local:ButtonsView/>
+            </TabItem>
             <TabItem Header="Axes Config">
                 <ScrollViewer>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3.5*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
+                            
                         </Grid.ColumnDefinitions>
                         
                         <local:AxesView Grid.Column="0"/>
@@ -118,12 +122,7 @@
                 </ScrollViewer>
                 
             </TabItem>
-            <TabItem Header="Button Config">
-                <local:ButtonsView/>
-            </TabItem>
-            <!--<TabItem Header="Encoder Config">
-                <local:EncoderView/>
-            </TabItem>-->
+            
         </TabControl>
 
         <Grid Grid.Column="2" Margin="0,20,0,0">

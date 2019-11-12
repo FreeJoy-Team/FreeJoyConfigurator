@@ -76,7 +76,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[0].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[0].IsInverted = Convert.ToBoolean(hr.Data[8]);
-                config.AxisConfig[0].FilterLevel = (AxisConfig.FilterLvl)hr.Data[9];
+                config.AxisConfig[0].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[0].CurveShape[i] = hr.Data[10 + i];
@@ -88,7 +88,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[1].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[1].IsInverted = Convert.ToBoolean(hr.Data[38]);
-                config.AxisConfig[1].FilterLevel = (AxisConfig.FilterLvl)hr.Data[39];
+                config.AxisConfig[1].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[1].CurveShape[i] = hr.Data[40 + i];
@@ -103,7 +103,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[2].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[2].IsInverted = Convert.ToBoolean(hr.Data[8]);
-                config.AxisConfig[2].FilterLevel = (AxisConfig.FilterLvl)hr.Data[9];
+                config.AxisConfig[2].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[2].CurveShape[i] = hr.Data[10 + i];
@@ -115,7 +115,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[3].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[3].IsInverted = Convert.ToBoolean(hr.Data[38]);
-                config.AxisConfig[3].FilterLevel = (AxisConfig.FilterLvl)hr.Data[39];
+                config.AxisConfig[3].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[3].CurveShape[i] = hr.Data[40 + i];
@@ -129,7 +129,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[4].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[4].IsInverted = Convert.ToBoolean(hr.Data[8]);
-                config.AxisConfig[4].FilterLevel = (AxisConfig.FilterLvl)hr.Data[9];
+                config.AxisConfig[4].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[4].CurveShape[i] = hr.Data[10 + i];
@@ -141,7 +141,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[5].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[5].IsInverted = Convert.ToBoolean(hr.Data[38]);
-                config.AxisConfig[5].FilterLevel = (AxisConfig.FilterLvl)hr.Data[39];
+                config.AxisConfig[5].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[5].CurveShape[i] = hr.Data[40 + i];
@@ -155,7 +155,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[6].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[6].IsInverted = Convert.ToBoolean(hr.Data[8]);
-                config.AxisConfig[6].FilterLevel = (AxisConfig.FilterLvl)hr.Data[9];
+                config.AxisConfig[6].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[6].CurveShape[i] = hr.Data[10 + i];
@@ -167,7 +167,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[7].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[7].IsInverted = Convert.ToBoolean(hr.Data[38]);
-                config.AxisConfig[7].FilterLevel = (AxisConfig.FilterLvl)hr.Data[39];
+                config.AxisConfig[7].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[7].CurveShape[i] = hr.Data[40 + i];

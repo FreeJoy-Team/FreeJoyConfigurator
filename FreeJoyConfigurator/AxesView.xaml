@@ -20,7 +20,7 @@
                     <Border BorderThickness="0.4" BorderBrush="LightGray" Height="100">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" MinWidth="60"/>
                                 <ColumnDefinition Width="7*"/>
 
                             </Grid.ColumnDefinitions>

@@ -3,32 +3,26 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Threading;
 using System.Xml.Serialization;
 
 namespace FreeJoyConfigurator
 {
-    
+
     public class AxisConfig : BindableBase
     {
-        public enum FilterLvl : byte
-        {
-            FilterNo = 0,
-            FilterLow,
-            FilterMedium,
-            FilterHigh,
-        };
-
         private ushort _calibMin;
         private ushort _calibCenter;
         private ushort _calibMax;
         private bool _isAutocalib;
         private bool _isInverted;
         private byte[] _curveShape;
-        private FilterLvl _filterLevel;
+        private byte _filterLevel;
 
         private bool _isCalibCenterUnlocked;
 
@@ -133,7 +127,7 @@ namespace FreeJoyConfigurator
             }
         }
 
-        public FilterLvl FilterLevel
+        public byte FilterLevel
         {
             get
             {
@@ -170,11 +164,34 @@ namespace FreeJoyConfigurator
             _isInverted = false;
 
             _curveShape = new byte[10];
-            _filterLevel = FilterLvl.FilterNo;
+            _filterLevel = 0;
 
             _isCalibCenterUnlocked = false;
         }
 
+    }
+
+    public class FilterLevelConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string converted;
+
+            Byte original = (Byte) value;
+
+            if (original == 0) converted = "Off";
+            else if(original == 1) converted = "Low";
+            else if (original == 2) converted = "Medium";
+            else if(original == 3) converted = "High";
+            else converted = "Filter No";
+
+            return converted;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
     }
 
     public enum PinType : byte

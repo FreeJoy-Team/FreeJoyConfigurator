@@ -11,6 +11,7 @@
 
     <UserControl.Resources>
         <local:InvertBooleanConverter  x:Key="boolConvert"/>
+        <local:FilterLevelConverter x:Key="filterConverter"/>
     </UserControl.Resources>
 
     <ItemsControl ItemsSource="{Binding AxesVM.Config.AxisConfig, Mode=OneWay}">
@@ -25,6 +26,7 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MaxWidth="80"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
@@ -51,16 +53,25 @@
 
                         <Label Grid.Column="0" Grid.Row="3"  Content="Maximum"  VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibMin, UpdateSourceTrigger=LostFocus}"/>
-                        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             IsReadOnly="{Binding IsCalibCenterUnlocked, Mode=TwoWay, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibCenter, UpdateSourceTrigger=LostFocus}"/>
-                        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibMax, UpdateSourceTrigger=LostFocus}"/>
+
+                        <Label Grid.Column="2" Grid.Row="0" Content="Smoothing" VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
+                        <Slider Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Orientation="Vertical"
+                                HorizontalAlignment="Center" Minimum="0" Maximum="3" IsSnapToTickEnabled="True" TickFrequency="1"
+                                Value="{Binding Path=FilterLevel}"/>
+                        <Label Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                               Content="{Binding Path=FilterLevel, Converter={StaticResource filterConverter}}"/>
+
+
                     </Grid>
                 </Border>
 
