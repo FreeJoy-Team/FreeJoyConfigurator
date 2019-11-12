@@ -142,7 +142,6 @@ namespace FreeJoyConfigurator
                     for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
                     for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
-                    for (int i = 0; i < 12; i++) tmp.EncoderConfig.RemoveAt(0);
 
                     Config = tmp;  
                 }
@@ -163,7 +162,6 @@ namespace FreeJoyConfigurator
                 for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
                 for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
-                for (int i = 0; i < 12; i++) tmp.EncoderConfig.RemoveAt(0);
 
                 Config = tmp;
             }

@@ -220,6 +220,8 @@ namespace FreeJoyConfigurator
         Pov4Down,
         Pov4Left,
 
+        Encoder_A,
+        Encoder_B,
         //BtnToAnalog,
         //Shift,
     };
@@ -250,22 +252,6 @@ namespace FreeJoyConfigurator
         }
     }
 
-
-    public class EncoderConfig : BindableBase
-    {
-        public enum EncoderType
-        {
-            Encoder1_1 = 0,
-            Encoder1_2,
-            Encoder1_4,
-        };
-
-        public byte PinA;
-        public byte PinB;
-        public byte PinC;
-        public EncoderType Type;
-    }
-
     public class DeviceConfig : BindableBase
     {
         [XmlIgnore]
@@ -289,8 +275,6 @@ namespace FreeJoyConfigurator
         public ObservableCollection<AxisConfig> AxisConfig { get; set; }
         [XmlElement("Button_Config")]
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
-        [XmlElement("Encoder_Config")]
-        public ObservableCollection<EncoderConfig> EncoderConfig { get; set; }
 
         public delegate void ConfigReceivedEventHandler(DeviceConfig deviceConfig);
 
@@ -315,9 +299,6 @@ namespace FreeJoyConfigurator
 
             ButtonConfig = new ObservableCollection<ButtonConfig>();
             for (int i = 0; i < 128; i++) ButtonConfig.Add(new ButtonConfig());
-
-                EncoderConfig = new ObservableCollection<EncoderConfig>();
-            for (int i = 0; i < 12; i++) EncoderConfig.Add(new EncoderConfig());
 
 
             //Hid.Connect();

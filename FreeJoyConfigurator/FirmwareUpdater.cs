@@ -49,49 +49,70 @@ namespace FreeJoyConfigurator
             if (hr.ReportId == (byte)ReportID.FIRMWARE_REPORT)
             {
                 ushort cnt = (ushort)(hr.Data[0] << 8 | hr.Data[1]);
-                Console.WriteLine("Firmware packet requested: {0}", cnt);
 
-                fileArray = File.ReadAllBytes(_filepath);
-
-
-                buffer[0] = (byte)(cnt>>8);
-                buffer[1] = (byte)(cnt&0xFF);
-                buffer[2] = 0;
-                if (cnt * 60 < fileArray.Length)
+                if (cnt == 0)  // error packet
                 {
-                    Array.ConstrainedCopy(fileArray, (cnt - 1) * 60, buffer, 3, 60);
-                    UpdatePercent = (((cnt - 1) * 60 * 100 / fileArray.Length) );
+                    // TODO: errors handler
                 }
                 else
                 {
-                    Array.ConstrainedCopy(fileArray, (cnt - 1) * 60, buffer, 3, fileArray.Length-(cnt-1)*60);
-                    UpdatePercent = 0;
-                    Finished();
+                    Console.WriteLine("Firmware packet requested: {0}", cnt);
+
+                    fileArray = File.ReadAllBytes(_filepath);
+
+                    buffer[0] = (byte)(cnt >> 8);
+                    buffer[1] = (byte)(cnt & 0xFF);
+                    buffer[2] = 0;
+                    if (cnt * 60 < fileArray.Length)
+                    {
+                        Array.ConstrainedCopy(fileArray, (cnt - 1) * 60, buffer, 3, 60);
+                        UpdatePercent = (((cnt - 1) * 60 * 100 / fileArray.Length));
+
+                        Hid.ReportSend((byte)ReportID.FIRMWARE_REPORT, buffer);
+                        Console.WriteLine("Firmware packet sent: {0}", cnt);
+                    }
+                    else
+                    {
+                        Array.ConstrainedCopy(fileArray, (cnt - 1) * 60, buffer, 3, fileArray.Length - (cnt - 1) * 60);
+                        UpdatePercent = 0;
+
+                        Hid.ReportSend((byte)ReportID.FIRMWARE_REPORT, buffer);
+                        Console.WriteLine("Firmware packet sent: {0}", cnt);
+
+                        Finished();
+                    }
+
+                    
                 }
-
-                
-
-                Hid.ReportSend((byte)ReportID.FIRMWARE_REPORT, buffer);
-                Console.WriteLine("Firmware packet sent: {0}", cnt);
             }
         }
 
-        public void SendFirmware()
+        public void SendFirmware(string filepath)
         {
             byte[] buffer = new byte[63];
-            ushort length = (ushort) new FileInfo(_filepath).Length;
 
-            UpdatePercent = 0;
+            if (filepath != null)
+            {
+                _filepath = filepath;
 
-            buffer[0] = 0;
-            buffer[1] = 0;
-            buffer[2] = 0;
-            buffer[3] = (byte)(length & 0xFF);
-            buffer[4] = (byte)(length >> 8);
-            
+                ushort length = (ushort)new FileInfo(_filepath).Length;
 
-            Hid.ReportSend((byte)ReportID.FIRMWARE_REPORT, buffer);
-            Console.WriteLine("Firmware packet sent: 0");
+                ushort crc16 = Crc16.ComputeChecksum(File.ReadAllBytes(_filepath));
+
+                UpdatePercent = 0;
+
+                buffer[0] = 0;
+                buffer[1] = 0;
+                buffer[2] = 0;
+                buffer[3] = (byte)(length & 0xFF);
+                buffer[4] = (byte)(length >> 8);
+                buffer[5] = (byte)(crc16 & 0xFF);
+                buffer[6] = (byte)(crc16 >> 8);
+
+
+                Hid.ReportSend((byte)ReportID.FIRMWARE_REPORT, buffer);
+                Console.WriteLine("Firmware packet sent: 0");
+            }
         }
     }
 }

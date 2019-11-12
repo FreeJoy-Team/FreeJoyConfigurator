@@ -205,8 +205,8 @@
 
                             <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Device USB name" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.DeviceName}"
-                                       MaxLength="10" MinWidth="80" TextAlignment="Center"
+                            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.DeviceName, UpdateSourceTrigger=LostFocus}"
+                                       MinWidth="80" TextAlignment="Center"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 

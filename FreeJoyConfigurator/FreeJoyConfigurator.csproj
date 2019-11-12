@@ -119,6 +119,7 @@
     <Compile Include="ButtonsView.xaml.cs">
       <DependentUpon>ButtonsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Crc16.cs" />
     <Compile Include="FirmwareUpdater.cs" />
     <Compile Include="FirmwareUpdaterView.xaml.cs">
       <DependentUpon>FirmwareUpdaterView.xaml</DependentUpon>

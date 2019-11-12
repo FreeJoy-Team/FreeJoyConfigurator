@@ -47,18 +47,20 @@ namespace FreeJoyConfigurator
         {
             if (hr.Data[0] == 1)
             {
-                char[] chars = new char[10];
+                char[] chars = new char[20];
 
                 config.FirmwareVersion = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
-                for (int i=0;i<10;i++)
+                for (int i=0;i<20;i++)
                 {
+                    
                     chars[i] = (char)hr.Data[i + 3];
+                    if (chars[i] == 0) break;   // end of string
                 }
                 config.DeviceName = new string(chars);
-                config.ButtonDebounceMs = (ushort)(hr.Data[14] << 8 | hr.Data[13]);
-                config.TogglePressMs = (ushort)(hr.Data[16] << 8 | hr.Data[15]);
-                config.EncoderPressMs = (ushort)(hr.Data[18] << 8 | hr.Data[17]);
-                config.ExchangePeriod = (ushort)(hr.Data[20] << 8 | hr.Data[19]);
+                config.ButtonDebounceMs = (ushort)(hr.Data[24] << 8 | hr.Data[23]);
+                config.TogglePressMs = (ushort)(hr.Data[26] << 8 | hr.Data[25]);
+                config.EncoderPressMs = (ushort)(hr.Data[28] << 8 | hr.Data[27]);
+                config.ExchangePeriod = (ushort)(hr.Data[30] << 8 | hr.Data[29]);
 
                 for (int i = 0; i < config.PinConfig.Count; i++)
                 {
@@ -191,15 +193,6 @@ namespace FreeJoyConfigurator
                 {
                     config.ButtonConfig[i + 124].Type = (ButtonType)hr.Data[i + 1];
                 }
-
-                for (int i = 0; i<12; i++)
-                {
-                    config.EncoderConfig[i] = new EncoderConfig();
-                    config.EncoderConfig[i].PinA = hr.Data[i*4 + 14];
-                    config.EncoderConfig[i].PinB = hr.Data[i * 4 + 15];
-                    config.EncoderConfig[i].PinC = hr.Data[i * 4 + 16];
-                    config.EncoderConfig[i].Type = (EncoderConfig.EncoderType) hr.Data[i * 4 + 17];
-                }
             }
             else if (hr.Data[0] == 9)
             {
@@ -222,15 +215,15 @@ namespace FreeJoyConfigurator
             buffer[2] = (byte)(config.FirmwareVersion & 0xFF);
             buffer[3] = (byte) (config.FirmwareVersion >> 8);            
             chars = Encoding.ASCII.GetBytes(config.DeviceName);
-            Array.ConstrainedCopy(chars, 0, buffer, 4, (chars.Length > 10) ? 10 : chars.Length);
-            buffer[14] = (byte)(config.ButtonDebounceMs & 0xFF);
-            buffer[15] = (byte)(config.ButtonDebounceMs >> 8);
-            buffer[16] = (byte)(config.TogglePressMs & 0xFF);
-            buffer[17] = (byte)(config.TogglePressMs >> 8);
-            buffer[18] = (byte)(config.EncoderPressMs & 0xFF);
-            buffer[19] = (byte)(config.EncoderPressMs >> 8);
-            buffer[20] = (byte)(config.ExchangePeriod & 0xFF);
-            buffer[21] = (byte)(config.ExchangePeriod >> 8);           
+            Array.ConstrainedCopy(chars, 0, buffer, 4, (chars.Length > 20) ? 20 : chars.Length);
+            buffer[24] = (byte)(config.ButtonDebounceMs & 0xFF);
+            buffer[25] = (byte)(config.ButtonDebounceMs >> 8);
+            buffer[26] = (byte)(config.TogglePressMs & 0xFF);
+            buffer[27] = (byte)(config.TogglePressMs >> 8);
+            buffer[28] = (byte)(config.EncoderPressMs & 0xFF);
+            buffer[29] = (byte)(config.EncoderPressMs >> 8);
+            buffer[30] = (byte)(config.ExchangePeriod & 0xFF);
+            buffer[31] = (byte)(config.ExchangePeriod >> 8);           
             for (int i = 0; i < 30; i++)
             {
                 buffer[i + 33] = (byte)config.PinConfig[i];
@@ -385,13 +378,6 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 4; i++)
             {
                 buffer[i + 2] = (byte)config.ButtonConfig[i + 124].Type;
-            }
-            for (int i = 0; i < 12; i++)
-            {
-                buffer[i * 4 + 15] = (byte)config.EncoderConfig[i].PinA;
-                buffer[i * 4 + 16] = (byte)config.EncoderConfig[i].PinB;
-                buffer[i * 4 + 17] = (byte)config.EncoderConfig[i].PinC;
-                buffer[i * 4 + 18] = (byte)config.EncoderConfig[i].Type;
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
