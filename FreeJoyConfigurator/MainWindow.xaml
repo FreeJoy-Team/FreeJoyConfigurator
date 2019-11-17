@@ -122,7 +122,13 @@
                 </ScrollViewer>
                 
             </TabItem>
-            
+
+            <TabItem Header="Axes Curves">
+                <ScrollViewer>
+                    <local:AxesCurvesView/>
+                </ScrollViewer>
+            </TabItem>
+
         </TabControl>
 
         <Grid Grid.Column="2" Margin="0,20,0,0">

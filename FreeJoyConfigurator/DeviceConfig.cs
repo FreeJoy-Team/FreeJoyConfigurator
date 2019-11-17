@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Threading;
 using System.Xml.Serialization;
@@ -21,7 +22,7 @@ namespace FreeJoyConfigurator
         private ushort _calibMax;
         private bool _isAutocalib;
         private bool _isInverted;
-        private byte[] _curveShape;
+        private ObservableCollection<Point> _curveShape;
         private byte _filterLevel;
 
         private bool _isCalibCenterUnlocked;
@@ -115,7 +116,7 @@ namespace FreeJoyConfigurator
             }
         }
 
-        public byte[] CurveShape
+        public ObservableCollection<Point> CurveShape
         {
             get
             {
@@ -163,7 +164,8 @@ namespace FreeJoyConfigurator
             _isAutocalib = false;
             _isInverted = false;
 
-            _curveShape = new byte[10];
+            _curveShape = new ObservableCollection<Point>();
+            for (int i = 0; i < 10; i++) _curveShape.Add(new Point(i, 0));
             _filterLevel = 0;
 
             _isCalibCenterUnlocked = false;

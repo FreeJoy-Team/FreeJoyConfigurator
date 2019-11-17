@@ -13,6 +13,7 @@ namespace FreeJoyConfigurator
     public class AxesVM : BindableBase
     {
         public DeviceConfig Config { get; set; }
+        public AxesCurvesVM AxesCurvesVM { get; set; }
         public Joystick Joystick;       
 
         public ObservableCollection<Axis> Axes { get; private set; }
@@ -21,6 +22,8 @@ namespace FreeJoyConfigurator
         {
             Joystick = joystick;
             Config = deviceConfig;
+
+            AxesCurvesVM = new AxesCurvesVM(Config);
 
             Axes = new ObservableCollection<Axis>(joystick.Axes);
 

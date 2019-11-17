@@ -112,6 +112,10 @@
     <Compile Include="AxesConfigView.xaml.cs">
       <DependentUpon>AxesConfigView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AxesCurvesView.xaml.cs">
+      <DependentUpon>AxesCurvesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AxesCurvesVM.cs" />
     <Compile Include="AxesView.xaml.cs">
       <DependentUpon>AxesView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,7 @@
     </Compile>
     <Compile Include="FirmwareUpdaterVM.cs" />
     <Compile Include="InvertBooleenConverter.cs" />
+    <Compile Include="InvertNumericConverter.cs" />
     <Compile Include="PinsVM.cs" />
     <Compile Include="AxesVM.cs" />
     <Compile Include="DeviceConfig.cs" />
@@ -138,6 +143,10 @@
     <Compile Include="ReportConverter.cs" />
     <Compile Include="UiCommand.cs" />
     <Page Include="AxesConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AxesCurvesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
