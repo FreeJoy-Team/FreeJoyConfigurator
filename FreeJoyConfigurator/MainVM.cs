@@ -105,7 +105,8 @@ namespace FreeJoyConfigurator
             SaveConfig = new DelegateCommand(() => SaveConfigToFile());
             LoadConfig = new DelegateCommand(() => ReadConfigFromFile());
             SetDefault = new DelegateCommand(() => LoadDefaultConfig());
-            
+
+            LoadDefaultConfig();
 
             WriteLog("Program started", true);
         }
@@ -151,6 +152,7 @@ namespace FreeJoyConfigurator
 
                 PinsVM.Update();
                 ButtonsVM.Update();
+                AxesVM.AxesCurvesVM.Update(Config);
             }
 
         }
@@ -158,10 +160,15 @@ namespace FreeJoyConfigurator
         private void LoadDefaultConfig()
         {
             {   // TODO: fix serialization
-                DeviceConfig tmp = DeSerializeObject<DeviceConfig>("./default.conf");
+                DeviceConfig tmp = DeSerializeObject<DeviceConfig>("default.conf");
                 for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 10; j++) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                }
                 for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
+                
 
                 Config = tmp;
             }
@@ -171,6 +178,7 @@ namespace FreeJoyConfigurator
 
             PinsVM.Update();
             ButtonsVM.Update();
+            AxesVM.AxesCurvesVM.Update(Config);
         }
 
         private void PinConfigChanged()

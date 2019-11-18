@@ -241,5 +241,13 @@
   <ItemGroup>
     <Resource Include="Resources\bluepill.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\button_linear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\button_exp1.png" />
+    <Resource Include="Resources\button_exp2.png" />
+    <Resource Include="Resources\button_shape.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

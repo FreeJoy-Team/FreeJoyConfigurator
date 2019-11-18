@@ -84,7 +84,7 @@ namespace FreeJoyConfigurator
             {
                 if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
                 {
-                    tmp.Add(new Button(false, deviceConfig.ButtonConfig[buttonCnt++].Type));
+                    tmp.Add(new Button(false, deviceConfig.ButtonConfig[buttonCnt++].Type, buttonCnt));
                 }
                 else if (Config.PinConfig[i] == PinType.ButtonRow)
                 {
@@ -92,7 +92,7 @@ namespace FreeJoyConfigurator
                     {
                         if (Config.PinConfig[k] == PinType.ButtonColumn)
                         {
-                            tmp.Add(new Button(false, deviceConfig.ButtonConfig[buttonCnt++].Type));
+                            tmp.Add(new Button(false, deviceConfig.ButtonConfig[buttonCnt++].Type, buttonCnt));
                         }
                     }
                 }

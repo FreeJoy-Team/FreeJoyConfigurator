@@ -22,12 +22,12 @@ namespace FreeJoyConfigurator
             Axes = new ObservableCollection<Axis>();
             for (int i = 0; i < 8; i++)
             {
-                Axes.Add(new Axis());
+                Axes.Add(new Axis(i+1));
             }
             Buttons = new ObservableCollection<Button>();
             for (int i = 0; i < 128; i++)
             {
-                Buttons.Add(new Button());
+                Buttons.Add(new Button(i+1));
             }
 
             //Hid.Connect();
@@ -71,6 +71,7 @@ namespace FreeJoyConfigurator
     {
         private ButtonType _type;
         private bool _state;
+        public int Number { get; private set; }
 
         public ButtonType Type
         {
@@ -83,19 +84,22 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _state, value); }
         }
 
-        public Button()
+        public Button(int number)
         {
+            Number = number;
             _type = ButtonType.BtnNormal;
             _state = false;
         }
 
-        public Button(bool state)
+        public Button(bool state, int number)
         {
+            Number = number;
             _type = ButtonType.BtnNormal;
             _state = state;
         }
-        public Button(bool state, ButtonType type)
+        public Button(bool state, ButtonType type, int number)
         {
+            Number = number;
             _type = type;
             _state = state;
         }
@@ -105,6 +109,8 @@ namespace FreeJoyConfigurator
     {
         private ushort _value;
         private ushort _rawValue;
+
+        public int Number {get; private set;}
 
         public ushort Value
         {
@@ -117,20 +123,23 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _rawValue, value); }
         }
 
-        public Axis()
+        public Axis(int number)
         {
+            Number = number;
             _value = 0;
             _rawValue = 0;
         }
 
-        public Axis (ushort value)
+        public Axis (ushort value, int number)
         {
+            Number = number;
             _value = value;
             _rawValue = 0;
         }
 
-        public Axis(ushort value, ushort rawValue)
+        public Axis(ushort value, ushort rawValue, int number)
         {
+            Number = number;
             _value = value;
             _rawValue = rawValue;
         }

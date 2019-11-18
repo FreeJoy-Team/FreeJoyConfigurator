@@ -32,6 +32,7 @@
                                 
                             </Grid.RowDefinitions>
 
+                            <Label Grid.Column="0" Grid.Row="0"  Content="{Binding Number}" VerticalAlignment="Top" HorizontalContentAlignment="Left"/>
                             <Label Grid.Column="0" Grid.Row="0"  Content="Axis data" VerticalAlignment="Bottom" HorizontalContentAlignment="Right"/>
                             <Label Grid.Column="0" Grid.Row="1"  Content="Raw data" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalContentAlignment="Right"/>
 
