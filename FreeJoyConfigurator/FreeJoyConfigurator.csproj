@@ -124,6 +124,7 @@
       <DependentUpon>ButtonsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Crc16.cs" />
+    <Compile Include="DeviceConfigExchangerVM.cs" />
     <Compile Include="FirmwareUpdater.cs" />
     <Compile Include="FirmwareUpdaterView.xaml.cs">
       <DependentUpon>FirmwareUpdaterView.xaml</DependentUpon>
@@ -212,6 +213,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\default.conf" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>

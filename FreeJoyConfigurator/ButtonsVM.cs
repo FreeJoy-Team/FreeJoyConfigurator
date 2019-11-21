@@ -30,19 +30,45 @@ namespace FreeJoyConfigurator
             Joystick = joystick;
             Joystick.PropertyChanged += Joystick_PropertyChanged;
             Config = deviceConfig;
-            Config.Received += ConfigReceived;
             //Config.PropertyChanged += Config_PropertyChanged;
 
             _buttons = new ObservableCollection<Button>();
 
         }
 
-        public void Update()
+        public void Update(DeviceConfig config)
         {
-            App.Current.Dispatcher.BeginInvoke((Action)(() =>
+            //App.Current.Dispatcher.BeginInvoke((Action)(() =>
+            //{
+            //    ConfigReceived(Config);
+            //}));
+
+            int buttonCnt = 0;
+
+            ObservableCollection<Button> tmp = new ObservableCollection<Button>();
+
+            for (int i = 0; i < Config.PinConfig.Count; i++)
             {
-                ConfigReceived(Config);
-            }));
+                if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
+                {
+                    tmp.Add(new Button(false, config.ButtonConfig[buttonCnt++].Type, buttonCnt));
+                }
+                else if (Config.PinConfig[i] == PinType.ButtonRow)
+                {
+                    for (int k = 0; k < Config.PinConfig.Count; k++)
+                    {
+                        if (Config.PinConfig[k] == PinType.ButtonColumn)
+                        {
+                            tmp.Add(new Button(false, config.ButtonConfig[buttonCnt++].Type, buttonCnt));
+                        }
+                    }
+                }
+            }
+
+            Buttons = new ObservableCollection<Button>(tmp);
+
+            foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
+            RaisePropertyChanged(nameof(Buttons));
         }
 
         //private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -73,36 +99,6 @@ namespace FreeJoyConfigurator
         //    foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
         //    RaisePropertyChanged(nameof(Buttons));
         //}
-
-        private void ConfigReceived(DeviceConfig deviceConfig)
-        {
-            int buttonCnt = 0;
-
-            ObservableCollection<Button> tmp = new ObservableCollection<Button>();
-
-            for (int i=0; i<Config.PinConfig.Count;i++)
-            {
-                if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
-                {
-                    tmp.Add(new Button(false, deviceConfig.ButtonConfig[buttonCnt++].Type, buttonCnt));
-                }
-                else if (Config.PinConfig[i] == PinType.ButtonRow)
-                {
-                    for (int k = 0; k < Config.PinConfig.Count; k++)
-                    {
-                        if (Config.PinConfig[k] == PinType.ButtonColumn)
-                        {
-                            tmp.Add(new Button(false, deviceConfig.ButtonConfig[buttonCnt++].Type, buttonCnt));
-                        }
-                    }
-                }
-            }
-
-            Buttons = new ObservableCollection<Button>(tmp);
-
-            foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
-            RaisePropertyChanged(nameof(Buttons));
-        }
 
         private void Joystick_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

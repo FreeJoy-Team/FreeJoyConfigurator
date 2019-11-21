@@ -24,7 +24,7 @@ namespace FreeJoyConfigurator
     { 
         private Joystick _joystick;
         private DeviceConfig _config;
-        
+        private DeviceConfigExchangerVM _configExchanger;
 
         public DeviceConfig Config
         {
@@ -77,10 +77,10 @@ namespace FreeJoyConfigurator
 
             _joystick = new Joystick();
             _config = new DeviceConfig();
-            
+            _configExchanger = new DeviceConfigExchangerVM();
 
-            Config.Received += ConfigReceived;
-            Config.Sent += ConfigSent;
+            _configExchanger.Received += ConfigReceived;
+            _configExchanger.Sent += ConfigSent;
 
             PinsVM = new PinsVM(Config);
             PinsVM.ConfigChanged += PinConfigChanged;
@@ -92,12 +92,12 @@ namespace FreeJoyConfigurator
 
             GetDeviceConfig = new DelegateCommand(() =>
             {
-                Config.GetConfigRequest();
+                _configExchanger.GetConfigRequest();
                 WriteLog("Requesting config..", false);
             });
             SendDeviceConfig = new DelegateCommand(() =>
             {
-                Config.SendConfig();
+                _configExchanger.SendConfig(Config);
                 WriteLog("Writting config..", false);
             });
 
@@ -144,14 +144,14 @@ namespace FreeJoyConfigurator
                     for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
                     for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
 
-                    Config = tmp;  
+                    Config = tmp;
                 }
                 PinsVM.Config = Config;
                 AxesVM.Config = Config;
                 ButtonsVM.Config = Config;
 
-                PinsVM.Update();
-                ButtonsVM.Update();
+                PinsVM.Update(Config);
+                ButtonsVM.Update(Config);
                 AxesVM.AxesCurvesVM.Update(Config);
             }
 
@@ -160,7 +160,11 @@ namespace FreeJoyConfigurator
         private void LoadDefaultConfig()
         {
             {   // TODO: fix serialization
-                DeviceConfig tmp = DeSerializeObject<DeviceConfig>("default.conf");
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                string FileName = string.Format("{0}Resources\\default.conf", Path.GetFullPath(Path.Combine(basePath, @"..\..\")));
+
+                DeviceConfig tmp = Config;
+                tmp = DeSerializeObject<DeviceConfig>(FileName);
                 for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++)
@@ -168,22 +172,24 @@ namespace FreeJoyConfigurator
                     for (int j = 0; j < 10; j++) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                 }
                 for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
-                
+
 
                 Config = tmp;
+
+
             }
             PinsVM.Config = Config;
             AxesVM.Config = Config;
             ButtonsVM.Config = Config;
 
-            PinsVM.Update();
-            ButtonsVM.Update();
+            PinsVM.Update(Config);
+            ButtonsVM.Update(Config);
             AxesVM.AxesCurvesVM.Update(Config);
         }
 
         private void PinConfigChanged()
         {
-            ButtonsVM.Update();
+            ButtonsVM.Update(Config);
         }
 
         private void ConfigSent(DeviceConfig deviceConfig)
@@ -193,6 +199,12 @@ namespace FreeJoyConfigurator
 
         private void ConfigReceived(DeviceConfig deviceConfig)
         {
+            _config = deviceConfig;
+
+            PinsVM.Update(Config);
+            ButtonsVM.Update(Config);
+            AxesVM.AxesCurvesVM.Update(Config);
+
             WriteLog("Config received", false);
             RaisePropertyChanged(nameof(Config));
         }

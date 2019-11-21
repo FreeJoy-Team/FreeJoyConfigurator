@@ -103,8 +103,6 @@ namespace FreeJoyConfigurator
         {
             Config = deviceConfig;
 
-            Config.Received += ConfigReceived; ;
-
             _pins = new ObservableCollection<PinVMConverter>();
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
@@ -118,9 +116,22 @@ namespace FreeJoyConfigurator
         #endregion
 
         #region Public methods
-        public void Update()
+        public void Update(DeviceConfig config)
         {
-            ConfigReceived(Config);
+            ObservableCollection<PinVMConverter> tmp = new ObservableCollection<PinVMConverter>();
+
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                tmp.Add(new PinVMConverter());
+                if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisAnalog);
+                tmp[i].SelectedType = config.PinConfig[i];
+            }
+            Pins = new ObservableCollection<PinVMConverter>(tmp);
+
+            foreach (var pin in Pins) pin.PropertyChanged += PinsVM_PropertyChanged;
+
+            RaisePropertyChanged(nameof(Pins));
+            PinsVM_PropertyChanged(this, null);
         }
 
         public void ResetPins()
@@ -138,27 +149,11 @@ namespace FreeJoyConfigurator
                 tmp.PinConfig[i] = Pins[i].SelectedType;
             }
             Config = tmp;
+            PinsVM_PropertyChanged(this, null);
         }
         #endregion
 
         #region Local methods
-        private void ConfigReceived (DeviceConfig deviceConfig)
-        {
-            ObservableCollection<PinVMConverter> tmp = new ObservableCollection<PinVMConverter>();
-
-            for (int i = 0; i < Config.PinConfig.Count; i++)
-            {
-                tmp.Add(new PinVMConverter());
-                if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisAnalog);
-                tmp[i].SelectedType = deviceConfig.PinConfig[i];
-            }
-            Pins = new ObservableCollection<PinVMConverter>(tmp);
-
-            foreach (var pin in Pins) pin.PropertyChanged += PinsVM_PropertyChanged;
-
-            RaisePropertyChanged(nameof(Pins));
-            PinsVM_PropertyChanged(this, null);
-        }
 
         // Some dirty logic to display only allowed pin types
         private void PinsVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
