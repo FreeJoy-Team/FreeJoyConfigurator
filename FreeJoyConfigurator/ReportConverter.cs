@@ -79,7 +79,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[0].CurveShape.Add(new System.Windows.Point(i, hr.Data[10 + i]));
+                    config.AxisConfig[0].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
 
                 config.AxisConfig[1] = new AxisConfig();
@@ -91,7 +91,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[1].CurveShape.Add(new System.Windows.Point(i, hr.Data[40 + i]));
+                    config.AxisConfig[1].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
 
             }
@@ -106,7 +106,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[2].CurveShape.Add(new System.Windows.Point(i, hr.Data[10 + i]));
+                    config.AxisConfig[2].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
 
                 config.AxisConfig[3] = new AxisConfig();
@@ -118,7 +118,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[3].CurveShape.Add(new System.Windows.Point(i, hr.Data[40 + i]));
+                    config.AxisConfig[3].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }               
             }
             else if (hr.Data[0] == 4)
@@ -132,7 +132,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[4].CurveShape.Add(new System.Windows.Point(i, hr.Data[10 + i]));
+                    config.AxisConfig[4].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
 
                 config.AxisConfig[5] = new AxisConfig();
@@ -144,7 +144,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[5].CurveShape.Add(new System.Windows.Point(i, hr.Data[40 + i]));
+                    config.AxisConfig[5].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
             }
             else if (hr.Data[0] == 5)
@@ -158,7 +158,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[6].CurveShape.Add(new System.Windows.Point(i, hr.Data[10 + i]));
+                    config.AxisConfig[6].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
 
                 config.AxisConfig[7] = new AxisConfig();
@@ -170,7 +170,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
-                    config.AxisConfig[7].CurveShape.Add(new System.Windows.Point(i, hr.Data[40 + i]));
+                    config.AxisConfig[7].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
             }
             else if (hr.Data[0] == 6)
