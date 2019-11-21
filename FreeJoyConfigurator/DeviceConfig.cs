@@ -273,9 +273,6 @@ namespace FreeJoyConfigurator
 
     public class DeviceConfig : BindableBase
     {
-        [XmlIgnore]
-        static private byte configPacketNumber = 0;
-
         [XmlElement("Firmware_Version")]
         public UInt16 FirmwareVersion { get; set; }
         [XmlElement("Device_Name")]
@@ -295,12 +292,7 @@ namespace FreeJoyConfigurator
         [XmlElement("Button_Config")]
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
 
-        public delegate void ConfigReceivedEventHandler(DeviceConfig deviceConfig);
 
-        public delegate void ConfigSentEventHandler(DeviceConfig deviceConfig);
-
-        public event ConfigReceivedEventHandler Received;
-        public event ConfigSentEventHandler Sent;
 
         public DeviceConfig()
         {
@@ -311,95 +303,14 @@ namespace FreeJoyConfigurator
             ExchangePeriod = 10;
 
             AxisConfig = new ObservableCollection<AxisConfig>();
-            for (int i=0; i<8; i++) AxisConfig.Add(new AxisConfig());
+            for (int i = 0; i < 8; i++) AxisConfig.Add(new AxisConfig());
 
             PinConfig = new ObservableCollection<PinType>();
             for (int i = 0; i < 30; i++) PinConfig.Add(PinType.NotUsed);
 
             ButtonConfig = new ObservableCollection<ButtonConfig>();
             for (int i = 0; i < 128; i++) ButtonConfig.Add(new ButtonConfig());
-
-
-            //Hid.Connect();
-            Hid.PacketReceived += PacketReceivedEventHandler;
-        }
-
-        public void PacketReceivedEventHandler(HidReport report)
-        {
-            var config = this;
-            List<HidReport> hrs;
-            HidReport hr = report;
-            byte[] buffer = new byte[1];
-
-            switch ((ReportID)hr.ReportId)               
-            {
-                case ReportID.CONFIG_IN_REPORT:
-                    configPacketNumber = hr.Data[0];
-                    Console.WriteLine("Config packet received: {0}", configPacketNumber);
-
-                    App.Current.Dispatcher.BeginInvoke((Action)(() =>
-                    {
-                        ReportConverter.ReportToConfig(ref config, hr);
-                    }));
-               
-                    if (configPacketNumber < 10)
-                    {
-                        buffer[0] = ++configPacketNumber;
-                        Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
-                        Console.WriteLine("Requesting config packet..: {0}", configPacketNumber);
-                    }
-                    else
-                    {
-
-                        RaisePropertyChanged(nameof(config));
-                        App.Current.Dispatcher.BeginInvoke((Action)(() =>
-                        {
-                            Received(this);
-                        }));
-                    }
-                    break;
-
-                case ReportID.CONFIG_OUT_REPORT:
-                    configPacketNumber = hr.Data[0];
-                    hrs = ReportConverter.ConfigToReports(config);
-
-                    Console.WriteLine("Config packet requested: {0}", configPacketNumber);
-
-                    Hid.ReportSend(hrs[configPacketNumber-1]);
-                    Console.WriteLine("Sending config packet..: {0}", configPacketNumber);
-
-                    if (configPacketNumber >= 10)
-                    {
-                        App.Current.Dispatcher.BeginInvoke((Action)(() =>
-                        {
-                            Sent(this);
-                        }));
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        public void GetConfigRequest()
-        {
-            byte[] buffer = new byte[1];
-
-            buffer[0] = 1;
-            Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
-            Console.WriteLine("Requesting config packet..: 1");
-        }
-
-        public void SendConfig()
-        {
-            var config = this;
-            List<HidReport> hr;
-
-            hr = ReportConverter.ConfigToReports(config);
-
-            Hid.ReportSend(hr[0]);
-            Console.WriteLine("Sending config packet..: 1");
         }
     }
+        
 }
