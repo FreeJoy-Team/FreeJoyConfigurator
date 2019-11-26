@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -53,7 +54,6 @@ namespace FreeJoyConfigurator
 
                     if (!hidDevice.IsOpen)
                     {
-
                         hidDevice.OpenDevice();
 
                         hidDevice.Inserted += HidDeviceAddedEventHandler;
@@ -62,6 +62,14 @@ namespace FreeJoyConfigurator
                     }
                 });
             }
+        }
+
+        static public ObservableCollection<HidDevice> GetDevices()
+        {
+
+            ObservableCollection<HidDevice> devices = new ObservableCollection<HidDevice>( HidDevices.Enumerate(vid, pid));
+
+            return devices;
         }
 
         #region HID Callbacks

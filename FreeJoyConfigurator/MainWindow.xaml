@@ -8,7 +8,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="FreeJoy Configurator Utility v0.01" MinHeight="800" Height="800" MinWidth="1060" Width="1060">
-<!--<Controls:MetroWindow x:Class="FreeJoyConfigurator.MainWindow"
+    <!--<Controls:MetroWindow x:Class="FreeJoyConfigurator.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:local="clr-namespace:FreeJoyConfigurator"
@@ -55,10 +55,8 @@
                 </Grid.RowDefinitions>
 
                 <!--Row 0-->
-                <ComboBox Name="Devices_ComboBox" Grid.Row="0" IsEnabled="False"  
-                    Text="Devices" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="146" Height="59">
-
-                </ComboBox>
+                <Label Name="Devices_ComboBox" Grid.Row="0" Content="{Binding HidName, Mode=OneWay}"
+                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,10,10,10" />
 
                 <!--Row 1-->
                 <TextBlock Name="ConnectionStatus_TextBlock" Grid.Row="1"  TextAlignment="Center" 
@@ -113,14 +111,14 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
-                            
+
                         </Grid.ColumnDefinitions>
-                        
+
                         <local:AxesView Grid.Column="0"/>
                         <local:AxesConfigView Grid.Column="1"/>
                     </Grid>
                 </ScrollViewer>
-                
+
             </TabItem>
 
             <TabItem Header="Axes Curves">

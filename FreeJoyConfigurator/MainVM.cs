@@ -42,6 +42,8 @@ namespace FreeJoyConfigurator
         public ButtonsVM ButtonsVM { get; private set; }
         public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
+        public string HidName { get; private set; }
+
         public string ActivityLogVM { get; private set; }
         public string ConnectionStatusVM
         {
@@ -59,6 +61,7 @@ namespace FreeJoyConfigurator
         }
 
         #region Commands
+        public DelegateCommand UpdateDeviceList { get; }
         public DelegateCommand GetDeviceConfig { get; }
         public DelegateCommand SendDeviceConfig { get; }
         public DelegateCommand ResetAllPins { get; }
@@ -70,7 +73,8 @@ namespace FreeJoyConfigurator
 
 
         public MainVM()
-        {
+        { 
+
             Hid.Connect();
             Hid.DeviceAdded += DeviceAddedEventHandler;
             Hid.DeviceRemoved += DeviceRemovedEventHandler;
@@ -101,14 +105,32 @@ namespace FreeJoyConfigurator
                 WriteLog("Writting config..", false);
             });
 
+            UpdateDeviceList = new DelegateCommand(() => GetHidDevices());
             ResetAllPins = new DelegateCommand(() => PinsVM.ResetPins());
             SaveConfig = new DelegateCommand(() => SaveConfigToFile());
             LoadConfig = new DelegateCommand(() => ReadConfigFromFile());
             SetDefault = new DelegateCommand(() => LoadDefaultConfig());
 
+            GetHidDevices();
             LoadDefaultConfig();
 
             WriteLog("Program started", true);
+        }
+
+        private void GetHidDevices()
+        {
+            var devices = Hid.GetDevices();
+
+            if (devices.Count > 0)
+            {
+                byte[] tmp = new byte[20];
+                devices[0].ReadProduct(out tmp);
+                HidName = Encoding.Unicode.GetString(tmp).TrimEnd('\0');
+            }
+            else
+            {
+                HidName = " ";
+            }
         }
 
         private void SaveConfigToFile()
@@ -213,16 +235,22 @@ namespace FreeJoyConfigurator
         #region HidEvents
         public void DeviceAddedEventHandler(HidDevice hd)
         {
+            GetHidDevices();
+
             WriteLog("Device added", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
+            RaisePropertyChanged(nameof(HidName));
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)
         {
+            GetHidDevices();
+
             WriteLog("Device removed", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
+            RaisePropertyChanged(nameof(HidName));
         }
         #endregion
 
