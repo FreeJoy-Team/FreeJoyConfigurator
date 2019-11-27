@@ -10,29 +10,29 @@
   <Pin_Config>AxisAnalog</Pin_Config>
   <Pin_Config>AxisAnalog</Pin_Config>
   <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>AxisAnalog</Pin_Config>
+  <Pin_Config>AxisAnalog</Pin_Config>
+  <Pin_Config>AxisAnalog</Pin_Config>
+  <Pin_Config>AxisAnalog</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
+  <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>

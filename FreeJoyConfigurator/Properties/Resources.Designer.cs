@@ -59,5 +59,84 @@ namespace FreeJoyConfigurator.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bluepill {
+            get {
+                object obj = ResourceManager.GetObject("bluepill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_exp1 {
+            get {
+                object obj = ResourceManager.GetObject("button_exp1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_exp2 {
+            get {
+                object obj = ResourceManager.GetObject("button_exp2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_linear {
+            get {
+                object obj = ResourceManager.GetObject("button_linear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_shape {
+            get {
+                object obj = ResourceManager.GetObject("button_shape", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;?xml version=&quot;1.0&quot;?&gt;
+        ///&lt;DeviceConfig xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+        ///  &lt;Firmware_Version&gt;0&lt;/Firmware_Version&gt;
+        ///  &lt;Device_Name&gt;FreeJoy&lt;/Device_Name&gt;
+        ///  &lt;Button_Debounce_Time&gt;50&lt;/Button_Debounce_Time&gt;
+        ///  &lt;Toggle_Press_Time&gt;300&lt;/Toggle_Press_Time&gt;
+        ///  &lt;Encoder_Press_Time&gt;100&lt;/Encoder_Press_Time&gt;
+        ///  &lt;Exchange_Period&gt;10&lt;/Exchange_Period&gt;
+        ///  &lt;Pin_Config&gt;AxisAnalog&lt;/Pin_Config&gt;
+        ///  &lt;Pin_Config&gt;AxisAnalog&lt;/Pin_Config&gt;
+        ///  &lt;Pin_Config&gt;AxisAnalog&lt;/Pin_ [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string default_config {
+            get {
+                return ResourceManager.GetString("default_config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon favicon {
+            get {
+                object obj = ResourceManager.GetObject("favicon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

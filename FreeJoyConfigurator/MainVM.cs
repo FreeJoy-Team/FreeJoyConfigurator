@@ -182,11 +182,11 @@ namespace FreeJoyConfigurator
         private void LoadDefaultConfig()
         {
             {   // TODO: fix serialization
-                string basePath = AppDomain.CurrentDomain.BaseDirectory;
-                string FileName = string.Format("{0}Resources\\default.conf", Path.GetFullPath(Path.Combine(basePath, @"..\..\")));
+                var xmlStr = Properties.Resources.default_config;
+                
 
                 DeviceConfig tmp = Config;
-                tmp = DeSerializeObject<DeviceConfig>(FileName);
+                tmp = DeSerializeObject<DeviceConfig>(xmlStr, xmlStr.Length);
                 for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++)
@@ -319,6 +319,31 @@ namespace FreeJoyConfigurator
                 xmlDocument.Load(fileName);
                 string xmlString = xmlDocument.OuterXml;
 
+                using (StringReader read = new StringReader(xmlString))
+                {
+                    Type outType = typeof(T);
+
+                    XmlSerializer serializer = new XmlSerializer(outType);
+                    using (XmlReader reader = new XmlTextReader(read))
+                    {
+                        objectOut = (T)serializer.Deserialize(reader);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Log exception here
+            }
+
+            return objectOut;
+        }
+
+        public T DeSerializeObject<T>(string xmlString, int lenght)
+        {
+            T objectOut = default(T);
+
+            try
+            {
                 using (StringReader read = new StringReader(xmlString))
                 {
                     Type outType = typeof(T);
