@@ -1,6 +1,6 @@
 # FreeJoy Configurator
 
-FreeJjoy Configurator is a vusial utility allowing you to setup your [FreeJoy](https://github.com/vostrenkov/FreeJoy) device for your own requirements.
+FreeJoy Configurator is a vusial utility allowing you to setup your [FreeJoy](https://github.com/vostrenkov/FreeJoy) device for your own requirements.
 
 <img src="https://c.radikal.ru/c40/1911/4f/9d8be0341b73.png">
 
