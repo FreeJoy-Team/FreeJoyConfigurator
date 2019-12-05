@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="FreeJoyConfigurator.AxesToButtonsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FreeJoyConfigurator"
+             xmlns:InWit="clr-namespace:InWit.WPF.MultiRangeSlider;assembly=InWit.WPF.MultiRangeSlider"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="1"
+            d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <InWit:WitMultiRangeSlider Grid.Column="1" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[0].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="4095"/>
+                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[0].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
+            </Grid>
+            
+        </Border>
+
+
+    </Grid>
+
+
+
+</UserControl>

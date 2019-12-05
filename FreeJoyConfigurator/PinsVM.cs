@@ -19,6 +19,7 @@ namespace FreeJoyConfigurator
         private int _singleBtnCnt;
         private int _totalBtnCnt;
         private int _axesCnt;
+        private int _axesToButtonsCnt;
         private ObservableCollection<PinVMConverter> _pins;
 
         public delegate void PinConfigChangedEvent();
@@ -85,6 +86,17 @@ namespace FreeJoyConfigurator
                 SetProperty(ref _axesCnt, value);
             }
         }
+        public int AxesToButtonsCnt
+        {
+            get
+            {
+                return _axesToButtonsCnt;
+            }
+            private set
+            {
+                SetProperty(ref _axesToButtonsCnt, value);
+            }
+        }
         public ObservableCollection<PinVMConverter> Pins
         {
             get
@@ -108,6 +120,7 @@ namespace FreeJoyConfigurator
             {
                 Pins.Add(new PinVMConverter());
                 if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisAnalog);
+                if (i < 16) Pins[i].AllowedTypes.Add(PinType.AxisToButtons);
                 Pins[i].PropertyChanged += PinsVM_PropertyChanged;
             }
         }
@@ -124,6 +137,7 @@ namespace FreeJoyConfigurator
             {
                 tmp.Add(new PinVMConverter());
                 if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisAnalog);
+                if (i < 16) tmp[i].AllowedTypes.Add(PinType.AxisToButtons);
                 tmp[i].SelectedType = config.PinConfig[i];
             }
             Pins = new ObservableCollection<PinVMConverter>(tmp);
@@ -140,6 +154,7 @@ namespace FreeJoyConfigurator
             {
                 _pins[i] = new PinVMConverter();
                 if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisAnalog);
+                if (i < 16) Pins[i].AllowedTypes.Add(PinType.AxisToButtons);
                 Pins[i].PropertyChanged += PinsVM_PropertyChanged;
             }
             // update config
@@ -162,6 +177,7 @@ namespace FreeJoyConfigurator
             ColCnt = 0;
             SingleBtnCnt = 0;
             AxesCnt = 0;
+            AxesToButtonsCnt = 0;
 
             // count buttons
             for (int i = 0; i < Pins.Count; i++)
@@ -181,6 +197,10 @@ namespace FreeJoyConfigurator
                 else if (Pins[i].SelectedType == PinType.AxisAnalog)
                 {
                     AxesCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.AxisToButtons)
+                {
+                    AxesToButtonsCnt++;
                 }
             }
 

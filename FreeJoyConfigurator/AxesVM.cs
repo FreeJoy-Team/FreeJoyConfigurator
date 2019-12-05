@@ -26,7 +26,20 @@ namespace FreeJoyConfigurator
             AxesCurvesVM = new AxesCurvesVM(Config);
 
             Axes = new ObservableCollection<Axis>(joystick.Axes);
+        }
 
+        public void Update(DeviceConfig config)
+        {
+            Config = config;
+            for (int i = 0; i < 8; i++)
+            {
+                if (Config.PinConfig[i] == PinType.AxisAnalog)
+                {
+                    Axes[i].IsEnabled = true;
+                }
+                else Axes[i].IsEnabled = false;
+            }
+            AxesCurvesVM.Update(Config);
         }
     }
 }

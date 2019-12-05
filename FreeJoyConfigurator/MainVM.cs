@@ -40,6 +40,7 @@ namespace FreeJoyConfigurator
         public PinsVM PinsVM {get; set; }
         public AxesVM AxesVM { get; private set; }
         public ButtonsVM ButtonsVM { get; private set; }
+        public AxesToButtonsVM AxesToButtonsVM { get; private set; }
         public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
         public string HidName { get; private set; }
@@ -79,7 +80,7 @@ namespace FreeJoyConfigurator
             Hid.DeviceAdded += DeviceAddedEventHandler;
             Hid.DeviceRemoved += DeviceRemovedEventHandler;
 
-            _joystick = new Joystick();
+            
             _config = new DeviceConfig();
             _configExchanger = new DeviceConfigExchangerVM();
 
@@ -89,8 +90,10 @@ namespace FreeJoyConfigurator
             PinsVM = new PinsVM(Config);
             PinsVM.ConfigChanged += PinConfigChanged;
 
+            _joystick = new Joystick(Config);
             AxesVM = new AxesVM(_joystick, Config);
             ButtonsVM = new ButtonsVM(_joystick, Config);
+            AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
 
             FirmwareUpdaterVM = new FirmwareUpdaterVM();
 
@@ -147,7 +150,6 @@ namespace FreeJoyConfigurator
                 if (File.Exists(dlg.FileName)) File.Delete(dlg.FileName);
                 SerializeObject<DeviceConfig>( Config, dlg.FileName);
             }
-
         }
 
         private void ReadConfigFromFile()
@@ -174,7 +176,8 @@ namespace FreeJoyConfigurator
 
                 PinsVM.Update(Config);
                 ButtonsVM.Update(Config);
-                AxesVM.AxesCurvesVM.Update(Config);
+                AxesVM.Update(Config);
+                AxesToButtonsVM.Update(Config);
             }
 
         }
@@ -206,12 +209,15 @@ namespace FreeJoyConfigurator
 
             PinsVM.Update(Config);
             ButtonsVM.Update(Config);
-            AxesVM.AxesCurvesVM.Update(Config);
+            AxesVM.Update(Config);
+            AxesToButtonsVM.Update(Config);
         }
 
         private void PinConfigChanged()
         {
             ButtonsVM.Update(Config);
+            AxesVM.Update(Config);
+            AxesToButtonsVM.Update(Config);
         }
 
         private void ConfigSent(DeviceConfig deviceConfig)
@@ -225,7 +231,8 @@ namespace FreeJoyConfigurator
 
             PinsVM.Update(Config);
             ButtonsVM.Update(Config);
-            AxesVM.AxesCurvesVM.Update(Config);
+            AxesVM.Update(Config);
+            AxesToButtonsVM.Update(Config);
 
             WriteLog("Config received", false);
             RaisePropertyChanged(nameof(Config));

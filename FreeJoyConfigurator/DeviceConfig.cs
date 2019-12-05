@@ -205,7 +205,7 @@ namespace FreeJoyConfigurator
         ButtonColumn,
 
         AxisAnalog,
-        //AxisToButtons,
+        AxisToButtons,
 
         //EncoderSingleInput,
         //EncoderChainedInput,

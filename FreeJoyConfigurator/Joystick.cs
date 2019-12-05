@@ -11,46 +11,30 @@ namespace FreeJoyConfigurator
 {
     public class Joystick : BindableBase
     {
-        //private JoyReport joyReport;
-
+        private DeviceConfig _config;
+        
         public ObservableCollection<Axis> Axes { get; private set; }
         public ObservableCollection<Button> Buttons { get; private set; }
-        //public byte[] Povs { get; private set; }
 
-        public Joystick()
+        public Joystick(DeviceConfig config)
         {
+            _config = config;
             Axes = new ObservableCollection<Axis>();
             for (int i = 0; i < 8; i++)
             {
                 Axes.Add(new Axis(i+1));
+                if(config.PinConfig[i] == PinType.AxisAnalog)
+                {
+                    Axes[i].IsEnabled = true;
+                }
+                else Axes[i].IsEnabled = false;
             }
             Buttons = new ObservableCollection<Button>();
             for (int i = 0; i < 128; i++)
             {
                 Buttons.Add(new Button(i+1));
             }
-
-            //Hid.Connect();
-
-            //Hid.DeviceAdded += DeviceAddedEventHandler;
-            // Hid.DeviceRemoved += DeviceRemovedEventHandler;
             Hid.PacketReceived += PacketReceivedEventHandler;
-            //Hid.PacketSent += PacketSentEventHandler;
-        }
-
-        public void DeviceAddedEventHandler(HidDevice hd)
-        {
-
-        }
-
-        public void DeviceRemovedEventHandler(HidDevice hd)
-        {
-
-        }
-
-        public void PacketSentEventHandler(HidReport hr)
-        {
-
         }
 
         public void PacketReceivedEventHandler(HidReport report)
@@ -109,8 +93,14 @@ namespace FreeJoyConfigurator
     {
         private ushort _value;
         private ushort _rawValue;
+        private bool _isEnabled;
 
         public int Number {get; private set;}
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { SetProperty(ref _isEnabled, value); }
+        }
 
         public ushort Value
         {
