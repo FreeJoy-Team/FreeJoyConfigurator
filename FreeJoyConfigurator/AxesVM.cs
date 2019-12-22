@@ -33,7 +33,7 @@ namespace FreeJoyConfigurator
             Config = config;
             for (int i = 0; i < 8; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog)
+                if (Config.PinConfig[i] == PinType.AxisAnalog || Config.PinConfig[i] == PinType.AxisToButtons)
                 {
                     Axes[i].IsEnabled = true;
                 }

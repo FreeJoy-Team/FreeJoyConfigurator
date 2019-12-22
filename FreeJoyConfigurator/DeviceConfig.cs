@@ -271,6 +271,44 @@ namespace FreeJoyConfigurator
         }
     }
 
+    public class AxisToButtonsConfig : BindableBase
+    {
+        private ObservableCollection<sbyte> _points;
+        private byte _buttonsCnt;
+        private bool _isAnalogEnabled;
+
+        public ObservableCollection<sbyte> Points
+        {
+            get { return _points; }
+            set { SetProperty(ref _points, value); }
+        }
+
+        public byte ButtonsCnt
+        {
+            get { return _buttonsCnt; }
+            set { SetProperty(ref _buttonsCnt, value); }
+        }
+
+        public bool IsAnalogEnabled
+        {
+            get { return _isAnalogEnabled; }
+            set { SetProperty(ref _isAnalogEnabled, value); }
+        }
+
+        public AxisToButtonsConfig()
+        {
+            _points = new ObservableCollection<sbyte>();
+            for (int i = 0; i < 12; i++) _points.Add(new sbyte());
+
+            _points[0] = 0;
+            _points[1] = 50;
+            _points[2] = 100;
+
+            _buttonsCnt = 2;
+            _isAnalogEnabled = true;
+        }
+    }
+
     public class DeviceConfig : BindableBase
     {
         [XmlElement("Firmware_Version")]
@@ -291,7 +329,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<AxisConfig> AxisConfig { get; set; }
         [XmlElement("Button_Config")]
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
-
+        [XmlElement("AxisToButtons_Config")]
+        public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
 
 
         public DeviceConfig()
@@ -310,6 +349,9 @@ namespace FreeJoyConfigurator
 
             ButtonConfig = new ObservableCollection<ButtonConfig>();
             for (int i = 0; i < 128; i++) ButtonConfig.Add(new ButtonConfig());
+
+            AxisToButtonsConfig = new ObservableCollection<AxisToButtonsConfig>();
+            for (int i = 0; i < 8; i++) AxisToButtonsConfig.Add(new AxisToButtonsConfig());
         }
     }
         

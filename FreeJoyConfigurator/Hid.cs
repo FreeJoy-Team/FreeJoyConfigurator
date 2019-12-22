@@ -13,7 +13,7 @@ namespace FreeJoyConfigurator
     {
         #region Fields
         private const int vid = 0x0483;
-        private const int pid = 0x2619;
+        private const int pid = 0x5750;
 
         private static HidDevice hidDevice { get; set; }
 

@@ -34,24 +34,25 @@ namespace FreeJoyConfigurator
             set
             {
                 SetProperty(ref _buttonCnt, value);
+
                 while (_buttonCnt > RangeItems.Count)
                 {
                     for (int i=0; i<RangeItems.Count; i++)
                     {
-                        RangeItems[i].From = i * (4095 / (RangeItems.Count + 1));
-                        RangeItems[i].To = (i + 1) * (4095 / (RangeItems.Count + 1));
+                        RangeItems[i].From = i * (100 / (RangeItems.Count + 1));
+                        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count + 1));
                     }
-                    RangeItems.Add(new RangeItem { From = RangeItems.Last().To, To = 4095 });
+                    RangeItems.Add(new RangeItem { From = RangeItems.Last().To, To = 100 });
                 }
                 while (_buttonCnt < RangeItems.Count)
-                {
-                    RangeItems.Remove(RangeItems.Last()) ;
-                    for (int i = RangeItems.Count-1; i >=0; i--)
+                {                    
+                    for (int i = RangeItems.Count-2; i >=0; i--)
                     {                       
-                        RangeItems[i].From = i * (4095 / (RangeItems.Count));
-                        RangeItems[i].To = (i + 1) * (4095 / (RangeItems.Count));
+                        RangeItems[i].From = i * (100 / (RangeItems.Count-1));
+                        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count-1));
                     }
-                    RangeItems.Last().To = 4095;
+                    RangeItems[RangeItems.Count - 1].To = 100;
+                    RangeItems.Remove(RangeItems.Last());
                 }
             }
         }
@@ -64,12 +65,14 @@ namespace FreeJoyConfigurator
             //for (int i = 0; i < 10; i++) ranges.Add(new RangeItem());
             m_rangeItems = new ObservableContentCollection<RangeItem>
                             {
-                                new RangeItem {From = 0, To = 2048},
-                                new RangeItem {From = 2048, To = 4095},
+                                new RangeItem {From = 0, To = 50},
+                                new RangeItem {From = 50, To = 100},
                             };
+
             _buttonCnt = m_rangeItems.Count;
             _isEnabled = false;
         }
+
     }
 
     public class RangeItem : BindableBase

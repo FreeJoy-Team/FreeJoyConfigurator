@@ -23,31 +23,107 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="1"
-            d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="8*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-                <TextBlock Text="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <InWit:WitMultiRangeSlider Grid.Column="1" VerticalAlignment="Center"
+        <TextBlock Text="1" Grid.Column="0" Grid.Row="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[0].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay}" 
-                                            Minimum="0" Maximum="4095"/>
-                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[0].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
                                             Minimum="2" Maximum="10"/>
-            </Grid>
-            
-        </Border>
 
+        <TextBlock Text="2" Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[1].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[1].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
 
+        <TextBlock Text="3" Grid.Column="0" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[2].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[2].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
+
+        <TextBlock Text="4" Grid.Column="0" Grid.Row="3" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[3].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[3].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
+
+        <TextBlock Text="5" Grid.Column="0" Grid.Row="4" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[4].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[4].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
+
+        <TextBlock Text="6" Grid.Column="0" Grid.Row="5" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[5].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[5].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
+
+        <TextBlock Text="7" Grid.Column="0" Grid.Row="6" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[6].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[6].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
+
+        <TextBlock Text="8" Grid.Column="0" Grid.Row="7" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="7" VerticalAlignment="Center"
+                                           IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"
+                                            ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[7].RangeItems}"  
+                                            LeftValueBinding="{Binding From, Mode=TwoWay}" 
+                                            RightValueBinding="{Binding To, Mode=TwoWay}" 
+                                            Minimum="0" Maximum="100"/>
+        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Value="{Binding AxesToButtonsVM.AxesToButtons[7].ButtonCnt, Mode=TwoWay}"
+                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"
+                                            Minimum="2" Maximum="10"/>
     </Grid>
 
 
