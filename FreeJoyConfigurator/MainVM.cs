@@ -94,6 +94,7 @@ namespace FreeJoyConfigurator
             AxesVM = new AxesVM(_joystick, Config);
             ButtonsVM = new ButtonsVM(_joystick, Config);
             AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
+            AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
 
             FirmwareUpdaterVM = new FirmwareUpdaterVM();
 
@@ -119,6 +120,8 @@ namespace FreeJoyConfigurator
 
             WriteLog("Program started", true);
         }
+
+        
 
         private void GetHidDevices()
         {
@@ -214,6 +217,13 @@ namespace FreeJoyConfigurator
         }
 
         private void PinConfigChanged()
+        {
+            ButtonsVM.Update(Config);
+            AxesVM.Update(Config);
+            AxesToButtonsVM.Update(Config);
+        }
+
+        private void AxesToButtonsVM_ConfigChanged()
         {
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);

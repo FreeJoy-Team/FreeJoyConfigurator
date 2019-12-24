@@ -10,6 +10,9 @@ namespace FreeJoyConfigurator
 {
     public class AxesToButtonsVM : BindableBase
     {
+        public delegate void PinConfigChangedEvent();
+        public event PinConfigChangedEvent ConfigChanged;
+
         private ObservableCollection<AxisToButtonsVM> axesToButtons;
         private Joystick _joystick;
         public DeviceConfig Config { get; set; }
@@ -67,6 +70,7 @@ namespace FreeJoyConfigurator
                     (sbyte)AxesToButtons[i].RangeItems.Last().To;
             }
             Config = conf;
+            ConfigChanged();
         }
 
         public void Update(DeviceConfig config)
