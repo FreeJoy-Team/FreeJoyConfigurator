@@ -26,7 +26,19 @@ namespace FreeJoyConfigurator
 
         public event PinConfigChangedEvent ConfigChanged;
 
-        public DeviceConfig Config { get; set; }
+        private DeviceConfig _config;
+
+        public DeviceConfig Config
+        {
+            get
+            {
+                return _config;
+            }
+            set
+            {
+                SetProperty(ref _config, value);
+            }
+        }
 
         public int RowCnt
         {
@@ -131,6 +143,8 @@ namespace FreeJoyConfigurator
         #region Public methods
         public void Update(DeviceConfig config)
         {
+            Config = config;
+
             ObservableCollection<PinVMConverter> tmp = new ObservableCollection<PinVMConverter>();
 
             for (int i = 0; i < Config.PinConfig.Count; i++)
@@ -138,7 +152,7 @@ namespace FreeJoyConfigurator
                 tmp.Add(new PinVMConverter());
                 if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisAnalog);
                 if (i < 16) tmp[i].AllowedTypes.Add(PinType.AxisToButtons);
-                tmp[i].SelectedType = config.PinConfig[i];
+                tmp[i].SelectedType = Config.PinConfig[i];
             }
             Pins = new ObservableCollection<PinVMConverter>(tmp);
 

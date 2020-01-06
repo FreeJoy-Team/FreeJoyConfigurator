@@ -46,7 +46,8 @@
                                                  Value="{Binding Path=Value, Mode=OneWay}" 
                                                  IsEnabled="{Binding IsEnabled}"
                                                  HorizontalAlignment="Stretch"  
-                                                 VerticalAlignment="Bottom" Margin="0,0,10,0" >
+                                                 VerticalAlignment="Bottom" 
+                                                 Foreground="DarkRed" Margin="0,0,10,0" >
                                 <ProgressBar.Style>
                                     <Style TargetType="ProgressBar">
                                         <Style.Triggers>
@@ -81,7 +82,7 @@
                                                  IsEnabled="{Binding IsEnabled}"
                                                  HorizontalAlignment="Stretch"
                                                  VerticalAlignment="Top"
-                                                 Foreground="DarkRed" Margin="0,0,10,0" >
+                                                 Foreground="DarkOliveGreen" Margin="0,0,10,0" >
                                 <ProgressBar.Style>
                                     <Style TargetType="ProgressBar">
                                         <Style.Triggers>

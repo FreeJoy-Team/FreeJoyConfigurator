@@ -237,7 +237,7 @@ namespace FreeJoyConfigurator
 
         private void ConfigReceived(DeviceConfig deviceConfig)
         {
-            _config = deviceConfig;
+            Config = deviceConfig;
 
             PinsVM.Update(Config);
             ButtonsVM.Update(Config);
