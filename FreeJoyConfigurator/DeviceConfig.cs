@@ -206,10 +206,6 @@ namespace FreeJoyConfigurator
 
         AxisAnalog,
         AxisToButtons,
-
-        //EncoderSingleInput,
-        //EncoderChainedInput,
-        //EncoderChainedCommon,
     };
 
 
@@ -241,8 +237,8 @@ namespace FreeJoyConfigurator
 
         Encoder_A,
         Encoder_B,
-        //BtnToAnalog,
-        //Shift,
+        
+        
     };
 
     public class ButtonConfig : BindableBase
