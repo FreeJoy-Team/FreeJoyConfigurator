@@ -63,9 +63,31 @@ namespace FreeJoyConfigurator
                         }
                     }
                 }
+                
+            }
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.AxisToButtons)
+                {
+                    for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
+                    {
+                        ObservableCollection<ButtonType> tmpTypes = new ObservableCollection<ButtonType>()
+                        {       ButtonType.BtnInverted,
+                                ButtonType.BtnNormal,
+                                ButtonType.BtnToggle,
+                                ButtonType.ToggleSw,
+                                ButtonType.ToggleSwOff,
+                                ButtonType.ToggleSwOn,
+
+                        };
+                        config.ButtonConfig[buttonCnt].Type = ButtonType.ToggleSwOn;
+                        tmp.Add(new Button(false, config.ButtonConfig[buttonCnt++].Type, tmpTypes, buttonCnt));
+
+                    }
+                }
             }
 
-            Buttons = new ObservableCollection<Button>(tmp);
+                Buttons = new ObservableCollection<Button>(tmp);
 
             foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
             RaisePropertyChanged(nameof(Buttons));

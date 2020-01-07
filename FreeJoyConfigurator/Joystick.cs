@@ -11,46 +11,30 @@ namespace FreeJoyConfigurator
 {
     public class Joystick : BindableBase
     {
-        //private JoyReport joyReport;
-
+        private DeviceConfig _config;
+        
         public ObservableCollection<Axis> Axes { get; private set; }
         public ObservableCollection<Button> Buttons { get; private set; }
-        //public byte[] Povs { get; private set; }
 
-        public Joystick()
+        public Joystick(DeviceConfig config)
         {
+            _config = config;
             Axes = new ObservableCollection<Axis>();
             for (int i = 0; i < 8; i++)
             {
                 Axes.Add(new Axis(i+1));
+                if(config.PinConfig[i] == PinType.AxisAnalog)
+                {
+                    Axes[i].IsEnabled = true;
+                }
+                else Axes[i].IsEnabled = false;
             }
             Buttons = new ObservableCollection<Button>();
             for (int i = 0; i < 128; i++)
             {
                 Buttons.Add(new Button(i+1));
             }
-
-            //Hid.Connect();
-
-            //Hid.DeviceAdded += DeviceAddedEventHandler;
-            // Hid.DeviceRemoved += DeviceRemovedEventHandler;
             Hid.PacketReceived += PacketReceivedEventHandler;
-            //Hid.PacketSent += PacketSentEventHandler;
-        }
-
-        public void DeviceAddedEventHandler(HidDevice hd)
-        {
-
-        }
-
-        public void DeviceRemovedEventHandler(HidDevice hd)
-        {
-
-        }
-
-        public void PacketSentEventHandler(HidReport hr)
-        {
-
         }
 
         public void PacketReceivedEventHandler(HidReport report)
@@ -70,6 +54,7 @@ namespace FreeJoyConfigurator
     public class Button : BindableBase
     {
         private ButtonType _type;
+        private ObservableCollection<ButtonType> _allowedTypes;
         private bool _state;
         public int Number { get; private set; }
 
@@ -78,6 +63,13 @@ namespace FreeJoyConfigurator
             get { return _type; }
             set { SetProperty(ref _type, value); }
         }
+
+        public ObservableCollection<ButtonType> AllowedTypes
+        {
+            get { return _allowedTypes; }
+            set { SetProperty(ref _allowedTypes, value); }
+        }
+
         public bool State
         {
             get { return _state; }
@@ -88,6 +80,33 @@ namespace FreeJoyConfigurator
         {
             Number = number;
             _type = ButtonType.BtnNormal;
+            _allowedTypes = new ObservableCollection<ButtonType>()
+            {       ButtonType.BtnInverted,
+                    ButtonType.BtnNormal,
+                    ButtonType.BtnToggle,
+                    ButtonType.ToggleSw,
+                    ButtonType.ToggleSwOff,
+                    ButtonType.ToggleSwOn,
+                    ButtonType.Pov1Down,
+                    ButtonType.Pov1Left,
+                    ButtonType.Pov1Right,
+                    ButtonType.Pov1Up,
+                    ButtonType.Pov2Down,
+                    ButtonType.Pov2Left,
+                    ButtonType.Pov2Right,
+                    ButtonType.Pov2Up,
+                    ButtonType.Pov3Down,
+                    ButtonType.Pov3Left,
+                    ButtonType.Pov3Right,
+                    ButtonType.Pov3Up,
+                    ButtonType.Pov4Down,
+                    ButtonType.Pov4Left,
+                    ButtonType.Pov4Right,
+                    ButtonType.Pov4Up,
+                    ButtonType.Encoder_A,
+                    ButtonType.Encoder_B
+            };
+
             _state = false;
         }
 
@@ -95,12 +114,72 @@ namespace FreeJoyConfigurator
         {
             Number = number;
             _type = ButtonType.BtnNormal;
+            _allowedTypes = new ObservableCollection<ButtonType>()
+            {       ButtonType.BtnInverted,
+                    ButtonType.BtnNormal,
+                    ButtonType.BtnToggle,
+                    ButtonType.ToggleSw,
+                    ButtonType.ToggleSwOff,
+                    ButtonType.ToggleSwOn,
+                    ButtonType.Pov1Down,
+                    ButtonType.Pov1Left,
+                    ButtonType.Pov1Right,
+                    ButtonType.Pov1Up,
+                    ButtonType.Pov2Down,
+                    ButtonType.Pov2Left,
+                    ButtonType.Pov2Right,
+                    ButtonType.Pov2Up,
+                    ButtonType.Pov3Down,
+                    ButtonType.Pov3Left,
+                    ButtonType.Pov3Right,
+                    ButtonType.Pov3Up,
+                    ButtonType.Pov4Down,
+                    ButtonType.Pov4Left,
+                    ButtonType.Pov4Right,
+                    ButtonType.Pov4Up,
+                    ButtonType.Encoder_A,
+                    ButtonType.Encoder_B
+            };
             _state = state;
         }
         public Button(bool state, ButtonType type, int number)
         {
             Number = number;
             _type = type;
+            _allowedTypes = new ObservableCollection<ButtonType>()
+            {       ButtonType.BtnInverted,
+                    ButtonType.BtnNormal,
+                    ButtonType.BtnToggle,
+                    ButtonType.ToggleSw,
+                    ButtonType.ToggleSwOff,
+                    ButtonType.ToggleSwOn,
+                    ButtonType.Pov1Down,
+                    ButtonType.Pov1Left,
+                    ButtonType.Pov1Right,
+                    ButtonType.Pov1Up,
+                    ButtonType.Pov2Down,
+                    ButtonType.Pov2Left,
+                    ButtonType.Pov2Right,
+                    ButtonType.Pov2Up,
+                    ButtonType.Pov3Down,
+                    ButtonType.Pov3Left,
+                    ButtonType.Pov3Right,
+                    ButtonType.Pov3Up,
+                    ButtonType.Pov4Down,
+                    ButtonType.Pov4Left,
+                    ButtonType.Pov4Right,
+                    ButtonType.Pov4Up,
+                    ButtonType.Encoder_A,
+                    ButtonType.Encoder_B
+            };
+            _state = state;
+        }
+
+        public Button(bool state, ButtonType type, ObservableCollection<ButtonType> allowedTypes, int number)
+        {
+            Number = number;
+            _type = type;
+            _allowedTypes = allowedTypes;
             _state = state;
         }
     }
@@ -109,8 +188,14 @@ namespace FreeJoyConfigurator
     {
         private ushort _value;
         private ushort _rawValue;
+        private bool _isEnabled;
 
         public int Number {get; private set;}
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { SetProperty(ref _isEnabled, value); }
+        }
 
         public ushort Value
         {

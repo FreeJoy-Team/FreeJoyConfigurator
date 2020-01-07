@@ -63,8 +63,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6D16AC4B51F5108D5D27EB91FD7F1001"
+        "OwnerKey" = "8:_0E45B291092A407CBE4EFBCF844BD805"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6D16AC4B51F5108D5D27EB91FD7F1001"
+        "OwnerKey" = "8:_D7BF35EDC315F193BDF8FCE137A8110F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9390D4CDE0B7B6CF25257B2157244320"
         "OwnerKey" = "8:_218ECE97BDAB7B48EE264144BE1737A3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9390D4CDE0B7B6CF25257B2157244320"
+        "OwnerKey" = "8:_F7EDFEB522DAC7FB7D5BF380A2ACA599"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -123,6 +141,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D7BF35EDC315F193BDF8FCE137A8110F"
+        "OwnerKey" = "8:_0E45B291092A407CBE4EFBCF844BD805"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E5F6C5DB8EFCEA173AF5BAD28688DB4B"
         "OwnerKey" = "8:_0E45B291092A407CBE4EFBCF844BD805"
         "MsmSig" = "8:_UNDEFINED"
@@ -143,6 +167,12 @@
         {
         "MsmKey" = "8:_E5F6C5DB8EFCEA173AF5BAD28688DB4B"
         "OwnerKey" = "8:_C7CC5B99ED92A7B5E184FD932DFF2B1F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F7EDFEB522DAC7FB7D5BF380A2ACA599"
+        "OwnerKey" = "8:_0E45B291092A407CBE4EFBCF844BD805"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,6 +250,24 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D7BF35EDC315F193BDF8FCE137A8110F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F7EDFEB522DAC7FB7D5BF380A2ACA599"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6D16AC4B51F5108D5D27EB91FD7F1001"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CDECA21E47A948395E68462E66BC897F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -286,6 +334,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -443,6 +499,37 @@
                     }
                 }
             "SourcePath" = "8:System.ValueTuple.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6DB89439CCF740EE95E23DB3AF035281"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6D16AC4B51F5108D5D27EB91FD7F1001"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:InWit.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_6D16AC4B51F5108D5D27EB91FD7F1001"
+                    {
+                    "Name" = "8:InWit.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:InWit.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_6DB89439CCF740EE95E23DB3AF035281"
@@ -708,6 +795,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D7BF35EDC315F193BDF8FCE137A8110F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:InWit.WPF.MultiRangeSlider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D7BF35EDC315F193BDF8FCE137A8110F"
+                    {
+                    "Name" = "8:InWit.WPF.MultiRangeSlider.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:InWit.WPF.MultiRangeSlider.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6DB89439CCF740EE95E23DB3AF035281"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E5F6C5DB8EFCEA173AF5BAD28688DB4B"
             {
             "AssemblyRegister" = "3:1"
@@ -722,6 +840,37 @@
                     }
                 }
             "SourcePath" = "8:Xceed.Wpf.AvalonDock.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6DB89439CCF740EE95E23DB3AF035281"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F7EDFEB522DAC7FB7D5BF380A2ACA599"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:InWit.ViewModel.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F7EDFEB522DAC7FB7D5BF380A2ACA599"
+                    {
+                    "Name" = "8:InWit.ViewModel.Utils.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:InWit.ViewModel.Utils.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_6DB89439CCF740EE95E23DB3AF035281"
@@ -806,15 +955,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FreeJoy Configurator"
-        "ProductCode" = "8:{306E6927-87DA-434A-B990-7F586795F625}"
-        "PackageCode" = "8:{0554BFAA-53D5-4FC8-9854-2ACD4156CFDA}"
+        "ProductCode" = "8:{7E504232-CA27-46BD-B57F-EF8AD7646B07}"
+        "PackageCode" = "8:{E33E317E-7122-49C8-B3DE-E1F8ADBC91E3}"
         "UpgradeCode" = "8:{1ACDC3DC-058D-4B98-878B-A1FDAA5B32E0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:FreeJoy"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

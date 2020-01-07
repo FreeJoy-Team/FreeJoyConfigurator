@@ -37,8 +37,6 @@
                             <Label Grid.Column="0" Grid.Row="1"  Content="Raw data" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalContentAlignment="Right"/>
 
 
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Value}"
-                                       HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <ProgressBar Grid.Column="1" 
                                                  Grid.Row="0" 
                                                  Grid.RowSpan="1"
@@ -46,22 +44,68 @@
                                                  Maximum="4095" 
                                                  Height="30"  
                                                  Value="{Binding Path=Value, Mode=OneWay}" 
-                                                 
+                                                 IsEnabled="{Binding IsEnabled}"
                                                  HorizontalAlignment="Stretch"  
-                                                 VerticalAlignment="Bottom" Margin="0,0,10,0" />
+                                                 VerticalAlignment="Bottom" 
+                                                 Foreground="DarkRed" Margin="0,0,10,0" >
+                                <ProgressBar.Style>
+                                    <Style TargetType="ProgressBar">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="false">
+                                                <Setter Property="Opacity" Value="0.3"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ProgressBar.Style>
+                            </ProgressBar>
                             <Label Grid.Column="1" Grid.Row="0" Height="30" Content="{Binding Value}"
-                                       HorizontalAlignment="Center" VerticalAlignment="Bottom" VerticalContentAlignment="Center"/>
+                                   IsEnabled="{Binding IsEnabled}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom" VerticalContentAlignment="Center">
+
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="false">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            
                             <ProgressBar Grid.Column="1" 
                                                  Grid.Row="1" 
                                                  Minimum="0" 
                                                  Maximum="4095" 
                                                  Height="20"
-                                                 Value="{Binding Path=RawValue, Mode=OneWay}" 
+                                                 Value="{Binding Path=RawValue, Mode=OneWay}"
+                                                 IsEnabled="{Binding IsEnabled}"
                                                  HorizontalAlignment="Stretch"
                                                  VerticalAlignment="Top"
-                                                 Foreground="DarkRed" Margin="0,0,10,0" />
+                                                 Foreground="DarkOliveGreen" Margin="0,0,10,0" >
+                                <ProgressBar.Style>
+                                    <Style TargetType="ProgressBar">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="false">
+                                                <Setter Property="Opacity" Value="0.3"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ProgressBar.Style>
+                            </ProgressBar>
                             <TextBlock Grid.Column="1" Grid.Row="1" Height="20" Text="{Binding RawValue}"
-                                       HorizontalAlignment="Center" VerticalAlignment="Top" />
+                                       IsEnabled="{Binding IsEnabled}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Top" >
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="false">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                         </Grid>
                     </Border>
 

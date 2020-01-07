@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -68,6 +68,15 @@
     </Reference>
     <Reference Include="HidLibrary">
       <HintPath>..\HidLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="InWit.Core">
+      <HintPath>..\InWit.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="InWit.ViewModel.Utils">
+      <HintPath>..\InWit.ViewModel.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="InWit.WPF.MultiRangeSlider">
+      <HintPath>..\InWit.WPF.MultiRangeSlider.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
@@ -130,9 +139,14 @@
       <DependentUpon>AxesCurvesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AxesCurvesVM.cs" />
+    <Compile Include="AxesToButtonsView.xaml.cs">
+      <DependentUpon>AxesToButtonsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AxesToButtonsVM.cs" />
     <Compile Include="AxesView.xaml.cs">
       <DependentUpon>AxesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AxisToButtonsVM.cs" />
     <Compile Include="ButtonsVM.cs" />
     <Compile Include="ButtonsView.xaml.cs">
       <DependentUpon>ButtonsView.xaml</DependentUpon>
@@ -162,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AxesCurvesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AxesToButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

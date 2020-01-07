@@ -115,6 +115,10 @@
                 </ScrollViewer>
             </TabItem>
 
+            <TabItem Header="Axes to buttons">
+                <local:AxesToButtonsView/>
+            </TabItem>
+
         </TabControl>
 
         <Grid Grid.Column="2" Margin="0,20,0,0">

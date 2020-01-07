@@ -56,7 +56,7 @@
                                 
                             </Label>
                             <ComboBox Grid.Column="1" Grid.Row="0" 
-                                  ItemsSource="{Binding Source={StaticResource dataFromEnum}}"
+                                  ItemsSource="{Binding Path=AllowedTypes}"
                                   SelectedItem="{Binding Path=Type}">
                             </ComboBox>
 
