@@ -119,6 +119,10 @@
                 <local:AxesToButtonsView/>
             </TabItem>
 
+            <TabItem Header="Shift Registers">
+                <local:ShiftRegistersView/>
+            </TabItem>
+
         </TabControl>
 
         <Grid Grid.Column="2" Margin="0,20,0,0">

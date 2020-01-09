@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Firmware_Version>0</Firmware_Version>
+  <Firmware_Version>258</Firmware_Version>
   <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>300</Toggle_Press_Time>
   <Encoder_Press_Time>100</Encoder_Press_Time>
-  <Exchange_Period>10</Exchange_Period>
+  <Exchange_Period>2</Exchange_Period>
   <Pin_Config>AxisAnalog</Pin_Config>
   <Pin_Config>AxisAnalog</Pin_Config>
   <Pin_Config>AxisAnalog</Pin_Config>

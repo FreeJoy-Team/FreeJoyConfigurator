@@ -13,12 +13,12 @@ namespace FreeJoyConfigurator
         public delegate void PinConfigChangedEvent();
         public event PinConfigChangedEvent ConfigChanged;
 
-        private ObservableCollection<AxisToButtonsVM> axesToButtons;
+        private ObservableCollection<AxisToButtons> axesToButtons;
         private Joystick _joystick;
         public DeviceConfig Config { get; set; }
 
         public ObservableCollection<Axis> Axes { get; private set; }
-        public ObservableCollection<AxisToButtonsVM> AxesToButtons
+        public ObservableCollection<AxisToButtons> AxesToButtons
         {
             get
             {
@@ -36,10 +36,10 @@ namespace FreeJoyConfigurator
             Config = deviceConfig;
             Axes = new ObservableCollection<Axis>(_joystick.Axes);
 
-            axesToButtons = new ObservableCollection<AxisToButtonsVM>();
+            axesToButtons = new ObservableCollection<AxisToButtons>();
             for (int i = 0; i < 8; i++)
             {
-                axesToButtons.Add(new AxisToButtonsVM());
+                axesToButtons.Add(new AxisToButtons());
                 if (Config.PinConfig[i] == PinType.AxisToButtons)
                 {
                     AxesToButtons[i].IsEnabled = true;

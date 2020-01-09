@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FreeJoyConfigurator
 {
-    public class AxisToButtonsVM : BindableBase
+    public class AxisToButtons : BindableBase
     {
         private ObservableContentCollection<RangeItem> m_rangeItems;
         private int _buttonCnt;
@@ -59,7 +59,7 @@ namespace FreeJoyConfigurator
 
         
 
-        public AxisToButtonsVM ()
+        public AxisToButtons ()
         {
             //ranges = new ObservableCollection<RangeItem>();
             //for (int i = 0; i < 10; i++) ranges.Add(new RangeItem());
