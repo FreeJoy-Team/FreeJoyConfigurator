@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Firmware_Version>258</Firmware_Version>
-  <Device_Name>FreeJoy</Device_Name>
+  <Firmware_Version>257</Firmware_Version>
+  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>300</Toggle_Press_Time>
   <Encoder_Press_Time>100</Encoder_Press_Time>
@@ -14,25 +14,25 @@
   <Pin_Config>AxisAnalog</Pin_Config>
   <Pin_Config>AxisAnalog</Pin_Config>
   <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
   <Pin_Config>ButtonGnd</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
@@ -85,6 +85,108 @@
       </Point>
     </CurveShape>
     <FilterLevel>0</FilterLevel>
+    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+  </Axis_Config>
+  <Axis_Config>
+    <CalibMin>0</CalibMin>
+    <CalibCenter>2047</CalibCenter>
+    <CalibMax>4095</CalibMax>
+    <IsAutoCalib>false</IsAutoCalib>
+    <IsInverted>false</IsInverted>
+    <CurveShape>
+      <Point>
+        <X>0</X>
+        <Y>-100</Y>
+      </Point>
+      <Point>
+        <X>1</X>
+        <Y>-77</Y>
+      </Point>
+      <Point>
+        <X>2</X>
+        <Y>-55</Y>
+      </Point>
+      <Point>
+        <X>3</X>
+        <Y>-33</Y>
+      </Point>
+      <Point>
+        <X>4</X>
+        <Y>-11</Y>
+      </Point>
+      <Point>
+        <X>5</X>
+        <Y>11</Y>
+      </Point>
+      <Point>
+        <X>6</X>
+        <Y>33</Y>
+      </Point>
+      <Point>
+        <X>7</X>
+        <Y>55</Y>
+      </Point>
+      <Point>
+        <X>8</X>
+        <Y>77</Y>
+      </Point>
+      <Point>
+        <X>9</X>
+        <Y>100</Y>
+      </Point>
+    </CurveShape>
+    <FilterLevel>0</FilterLevel>
+    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+  </Axis_Config>
+  <Axis_Config>
+    <CalibMin>0</CalibMin>
+    <CalibCenter>2047</CalibCenter>
+    <CalibMax>4095</CalibMax>
+    <IsAutoCalib>false</IsAutoCalib>
+    <IsInverted>false</IsInverted>
+    <CurveShape>
+      <Point>
+        <X>0</X>
+        <Y>-100</Y>
+      </Point>
+      <Point>
+        <X>1</X>
+        <Y>-77</Y>
+      </Point>
+      <Point>
+        <X>2</X>
+        <Y>-55</Y>
+      </Point>
+      <Point>
+        <X>3</X>
+        <Y>-33</Y>
+      </Point>
+      <Point>
+        <X>4</X>
+        <Y>-11</Y>
+      </Point>
+      <Point>
+        <X>5</X>
+        <Y>11</Y>
+      </Point>
+      <Point>
+        <X>6</X>
+        <Y>33</Y>
+      </Point>
+      <Point>
+        <X>7</X>
+        <Y>55</Y>
+      </Point>
+      <Point>
+        <X>8</X>
+        <Y>77</Y>
+      </Point>
+      <Point>
+        <X>9</X>
+        <Y>100</Y>
+      </Point>
+    </CurveShape>
+    <FilterLevel>3</FilterLevel>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -342,119 +444,17 @@
     <FilterLevel>0</FilterLevel>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
-  <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
-    <IsAutoCalib>false</IsAutoCalib>
-    <IsInverted>false</IsInverted>
-    <CurveShape>
-      <Point>
-        <X>0</X>
-        <Y>-100</Y>
-      </Point>
-      <Point>
-        <X>1</X>
-        <Y>-77</Y>
-      </Point>
-      <Point>
-        <X>2</X>
-        <Y>-55</Y>
-      </Point>
-      <Point>
-        <X>3</X>
-        <Y>-33</Y>
-      </Point>
-      <Point>
-        <X>4</X>
-        <Y>-11</Y>
-      </Point>
-      <Point>
-        <X>5</X>
-        <Y>11</Y>
-      </Point>
-      <Point>
-        <X>6</X>
-        <Y>33</Y>
-      </Point>
-      <Point>
-        <X>7</X>
-        <Y>55</Y>
-      </Point>
-      <Point>
-        <X>8</X>
-        <Y>77</Y>
-      </Point>
-      <Point>
-        <X>9</X>
-        <Y>100</Y>
-      </Point>
-    </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
-  </Axis_Config>
-  <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
-    <IsAutoCalib>false</IsAutoCalib>
-    <IsInverted>false</IsInverted>
-    <CurveShape>
-      <Point>
-        <X>0</X>
-        <Y>-100</Y>
-      </Point>
-      <Point>
-        <X>1</X>
-        <Y>-77</Y>
-      </Point>
-      <Point>
-        <X>2</X>
-        <Y>-55</Y>
-      </Point>
-      <Point>
-        <X>3</X>
-        <Y>-33</Y>
-      </Point>
-      <Point>
-        <X>4</X>
-        <Y>-11</Y>
-      </Point>
-      <Point>
-        <X>5</X>
-        <Y>11</Y>
-      </Point>
-      <Point>
-        <X>6</X>
-        <Y>33</Y>
-      </Point>
-      <Point>
-        <X>7</X>
-        <Y>55</Y>
-      </Point>
-      <Point>
-        <X>8</X>
-        <Y>77</Y>
-      </Point>
-      <Point>
-        <X>9</X>
-        <Y>100</Y>
-      </Point>
-    </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
-  </Axis_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Pov1Down</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Pov1Left</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Pov1Right</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Pov1Up</Type>
   </Button_Config>
   <Button_Config>
     <Type>BtnNormal</Type>
@@ -511,34 +511,34 @@
     <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>ToggleSwOn</Type>
   </Button_Config>
   <Button_Config>
     <Type>BtnNormal</Type>
@@ -828,4 +828,340 @@
   <Button_Config>
     <Type>BtnNormal</Type>
   </Button_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>99</byte>
+      <byte>100</byte>
+      <byte>100</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
 </DeviceConfig>

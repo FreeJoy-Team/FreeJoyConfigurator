@@ -35,25 +35,25 @@ namespace FreeJoyConfigurator
             {
                 SetProperty(ref _buttonCnt, value);
 
-                while (_buttonCnt > RangeItems.Count)
-                {
-                    for (int i=0; i<RangeItems.Count; i++)
-                    {
-                        RangeItems[i].From = i * (100 / (RangeItems.Count + 1));
-                        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count + 1));
-                    }
-                    RangeItems.Add(new RangeItem { From = RangeItems.Last().To, To = 100 });
-                }
-                while (_buttonCnt < RangeItems.Count)
-                {                    
-                    for (int i = RangeItems.Count-2; i >=0; i--)
-                    {                       
-                        RangeItems[i].From = i * (100 / (RangeItems.Count-1));
-                        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count-1));
-                    }
-                    RangeItems[RangeItems.Count - 1].To = 100;
-                    RangeItems.Remove(RangeItems.Last());
-                }
+                //while (_buttonCnt > RangeItems.Count)
+                //{
+                //    for (int i=0; i<RangeItems.Count; i++)
+                //    {
+                //        RangeItems[i].From = i * (100 / (RangeItems.Count + 1));
+                //        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count + 1));
+                //    }
+                //    RangeItems.Add(new RangeItem { From = RangeItems.Last().To, To = 100 });
+                //}
+                //while (_buttonCnt < RangeItems.Count)
+                //{                    
+                //    for (int i = RangeItems.Count-2; i >=0; i--)
+                //    {                       
+                //        RangeItems[i].From = i * (100 / (RangeItems.Count-1));
+                //        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count-1));
+                //    }
+                //    RangeItems[RangeItems.Count - 1].To = 100;
+                //    RangeItems.Remove(RangeItems.Last());
+                //}
             }
         }
 
