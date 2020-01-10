@@ -132,66 +132,71 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AxesConfigView.xaml.cs">
+    <Compile Include="Model\ShiftRegister.cs" />
+    <Compile Include="View\AxesConfigView.xaml.cs">
       <DependentUpon>AxesConfigView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AxesCurvesView.xaml.cs">
+    <Compile Include="View\AxesCurvesView.xaml.cs">
       <DependentUpon>AxesCurvesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AxesCurvesVM.cs" />
-    <Compile Include="AxesToButtonsView.xaml.cs">
+    <Compile Include="ViewModel\AxesCurvesVM.cs" />
+    <Compile Include="View\AxesToButtonsView.xaml.cs">
       <DependentUpon>AxesToButtonsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AxesToButtonsVM.cs" />
-    <Compile Include="AxesView.xaml.cs">
+    <Compile Include="ViewModel\AxesToButtonsVM.cs" />
+    <Compile Include="View\AxesView.xaml.cs">
       <DependentUpon>AxesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AxisToButtonsVM.cs" />
-    <Compile Include="ButtonsVM.cs" />
-    <Compile Include="ButtonsView.xaml.cs">
+    <Compile Include="Model\AxisToButtons.cs" />
+    <Compile Include="ViewModel\ButtonsVM.cs" />
+    <Compile Include="View\ButtonsView.xaml.cs">
       <DependentUpon>ButtonsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Crc16.cs" />
-    <Compile Include="DeviceConfigExchangerVM.cs" />
-    <Compile Include="FirmwareUpdater.cs" />
-    <Compile Include="FirmwareUpdaterView.xaml.cs">
+    <Compile Include="Model\Crc16.cs" />
+    <Compile Include="ViewModel\DeviceConfigExchangerVM.cs" />
+    <Compile Include="Model\FirmwareUpdater.cs" />
+    <Compile Include="View\FirmwareUpdaterView.xaml.cs">
       <DependentUpon>FirmwareUpdaterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FirmwareUpdaterVM.cs" />
-    <Compile Include="InvertBooleenConverter.cs" />
-    <Compile Include="InvertNumericConverter.cs" />
-    <Compile Include="PinsVM.cs" />
-    <Compile Include="AxesVM.cs" />
-    <Compile Include="DeviceConfig.cs" />
-    <Compile Include="Joystick.cs" />
-    <Compile Include="MainVM.cs" />
-    <Compile Include="PinsView.xaml.cs">
+    <Compile Include="ViewModel\FirmwareUpdaterVM.cs" />
+    <Compile Include="Tools\InvertBooleenConverter.cs" />
+    <Compile Include="Tools\InvertNumericConverter.cs" />
+    <Compile Include="ViewModel\PinsVM.cs" />
+    <Compile Include="ViewModel\AxesVM.cs" />
+    <Compile Include="Model\DeviceConfig.cs" />
+    <Compile Include="Model\Joystick.cs" />
+    <Compile Include="ViewModel\MainVM.cs" />
+    <Compile Include="View\PinsView.xaml.cs">
       <DependentUpon>PinsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PinVMConverter.cs" />
-    <Compile Include="ReportConverter.cs" />
-    <Compile Include="UiCommand.cs" />
-    <Page Include="AxesConfigView.xaml">
+    <Compile Include="Tools\PinVMConverter.cs" />
+    <Compile Include="Tools\ReportConverter.cs" />
+    <Compile Include="ViewModel\ShiftRegistersVM.cs" />
+    <Compile Include="Tools\UiCommand.cs" />
+    <Compile Include="View\ShiftRegistersView.xaml.cs">
+      <DependentUpon>ShiftRegistersView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\AxesConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AxesCurvesView.xaml">
+    <Page Include="View\AxesCurvesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AxesToButtonsView.xaml">
+    <Page Include="View\AxesToButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AxesView.xaml">
+    <Page Include="View\AxesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ButtonsView.xaml">
+    <Page Include="View\ButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FirmwareUpdaterView.xaml">
+    <Page Include="View\FirmwareUpdaterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,18 +208,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Hid.cs" />
+    <Compile Include="Model\Hid.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PinsView.xaml">
+    <Page Include="View\PinsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShiftRegistersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageBoxService.cs" />
+    <Compile Include="Tools\MessageBoxService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -233,7 +242,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="FreeJoyConfigurator_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -268,5 +276,6 @@
     <Resource Include="Resources\favicon.ico" />
     <Resource Include="Resources\ms-icon-310x310.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -245,19 +245,19 @@
 
                         <Button Width="120" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Grid.Row ="1" Grid.Column="0" Command="{Binding SetLinearCommand}">
-                            <Image Source="Resources/button_linear.png" Stretch="Fill"/>
+                            <Image Source="../Resources/button_linear.png" Stretch="Fill"/>
                         </Button>
                         <Button Width="120" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Grid.Row ="1" Grid.Column="1" Command="{Binding SetExponent1Command}">
-                            <Image Source="Resources/button_exp1.png" Stretch="Fill"/>
+                            <Image Source="../Resources/button_exp1.png" Stretch="Fill"/>
                         </Button>
                         <Button Width="120" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Grid.Row ="1" Grid.Column="2" Command="{Binding SetExponent2Command}">
-                            <Image Source="Resources/button_exp2.png" Stretch="Fill"/>
+                            <Image Source="../Resources/button_exp2.png" Stretch="Fill"/>
                         </Button>
                         <Button Width="120" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Grid.Row ="1" Grid.Column="3" Command="{Binding SetShapeCommand}">
-                            <Image Source="Resources/button_shape.png" Stretch="Fill"/>
+                            <Image Source="../Resources/button_shape.png" Stretch="Fill"/>
                         </Button>
 
                     </Grid>

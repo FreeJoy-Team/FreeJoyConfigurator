@@ -119,6 +119,10 @@
                 <local:AxesToButtonsView/>
             </TabItem>
 
+            <!--<TabItem Header="Shift Registers">
+                <local:ShiftRegistersView/>
+            </TabItem>-->
+
         </TabControl>
 
         <Grid Grid.Column="2" Margin="0,20,0,0">
@@ -141,6 +145,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
 
 
                     </Grid.RowDefinitions>
@@ -153,22 +158,25 @@
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PinsVM.AxesCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Single buttons:" 
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Axes to buttons:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PinsVM.SingleBtnCnt}"
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PinsVM.AxesToButtonsCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Rows of buttons:" 
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Single buttons:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PinsVM.RowCnt}"
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ButtonsVM.SingleBtnCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Columns of buttons:" 
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Rows of buttons:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding PinsVM.ColCnt}"
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ButtonsVM.RowCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Total buttons:" 
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Columns of buttons:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding PinsVM.TotalBtnCnt}"
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ButtonsVM.ColCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Total buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ButtonsVM.TotalBtnCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
             </GroupBox>

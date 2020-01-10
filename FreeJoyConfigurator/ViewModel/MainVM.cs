@@ -169,7 +169,12 @@ namespace FreeJoyConfigurator
                     DeviceConfig tmp = DeSerializeObject<DeviceConfig>(dlg.FileName);
                     for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
+                    for (int i = 0; i < 8; i++)
+                    {
+                        for (int j = 0; j < 10; j++) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                    }
                     for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
+                    for (int i = 0; i < 8; i++) tmp.AxisToButtonsConfig.RemoveAt(0);
 
                     Config = tmp;
                 }
@@ -200,7 +205,7 @@ namespace FreeJoyConfigurator
                     for (int j = 0; j < 10; j++) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                 }
                 for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
-
+                for (int i = 0; i < 8; i++) tmp.AxisToButtonsConfig.RemoveAt(0);
 
                 Config = tmp;
 
@@ -227,7 +232,7 @@ namespace FreeJoyConfigurator
         {
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);
-            AxesToButtonsVM.Update(Config);
+            //AxesToButtonsVM.Update(Config);
         }
 
         private void ConfigSent(DeviceConfig deviceConfig)

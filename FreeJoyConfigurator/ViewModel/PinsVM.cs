@@ -17,7 +17,6 @@ namespace FreeJoyConfigurator
         private int _rowCnt;
         private int _colCnt;
         private int _singleBtnCnt;
-        private int _totalBtnCnt;
         private int _axesCnt;
         private int _axesToButtonsCnt;
         private ObservableCollection<PinVMConverter> _pins;
@@ -40,53 +39,6 @@ namespace FreeJoyConfigurator
             }
         }
 
-        public int RowCnt
-        {
-            get
-            {
-                return _rowCnt;
-            }
-            private set
-            {
-                SetProperty(ref _rowCnt, value);
-                TotalBtnCnt = _rowCnt * _colCnt + _singleBtnCnt;
-            }
-        }
-        public int ColCnt
-        {
-            get
-            {
-                return _colCnt;
-            }
-            private set
-            {
-                SetProperty(ref _colCnt, value);
-                TotalBtnCnt = _rowCnt * _colCnt + _singleBtnCnt;
-            }
-        }
-        public int SingleBtnCnt
-        {
-            get
-            {
-                return _singleBtnCnt;
-            }
-            private set
-            {
-                SetProperty(ref _singleBtnCnt, value);
-                TotalBtnCnt = _rowCnt * _colCnt + _singleBtnCnt;
-            }
-        }
-        public int TotalBtnCnt
-        {
-            get
-            {
-                return _totalBtnCnt;
-            }
-            private set
-            {
-                SetProperty(ref _totalBtnCnt, value);
-            }
-        }
         public int AxesCnt
         {
             get
@@ -151,7 +103,7 @@ namespace FreeJoyConfigurator
             {
                 tmp.Add(new PinVMConverter());
                 if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisAnalog);
-                if (i < 16) tmp[i].AllowedTypes.Add(PinType.AxisToButtons);
+                if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisToButtons);
                 tmp[i].SelectedType = Config.PinConfig[i];
             }
             Pins = new ObservableCollection<PinVMConverter>(tmp);
@@ -168,7 +120,7 @@ namespace FreeJoyConfigurator
             {
                 _pins[i] = new PinVMConverter();
                 if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisAnalog);
-                if (i < 16) Pins[i].AllowedTypes.Add(PinType.AxisToButtons);
+                if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisToButtons);
                 Pins[i].PropertyChanged += PinsVM_PropertyChanged;
             }
             // update config
@@ -187,26 +139,27 @@ namespace FreeJoyConfigurator
         // Some dirty logic to display only allowed pin types
         private void PinsVM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            RowCnt = 0;
-            ColCnt = 0;
-            SingleBtnCnt = 0;
+            _rowCnt = 0;
+            _colCnt = 0;
+            _singleBtnCnt = 0;
+
             AxesCnt = 0;
             AxesToButtonsCnt = 0;
 
-            // count buttons
+            // count buttons and axes
             for (int i = 0; i < Pins.Count; i++)
             {
                 if (Pins[i].SelectedType == PinType.ButtonGnd || Pins[i].SelectedType == PinType.ButtonVcc)
                 {
-                    SingleBtnCnt++;
+                    _singleBtnCnt++;
                 }
                 else if (Pins[i].SelectedType == PinType.ButtonRow)
                 {
-                    RowCnt++;
+                    _rowCnt++;
                 }
                 else if (Pins[i].SelectedType == PinType.ButtonColumn)
                 {
-                    ColCnt++;
+                    _colCnt++;
                 }
                 else if (Pins[i].SelectedType == PinType.AxisAnalog)
                 {
@@ -219,7 +172,7 @@ namespace FreeJoyConfigurator
             }
 
             // section of disabling not allowed types
-            if (maxBtnCnt - SingleBtnCnt < RowCnt * (ColCnt + 1))
+            if (maxBtnCnt - _singleBtnCnt < _rowCnt * (_colCnt + 1))
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
@@ -229,7 +182,7 @@ namespace FreeJoyConfigurator
                     }
                 }
             }
-            if (maxBtnCnt - SingleBtnCnt < ColCnt * (RowCnt + 1))
+            if (maxBtnCnt - _singleBtnCnt < _colCnt * (_rowCnt + 1))
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
@@ -239,7 +192,7 @@ namespace FreeJoyConfigurator
                     }
                 }
             }
-            if (maxBtnCnt - SingleBtnCnt == RowCnt * ColCnt)
+            if (maxBtnCnt - _singleBtnCnt == _rowCnt * _colCnt)
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
@@ -269,7 +222,7 @@ namespace FreeJoyConfigurator
                         Pins[i].AllowedTypes.Add(PinType.ButtonRow);
                     }
                 }        
-            if (maxBtnCnt - SingleBtnCnt >= ColCnt * (RowCnt + 1))
+            if (maxBtnCnt - _singleBtnCnt >= _colCnt * (_rowCnt + 1))
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
@@ -278,7 +231,7 @@ namespace FreeJoyConfigurator
                     if (!Pins[i].AllowedTypes.Contains(PinType.ButtonRow)) Pins[i].AllowedTypes.Add(PinType.ButtonRow);
                 }
             }
-            if (maxBtnCnt - SingleBtnCnt >= RowCnt * (ColCnt + 1))
+            if (maxBtnCnt - _singleBtnCnt >= _rowCnt * (_colCnt + 1))
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
@@ -287,7 +240,7 @@ namespace FreeJoyConfigurator
                     if (!Pins[i].AllowedTypes.Contains(PinType.ButtonColumn)) Pins[i].AllowedTypes.Add(PinType.ButtonColumn);
                 }
             }
-            if (maxBtnCnt - SingleBtnCnt > RowCnt * ColCnt)
+            if (maxBtnCnt - _singleBtnCnt > _rowCnt * _colCnt)
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
@@ -295,17 +248,6 @@ namespace FreeJoyConfigurator
                     if (!Pins[i].AllowedTypes.Contains(PinType.ButtonVcc)) Pins[i].AllowedTypes.Add(PinType.ButtonVcc);
                 }
             }
-            //if (RowCnt*ColCnt > 0 && (maxBtnCnt /RowCnt == ColCnt+1 || maxBtnCnt/ColCnt == RowCnt))
-            //{
-            //    for (int i = 0; i < Pins.Count; i++)
-            //    {
-            //        if (Pins[i].SelectedType == PinType.ButtonGnd || Pins[i].SelectedType == PinType.ButtonGnd)
-            //        {
-            //            if (!Pins[i].AllowedTypes.Contains(PinType.ButtonRow)) Pins[i].AllowedTypes.Add(PinType.ButtonRow);
-            //            if (!Pins[i].AllowedTypes.Contains(PinType.ButtonColumn)) Pins[i].AllowedTypes.Add(PinType.ButtonColumn);
-            //        }
-            //    }
-            //}
 
             // update config
             DeviceConfig tmp = Config;

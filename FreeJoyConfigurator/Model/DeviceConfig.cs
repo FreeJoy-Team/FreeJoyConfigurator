@@ -206,6 +206,9 @@ namespace FreeJoyConfigurator
 
         AxisAnalog,
         AxisToButtons,
+
+        HC165_LATCH,
+        HC165_DATA,
     };
 
 
@@ -303,6 +306,13 @@ namespace FreeJoyConfigurator
             _buttonsCnt = 2;
             _isAnalogEnabled = true;
         }
+    }
+
+    public class ShiftRegisterConfig : BindableBase
+    {
+        private short buttonCnt;
+        private byte latchPin;
+        private byte clockPin;
     }
 
     public class DeviceConfig : BindableBase

@@ -14,10 +14,73 @@ namespace FreeJoyConfigurator
 {
     public class ButtonsVM : BindableBase
     {
+        private int _rowCnt;
+        private int _colCnt;
+        private int _singleBtnCnt;
+        private int _totalBtnCnt;
+
+        private DeviceConfig _config;
         private ObservableCollection<Button> _buttons;
 
-        public Joystick Joystick;
-        public DeviceConfig Config { get; set; }
+        public int RowCnt
+        {
+            get
+            {
+                return _rowCnt;
+            }
+            private set
+            {
+                SetProperty(ref _rowCnt, value);
+                //TotalBtnCnt = _rowCnt * _colCnt + _singleBtnCnt;
+            }
+        }
+        public int ColCnt
+        {
+            get
+            {
+                return _colCnt;
+            }
+            private set
+            {
+                SetProperty(ref _colCnt, value);
+                //TotalBtnCnt = _rowCnt * _colCnt + _singleBtnCnt;
+            }
+        }
+        public int SingleBtnCnt
+        {
+            get
+            {
+                return _singleBtnCnt;
+            }
+            private set
+            {
+                SetProperty(ref _singleBtnCnt, value);
+                //TotalBtnCnt = _rowCnt * _colCnt + _singleBtnCnt;
+            }
+        }
+        public int TotalBtnCnt
+        {
+            get
+            {
+                return _totalBtnCnt;
+            }
+            private set
+            {
+                SetProperty(ref _totalBtnCnt, value);
+            }
+        }
+
+        public DeviceConfig Config
+        {
+            get
+            {
+                return _config;
+            }
+            set
+            {
+                SetProperty(ref _config, value);
+            }
+        }
 
         public ObservableCollection<Button> Buttons
         {
@@ -25,12 +88,13 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _buttons, value); }
         }
 
+        public Joystick Joystick;
+
         public ButtonsVM(Joystick joystick, DeviceConfig deviceConfig)
         {
             Joystick = joystick;
             Joystick.PropertyChanged += Joystick_PropertyChanged;
-            Config = deviceConfig;
-            //Config.PropertyChanged += Config_PropertyChanged;
+            _config = deviceConfig;
 
             _buttons = new ObservableCollection<Button>();
 
@@ -38,12 +102,12 @@ namespace FreeJoyConfigurator
 
         public void Update(DeviceConfig config)
         {
-            //App.Current.Dispatcher.BeginInvoke((Action)(() =>
-            //{
-            //    ConfigReceived(Config);
-            //}));
+            ColCnt = 0;
+            RowCnt = 0;
+            SingleBtnCnt = 0;
+            TotalBtnCnt = 0;
 
-            int buttonCnt = 0;
+            Config = config;
 
             ObservableCollection<Button> tmp = new ObservableCollection<Button>();
 
@@ -51,23 +115,25 @@ namespace FreeJoyConfigurator
             {
                 if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
                 {
-                    tmp.Add(new Button(false, config.ButtonConfig[buttonCnt++].Type, buttonCnt));
+                    tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
+                    SingleBtnCnt++;
                 }
-                else if (Config.PinConfig[i] == PinType.ButtonRow)
+                else if (Config.PinConfig[i] == PinType.ButtonColumn)
                 {
+                    ColCnt++;
                     for (int k = 0; k < Config.PinConfig.Count; k++)
                     {
-                        if (Config.PinConfig[k] == PinType.ButtonColumn)
+                        if (Config.PinConfig[k] == PinType.ButtonRow)
                         {
-                            tmp.Add(new Button(false, config.ButtonConfig[buttonCnt++].Type, buttonCnt));
+                            tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
                         }
                     }
                 }
-                
-            }
-            for (int i = 0; i < Config.PinConfig.Count; i++)
-            {
-                if (Config.PinConfig[i] == PinType.AxisToButtons)
+                else if (Config.PinConfig[i] == PinType.ButtonRow)
+                {
+                    RowCnt++;
+                }
+                else if (Config.PinConfig[i] == PinType.AxisToButtons)
                 {
                     for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
                     {
@@ -80,47 +146,19 @@ namespace FreeJoyConfigurator
                                 ButtonType.ToggleSwOn,
 
                         };
-                        config.ButtonConfig[buttonCnt].Type = ButtonType.ToggleSwOn;
-                        tmp.Add(new Button(false, config.ButtonConfig[buttonCnt++].Type, tmpTypes, buttonCnt));
+                        config.ButtonConfig[TotalBtnCnt].Type = ButtonType.ToggleSwOn;
+                        tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, tmpTypes, TotalBtnCnt));
 
                     }
                 }
             }
 
-                Buttons = new ObservableCollection<Button>(tmp);
 
+            Buttons = new ObservableCollection<Button>(tmp);
             foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
+
             RaisePropertyChanged(nameof(Buttons));
         }
-
-        //private void Config_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    int buttonCnt = 0;
-
-        //    ObservableCollection<Button> tmp = new ObservableCollection<Button>();
-
-        //    for (int i = 0; i < Config.PinConfig.Count; i++)
-        //    {
-        //        if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
-        //        {
-        //            tmp.Add(new Button(false, Config.ButtonConfig[buttonCnt++].Type));
-        //        }
-        //        else if (Config.PinConfig[i] == PinType.ButtonRow)
-        //        {
-        //            for (int k = 0; k < Config.PinConfig.Count; k++)
-        //            {
-        //                if (Config.PinConfig[k] == PinType.ButtonColumn)
-        //                {
-        //                    tmp.Add(new Button(false, Config.ButtonConfig[buttonCnt++].Type));
-        //                }
-        //            }
-        //        }
-        //    }
-        //    Buttons = new ObservableCollection<Button>(tmp);
-
-        //    foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
-        //    RaisePropertyChanged(nameof(Buttons));
-        //}
 
         private void Joystick_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
