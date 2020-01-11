@@ -11,7 +11,7 @@
 
     <Border BorderBrush="LightGray" BorderThickness="0.5"
             d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
-        <ItemsControl ItemsSource="{Binding ShiftRegistersVM.ShiftRegisters, Mode=OneWay}">
+        <ItemsControl ItemsSource="{Binding ShiftRegistersVM.ShiftRegisters, Mode=TwoWay}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel/>
@@ -21,7 +21,18 @@
                 <DataTemplate DataType="{x:Type local:ShiftRegistersView}">
                     <Border BorderThickness="0.4" BorderBrush="LightGray" Height="120">
                         <Grid>
-        
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Path=Name}"/>
                         </Grid>
                     </Border>
 

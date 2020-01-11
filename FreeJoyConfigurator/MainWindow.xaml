@@ -119,9 +119,9 @@
                 <local:AxesToButtonsView/>
             </TabItem>
 
-            <!--<TabItem Header="Shift Registers">
+            <TabItem Header="Shift Registers">
                 <local:ShiftRegistersView/>
-            </TabItem>-->
+            </TabItem>
 
         </TabControl>
 

@@ -164,7 +164,27 @@ namespace FreeJoyConfigurator
         {
             for (int i = 0; i < Buttons.Count; i++)
             {
-                Buttons[i].State = Joystick.Buttons[i].State;
+                
+                if (Buttons[i].Type == ButtonType.Pov1Down)
+                {
+                    Buttons[i].State = (Joystick.Povs[0].State == 0x03 || Joystick.Povs[0].State == 0x04 || Joystick.Povs[0].State == 0x05) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov1Left)
+                {
+                    Buttons[i].State = (Joystick.Povs[0].State == 0x05 || Joystick.Povs[0].State == 0x06 || Joystick.Povs[0].State == 0x07) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov1Right)
+                {
+                    Buttons[i].State = (Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x02 || Joystick.Povs[0].State == 0x03) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov1Up)
+                {
+                    Buttons[i].State = (Joystick.Povs[0].State == 0x00 || Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x07) ? true : false;
+                }
+                else 
+                {
+                    Buttons[i].State = Joystick.Buttons[i].State;
+                }
             }
         }
 

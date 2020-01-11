@@ -35,6 +35,11 @@ namespace FreeJoyConfigurator
                     joystick.Axes[i].Value =  (ushort) (hr.Data[17 + 2 * i] << 8 |  hr.Data[16 + 2 * i]);
                 }
 
+                for (int i = 0; i < joystick.Povs.Count; i++)
+                {
+                    joystick.Povs[i].State =  hr.Data[32 + i];
+                }
+
                 for (int i = 0; i < joystick.Axes.Count; i++)
                 {
                     joystick.Axes[i].RawValue = (ushort)(hr.Data[37 + 2 * i] << 8 | hr.Data[36 + 2 * i]);

@@ -15,6 +15,7 @@ namespace FreeJoyConfigurator
         
         public ObservableCollection<Axis> Axes { get; private set; }
         public ObservableCollection<Button> Buttons { get; private set; }
+        public ObservableCollection<Pov> Povs { get; private set; }
 
         public Joystick(DeviceConfig config)
         {
@@ -34,6 +35,12 @@ namespace FreeJoyConfigurator
             {
                 Buttons.Add(new Button(i+1));
             }
+            Povs = new ObservableCollection<Pov>();
+            for (int i=0; i<4; i++)
+            {
+                Povs.Add(new Pov(0xFF, i));
+            }
+
             Hid.PacketReceived += PacketReceivedEventHandler;
         }
 
@@ -190,7 +197,7 @@ namespace FreeJoyConfigurator
         private ushort _rawValue;
         private bool _isEnabled;
 
-        public int Number {get; private set;}
+        public int Number { get; private set; }
         public bool IsEnabled
         {
             get { return _isEnabled; }
@@ -215,7 +222,7 @@ namespace FreeJoyConfigurator
             _rawValue = 0;
         }
 
-        public Axis (ushort value, int number)
+        public Axis(ushort value, int number)
         {
             Number = number;
             _value = value;
@@ -229,4 +236,25 @@ namespace FreeJoyConfigurator
             _rawValue = rawValue;
         }
     }
+
+    public class Pov : BindableBase
+    {
+            private byte _state;
+            public int Number { get; private set; }
+
+            public byte State
+            {
+                get { return _state; }
+                set { SetProperty(ref _state, value); }
+            }
+
+            public Pov(byte state, int number)
+            {
+                Number = number;
+                _state = state;
+            }
+        
+    }
+
+
 }
