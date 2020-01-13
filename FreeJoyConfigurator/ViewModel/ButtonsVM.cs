@@ -111,14 +111,11 @@ namespace FreeJoyConfigurator
 
             ObservableCollection<Button> tmp = new ObservableCollection<Button>();
 
+            // matrix buttons
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
-                {
-                    tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
-                    SingleBtnCnt++;
-                }
-                else if (Config.PinConfig[i] == PinType.ButtonColumn)
+
+                if (Config.PinConfig[i] == PinType.ButtonColumn)
                 {
                     ColCnt++;
                     for (int k = 0; k < Config.PinConfig.Count; k++)
@@ -133,7 +130,21 @@ namespace FreeJoyConfigurator
                 {
                     RowCnt++;
                 }
-                else if (Config.PinConfig[i] == PinType.AxisToButtons)
+            }
+
+            // Shift registers
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.AxisToButtons)
+                {
+                    // TODO: button config for shift registers
+                }
+            } 
+
+             // axes to buttons
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.AxisToButtons)
                 {
                     for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
                     {
@@ -144,14 +155,40 @@ namespace FreeJoyConfigurator
                                 ButtonType.ToggleSw,
                                 ButtonType.ToggleSwOff,
                                 ButtonType.ToggleSwOn,
+                                ButtonType.Pov1Up,
+                                ButtonType.Pov1Down,
+                                ButtonType.Pov1Left,
+                                ButtonType.Pov1Right,
+                                ButtonType.Pov2Up,
+                                ButtonType.Pov2Down,
+                                ButtonType.Pov2Left,
+                                ButtonType.Pov2Right,
+                                ButtonType.Pov3Up,
+                                ButtonType.Pov3Down,
+                                ButtonType.Pov3Left,
+                                ButtonType.Pov3Right,
+                                ButtonType.Pov4Up,
+                                ButtonType.Pov4Down,
+                                ButtonType.Pov4Left,
+                                ButtonType.Pov4Right,
 
                         };
-                        config.ButtonConfig[TotalBtnCnt].Type = ButtonType.ToggleSwOn;
+                        config.ButtonConfig[TotalBtnCnt].Type = ButtonType.BtnNormal;
                         tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, tmpTypes, TotalBtnCnt));
-
                     }
                 }
             }
+            // single buttons
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                
+                if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
+                {
+                    tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
+                    SingleBtnCnt++;
+                }
+            }
+            
 
 
             Buttons = new ObservableCollection<Button>(tmp);

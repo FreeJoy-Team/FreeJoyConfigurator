@@ -100,6 +100,8 @@ namespace FreeJoyConfigurator
                     AxesToButtons[i].RangeItems[k].PropertyChanged += AxesToButtonsVM_Range_PropertyChanged;
                 }
             }
+
+            AxesToButtonsVM_Range_PropertyChanged(null, null);
         }
 
         private void AxesToButtonsVM_Range_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
