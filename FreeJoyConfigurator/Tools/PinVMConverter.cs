@@ -57,7 +57,10 @@ namespace FreeJoyConfigurator
                     PinType.ButtonGnd,
                     PinType.ButtonVcc,
                     PinType.ButtonRow,
-                    PinType.ButtonColumn
+                    PinType.ButtonColumn,
+                    PinType.ShiftReg_CS,
+                    PinType.ShiftReg_Data,
+                    PinType.TLE5011_CS,
             };
 
             _selectedType = PinType.NotUsed;

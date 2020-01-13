@@ -264,7 +264,11 @@ namespace FreeJoyConfigurator
             }
             else if (hr.Data[0] == 10)
             {
-
+                for (int i = 0; i < 4; i++)
+                {
+                    config.ShiftRegistersConfig[i].Type = (ShiftRegisterType)hr.Data[4 * i + 1];
+                    config.ShiftRegistersConfig[i].ButtonCnt = (byte)hr.Data[4 * i + 2];
+                }
             }
         }
 
@@ -274,6 +278,8 @@ namespace FreeJoyConfigurator
             byte[] buffer = new byte[64];
             byte[] chars;
 
+
+            // Report 1
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = (byte) 0x01;
             buffer[2] = (byte)(config.FirmwareVersion & 0xFF);
@@ -294,6 +300,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 2
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x02;
@@ -325,6 +332,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 3
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x03;
@@ -356,6 +364,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 4
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x04;
@@ -387,6 +396,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 5
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x05;
@@ -418,6 +428,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 6
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x06;
@@ -427,6 +438,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 7
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x07;
@@ -436,6 +448,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 8
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x08;
@@ -471,6 +484,7 @@ namespace FreeJoyConfigurator
 
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 9
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x09;
@@ -502,9 +516,18 @@ namespace FreeJoyConfigurator
             buffer[57] = (byte)(config.AxisToButtonsConfig[7].IsAnalogEnabled ? 0x01 : 0x00);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 10
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x0A;
+
+            for (int i = 0; i < 4; i++)
+            {
+                buffer[i * 4 + 2] = (byte) config.ShiftRegistersConfig[i].Type;
+                buffer[i * 4 + 3] = (byte) config.ShiftRegistersConfig[i].ButtonCnt;
+                buffer[i * 4 + 4] = 0;
+                buffer[i * 4 + 5] = 0;
+            }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             return hidReports;

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ using MessageBoxServicing;
 using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
+
 
 namespace FreeJoyConfigurator
 {
@@ -41,10 +44,27 @@ namespace FreeJoyConfigurator
         public AxesVM AxesVM { get; private set; }
         public ButtonsVM ButtonsVM { get; private set; }
         public AxesToButtonsVM AxesToButtonsVM { get; private set; }
+        public ShiftRegistersVM ShiftRegistersVM { get; private set; }
         public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
         public string HidName { get; private set; }
 
+        public string Version
+        {
+            get
+            {
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    Version ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                    return string.Format("{3} v{0}.{1}.{2}", ver.Major, ver.Minor, ver.Build, Assembly.GetEntryAssembly().GetName().Name);
+                }
+                else
+                {
+                    var ver = Assembly.GetExecutingAssembly().GetName().Version;
+                    return string.Format("{3} v{0}.{1}.{2}", ver.Major, ver.Minor, ver.Build, Assembly.GetEntryAssembly().GetName().Name);
+                }
+            }
+        }
         public string ActivityLogVM { get; private set; }
         public string ConnectionStatusVM
         {
@@ -80,7 +100,10 @@ namespace FreeJoyConfigurator
             Hid.DeviceAdded += DeviceAddedEventHandler;
             Hid.DeviceRemoved += DeviceRemovedEventHandler;
 
-            
+            // getting current version
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
             _config = new DeviceConfig();
             _configExchanger = new DeviceConfigExchangerVM();
 
@@ -95,6 +118,7 @@ namespace FreeJoyConfigurator
             ButtonsVM = new ButtonsVM(_joystick, Config);
             AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
             AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
+            ShiftRegistersVM = new ShiftRegistersVM(_joystick, Config);
 
             FirmwareUpdaterVM = new FirmwareUpdaterVM();
 
@@ -145,7 +169,7 @@ namespace FreeJoyConfigurator
 
             dlg.FileName = "default";
             dlg.DefaultExt = ".conf";
-            dlg.Filter = "Config files (.conf)|*.conf";
+            dlg.Filter = "Config files (*.conf)|*.conf|All files (*.*)|*.*";
             Nullable<bool> result = dlg.ShowDialog();
 
             if (result == true)
@@ -160,7 +184,7 @@ namespace FreeJoyConfigurator
             OpenFileDialog dlg = new OpenFileDialog();
 
             dlg.DefaultExt = ".conf";
-            dlg.Filter = "Config files (.conf)|*.conf";
+            dlg.Filter = "Config files (*.conf)|*.conf|All files (*.*)|*.*";
             Nullable<bool> result = dlg.ShowDialog();
 
             if (result == true)
@@ -186,6 +210,7 @@ namespace FreeJoyConfigurator
                 ButtonsVM.Update(Config);
                 AxesVM.Update(Config);
                 AxesToButtonsVM.Update(Config);
+                ShiftRegistersVM.Update(Config);
             }
 
         }
@@ -219,6 +244,7 @@ namespace FreeJoyConfigurator
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
+            ShiftRegistersVM.Update(Config);
         }
 
         private void PinConfigChanged()
@@ -226,6 +252,7 @@ namespace FreeJoyConfigurator
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
+            ShiftRegistersVM.Update(Config);
         }
 
         private void AxesToButtonsVM_ConfigChanged()
@@ -248,6 +275,7 @@ namespace FreeJoyConfigurator
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
+            ShiftRegistersVM.Update(Config);
 
             WriteLog("Config received", false);
             RaisePropertyChanged(nameof(Config));

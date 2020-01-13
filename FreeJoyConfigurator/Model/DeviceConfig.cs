@@ -207,8 +207,15 @@ namespace FreeJoyConfigurator
         AxisAnalog,
         AxisToButtons,
 
-        HC165_LATCH,
-        HC165_DATA,
+        SPI_SCK,
+
+        TLE5011_CS,
+        TLE5011_DATA,
+        TLE5011_GEN,
+
+        ShiftReg_CS,
+        ShiftReg_Data,
+        
     };
 
 
@@ -308,11 +315,50 @@ namespace FreeJoyConfigurator
         }
     }
 
+    public enum ShiftRegisterType
+    {
+        HC165 = 0,
+        CD4021 = 1,
+    };
+
     public class ShiftRegisterConfig : BindableBase
     {
-        private short buttonCnt;
-        private byte latchPin;
-        private byte clockPin;
+        private ShiftRegisterType _type;
+        private short _buttonCnt;
+        //private byte _selectPin;
+        //private byte _dataPin;
+
+        public ShiftRegisterType Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
+
+        public short ButtonCnt
+        {
+            get { return _buttonCnt; }
+            set { SetProperty(ref _buttonCnt, value); }
+        }
+
+        //public byte LatchPin
+        //{
+        //    get { return _selectPin; }
+        //    set { SetProperty(ref _selectPin, value); }
+        //}
+        //public byte ClockPin
+
+        //{
+        //    get { return _dataPin; }
+        //    set { SetProperty(ref _dataPin, value); }
+        //}
+
+        public ShiftRegisterConfig()
+        {
+            _type = ShiftRegisterType.CD4021;
+            _buttonCnt = 0;
+            //_selectPin = 0xFF;
+            //_dataPin = 0xFF;
+        }
     }
 
     public class DeviceConfig : BindableBase
@@ -337,7 +383,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
         [XmlElement("AxisToButtons_Config")]
         public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
-
+        [XmlElement("ShitRegisters_Config")]
+        public ObservableCollection<ShiftRegisterConfig> ShiftRegistersConfig { get; set; }
 
         public DeviceConfig()
         {
@@ -358,6 +405,9 @@ namespace FreeJoyConfigurator
 
             AxisToButtonsConfig = new ObservableCollection<AxisToButtonsConfig>();
             for (int i = 0; i < 8; i++) AxisToButtonsConfig.Add(new AxisToButtonsConfig());
+
+            ShiftRegistersConfig = new ObservableCollection<ShiftRegisterConfig>();
+            for (int i = 0; i < 4; i++) ShiftRegistersConfig.Add(new ShiftRegisterConfig());
         }
     }
         

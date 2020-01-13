@@ -6,33 +6,33 @@
   <Toggle_Press_Time>300</Toggle_Press_Time>
   <Encoder_Press_Time>100</Encoder_Press_Time>
   <Exchange_Period>2</Exchange_Period>
-  <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>AxisAnalog</Pin_Config>
-  <Pin_Config>AxisAnalog</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonRow</Pin_Config>
-  <Pin_Config>ButtonRow</Pin_Config>
-  <Pin_Config>ButtonRow</Pin_Config>
-  <Pin_Config>ButtonRow</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonGnd</Pin_Config>
-  <Pin_Config>ButtonColumn</Pin_Config>
-  <Pin_Config>ButtonColumn</Pin_Config>
-  <Pin_Config>ButtonColumn</Pin_Config>
-  <Pin_Config>ButtonColumn</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
@@ -845,6 +845,18 @@
       <byte>0</byte>
       <byte>50</byte>
       <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
       <byte>99</byte>
       <byte>100</byte>
       <byte>100</byte>
@@ -908,36 +920,6 @@
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
       <byte>0</byte>
       <byte>50</byte>
       <byte>100</byte>
@@ -968,36 +950,6 @@
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
       <byte>0</byte>
       <byte>50</byte>
       <byte>100</byte>
@@ -1076,36 +1028,6 @@
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
       <byte>0</byte>
       <byte>50</byte>
       <byte>100</byte>
@@ -1160,8 +1082,198 @@
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsAnalogEnabled>true</IsAnalogEnabled>
   </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsAnalogEnabled>true</IsAnalogEnabled>
+  </AxisToButtons_Config>
+  <ShitRegisters_Config>
+    <Type>CD4021</Type>
+    <ButtonCnt>0</ButtonCnt>
+  </ShitRegisters_Config>
+  <ShitRegisters_Config>
+    <Type>CD4021</Type>
+    <ButtonCnt>0</ButtonCnt>
+  </ShitRegisters_Config>
+  <ShitRegisters_Config>
+    <Type>CD4021</Type>
+    <ButtonCnt>0</ButtonCnt>
+  </ShitRegisters_Config>
+  <ShitRegisters_Config>
+    <Type>CD4021</Type>
+    <ButtonCnt>0</ButtonCnt>
+  </ShitRegisters_Config>
 </DeviceConfig>

@@ -8,7 +8,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="FreeJoy Configurator" MinHeight="800" Height="800" MinWidth="1060" Width="1060">
+        Title="{Binding Version}" MinHeight="800" Height="800" MinWidth="1060" Width="1060">
 
     <Window.DataContext>
         <local:MainVM/>
@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="0.22*" />
+            <RowDefinition Height="0.25*" />
         </Grid.RowDefinitions>
 
         <!--Row 0-->
