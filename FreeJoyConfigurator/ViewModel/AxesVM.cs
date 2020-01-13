@@ -66,13 +66,21 @@ namespace FreeJoyConfigurator
         public void Update(DeviceConfig config)
         {
             Config = config;
-            for (int i = 0; i < 8; i++)
+
+            for (int i = 0; i < Config.AxisConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog || Config.PinConfig[i] == PinType.AxisToButtons)
+                Axes[i].IsEnabled = false;
+            }
+
+            for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.AxisAnalog || 
+                    Config.PinConfig[i] == PinType.AxisToButtons ||
+                    Config.PinConfig[i] == PinType.TLE5011_CS)
                 {
-                    Axes[i].IsEnabled = true;
+                    Axes[k++].IsEnabled = true;
                 }
-                else Axes[i].IsEnabled = false;
+                
             }
             AxesCurvesVM.Update(Config);
         }
