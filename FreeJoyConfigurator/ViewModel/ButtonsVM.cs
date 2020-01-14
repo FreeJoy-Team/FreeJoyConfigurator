@@ -133,11 +133,15 @@ namespace FreeJoyConfigurator
             }
 
             // Shift registers
-            for (int i = 0; i < Config.PinConfig.Count; i++)
+            for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisToButtons)
+                if (Config.PinConfig[i] == PinType.ShiftReg_CS)
                 {
-                    // TODO: button config for shift registers
+                    for (int j=0; j<Config.ShiftRegistersConfig[k].ButtonCnt; j++)
+                    {
+                        tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
+                    }
+                    k++;
                 }
             } 
 

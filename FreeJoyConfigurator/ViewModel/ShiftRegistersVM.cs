@@ -14,6 +14,9 @@ namespace FreeJoyConfigurator
         private DeviceConfig _config;
         private ObservableCollection<ShiftRegister> _shiftRegisters;
 
+        public delegate void ShiftRegistersChangedEvent();
+        public event ShiftRegistersChangedEvent ConfigChanged;
+
         public DeviceConfig Config
         {
             get { return _config; }
@@ -52,6 +55,7 @@ namespace FreeJoyConfigurator
             }
             
             Config = tmp;
+            ConfigChanged();
         }
 
         public void Update(DeviceConfig deviceConfig)

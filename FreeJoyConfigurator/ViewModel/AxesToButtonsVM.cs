@@ -10,8 +10,8 @@ namespace FreeJoyConfigurator
 {
     public class AxesToButtonsVM : BindableBase
     {
-        public delegate void PinConfigChangedEvent();
-        public event PinConfigChangedEvent ConfigChanged;
+        public delegate void AxesToButtonChangedEvent();
+        public event AxesToButtonChangedEvent ConfigChanged;
 
         private ObservableCollection<AxisToButtons> axesToButtons;
         private Joystick _joystick;

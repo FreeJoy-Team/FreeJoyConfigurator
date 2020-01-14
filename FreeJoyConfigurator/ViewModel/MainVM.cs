@@ -119,6 +119,7 @@ namespace FreeJoyConfigurator
             AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
             AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
             ShiftRegistersVM = new ShiftRegistersVM(_joystick, Config);
+            ShiftRegistersVM.ConfigChanged += ShiftRegistersVM_ConfigChanged;
 
             FirmwareUpdaterVM = new FirmwareUpdaterVM();
 
@@ -144,8 +145,6 @@ namespace FreeJoyConfigurator
 
             WriteLog("Program started", true);
         }
-
-        
 
         private void GetHidDevices()
         {
@@ -212,7 +211,6 @@ namespace FreeJoyConfigurator
                 AxesToButtonsVM.Update(Config);
                 ShiftRegistersVM.Update(Config);
             }
-
         }
 
         private void LoadDefaultConfig()
@@ -260,6 +258,11 @@ namespace FreeJoyConfigurator
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);
             //AxesToButtonsVM.Update(Config);
+        }
+
+        private void ShiftRegistersVM_ConfigChanged()
+        {
+            ButtonsVM.Update(Config);
         }
 
         private void ConfigSent(DeviceConfig deviceConfig)
