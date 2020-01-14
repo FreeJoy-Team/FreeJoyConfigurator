@@ -198,6 +198,7 @@ namespace FreeJoyConfigurator
                     }
                     for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++) tmp.AxisToButtonsConfig.RemoveAt(0);
+                    while(tmp.ShiftRegistersConfig.Count>4) tmp.ShiftRegistersConfig.RemoveAt(0);
 
                     Config = tmp;
                 }
@@ -229,6 +230,7 @@ namespace FreeJoyConfigurator
                 }
                 for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++) tmp.AxisToButtonsConfig.RemoveAt(0);
+                while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
 
                 Config = tmp;
 

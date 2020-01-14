@@ -205,7 +205,7 @@ namespace FreeJoyConfigurator
         {
             for (int i = 0; i < Buttons.Count; i++)
             {
-                
+                // OV1
                 if (Buttons[i].Type == ButtonType.Pov1Down)
                 {
                     Buttons[i].State = (Joystick.Povs[0].State == 0x03 || Joystick.Povs[0].State == 0x04 || Joystick.Povs[0].State == 0x05) ? true : false;
@@ -221,6 +221,57 @@ namespace FreeJoyConfigurator
                 else if (Buttons[i].Type == ButtonType.Pov1Up)
                 {
                     Buttons[i].State = (Joystick.Povs[0].State == 0x00 || Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x07) ? true : false;
+                }
+                // POV2
+                else if(Buttons[i].Type == ButtonType.Pov2Down)
+                {
+                    Buttons[i].State = (Joystick.Povs[1].State == 0x03 || Joystick.Povs[1].State == 0x04 || Joystick.Povs[1].State == 0x05) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov2Left)
+                {
+                    Buttons[i].State = (Joystick.Povs[1].State == 0x05 || Joystick.Povs[1].State == 0x06 || Joystick.Povs[1].State == 0x07) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov2Right)
+                {
+                    Buttons[i].State = (Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x02 || Joystick.Povs[1].State == 0x03) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov2Up)
+                {
+                    Buttons[i].State = (Joystick.Povs[1].State == 0x00 || Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x07) ? true : false;
+                }
+                // POV3
+                else if (Buttons[i].Type == ButtonType.Pov3Down)
+                {
+                    Buttons[i].State = (Joystick.Povs[2].State == 0x03 || Joystick.Povs[2].State == 0x04 || Joystick.Povs[2].State == 0x05) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov3Left)
+                {
+                    Buttons[i].State = (Joystick.Povs[2].State == 0x05 || Joystick.Povs[2].State == 0x06 || Joystick.Povs[2].State == 0x07) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov3Right)
+                {
+                    Buttons[i].State = (Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x02 || Joystick.Povs[2].State == 0x03) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov3Up)
+                {
+                    Buttons[i].State = (Joystick.Povs[2].State == 0x00 || Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x07) ? true : false;
+                }
+                // POV4
+                else if (Buttons[i].Type == ButtonType.Pov4Down)
+                {
+                    Buttons[i].State = (Joystick.Povs[3].State == 0x03 || Joystick.Povs[3].State == 0x04 || Joystick.Povs[3].State == 0x05) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov4Left)
+                {
+                    Buttons[i].State = (Joystick.Povs[3].State == 0x05 || Joystick.Povs[3].State == 0x06 || Joystick.Povs[3].State == 0x07) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov4Right)
+                {
+                    Buttons[i].State = (Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x02 || Joystick.Povs[3].State == 0x03) ? true : false;
+                }
+                else if (Buttons[i].Type == ButtonType.Pov4Up)
+                {
+                    Buttons[i].State = (Joystick.Povs[3].State == 0x00 || Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x07) ? true : false;
                 }
                 else 
                 {

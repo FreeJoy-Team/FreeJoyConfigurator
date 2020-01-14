@@ -137,7 +137,7 @@ DocProject/Help/html
 
 # Click-Once directory
 publish/
-Installer/
+*/Installer/
 
 # Publish Web Output
 *.[Pp]ublish.xml

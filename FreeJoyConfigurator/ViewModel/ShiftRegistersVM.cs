@@ -89,6 +89,5 @@ namespace FreeJoyConfigurator
                 }
             }
         }
-
     }
 }
