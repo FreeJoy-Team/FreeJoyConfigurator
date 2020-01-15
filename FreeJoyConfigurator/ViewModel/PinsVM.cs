@@ -121,23 +121,22 @@ namespace FreeJoyConfigurator
             {
                 tmp.Add(new PinVMConverter());
                 if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisAnalog);
-                if (i < 8) tmp[i].AllowedTypes.Add(PinType.AxisToButtons);
                 if (i == 14)
                 {
-                    tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.TLE501x_CS);
                     tmp[i].AllowedTypes.Remove(PinType.ShiftReg_CS);
                     tmp[i].AllowedTypes.Remove(PinType.ShiftReg_Data);
                     if (!tmp[i].AllowedTypes.Contains(PinType.SPI_SCK)) tmp[i].AllowedTypes.Add(PinType.SPI_SCK);
                 }
                 if (i == 16)
                 {
-                    tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    if (!tmp[i].AllowedTypes.Contains(PinType.TLE5011_DATA)) tmp[i].AllowedTypes.Add(PinType.TLE5011_DATA);
+                    tmp[i].AllowedTypes.Remove(PinType.TLE501x_CS);
+                    if (!tmp[i].AllowedTypes.Contains(PinType.TLE501x_DATA)) tmp[i].AllowedTypes.Add(PinType.TLE501x_DATA);
                 }
                 if (i == 17)
                 {
-                    tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    if (!tmp[i].AllowedTypes.Contains(PinType.TLE5011_GEN)) tmp[i].AllowedTypes.Add(PinType.TLE5011_GEN);
+                    tmp[i].AllowedTypes.Remove(PinType.TLE501x_CS);
+                    if (!tmp[i].AllowedTypes.Contains(PinType.TLE501x_GEN)) tmp[i].AllowedTypes.Add(PinType.TLE501x_GEN);
                 }
                 tmp[i].SelectedType = Config.PinConfig[i];
             }
@@ -155,23 +154,22 @@ namespace FreeJoyConfigurator
             {
                 _pins[i] = new PinVMConverter();
                 if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisAnalog);
-                if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisToButtons);
                 if (i == 14)
                 {
-                    Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.TLE501x_CS);
                     Pins[i].AllowedTypes.Remove(PinType.ShiftReg_CS);
                     Pins[i].AllowedTypes.Remove(PinType.ShiftReg_Data);
                     if (!Pins[i].AllowedTypes.Contains(PinType.SPI_SCK)) Pins[i].AllowedTypes.Add(PinType.SPI_SCK);
                 }
                 if (i == 16)
                 {
-                    Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE5011_DATA)) Pins[i].AllowedTypes.Add(PinType.TLE5011_DATA);
+                    Pins[i].AllowedTypes.Remove(PinType.TLE501x_CS);
+                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE501x_DATA)) Pins[i].AllowedTypes.Add(PinType.TLE501x_DATA);
                 }
                 if (i == 17)
                 {
-                    Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE5011_GEN)) Pins[i].AllowedTypes.Add(PinType.TLE5011_GEN);
+                    Pins[i].AllowedTypes.Remove(PinType.TLE501x_CS);
+                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE501x_GEN)) Pins[i].AllowedTypes.Add(PinType.TLE501x_GEN);
                 }
                 Pins[i].PropertyChanged += PinsVM_PropertyChanged;
             }
@@ -221,20 +219,23 @@ namespace FreeJoyConfigurator
                 {
                     AxesCnt++;
                 }
-                else if (Pins[i].SelectedType == PinType.AxisToButtons)
-                {
-                    AxesToButtonsCnt++;
-                }
                 else if (Pins[i].SelectedType == PinType.ShiftReg_CS)
                 {
                     _shiftRegisterCsCnt++;
                     _spiDevicesCnt++;
                 }
-                else if (Pins[i].SelectedType == PinType.TLE5011_CS)
+                else if (Pins[i].SelectedType == PinType.TLE501x_CS)
                 {
                     AxesCnt++;
                     _spiDevicesCnt++;
                     _tleCnt++;
+                }
+            }
+            for (int i=0; i<Config.AxisToButtonsConfig.Count;i++)
+            {
+                if (Config.AxisToButtonsConfig[i].IsEnabled)
+                {
+                    AxesToButtonsCnt++;
                 }
             }
 
@@ -248,7 +249,7 @@ namespace FreeJoyConfigurator
                 if (!Pins[14].AllowedTypes.Contains(PinType.ButtonColumn)) Pins[14].AllowedTypes.Insert(4, PinType.ButtonColumn);
                 if (!Pins[14].AllowedTypes.Contains(PinType.SPI_SCK)) Pins[14].AllowedTypes.Insert(5, PinType.SPI_SCK);
 
-                Pins[14].AllowedTypes.Remove(PinType.TLE5011_CS);
+                Pins[14].AllowedTypes.Remove(PinType.TLE501x_CS);
                 Pins[14].AllowedTypes.Remove(PinType.ShiftReg_CS);
                 Pins[14].AllowedTypes.Remove(PinType.ShiftReg_Data);
             }
@@ -259,9 +260,9 @@ namespace FreeJoyConfigurator
                 if (!Pins[16].AllowedTypes.Contains(PinType.ButtonVcc)) Pins[16].AllowedTypes.Insert(2, PinType.ButtonVcc);
                 if (!Pins[16].AllowedTypes.Contains(PinType.ButtonRow)) Pins[16].AllowedTypes.Insert(3, PinType.ButtonRow);
                 if (!Pins[16].AllowedTypes.Contains(PinType.ButtonColumn)) Pins[16].AllowedTypes.Insert(4, PinType.ButtonColumn);
-                if (!Pins[16].AllowedTypes.Contains(PinType.TLE5011_DATA)) Pins[16].AllowedTypes.Insert(5, PinType.TLE5011_DATA);
+                if (!Pins[16].AllowedTypes.Contains(PinType.TLE501x_DATA)) Pins[16].AllowedTypes.Insert(5, PinType.TLE501x_DATA);
 
-                Pins[16].AllowedTypes.Remove(PinType.TLE5011_CS);
+                Pins[16].AllowedTypes.Remove(PinType.TLE501x_CS);
                 Pins[16].AllowedTypes.Remove(PinType.ShiftReg_CS);
                 Pins[16].AllowedTypes.Remove(PinType.ShiftReg_Data);
 
@@ -270,9 +271,9 @@ namespace FreeJoyConfigurator
                 if (!Pins[17].AllowedTypes.Contains(PinType.ButtonVcc)) Pins[17].AllowedTypes.Insert(2, PinType.ButtonVcc);
                 if (!Pins[17].AllowedTypes.Contains(PinType.ButtonRow)) Pins[17].AllowedTypes.Insert(3, PinType.ButtonRow);
                 if (!Pins[17].AllowedTypes.Contains(PinType.ButtonColumn)) Pins[17].AllowedTypes.Insert(4, PinType.ButtonColumn);
-                if (!Pins[17].AllowedTypes.Contains(PinType.TLE5011_GEN)) Pins[17].AllowedTypes.Insert(5, PinType.TLE5011_GEN);
+                if (!Pins[17].AllowedTypes.Contains(PinType.TLE501x_GEN)) Pins[17].AllowedTypes.Insert(5, PinType.TLE501x_GEN);
 
-                Pins[17].AllowedTypes.Remove(PinType.TLE5011_CS);
+                Pins[17].AllowedTypes.Remove(PinType.TLE501x_CS);
             }
 
             
@@ -339,9 +340,9 @@ namespace FreeJoyConfigurator
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
-                    if (Pins[i].SelectedType != PinType.TLE5011_CS )
+                    if (Pins[i].SelectedType != PinType.TLE501x_CS )
                     {
-                        Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
+                        Pins[i].AllowedTypes.Remove(PinType.TLE501x_CS);
                     }
                 }
             }
@@ -408,9 +409,9 @@ namespace FreeJoyConfigurator
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
-                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE5011_CS) && i != 14 && i != 16 && i != 17)
+                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE501x_CS) && i != 14 && i != 16 && i != 17)
                     {
-                        Pins[i].AllowedTypes.Add(PinType.TLE5011_CS);
+                        Pins[i].AllowedTypes.Add(PinType.TLE501x_CS);
                     }
                 }
             }
@@ -425,10 +426,10 @@ namespace FreeJoyConfigurator
             if (_tleCnt > 0)
             {
                 Pins[16].AllowedTypes.Clear();
-                Pins[16].AllowedTypes.Add(PinType.TLE5011_DATA);
-                Pins[16].SelectedType = PinType.TLE5011_DATA;
+                Pins[16].AllowedTypes.Add(PinType.TLE501x_DATA);
+                Pins[16].SelectedType = PinType.TLE501x_DATA;
 
-                Pins[17].SelectedType = PinType.TLE5011_GEN;
+                Pins[17].SelectedType = PinType.TLE501x_GEN;
             }
 
             // update config

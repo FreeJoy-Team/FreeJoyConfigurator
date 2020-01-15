@@ -47,7 +47,49 @@ namespace FreeJoyConfigurator
         public ShiftRegistersVM ShiftRegistersVM { get; private set; }
         public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
-        public string HidName { get; private set; }
+        private ObservableCollection<string> _hidDevices;
+        public ObservableCollection<string> HidDevices
+        {
+            get
+            {
+                _hidDevices = new ObservableCollection<string>() ;
+                
+                foreach(var device in Hid.HidDevicesList)
+                {
+                    byte[] tmp = new byte[20];
+                    device.ReadProduct(out tmp);
+
+                    _hidDevices.Add(Encoding.Unicode.GetString(tmp).TrimEnd('\0'));
+                }
+
+                return _hidDevices;
+            }
+        }
+
+        private int _selectedDeviceIndex;
+        public int SelectedDeviceIndex
+        {
+            get
+            {
+                return _selectedDeviceIndex;
+            }
+            set
+            {
+                _selectedDeviceIndex = value;
+                if (value >= 0 && value < Hid.HidDevicesList.Count)
+                {
+                    Hid.Connect(Hid.HidDevicesList[value]);
+                }
+                DeviceFirmwareVersionVM = " ";
+            }
+        }
+
+        private string _deviceFirmwareVersionVM;
+        public string DeviceFirmwareVersionVM
+        {
+            get { return _deviceFirmwareVersionVM; }
+            private set { SetProperty(ref _deviceFirmwareVersionVM, value); }
+        }
 
         public string Version
         {
@@ -94,11 +136,13 @@ namespace FreeJoyConfigurator
 
 
         public MainVM()
-        { 
+        {
 
-            Hid.Connect();
+            Hid.Start();
+
             Hid.DeviceAdded += DeviceAddedEventHandler;
             Hid.DeviceRemoved += DeviceRemovedEventHandler;
+            Hid.DeviceListUpdated += Hid_DeviceListUpdated;
 
             // getting current version
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -134,32 +178,17 @@ namespace FreeJoyConfigurator
                 WriteLog("Writting config..", false);
             });
 
-            UpdateDeviceList = new DelegateCommand(() => GetHidDevices());
             ResetAllPins = new DelegateCommand(() => PinsVM.ResetPins());
             SaveConfig = new DelegateCommand(() => SaveConfigToFile());
             LoadConfig = new DelegateCommand(() => ReadConfigFromFile());
             SetDefault = new DelegateCommand(() => LoadDefaultConfig());
 
-            GetHidDevices();
             LoadDefaultConfig();
 
+            // Try to connect to device
+            if (HidDevices.Count > 0) SelectedDeviceIndex = 0;
+
             WriteLog("Program started", true);
-        }
-
-        private void GetHidDevices()
-        {
-            var devices = Hid.GetDevices();
-
-            if (devices.Count > 0)
-            {
-                byte[] tmp = new byte[20];
-                devices[0].ReadProduct(out tmp);
-                HidName = Encoding.Unicode.GetString(tmp).TrimEnd('\0');
-            }
-            else
-            {
-                HidName = " ";
-            }
         }
 
         private void SaveConfigToFile()
@@ -190,15 +219,19 @@ namespace FreeJoyConfigurator
             {
                 {   // TODO: fix serialization
                     DeviceConfig tmp = DeSerializeObject<DeviceConfig>(dlg.FileName);
-                    for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
-                    for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
+                    while (tmp.PinConfig.Count > 30) tmp.PinConfig.RemoveAt(0);
+                    while (tmp.AxisConfig.Count > 8) tmp.AxisConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++)
                     {
-                        for (int j = 0; j < 10; j++) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                        while (tmp.AxisConfig[i].CurveShape.Count > 10) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                     }
-                    for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
-                    for (int i = 0; i < 8; i++) tmp.AxisToButtonsConfig.RemoveAt(0);
-                    while(tmp.ShiftRegistersConfig.Count>4) tmp.ShiftRegistersConfig.RemoveAt(0);
+                    while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
+                    while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);
+                    for (int i = 0; i < 8; i++)
+                    {
+                        while (tmp.AxisToButtonsConfig[i].Points.Count > 13) tmp.AxisToButtonsConfig[i].Points.RemoveAt(0);
+                    }
+                    while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
 
                     Config = tmp;
                 }
@@ -222,14 +255,18 @@ namespace FreeJoyConfigurator
 
                 DeviceConfig tmp = Config;
                 tmp = DeSerializeObject<DeviceConfig>(xmlStr, xmlStr.Length);
-                for (int i = 0; i < 30; i++) tmp.PinConfig.RemoveAt(0);
-                for (int i = 0; i < 8; i++) tmp.AxisConfig.RemoveAt(0);
+                while (tmp.PinConfig.Count > 30) tmp.PinConfig.RemoveAt(0);
+                while (tmp.AxisConfig.Count > 8) tmp.AxisConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++)
                 {
-                    for (int j = 0; j < 10; j++) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                    while (tmp.AxisConfig[i].CurveShape.Count > 10) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                 }
-                for (int i = 0; i < 128; i++) tmp.ButtonConfig.RemoveAt(0);
-                for (int i = 0; i < 8; i++) tmp.AxisToButtonsConfig.RemoveAt(0);
+                while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
+                while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);
+                for (int i = 0; i < 8; i++)
+                {
+                    while (tmp.AxisToButtonsConfig[i].Points.Count > 13) tmp.AxisToButtonsConfig[i].Points.RemoveAt(0);
+                }
                 while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
 
                 Config = tmp;
@@ -259,7 +296,6 @@ namespace FreeJoyConfigurator
         {
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);
-            //AxesToButtonsVM.Update(Config);
         }
 
         private void ShiftRegistersVM_ConfigChanged()
@@ -276,6 +312,8 @@ namespace FreeJoyConfigurator
         {
             Config = deviceConfig;
 
+            DeviceFirmwareVersionVM = "Device firmware v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".");
+
             PinsVM.Update(Config);
             ButtonsVM.Update(Config);
             AxesVM.Update(Config);
@@ -288,24 +326,32 @@ namespace FreeJoyConfigurator
 
 
         #region HidEvents
+        private void Hid_DeviceListUpdated()
+        {
+            RaisePropertyChanged(nameof(HidDevices));
+
+            if (!IsConnectedVM) SelectedDeviceIndex = 0;
+            else
+            {
+                _selectedDeviceIndex = 0;
+                RaisePropertyChanged(nameof(SelectedDeviceIndex));
+            }
+        }
+
         public void DeviceAddedEventHandler(HidDevice hd)
         {
-            GetHidDevices();
-
             WriteLog("Device added", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
-            RaisePropertyChanged(nameof(HidName));
+            RaisePropertyChanged(nameof(HidDevices));
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)
         {
-            GetHidDevices();
-
             WriteLog("Device removed", false);
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
-            RaisePropertyChanged(nameof(HidName));
+            RaisePropertyChanged(nameof(HidDevices));
         }
         #endregion
 

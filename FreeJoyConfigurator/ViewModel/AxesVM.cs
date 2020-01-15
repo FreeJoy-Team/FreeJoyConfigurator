@@ -75,8 +75,7 @@ namespace FreeJoyConfigurator
             for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
             {
                 if (Config.PinConfig[i] == PinType.AxisAnalog || 
-                    Config.PinConfig[i] == PinType.AxisToButtons ||
-                    Config.PinConfig[i] == PinType.TLE5011_CS)
+                    Config.PinConfig[i] == PinType.TLE501x_CS)
                 {
                     Axes[k++].IsEnabled = true;
                 }

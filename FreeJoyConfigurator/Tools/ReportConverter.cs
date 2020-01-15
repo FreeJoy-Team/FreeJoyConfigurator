@@ -203,64 +203,67 @@ namespace FreeJoyConfigurator
                 }
 
                 // axes to buttons group 1
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
                     config.AxisToButtonsConfig[0].Points[i] = (sbyte)hr.Data[5 + i];
                 }
-                config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[17];
-                config.AxisToButtonsConfig[0].IsAnalogEnabled = (hr.Data[18] > 0) ? true : false;
+                config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[18];
+                config.AxisToButtonsConfig[0].IsEnabled = (hr.Data[19] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[1].Points[i] = (sbyte)hr.Data[19 + i];
+                    config.AxisToButtonsConfig[1].Points[i] = (sbyte)hr.Data[20 + i];
                 }
-                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[31];
-                config.AxisToButtonsConfig[1].IsAnalogEnabled = (hr.Data[32] > 0) ? true : false;
+                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[33];
+                config.AxisToButtonsConfig[1].IsEnabled = (hr.Data[34] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[2].Points[i] = (sbyte)hr.Data[33 + i];
+                    config.AxisToButtonsConfig[2].Points[i] = (sbyte)hr.Data[35 + i];
                 }
-                config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[45];
-                config.AxisToButtonsConfig[2].IsAnalogEnabled = (hr.Data[46] > 0) ? true : false;
+                config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[48];
+                config.AxisToButtonsConfig[2].IsEnabled = (hr.Data[49] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[3].Points[i] = (sbyte)hr.Data[47 + i];
+                    config.AxisToButtonsConfig[3].Points[i] = (sbyte)hr.Data[50 + i];
                 }
-                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[59];
-                config.AxisToButtonsConfig[3].IsAnalogEnabled = (hr.Data[60] > 0) ? true : false;
+                
+                
             }
             else if (hr.Data[0] == 9)
             {
                 // axes to buttons group 2
-                for (int i = 0; i < 12; i++)
-                {
-                    config.AxisToButtonsConfig[4].Points[i] = (sbyte)hr.Data[1 + i];
-                }
-                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[13];
-                config.AxisToButtonsConfig[4].IsAnalogEnabled = (hr.Data[14] > 0) ? true : false;
+                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[1];
+                config.AxisToButtonsConfig[3].IsEnabled = (hr.Data[2] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[5].Points[i] = (sbyte)hr.Data[15 + i];
+                    config.AxisToButtonsConfig[4].Points[i] = (sbyte)hr.Data[3 + i];
                 }
-                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[27];
-                config.AxisToButtonsConfig[5].IsAnalogEnabled = (hr.Data[28] > 0) ? true : false;
+                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[16];
+                config.AxisToButtonsConfig[4].IsEnabled = (hr.Data[17] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[6].Points[i] = (sbyte)hr.Data[29 + i];
+                    config.AxisToButtonsConfig[5].Points[i] = (sbyte)hr.Data[18 + i];
                 }
-                config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[41];
-                config.AxisToButtonsConfig[6].IsAnalogEnabled = (hr.Data[42] > 0) ? true : false;
+                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[31];
+                config.AxisToButtonsConfig[5].IsEnabled = (hr.Data[32] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[7].Points[i] = (sbyte)hr.Data[43 + i];
+                    config.AxisToButtonsConfig[6].Points[i] = (sbyte)hr.Data[33 + i];
                 }
-                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[55];
-                config.AxisToButtonsConfig[7].IsAnalogEnabled = (hr.Data[56] > 0) ? true : false;
+                config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[46];
+                config.AxisToButtonsConfig[6].IsEnabled = (hr.Data[47] > 0) ? true : false;
+
+                for (int i = 0; i < 13; i++)
+                {
+                    config.AxisToButtonsConfig[7].Points[i] = (sbyte)hr.Data[48 + i];
+                }
+                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[61];
+                config.AxisToButtonsConfig[7].IsEnabled = (hr.Data[62] > 0) ? true : false;
             }
             else if (hr.Data[0] == 10)
             {
@@ -457,31 +460,28 @@ namespace FreeJoyConfigurator
                 buffer[i + 2] = (byte)config.ButtonConfig[i + 124].Type;
             }
             // axes to buttons 1
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 13; i++)
             {
                 buffer[i + 6] = (byte)config.AxisToButtonsConfig[0].Points[i];
             }
-            buffer[18] = (byte)config.AxisToButtonsConfig[0].ButtonsCnt;
-            buffer[19] = (byte)(config.AxisToButtonsConfig[0].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[19] = (byte)config.AxisToButtonsConfig[0].ButtonsCnt;
+            buffer[20] = (byte)(config.AxisToButtonsConfig[0].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 20] = (byte)config.AxisToButtonsConfig[1].Points[i];
+                buffer[i + 21] = (byte)config.AxisToButtonsConfig[1].Points[i];
             }
-            buffer[32] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
-            buffer[33] = (byte)(config.AxisToButtonsConfig[1].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[34] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
+            buffer[35] = (byte)(config.AxisToButtonsConfig[1].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 34] = (byte)config.AxisToButtonsConfig[2].Points[i];
+                buffer[i + 36] = (byte)config.AxisToButtonsConfig[2].Points[i];
             }
-            buffer[46] = (byte)config.AxisToButtonsConfig[2].ButtonsCnt;
-            buffer[47] = (byte)(config.AxisToButtonsConfig[2].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[49] = (byte)config.AxisToButtonsConfig[2].ButtonsCnt;
+            buffer[50] = (byte)(config.AxisToButtonsConfig[2].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 48] = (byte)config.AxisToButtonsConfig[3].Points[i];
+                buffer[i + 51] = (byte)config.AxisToButtonsConfig[3].Points[i];
             }
-            buffer[60] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
-            buffer[61] = (byte)(config.AxisToButtonsConfig[3].IsAnalogEnabled ? 0x01 : 0x00);
-
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 9
@@ -490,30 +490,32 @@ namespace FreeJoyConfigurator
             buffer[1] = 0x09;
 
             // axes to buttons
-            for (int i = 0; i < 12; i++)
+            buffer[2] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
+            buffer[3] = (byte)(config.AxisToButtonsConfig[3].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 2] = (byte)config.AxisToButtonsConfig[4].Points[i];
+                buffer[i + 4] = (byte)config.AxisToButtonsConfig[4].Points[i];
             }
-            buffer[14] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
-            buffer[15] = (byte)(config.AxisToButtonsConfig[4].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[17] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
+            buffer[18] = (byte)(config.AxisToButtonsConfig[4].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 16] = (byte)config.AxisToButtonsConfig[5].Points[i];
+                buffer[i + 19] = (byte)config.AxisToButtonsConfig[5].Points[i];
             }
-            buffer[28] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
-            buffer[29] = (byte)(config.AxisToButtonsConfig[5].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[32] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
+            buffer[33] = (byte)(config.AxisToButtonsConfig[5].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 30] = (byte)config.AxisToButtonsConfig[6].Points[i];
+                buffer[i + 34] = (byte)config.AxisToButtonsConfig[6].Points[i];
             }
-            buffer[42] = (byte)config.AxisToButtonsConfig[6].ButtonsCnt;
-            buffer[43] = (byte)(config.AxisToButtonsConfig[6].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[47] = (byte)config.AxisToButtonsConfig[6].ButtonsCnt;
+            buffer[48] = (byte)(config.AxisToButtonsConfig[6].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 44] = (byte)config.AxisToButtonsConfig[7].Points[i];
+                buffer[i + 49] = (byte)config.AxisToButtonsConfig[7].Points[i];
             }
-            buffer[56] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
-            buffer[57] = (byte)(config.AxisToButtonsConfig[7].IsAnalogEnabled ? 0x01 : 0x00);
+            buffer[62] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
+            buffer[63] = (byte)(config.AxisToButtonsConfig[7].IsEnabled ? 0x01 : 0x00);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 10

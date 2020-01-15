@@ -205,13 +205,13 @@ namespace FreeJoyConfigurator
         ButtonColumn,
 
         AxisAnalog,
-        AxisToButtons,
+//        AxisToButtons,
 
-        SPI_SCK,
+        SPI_SCK = 7,
 
-        TLE5011_CS,
-        TLE5011_DATA,
-        TLE5011_GEN,
+        TLE501x_CS,
+        TLE501x_DATA,
+        TLE501x_GEN,
 
         ShiftReg_CS,
         ShiftReg_Data,
@@ -281,7 +281,7 @@ namespace FreeJoyConfigurator
     {
         private ObservableCollection<sbyte> _points;
         private byte _buttonsCnt;
-        private bool _isAnalogEnabled;
+        private bool _isEnabled;
 
         public ObservableCollection<sbyte> Points
         {
@@ -295,23 +295,23 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _buttonsCnt, value); }
         }
 
-        public bool IsAnalogEnabled
+        public bool IsEnabled
         {
-            get { return _isAnalogEnabled; }
-            set { SetProperty(ref _isAnalogEnabled, value); }
+            get { return _isEnabled; }
+            set { SetProperty(ref _isEnabled, value); }
         }
 
         public AxisToButtonsConfig()
         {
             _points = new ObservableCollection<sbyte>();
-            for (int i = 0; i < 12; i++) _points.Add(new sbyte());
+            for (int i = 0; i < 13; i++) _points.Add(new sbyte());
 
             _points[0] = 0;
             _points[1] = 50;
             _points[2] = 100;
 
             _buttonsCnt = 2;
-            _isAnalogEnabled = true;
+            _isEnabled = false;
         }
     }
 

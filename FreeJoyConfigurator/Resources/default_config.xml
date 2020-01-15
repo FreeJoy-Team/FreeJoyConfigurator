@@ -116,19 +116,19 @@
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>9</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>31</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>53</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>75</Y>
       </Point>
       <Point>
         <X>9</X>
@@ -167,19 +167,19 @@
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>9</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>31</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>53</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>75</Y>
       </Point>
       <Point>
         <X>9</X>
@@ -218,19 +218,19 @@
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>9</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>31</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>53</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>75</Y>
       </Point>
       <Point>
         <X>9</X>
@@ -269,19 +269,19 @@
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>9</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>31</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>53</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>75</Y>
       </Point>
       <Point>
         <X>9</X>
@@ -320,19 +320,19 @@
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>9</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>31</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>53</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>75</Y>
       </Point>
       <Point>
         <X>9</X>
@@ -371,19 +371,19 @@
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>9</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>31</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>53</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>75</Y>
       </Point>
       <Point>
         <X>9</X>
@@ -422,19 +422,19 @@
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>9</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>31</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>53</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>75</Y>
       </Point>
       <Point>
         <X>9</X>
@@ -511,34 +511,34 @@
     <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
-    <Type>ToggleSwOn</Type>
+    <Type>BtnNormal</Type>
   </Button_Config>
   <Button_Config>
     <Type>BtnNormal</Type>
@@ -831,6 +831,7 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
+      <byte>0</byte>
       <byte>50</byte>
       <byte>100</byte>
       <byte>0</byte>
@@ -844,30 +845,127 @@
       <byte>0</byte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
+    <IsEnabled>false</IsEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsEnabled>false</IsEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsEnabled>false</IsEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsEnabled>false</IsEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsEnabled>false</IsEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsEnabled>false</IsEnabled>
+  </AxisToButtons_Config>
+  <AxisToButtons_Config>
+    <Points>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>50</byte>
+      <byte>100</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+      <byte>0</byte>
+    </Points>
+    <ButtonsCnt>2</ButtonsCnt>
+    <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
       <byte>50</byte>
       <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
       <byte>100</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -880,97 +978,7 @@
       <byte>0</byte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
-  </AxisToButtons_Config>
-  <AxisToButtons_Config>
-    <Points>
-      <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-    </Points>
-    <ButtonsCnt>2</ButtonsCnt>
-    <IsAnalogEnabled>true</IsAnalogEnabled>
+    <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <ShitRegisters_Config>
     <Type>CD4021</Type>

@@ -146,9 +146,9 @@ namespace FreeJoyConfigurator
             } 
 
              // axes to buttons
-            for (int i = 0; i < Config.PinConfig.Count; i++)
+            for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisToButtons)
+                if (Config.AxisToButtonsConfig[i].IsEnabled)
                 {
                     for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
                     {
