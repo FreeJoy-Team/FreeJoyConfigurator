@@ -36,7 +36,7 @@ namespace FreeJoyConfigurator
             set
             {
                 SetProperty(ref _buttonCnt, value);
-                RegisterCnt = (int) ((float)_buttonCnt / 8.0);  
+                RegisterCnt = (int)Math.Ceiling((float)_buttonCnt / 8.0);  
             }
         }
 
@@ -66,7 +66,7 @@ namespace FreeJoyConfigurator
             _isEnabled = false;
             _number = number;
             _buttonCnt = buttonCnt;
-            _registerCnt = (int)((float)_buttonCnt / 8.0);
+            _registerCnt = (int) Math.Ceiling((float)_buttonCnt / 8.0);
             _type = ShiftRegisterType.HC165;
         }
         public ShiftRegister(int number, ShiftRegisterType type)
