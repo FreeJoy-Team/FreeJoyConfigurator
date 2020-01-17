@@ -17,7 +17,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:AxesView}">
-                    <Border BorderThickness="0.4" BorderBrush="LightGray" Height="120">
+                    <Border BorderThickness="0.4" BorderBrush="LightGray" Height="140">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MinWidth="60"/>

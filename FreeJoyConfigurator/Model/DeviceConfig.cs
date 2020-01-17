@@ -24,6 +24,9 @@ namespace FreeJoyConfigurator
         private bool _isInverted;
         private ObservableCollection<Point> _curveShape;
         private byte _filterLevel;
+        private bool _isOutEnabled;
+        private byte _resolution;
+        
 
         private bool _isCalibCenterUnlocked;
 
@@ -140,6 +143,30 @@ namespace FreeJoyConfigurator
             }
         }
 
+        public bool IsOutEnabled
+        {
+            get
+            {
+                return _isOutEnabled;
+            }
+            set
+            {
+                SetProperty(ref _isOutEnabled, value);
+            }
+        }
+
+        public byte Resolution
+        {
+            get
+            {
+                return _resolution;
+            }
+            set
+            {
+                SetProperty(ref _resolution, value);
+            }
+        }
+
         public bool IsCalibCenterUnlocked
         {
             get
@@ -163,6 +190,8 @@ namespace FreeJoyConfigurator
             _calibMax = 4095;
             _isAutocalib = false;
             _isInverted = false;
+            _isOutEnabled = true;
+            _resolution = 12;
 
             _curveShape = new ObservableCollection<Point>();
             for (int i = 0; i < 10; i++) _curveShape.Add(new Point(i, 0));
@@ -214,7 +243,7 @@ namespace FreeJoyConfigurator
         TLE501x_GEN,
 
         ShiftReg_CS,
-        ShiftReg_Data,
+        ShiftReg_DATA,
         
     };
 

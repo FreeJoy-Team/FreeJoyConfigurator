@@ -86,6 +86,8 @@ namespace FreeJoyConfigurator
                 {
                     config.AxisConfig[0].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[0].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[0].Resolution = hr.Data[21];
 
                 config.AxisConfig[1] = new AxisConfig();
                 config.AxisConfig[1].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
@@ -98,6 +100,8 @@ namespace FreeJoyConfigurator
                 {
                     config.AxisConfig[1].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
+                config.AxisConfig[1].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[1].Resolution = hr.Data[51];
 
             }
             else if (hr.Data[0] == 3)
@@ -113,6 +117,8 @@ namespace FreeJoyConfigurator
                 {
                     config.AxisConfig[2].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[2].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[2].Resolution = hr.Data[21];
 
                 config.AxisConfig[3] = new AxisConfig();
                 config.AxisConfig[3].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
@@ -124,7 +130,9 @@ namespace FreeJoyConfigurator
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[3].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
-                }               
+                }
+                config.AxisConfig[3].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[3].Resolution = hr.Data[51];
             }
             else if (hr.Data[0] == 4)
             {
@@ -139,6 +147,8 @@ namespace FreeJoyConfigurator
                 {
                     config.AxisConfig[4].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[4].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[4].Resolution = hr.Data[21];
 
                 config.AxisConfig[5] = new AxisConfig();
                 config.AxisConfig[5].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
@@ -151,6 +161,8 @@ namespace FreeJoyConfigurator
                 {
                     config.AxisConfig[5].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
+                config.AxisConfig[5].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[5].Resolution = hr.Data[51];
             }
             else if (hr.Data[0] == 5)
             {
@@ -165,6 +177,8 @@ namespace FreeJoyConfigurator
                 {
                     config.AxisConfig[6].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[6].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[6].Resolution = hr.Data[21];
 
                 config.AxisConfig[7] = new AxisConfig();
                 config.AxisConfig[7].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
@@ -177,6 +191,8 @@ namespace FreeJoyConfigurator
                 {
                     config.AxisConfig[7].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
+                config.AxisConfig[7].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[7].Resolution = hr.Data[51];
             }
             else if (hr.Data[0] == 6)
             {
@@ -320,6 +336,9 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = (byte)config.AxisConfig[0].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[0].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[0].Resolution);
+
             buffer[32] = (byte)(config.AxisConfig[1].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[1].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[1].CalibCenter & 0xFF);
@@ -333,6 +352,8 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 41] = (byte)config.AxisConfig[1].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[1].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[1].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 3
@@ -352,6 +373,9 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = (byte)config.AxisConfig[2].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[2].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[2].Resolution);
+
             buffer[32] = (byte)(config.AxisConfig[3].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[3].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[3].CalibCenter & 0xFF);
@@ -365,6 +389,8 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 41] = (byte)config.AxisConfig[3].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[3].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[3].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 4
@@ -384,6 +410,9 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = (byte)config.AxisConfig[4].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[4].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[4].Resolution);
+            
             buffer[32] = (byte)(config.AxisConfig[5].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[5].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[5].CalibCenter & 0xFF);
@@ -397,6 +426,8 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 41] = (byte)config.AxisConfig[5].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[5].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[5].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 5
@@ -416,6 +447,9 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 11] = (byte)config.AxisConfig[6].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[6].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[6].Resolution);
+
             buffer[32] = (byte)(config.AxisConfig[7].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[7].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[7].CalibCenter & 0xFF);
@@ -429,6 +463,8 @@ namespace FreeJoyConfigurator
             {
                 buffer[i + 41] = (byte)config.AxisConfig[7].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[7].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[7].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 6

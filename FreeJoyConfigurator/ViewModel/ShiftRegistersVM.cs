@@ -80,7 +80,7 @@ namespace FreeJoyConfigurator
                 {
                     for (int j = prevData + 1; j < Config.PinConfig.Count; j++)
                     {
-                        if (Config.PinConfig[j] == PinType.ShiftReg_Data)
+                        if (Config.PinConfig[j] == PinType.ShiftReg_DATA)
                         {
                             ShiftRegisters[k++].IsEnabled = true;
                             prevData = j;

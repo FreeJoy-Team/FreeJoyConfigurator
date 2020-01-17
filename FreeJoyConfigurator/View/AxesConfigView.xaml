@@ -22,7 +22,7 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type local:AxesConfigView}">
-                <Border BorderThickness="0.5" BorderBrush="LightGray" Height="120">
+                <Border BorderThickness="0.5" BorderBrush="LightGray" Height="140">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MaxWidth="80"/>
@@ -36,46 +36,56 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
                         <CheckBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
+                                  Content="Output enabled" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
+                                  IsChecked="{Binding IsOutEnabled}"/>
+                        <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
                                   Content="Autocalibration" 
                                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
                                   IsChecked="{Binding IsAutoCalib}"/>
-                        <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                        <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" 
                                   Content="Inverted" 
                                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
                                   IsChecked="{Binding IsInverted}"/>
                         
-                        <CheckBox Grid.Column="0" Grid.Row="3"
+                        <CheckBox Grid.Column="0" Grid.Row="4"
                                   IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                   Content="Center" 
                                   HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right"
                                   IsChecked="{Binding IsCalibCenterUnlocked}"/>
 
 
-                        <Label Grid.Column="0" Grid.Row="2" Content="Minimum" VerticalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Minimum" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
 
-                        <Label Grid.Column="0" Grid.Row="4"  Content="Maximum"  VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Grid.Row="5"  Text="Maximum"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibMin, UpdateSourceTrigger=LostFocus}"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             IsReadOnly="{Binding IsCalibCenterUnlocked, Mode=TwoWay, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibCenter, UpdateSourceTrigger=LostFocus}"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibMax, UpdateSourceTrigger=LostFocus}"/>
 
                         <TextBlock Grid.Column="2" Grid.Row="0" Text="Smoothing" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Slider Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" Orientation="Vertical"
+                        <Slider Grid.Column="2" Grid.Row="1" Grid.RowSpan="5" Orientation="Vertical"
                                 HorizontalAlignment="Center" Minimum="0" Maximum="3" IsSnapToTickEnabled="True" TickFrequency="1"
                                 Value="{Binding Path=FilterLevel}"/>
-                        <Label Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
-                               Content="{Binding Path=FilterLevel, Converter={StaticResource filterConverter}}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                               Text="{Binding Path=FilterLevel, Converter={StaticResource filterConverter}}"/>
 
+                        <TextBlock Grid.Column="0" Grid.Row="6"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                                            Value="{Binding Resolution, UpdateSourceTrigger=LostFocus}"
+                                            Maximum="12" Minimum="1"/>
 
                     </Grid>
                 </Border>

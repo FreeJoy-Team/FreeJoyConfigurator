@@ -125,7 +125,7 @@ namespace FreeJoyConfigurator
                 {
                     tmp[i].AllowedTypes.Remove(PinType.TLE501x_CS);
                     tmp[i].AllowedTypes.Remove(PinType.ShiftReg_CS);
-                    tmp[i].AllowedTypes.Remove(PinType.ShiftReg_Data);
+                    tmp[i].AllowedTypes.Remove(PinType.ShiftReg_DATA);
                     if (!tmp[i].AllowedTypes.Contains(PinType.SPI_SCK)) tmp[i].AllowedTypes.Add(PinType.SPI_SCK);
                 }
                 if (i == 16)
@@ -158,7 +158,7 @@ namespace FreeJoyConfigurator
                 {
                     Pins[i].AllowedTypes.Remove(PinType.TLE501x_CS);
                     Pins[i].AllowedTypes.Remove(PinType.ShiftReg_CS);
-                    Pins[i].AllowedTypes.Remove(PinType.ShiftReg_Data);
+                    Pins[i].AllowedTypes.Remove(PinType.ShiftReg_DATA);
                     if (!Pins[i].AllowedTypes.Contains(PinType.SPI_SCK)) Pins[i].AllowedTypes.Add(PinType.SPI_SCK);
                 }
                 if (i == 16)
@@ -251,7 +251,7 @@ namespace FreeJoyConfigurator
 
                 Pins[14].AllowedTypes.Remove(PinType.TLE501x_CS);
                 Pins[14].AllowedTypes.Remove(PinType.ShiftReg_CS);
-                Pins[14].AllowedTypes.Remove(PinType.ShiftReg_Data);
+                Pins[14].AllowedTypes.Remove(PinType.ShiftReg_DATA);
             }
             if (_tleCnt <= 0)
             {
@@ -264,7 +264,7 @@ namespace FreeJoyConfigurator
 
                 Pins[16].AllowedTypes.Remove(PinType.TLE501x_CS);
                 Pins[16].AllowedTypes.Remove(PinType.ShiftReg_CS);
-                Pins[16].AllowedTypes.Remove(PinType.ShiftReg_Data);
+                Pins[16].AllowedTypes.Remove(PinType.ShiftReg_DATA);
 
                 if (!Pins[17].AllowedTypes.Contains(PinType.NotUsed)) Pins[17].AllowedTypes.Insert(0, PinType.NotUsed);
                 if (!Pins[17].AllowedTypes.Contains(PinType.ButtonGnd)) Pins[17].AllowedTypes.Insert(1, PinType.ButtonGnd);
@@ -330,9 +330,9 @@ namespace FreeJoyConfigurator
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
-                    if (Pins[i].SelectedType != PinType.ShiftReg_Data)
+                    if (Pins[i].SelectedType != PinType.ShiftReg_DATA)
                     {
-                        Pins[i].AllowedTypes.Remove(PinType.ShiftReg_Data);
+                        Pins[i].AllowedTypes.Remove(PinType.ShiftReg_DATA);
                     }
                 }
             }
@@ -399,9 +399,9 @@ namespace FreeJoyConfigurator
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
-                    if (!Pins[i].AllowedTypes.Contains(PinType.ShiftReg_Data) && i != 14)
+                    if (!Pins[i].AllowedTypes.Contains(PinType.ShiftReg_DATA) && i != 14)
                     {
-                        Pins[i].AllowedTypes.Add(PinType.ShiftReg_Data);
+                        Pins[i].AllowedTypes.Add(PinType.ShiftReg_DATA);
                     }
                 }
             }

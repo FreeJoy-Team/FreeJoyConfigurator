@@ -59,7 +59,7 @@ namespace FreeJoyConfigurator
                     PinType.ButtonRow,
                     PinType.ButtonColumn,
                     PinType.ShiftReg_CS,
-                    PinType.ShiftReg_Data,
+                    PinType.ShiftReg_DATA,
                     PinType.TLE501x_CS,
             };
 
