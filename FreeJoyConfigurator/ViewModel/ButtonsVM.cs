@@ -122,7 +122,33 @@ namespace FreeJoyConfigurator
                     {
                         if (Config.PinConfig[k] == PinType.ButtonRow)
                         {
-                            tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
+                            ObservableCollection<ButtonType> tmpTypes = new ObservableCollection<ButtonType>()
+                            {       ButtonType.BtnInverted,
+                                    ButtonType.BtnNormal,
+                                    ButtonType.BtnToggle,
+                                    ButtonType.ToggleSw,
+                                    ButtonType.ToggleSwOff,
+                                    ButtonType.ToggleSwOn,
+                                    ButtonType.Pov1Up,
+                                    ButtonType.Pov1Down,
+                                    ButtonType.Pov1Left,
+                                    ButtonType.Pov1Right,
+                                    ButtonType.Pov2Up,
+                                    ButtonType.Pov2Down,
+                                    ButtonType.Pov2Left,
+                                    ButtonType.Pov2Right,
+                                    ButtonType.Pov3Up,
+                                    ButtonType.Pov3Down,
+                                    ButtonType.Pov3Left,
+                                    ButtonType.Pov3Right,
+                                    ButtonType.Pov4Up,
+                                    ButtonType.Pov4Down,
+                                    ButtonType.Pov4Left,
+                                    ButtonType.Pov4Right,
+
+                            };
+                            config.ButtonConfig[TotalBtnCnt].Type = ButtonType.BtnNormal;
+                            tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, tmpTypes, TotalBtnCnt));
                         }
                     }
                 }
