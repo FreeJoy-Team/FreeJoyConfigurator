@@ -44,34 +44,38 @@
                                   Content="Output enabled" 
                                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
                                   IsChecked="{Binding IsOutEnabled}"/>
-                        <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                        <!--<CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
                                   Content="Autocalibration" 
                                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
-                                  IsChecked="{Binding IsAutoCalib}"/>
-                        <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" 
+                                  IsChecked="{Binding IsAutoCalib}"/>-->
+                        <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
                                   Content="Inverted" 
                                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
                                   IsChecked="{Binding IsInverted}"/>
                         
-                        <CheckBox Grid.Column="0" Grid.Row="4"
-                                  IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
+                        
+
+                        <TextBlock Grid.Column="0" Grid.Row="2"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                                            Value="{Binding Resolution, UpdateSourceTrigger=LostFocus}"
+                                            Maximum="12" Minimum="1"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Minimum" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                                            IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
+                                            Value="{Binding CalibMin, UpdateSourceTrigger=LostFocus}"/>
+
+                        <CheckBox Grid.Column="0" Grid.Row="5"
                                   Content="Center" 
                                   HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right"
                                   IsChecked="{Binding IsCalibCenterUnlocked}"/>
-
-
-                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Minimum" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-
-                        <TextBlock Grid.Column="0" Grid.Row="5"  Text="Maximum"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
-                                            IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
-                                            Value="{Binding CalibMin, UpdateSourceTrigger=LostFocus}"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             IsReadOnly="{Binding IsCalibCenterUnlocked, Mode=TwoWay, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibCenter, UpdateSourceTrigger=LostFocus}"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+
+                        <TextBlock Grid.Column="0" Grid.Row="6"  Text="Maximum"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             IsEnabled="{Binding Path=IsAutoCalib, Converter={StaticResource boolConvert}}"
                                             Value="{Binding CalibMax, UpdateSourceTrigger=LostFocus}"/>
 
@@ -82,10 +86,7 @@
                         <TextBlock Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
                                Text="{Binding Path=FilterLevel, Converter={StaticResource filterConverter}}"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="6"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
-                                            Value="{Binding Resolution, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="12" Minimum="1"/>
+                        
 
                     </Grid>
                 </Border>

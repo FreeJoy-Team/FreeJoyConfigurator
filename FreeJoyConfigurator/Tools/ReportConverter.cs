@@ -79,7 +79,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[0].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[0].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[0].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                //config.AxisConfig[0].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[0].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[0].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
@@ -93,7 +93,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[1].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[1].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[1].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                //config.AxisConfig[1].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[1].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[1].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
@@ -110,7 +110,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[2].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[2].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[2].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                //config.AxisConfig[2].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[2].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[2].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
@@ -124,7 +124,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[3].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[3].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[3].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                //config.AxisConfig[3].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[3].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[3].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
@@ -140,7 +140,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[4].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[4].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[4].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                //config.AxisConfig[4].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[4].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[4].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
@@ -154,7 +154,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[5].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[5].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[5].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                //config.AxisConfig[5].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[5].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[5].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
@@ -170,7 +170,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[6].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[6].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[6].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                //config.AxisConfig[6].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[6].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[6].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
@@ -184,7 +184,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[7].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[7].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[7].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                //config.AxisConfig[7].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[7].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[7].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
@@ -329,7 +329,7 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[0].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[0].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[0].CalibMax >> 8);            
-            buffer[8] = (byte)(config.AxisConfig[0].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[8] = (byte)(config.AxisConfig[0].IsAutoCalib ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[0].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[0].FilterLevel);
             for (int i=0; i<10; i++)
@@ -345,7 +345,7 @@ namespace FreeJoyConfigurator
             buffer[35] = (byte)(config.AxisConfig[1].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[1].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[1].CalibMax >> 8);            
-            buffer[38] = (byte)(config.AxisConfig[1].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[38] = (byte)(config.AxisConfig[1].IsAutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[1].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[1].FilterLevel);
             for (int i = 0; i < 10; i++)
@@ -366,7 +366,7 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[2].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[2].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[2].CalibMax >> 8);
-            buffer[8] = (byte)(config.AxisConfig[2].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[8] = (byte)(config.AxisConfig[2].IsAutoCalib ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[2].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[2].FilterLevel);
             for (int i = 0; i < 10; i++)
@@ -382,7 +382,7 @@ namespace FreeJoyConfigurator
             buffer[35] = (byte)(config.AxisConfig[3].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[3].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[3].CalibMax >> 8);
-            buffer[38] = (byte)(config.AxisConfig[3].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[38] = (byte)(config.AxisConfig[3].IsAutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[3].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[3].FilterLevel);
             for (int i = 0; i < 10; i++)
@@ -403,7 +403,7 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[4].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[4].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[4].CalibMax >> 8);
-            buffer[8] = (byte)(config.AxisConfig[4].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[8] = (byte)(config.AxisConfig[4].IsAutoCalib ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[4].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[4].FilterLevel);
             for (int i = 0; i < 10; i++)
@@ -419,7 +419,7 @@ namespace FreeJoyConfigurator
             buffer[35] = (byte)(config.AxisConfig[5].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[5].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[5].CalibMax >> 8);
-            buffer[38] = (byte)(config.AxisConfig[5].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[38] = (byte)(config.AxisConfig[5].IsAutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[5].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[5].FilterLevel);
             for (int i = 0; i < 10; i++)
@@ -440,7 +440,7 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[6].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[6].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[6].CalibMax >> 8);
-            buffer[8] = (byte)(config.AxisConfig[6].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[8] = (byte)(config.AxisConfig[6].IsAutoCalib ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[6].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[6].FilterLevel);
             for (int i = 0; i < 10; i++)
@@ -456,7 +456,7 @@ namespace FreeJoyConfigurator
             buffer[35] = (byte)(config.AxisConfig[7].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[7].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[7].CalibMax >> 8);
-            buffer[38] = (byte)(config.AxisConfig[7].IsAutoCalib ? 0x01 : 0x00);
+            //buffer[38] = (byte)(config.AxisConfig[7].IsAutoCalib ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[7].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[7].FilterLevel);
             for (int i = 0; i < 10; i++)

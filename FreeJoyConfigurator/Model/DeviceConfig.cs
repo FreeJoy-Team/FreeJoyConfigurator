@@ -20,7 +20,7 @@ namespace FreeJoyConfigurator
         private ushort _calibMin;
         private ushort _calibCenter;
         private ushort _calibMax;
-        private bool _isAutocalib;
+        //private bool _isAutocalib;
         private bool _isInverted;
         private ObservableCollection<Point> _curveShape;
         private byte _filterLevel;
@@ -45,7 +45,7 @@ namespace FreeJoyConfigurator
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace FreeJoyConfigurator
                 }
                 else
                 {
-                    SetProperty(ref _calibCenter, (ushort)((CalibMax - CalibMin) / 2));
+                    SetProperty(ref _calibCenter, (ushort)((CalibMax - CalibMin) / 2 + CalibMin));
                 }
             }
         }
@@ -90,22 +90,22 @@ namespace FreeJoyConfigurator
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
             }
         }
       
-        public bool IsAutoCalib
-        {
-            get
-            {
-                return _isAutocalib;
-            }
-            set
-            {
-                SetProperty(ref _isAutocalib, value);
-            }
-        }
+        //public bool IsAutoCalib
+        //{
+        //    get
+        //    {
+        //        return _isAutocalib;
+        //    }
+        //    set
+        //    {
+        //        SetProperty(ref _isAutocalib, value);
+        //    }
+        //}
       
         public bool IsInverted
         {
@@ -188,7 +188,7 @@ namespace FreeJoyConfigurator
             _calibMin = 0;
             _calibCenter = 2047;
             _calibMax = 4095;
-            _isAutocalib = false;
+            //_isAutocalib = false;
             _isInverted = false;
             _isOutEnabled = true;
             _resolution = 12;
