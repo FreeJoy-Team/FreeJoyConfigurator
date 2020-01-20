@@ -41,6 +41,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -93,6 +94,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -145,6 +147,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -197,6 +200,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -249,6 +253,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -301,6 +306,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -353,6 +359,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -405,6 +412,7 @@
     <CalibCenter>2047</CalibCenter>
     <CalibMax>4095</CalibMax>
     <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
       <Point>
         <X>0</X>

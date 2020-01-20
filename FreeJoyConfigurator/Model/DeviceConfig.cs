@@ -40,7 +40,7 @@ namespace FreeJoyConfigurator
             {
                 if (value < 0) SetProperty(ref _calibMin, (ushort)0);
                 else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (ushort)(CalibCenter - 1));
-                //else if (value >= CalibMax) SetProperty(ref _calibMin, (ushort)(CalibMax - 2));
+                else if (value >= CalibMax) SetProperty(ref _calibMin, (ushort)(CalibMax - 2));
                 else SetProperty(ref _calibMin, value);
 
                 if (!IsCalibCenterUnlocked)
@@ -83,8 +83,8 @@ namespace FreeJoyConfigurator
             }
             set
             {
-                //if (value <= CalibMin) SetProperty(ref _calibMax, (ushort)(CalibMin + 2));
-                if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (ushort)(CalibCenter + 1));
+                if (value <= CalibMin) SetProperty(ref _calibMax, (ushort)(CalibMin + 2));
+                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (ushort)(CalibCenter + 1));
                 else if (value > 4095) SetProperty(ref _calibMax, (ushort) 4095);
                 else SetProperty(ref _calibMax, value);
 

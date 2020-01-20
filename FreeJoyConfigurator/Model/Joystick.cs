@@ -275,12 +275,16 @@ namespace FreeJoyConfigurator
                 ct = ts.Token;
                 _calibrationTask = Task.Factory.StartNew(() =>
                 {
-                    AxisConfig.CalibMax = 0;
-                    AxisConfig.CalibMin = 4095;
+                    AxisConfig.CalibMax = RawValue;
+                    AxisConfig.CalibMin = RawValue;
                     while (true)
                     {
-                        if (ct.IsCancellationRequested) break;
-
+                        if (ct.IsCancellationRequested)
+                        {
+                            AxisConfig.IsCalibCenterUnlocked = true;
+                            AxisConfig.CalibCenter = RawValue;
+                            break;
+                        }
                         CalibrationTask();
                         //Thread.Sleep(10);
                     }

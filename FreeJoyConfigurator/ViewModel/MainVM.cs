@@ -232,6 +232,7 @@ namespace FreeJoyConfigurator
                         while (tmp.AxisToButtonsConfig[i].Points.Count > 13) tmp.AxisToButtonsConfig[i].Points.RemoveAt(0);
                     }
                     while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
+                    tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                     Config = tmp;
                 }
@@ -268,6 +269,7 @@ namespace FreeJoyConfigurator
                     while (tmp.AxisToButtonsConfig[i].Points.Count > 13) tmp.AxisToButtonsConfig[i].Points.RemoveAt(0);
                 }
                 while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
+                tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                 Config = tmp;
 

@@ -113,14 +113,14 @@ namespace FreeJoyConfigurator.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;?xml version=&quot;1.0&quot;?&gt;
         ///&lt;DeviceConfig xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
-        ///  &lt;Firmware_Version&gt;257&lt;/Firmware_Version&gt;
+        ///  &lt;Firmware_Version&gt;258&lt;/Firmware_Version&gt;
         ///  &lt;Device_Name&gt;FreeJoy&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&amp;#x0;&lt;/Device_Name&gt;
-        ///  &lt;Button_Debounce_Time&gt;50&lt;/Button_Debounce_Time&gt;
-        ///  &lt;Toggle_Press_Time&gt;300&lt;/Toggle_Press_Time&gt;
-        ///  &lt;Encoder_Press_Time&gt;100&lt;/Encoder_Press_Time&gt;
+        ///  &lt;Button_Debounce_Time&gt;30&lt;/Button_Debounce_Time&gt;
+        ///  &lt;Toggle_Press_Time&gt;200&lt;/Toggle_Press_Time&gt;
+        ///  &lt;Encoder_Press_Time&gt;30&lt;/Encoder_Press_Time&gt;
         ///  &lt;Exchange_Period&gt;2&lt;/Exchange_Period&gt;
-        ///  &lt;Pin_Config&gt;AxisAnalog&lt;/Pin_Config&gt;
-        ///  &lt; [остаток строки не уместился]&quot;;.
+        ///  &lt;Pin_Config&gt;NotUsed&lt;/Pin_Config&gt;
+        ///  &lt;Pin_ [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string default_config {
             get {
