@@ -76,7 +76,7 @@ namespace FreeJoyConfigurator
             int prevData = -1;
             for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.ShiftRegistersConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.ShiftReg_CS)
+                if (Config.PinConfig[i] == PinType.ShiftReg_LATCH)
                 {
                     for (int j = prevData + 1; j < Config.PinConfig.Count; j++)
                     {

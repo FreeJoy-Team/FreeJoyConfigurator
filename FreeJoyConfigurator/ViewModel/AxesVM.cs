@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace FreeJoyConfigurator
@@ -17,6 +19,8 @@ namespace FreeJoyConfigurator
         private AxesCurvesVM _axesCurvesVM;
         private Joystick _joystick;
         private ObservableCollection<Axis> _axes;
+
+        
 
         public DeviceConfig Config
         {
@@ -61,6 +65,9 @@ namespace FreeJoyConfigurator
             AxesCurvesVM = new AxesCurvesVM(_config);
 
             Axes = new ObservableCollection<Axis>(_joystick.Axes);
+
+            
+
         }
 
         public void Update(DeviceConfig config)
@@ -70,6 +77,7 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < Config.AxisConfig.Count; i++)
             {
                 Axes[i].IsEnabled = false;
+                Axes[i].AxisConfig = Config.AxisConfig[i];
             }
 
             for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
@@ -83,5 +91,7 @@ namespace FreeJoyConfigurator
             }
             AxesCurvesVM.Update(Config);
         }
+
+        
     }
 }

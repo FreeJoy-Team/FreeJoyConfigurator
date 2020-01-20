@@ -20,8 +20,8 @@ namespace FreeJoyConfigurator
         private ushort _calibMin;
         private ushort _calibCenter;
         private ushort _calibMax;
-        //private bool _isAutocalib;
         private bool _isInverted;
+        private bool _isMagnetOffset;
         private ObservableCollection<Point> _curveShape;
         private byte _filterLevel;
         private bool _isOutEnabled;
@@ -40,7 +40,7 @@ namespace FreeJoyConfigurator
             {
                 if (value < 0) SetProperty(ref _calibMin, (ushort)0);
                 else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (ushort)(CalibCenter - 1));
-                else if (value >= CalibMax) SetProperty(ref _calibMin, (ushort)(CalibMax - 2));
+                //else if (value >= CalibMax) SetProperty(ref _calibMin, (ushort)(CalibMax - 2));
                 else SetProperty(ref _calibMin, value);
 
                 if (!IsCalibCenterUnlocked)
@@ -83,8 +83,8 @@ namespace FreeJoyConfigurator
             }
             set
             {
-                if (value <= CalibMin) SetProperty(ref _calibMax, (ushort)(CalibMin + 2));
-                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (ushort)(CalibCenter + 1));
+                //if (value <= CalibMin) SetProperty(ref _calibMax, (ushort)(CalibMin + 2));
+                if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (ushort)(CalibCenter + 1));
                 else if (value > 4095) SetProperty(ref _calibMax, (ushort) 4095);
                 else SetProperty(ref _calibMax, value);
 
@@ -95,18 +95,6 @@ namespace FreeJoyConfigurator
             }
         }
       
-        //public bool IsAutoCalib
-        //{
-        //    get
-        //    {
-        //        return _isAutocalib;
-        //    }
-        //    set
-        //    {
-        //        SetProperty(ref _isAutocalib, value);
-        //    }
-        //}
-      
         public bool IsInverted
         {
             get
@@ -116,6 +104,18 @@ namespace FreeJoyConfigurator
             set
             {
                 SetProperty(ref _isInverted, value);
+            }
+        }
+
+        public bool IsMagnetOffset
+        {
+            get
+            {
+                return _isMagnetOffset;
+            }
+            set
+            {
+                SetProperty(ref _isMagnetOffset, value);
             }
         }
 
@@ -188,8 +188,8 @@ namespace FreeJoyConfigurator
             _calibMin = 0;
             _calibCenter = 2047;
             _calibMax = 4095;
-            //_isAutocalib = false;
             _isInverted = false;
+            _isMagnetOffset = false;
             _isOutEnabled = true;
             _resolution = 12;
 
@@ -242,7 +242,7 @@ namespace FreeJoyConfigurator
         TLE501x_DATA,
         TLE501x_GEN,
 
-        ShiftReg_CS,
+        ShiftReg_LATCH,
         ShiftReg_DATA,
         
     };

@@ -161,7 +161,7 @@ namespace FreeJoyConfigurator
             // Shift registers
             for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.ShiftReg_CS)
+                if (Config.PinConfig[i] == PinType.ShiftReg_LATCH)
                 {
                     for (int j=0; j<Config.ShiftRegistersConfig[k].ButtonCnt; j++)
                     {

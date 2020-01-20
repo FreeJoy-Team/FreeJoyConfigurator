@@ -49,7 +49,7 @@ namespace FreeJoyConfigurator
 
             if (!IsConnected)
             {
-                Task.Run(() =>
+                var _hidTask = Task.Factory.StartNew(() =>
                 {
                     //while (hidDevice == null)
                     while (true)
