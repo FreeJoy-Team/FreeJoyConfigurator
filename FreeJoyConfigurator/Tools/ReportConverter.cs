@@ -35,6 +35,11 @@ namespace FreeJoyConfigurator
                     joystick.Axes[i].Value =  (ushort) (hr.Data[17 + 2 * i] << 8 |  hr.Data[16 + 2 * i]);
                 }
 
+                for (int i = 0; i < joystick.Povs.Count; i++)
+                {
+                    joystick.Povs[i].State =  hr.Data[32 + i];
+                }
+
                 for (int i = 0; i < joystick.Axes.Count; i++)
                 {
                     joystick.Axes[i].RawValue = (ushort)(hr.Data[37 + 2 * i] << 8 | hr.Data[36 + 2 * i]);
@@ -74,25 +79,29 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[0].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[0].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[0].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                config.AxisConfig[0].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[0].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[0].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[0].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[0].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[0].Resolution = hr.Data[21];
 
                 config.AxisConfig[1] = new AxisConfig();
                 config.AxisConfig[1].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[1].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[1].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[1].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                config.AxisConfig[1].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[1].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[1].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[1].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
+                config.AxisConfig[1].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[1].Resolution = hr.Data[51];
 
             }
             else if (hr.Data[0] == 3)
@@ -101,25 +110,29 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[2].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[2].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[2].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                config.AxisConfig[2].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[2].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[2].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[2].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[2].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[2].Resolution = hr.Data[21];
 
                 config.AxisConfig[3] = new AxisConfig();
                 config.AxisConfig[3].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[3].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[3].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[3].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                config.AxisConfig[3].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[3].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[3].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[3].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
-                }               
+                }
+                config.AxisConfig[3].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[3].Resolution = hr.Data[51];
             }
             else if (hr.Data[0] == 4)
             {
@@ -127,25 +140,29 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[4].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[4].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[4].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                config.AxisConfig[4].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[4].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[4].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[4].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[4].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[4].Resolution = hr.Data[21];
 
                 config.AxisConfig[5] = new AxisConfig();
                 config.AxisConfig[5].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[5].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[5].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[5].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                config.AxisConfig[5].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[5].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[5].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[5].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
+                config.AxisConfig[5].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[5].Resolution = hr.Data[51];
             }
             else if (hr.Data[0] == 5)
             {
@@ -153,25 +170,29 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
                 config.AxisConfig[6].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
                 config.AxisConfig[6].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
-                config.AxisConfig[6].IsAutoCalib = Convert.ToBoolean(hr.Data[7]);
+                config.AxisConfig[6].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[6].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[6].FilterLevel = hr.Data[9];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[6].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
+                config.AxisConfig[6].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
+                config.AxisConfig[6].Resolution = hr.Data[21];
 
                 config.AxisConfig[7] = new AxisConfig();
                 config.AxisConfig[7].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
                 config.AxisConfig[7].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
                 config.AxisConfig[7].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
-                config.AxisConfig[7].IsAutoCalib = Convert.ToBoolean(hr.Data[37]);
+                config.AxisConfig[7].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[7].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[7].FilterLevel = hr.Data[39];
                 for (int i = 0; i < 10; i++)
                 {
                     config.AxisConfig[7].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
+                config.AxisConfig[7].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
+                config.AxisConfig[7].Resolution = hr.Data[51];
             }
             else if (hr.Data[0] == 6)
             {
@@ -198,68 +219,75 @@ namespace FreeJoyConfigurator
                 }
 
                 // axes to buttons group 1
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
                     config.AxisToButtonsConfig[0].Points[i] = (sbyte)hr.Data[5 + i];
                 }
-                config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[17];
-                config.AxisToButtonsConfig[0].IsAnalogEnabled = (hr.Data[18] > 0) ? true : false;
+                config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[18];
+                config.AxisToButtonsConfig[0].IsEnabled = (hr.Data[19] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[1].Points[i] = (sbyte)hr.Data[19 + i];
+                    config.AxisToButtonsConfig[1].Points[i] = (sbyte)hr.Data[20 + i];
                 }
-                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[31];
-                config.AxisToButtonsConfig[1].IsAnalogEnabled = (hr.Data[32] > 0) ? true : false;
+                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[33];
+                config.AxisToButtonsConfig[1].IsEnabled = (hr.Data[34] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[2].Points[i] = (sbyte)hr.Data[33 + i];
+                    config.AxisToButtonsConfig[2].Points[i] = (sbyte)hr.Data[35 + i];
                 }
-                config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[45];
-                config.AxisToButtonsConfig[2].IsAnalogEnabled = (hr.Data[46] > 0) ? true : false;
+                config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[48];
+                config.AxisToButtonsConfig[2].IsEnabled = (hr.Data[49] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[3].Points[i] = (sbyte)hr.Data[47 + i];
+                    config.AxisToButtonsConfig[3].Points[i] = (sbyte)hr.Data[50 + i];
                 }
-                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[59];
-                config.AxisToButtonsConfig[3].IsAnalogEnabled = (hr.Data[60] > 0) ? true : false;
+                
+                
             }
             else if (hr.Data[0] == 9)
             {
                 // axes to buttons group 2
-                for (int i = 0; i < 12; i++)
-                {
-                    config.AxisToButtonsConfig[4].Points[i] = (sbyte)hr.Data[1 + i];
-                }
-                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[13];
-                config.AxisToButtonsConfig[4].IsAnalogEnabled = (hr.Data[14] > 0) ? true : false;
+                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[1];
+                config.AxisToButtonsConfig[3].IsEnabled = (hr.Data[2] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[5].Points[i] = (sbyte)hr.Data[15 + i];
+                    config.AxisToButtonsConfig[4].Points[i] = (sbyte)hr.Data[3 + i];
                 }
-                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[27];
-                config.AxisToButtonsConfig[5].IsAnalogEnabled = (hr.Data[28] > 0) ? true : false;
+                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[16];
+                config.AxisToButtonsConfig[4].IsEnabled = (hr.Data[17] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[6].Points[i] = (sbyte)hr.Data[29 + i];
+                    config.AxisToButtonsConfig[5].Points[i] = (sbyte)hr.Data[18 + i];
                 }
-                config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[41];
-                config.AxisToButtonsConfig[6].IsAnalogEnabled = (hr.Data[42] > 0) ? true : false;
+                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[31];
+                config.AxisToButtonsConfig[5].IsEnabled = (hr.Data[32] > 0) ? true : false;
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[7].Points[i] = (sbyte)hr.Data[43 + i];
+                    config.AxisToButtonsConfig[6].Points[i] = (sbyte)hr.Data[33 + i];
                 }
-                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[55];
-                config.AxisToButtonsConfig[7].IsAnalogEnabled = (hr.Data[56] > 0) ? true : false;
+                config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[46];
+                config.AxisToButtonsConfig[6].IsEnabled = (hr.Data[47] > 0) ? true : false;
+
+                for (int i = 0; i < 13; i++)
+                {
+                    config.AxisToButtonsConfig[7].Points[i] = (sbyte)hr.Data[48 + i];
+                }
+                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[61];
+                config.AxisToButtonsConfig[7].IsEnabled = (hr.Data[62] > 0) ? true : false;
             }
             else if (hr.Data[0] == 10)
             {
-
+                for (int i = 0; i < 4; i++)
+                {
+                    config.ShiftRegistersConfig[i].Type = (ShiftRegisterType)hr.Data[4 * i + 1];
+                    config.ShiftRegistersConfig[i].ButtonCnt = (byte)hr.Data[4 * i + 2];
+                }
             }
         }
 
@@ -269,6 +297,8 @@ namespace FreeJoyConfigurator
             byte[] buffer = new byte[64];
             byte[] chars;
 
+
+            // Report 1
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = (byte) 0x01;
             buffer[2] = (byte)(config.FirmwareVersion & 0xFF);
@@ -289,6 +319,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 2
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x02;
@@ -298,28 +329,34 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[0].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[0].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[0].CalibMax >> 8);            
-            buffer[8] = (byte)(config.AxisConfig[0].IsAutoCalib ? 0x01 : 0x00);
+            buffer[8] = (byte)(config.AxisConfig[0].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[0].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[0].FilterLevel);
             for (int i=0; i<10; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[0].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[0].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[0].Resolution);
+
             buffer[32] = (byte)(config.AxisConfig[1].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[1].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[1].CalibCenter & 0xFF);
             buffer[35] = (byte)(config.AxisConfig[1].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[1].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[1].CalibMax >> 8);            
-            buffer[38] = (byte)(config.AxisConfig[1].IsAutoCalib ? 0x01 : 0x00);
+            buffer[38] = (byte)(config.AxisConfig[1].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[1].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[1].FilterLevel);
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[1].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[1].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[1].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 3
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x03;
@@ -329,28 +366,34 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[2].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[2].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[2].CalibMax >> 8);
-            buffer[8] = (byte)(config.AxisConfig[2].IsAutoCalib ? 0x01 : 0x00);
+            buffer[8] = (byte)(config.AxisConfig[2].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[2].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[2].FilterLevel);
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[2].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[2].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[2].Resolution);
+
             buffer[32] = (byte)(config.AxisConfig[3].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[3].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[3].CalibCenter & 0xFF);
             buffer[35] = (byte)(config.AxisConfig[3].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[3].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[3].CalibMax >> 8);
-            buffer[38] = (byte)(config.AxisConfig[3].IsAutoCalib ? 0x01 : 0x00);
+            buffer[38] = (byte)(config.AxisConfig[3].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[3].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[3].FilterLevel);
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[3].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[3].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[3].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 4
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x04;
@@ -360,28 +403,34 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[4].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[4].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[4].CalibMax >> 8);
-            buffer[8] = (byte)(config.AxisConfig[4].IsAutoCalib ? 0x01 : 0x00);
+            buffer[8] = (byte)(config.AxisConfig[4].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[4].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[4].FilterLevel);
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[4].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[4].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[4].Resolution);
+            
             buffer[32] = (byte)(config.AxisConfig[5].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[5].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[5].CalibCenter & 0xFF);
             buffer[35] = (byte)(config.AxisConfig[5].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[5].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[5].CalibMax >> 8);
-            buffer[38] = (byte)(config.AxisConfig[5].IsAutoCalib ? 0x01 : 0x00);
+            buffer[38] = (byte)(config.AxisConfig[5].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[5].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[5].FilterLevel);
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[5].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[5].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[5].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 5
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x05;
@@ -391,28 +440,34 @@ namespace FreeJoyConfigurator
             buffer[5] = (byte)(config.AxisConfig[6].CalibCenter >> 8);
             buffer[6] = (byte)(config.AxisConfig[6].CalibMax & 0xFF);
             buffer[7] = (byte)(config.AxisConfig[6].CalibMax >> 8);
-            buffer[8] = (byte)(config.AxisConfig[6].IsAutoCalib ? 0x01 : 0x00);
+            buffer[8] = (byte)(config.AxisConfig[6].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[6].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[6].FilterLevel);
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[6].CurveShape[i].Y;
             }
+            buffer[21] = (byte)(config.AxisConfig[6].IsOutEnabled ? 0x01 : 0x00);
+            buffer[22] = (byte)(config.AxisConfig[6].Resolution);
+
             buffer[32] = (byte)(config.AxisConfig[7].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[7].CalibMin >> 8);
             buffer[34] = (byte)(config.AxisConfig[7].CalibCenter & 0xFF);
             buffer[35] = (byte)(config.AxisConfig[7].CalibCenter >> 8);
             buffer[36] = (byte)(config.AxisConfig[7].CalibMax & 0xFF);
             buffer[37] = (byte)(config.AxisConfig[7].CalibMax >> 8);
-            buffer[38] = (byte)(config.AxisConfig[7].IsAutoCalib ? 0x01 : 0x00);
+            buffer[38] = (byte)(config.AxisConfig[7].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[7].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[7].FilterLevel);
             for (int i = 0; i < 10; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[7].CurveShape[i].Y;
             }
+            buffer[51] = (byte)(config.AxisConfig[7].IsOutEnabled ? 0x01 : 0x00);
+            buffer[52] = (byte)(config.AxisConfig[7].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 6
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x06;
@@ -422,6 +477,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 7
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x07;
@@ -431,6 +487,7 @@ namespace FreeJoyConfigurator
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 8
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x08;
@@ -439,67 +496,76 @@ namespace FreeJoyConfigurator
                 buffer[i + 2] = (byte)config.ButtonConfig[i + 124].Type;
             }
             // axes to buttons 1
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 13; i++)
             {
                 buffer[i + 6] = (byte)config.AxisToButtonsConfig[0].Points[i];
             }
-            buffer[18] = (byte)config.AxisToButtonsConfig[0].ButtonsCnt;
-            buffer[19] = (byte)(config.AxisToButtonsConfig[0].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[19] = (byte)config.AxisToButtonsConfig[0].ButtonsCnt;
+            buffer[20] = (byte)(config.AxisToButtonsConfig[0].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 20] = (byte)config.AxisToButtonsConfig[1].Points[i];
+                buffer[i + 21] = (byte)config.AxisToButtonsConfig[1].Points[i];
             }
-            buffer[32] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
-            buffer[33] = (byte)(config.AxisToButtonsConfig[1].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[34] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
+            buffer[35] = (byte)(config.AxisToButtonsConfig[1].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 34] = (byte)config.AxisToButtonsConfig[2].Points[i];
+                buffer[i + 36] = (byte)config.AxisToButtonsConfig[2].Points[i];
             }
-            buffer[46] = (byte)config.AxisToButtonsConfig[2].ButtonsCnt;
-            buffer[47] = (byte)(config.AxisToButtonsConfig[2].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[49] = (byte)config.AxisToButtonsConfig[2].ButtonsCnt;
+            buffer[50] = (byte)(config.AxisToButtonsConfig[2].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 48] = (byte)config.AxisToButtonsConfig[3].Points[i];
+                buffer[i + 51] = (byte)config.AxisToButtonsConfig[3].Points[i];
             }
-            buffer[60] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
-            buffer[61] = (byte)(config.AxisToButtonsConfig[3].IsAnalogEnabled ? 0x01 : 0x00);
-
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 9
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x09;
 
             // axes to buttons
-            for (int i = 0; i < 12; i++)
+            buffer[2] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
+            buffer[3] = (byte)(config.AxisToButtonsConfig[3].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 2] = (byte)config.AxisToButtonsConfig[4].Points[i];
+                buffer[i + 4] = (byte)config.AxisToButtonsConfig[4].Points[i];
             }
-            buffer[14] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
-            buffer[15] = (byte)(config.AxisToButtonsConfig[4].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[17] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
+            buffer[18] = (byte)(config.AxisToButtonsConfig[4].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 16] = (byte)config.AxisToButtonsConfig[5].Points[i];
+                buffer[i + 19] = (byte)config.AxisToButtonsConfig[5].Points[i];
             }
-            buffer[28] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
-            buffer[29] = (byte)(config.AxisToButtonsConfig[5].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[32] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
+            buffer[33] = (byte)(config.AxisToButtonsConfig[5].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 30] = (byte)config.AxisToButtonsConfig[6].Points[i];
+                buffer[i + 34] = (byte)config.AxisToButtonsConfig[6].Points[i];
             }
-            buffer[42] = (byte)config.AxisToButtonsConfig[6].ButtonsCnt;
-            buffer[43] = (byte)(config.AxisToButtonsConfig[6].IsAnalogEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 12; i++)
+            buffer[47] = (byte)config.AxisToButtonsConfig[6].ButtonsCnt;
+            buffer[48] = (byte)(config.AxisToButtonsConfig[6].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i + 44] = (byte)config.AxisToButtonsConfig[7].Points[i];
+                buffer[i + 49] = (byte)config.AxisToButtonsConfig[7].Points[i];
             }
-            buffer[56] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
-            buffer[57] = (byte)(config.AxisToButtonsConfig[7].IsAnalogEnabled ? 0x01 : 0x00);
+            buffer[62] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
+            buffer[63] = (byte)(config.AxisToButtonsConfig[7].IsEnabled ? 0x01 : 0x00);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
+            // Report 10
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x0A;
+
+            for (int i = 0; i < 4; i++)
+            {
+                buffer[i * 4 + 2] = (byte) config.ShiftRegistersConfig[i].Type;
+                buffer[i * 4 + 3] = (byte) config.ShiftRegistersConfig[i].ButtonCnt;
+                buffer[i * 4 + 4] = 0;
+                buffer[i * 4 + 5] = 0;
+            }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             return hidReports;

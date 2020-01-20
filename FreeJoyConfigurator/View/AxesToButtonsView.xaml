@@ -29,7 +29,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="1" Grid.Column="0" Grid.Row="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="0" Content="1" 
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}" 
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[0].RangeItems}"
@@ -40,9 +43,12 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[0].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
 
-        <TextBlock Text="2" Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="1" Content="2" 
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}" 
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[1].RangeItems}"  
@@ -52,9 +58,12 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[1].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
 
-        <TextBlock Text="3" Grid.Column="0" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="2" Content="3" 
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}" 
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[2].RangeItems}"  
@@ -64,9 +73,12 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[2].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
 
-        <TextBlock Text="4" Grid.Column="0" Grid.Row="3" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="3" Content="4"
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}" 
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[3].RangeItems}"  
@@ -76,9 +88,12 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[3].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
 
-        <TextBlock Text="5" Grid.Column="0" Grid.Row="4" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="4" Content="5" 
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}" 
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[4].RangeItems}"  
@@ -88,9 +103,12 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[4].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
 
-        <TextBlock Text="6" Grid.Column="0" Grid.Row="5" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="5" Content="6" 
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[5].RangeItems}"  
@@ -100,9 +118,12 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[5].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
 
-        <TextBlock Text="7" Grid.Column="0" Grid.Row="6" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="6" Content="7" 
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}" 
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[6].RangeItems}"  
@@ -112,9 +133,12 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[6].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
 
-        <TextBlock Text="8" Grid.Column="0" Grid.Row="7" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox  Grid.Column="0" Grid.Row="7" Content="8" 
+                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}" 
+                   IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsAllowed}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="7" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[7].RangeItems}"  
@@ -124,7 +148,7 @@
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[7].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"
-                                            Minimum="2" Maximum="10"/>
+                                            Minimum="2" Maximum="12"/>
     </Grid>
 
 

@@ -6,15 +6,30 @@ using System.Linq;
 using System.Text;
 using HidLibrary;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Prism.Commands;
+using System.Threading;
 
 namespace FreeJoyConfigurator
 {
     public class Joystick : BindableBase
     {
         private DeviceConfig _config;
-        
+
+        public DeviceConfig Config
+        {
+            get
+            {
+                return _config;
+            }
+            set
+            {
+                SetProperty(ref _config, value);
+            }
+        }
         public ObservableCollection<Axis> Axes { get; private set; }
         public ObservableCollection<Button> Buttons { get; private set; }
+        public ObservableCollection<Pov> Povs { get; private set; }
 
         public Joystick(DeviceConfig config)
         {
@@ -22,7 +37,7 @@ namespace FreeJoyConfigurator
             Axes = new ObservableCollection<Axis>();
             for (int i = 0; i < 8; i++)
             {
-                Axes.Add(new Axis(i+1));
+                Axes.Add(new Axis(i+1, Config.AxisConfig[i]));
                 if(config.PinConfig[i] == PinType.AxisAnalog)
                 {
                     Axes[i].IsEnabled = true;
@@ -34,6 +49,12 @@ namespace FreeJoyConfigurator
             {
                 Buttons.Add(new Button(i+1));
             }
+            Povs = new ObservableCollection<Pov>();
+            for (int i=0; i<4; i++)
+            {
+                Povs.Add(new Pov(0xFF, i));
+            }
+
             Hid.PacketReceived += PacketReceivedEventHandler;
         }
 
@@ -189,8 +210,24 @@ namespace FreeJoyConfigurator
         private ushort _value;
         private ushort _rawValue;
         private bool _isEnabled;
+        private AxisConfig _axisConfig;
+        private bool _isCalibrating;
+        private Task _calibrationTask;
+        private CancellationTokenSource ts;
+        private CancellationToken ct;
 
-        public int Number {get; private set;}
+        public string CalibrationString
+        {
+            get
+            {
+                if (_isCalibrating) return "Stop calibration";
+                else return "Start calibration";
+            }
+        }
+
+        public DelegateCommand CalibrateCommand { get; }
+
+        public int Number { get; private set; }
         public bool IsEnabled
         {
             get { return _isEnabled; }
@@ -208,25 +245,91 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _rawValue, value); }
         }
 
-        public Axis(int number)
+        public AxisConfig AxisConfig
         {
+            get { return _axisConfig; }
+            set { SetProperty(ref _axisConfig, value); }
+        }
+
+        public Axis(int number, AxisConfig axisConfig)
+        {
+            _axisConfig = axisConfig;
+            _isCalibrating = false;
             Number = number;
             _value = 0;
             _rawValue = 0;
+
+            CalibrateCommand = new DelegateCommand(() => Calibrate());
         }
 
-        public Axis (ushort value, int number)
+
+        public void Calibrate()
         {
-            Number = number;
-            _value = value;
-            _rawValue = 0;
+            _isCalibrating = !_isCalibrating;
+            RaisePropertyChanged(nameof(CalibrationString));
+
+            if (_isCalibrating)
+            {
+                // start task
+                ts = new CancellationTokenSource();
+                ct = ts.Token;
+                _calibrationTask = Task.Factory.StartNew(() =>
+                {
+                    AxisConfig.CalibMax = RawValue;
+                    AxisConfig.CalibMin = RawValue;
+                    while (true)
+                    {
+                        if (ct.IsCancellationRequested)
+                        {
+                            AxisConfig.IsCalibCenterUnlocked = true;
+                            AxisConfig.CalibCenter = RawValue;
+                            break;
+                        }
+                        CalibrationTask();
+                        //Thread.Sleep(10);
+                    }
+                });
+
+            }
+            else
+            {
+                // stop task
+                ts.Cancel();
+            }
         }
 
-        public Axis(ushort value, ushort rawValue, int number)
-        {
-            Number = number;
-            _value = value;
-            _rawValue = rawValue;
+        private void CalibrationTask()
+        {    
+                    if (AxisConfig.CalibMax < RawValue)
+                    {
+                        AxisConfig.CalibMax = RawValue;
+                    }
+                    if (AxisConfig.CalibMin > RawValue)
+                    {
+                        AxisConfig.CalibMin = RawValue;
+                    }     
         }
+
     }
+
+    public class Pov : BindableBase
+    {
+            private byte _state;
+            public int Number { get; private set; }
+
+            public byte State
+            {
+                get { return _state; }
+                set { SetProperty(ref _state, value); }
+            }
+
+            public Pov(byte state, int number)
+            {
+                Number = number;
+                _state = state;
+            }
+        
+    }
+
+
 }

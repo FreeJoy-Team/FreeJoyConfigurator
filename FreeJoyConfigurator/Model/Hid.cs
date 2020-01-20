@@ -16,18 +16,20 @@ namespace FreeJoyConfigurator
         private const int pid = 0x5750;
 
         private static HidDevice hidDevice { get; set; }
+        public static List<HidDevice> HidDevicesList { get; set; }
 
         public delegate void PacketReceivedEventHandler(HidReport hr);
         public delegate void PacketSentEventHandler(HidReport hr);
         public delegate void DeviceAddedEventHandler(HidDevice hd);
         public delegate void DeviceRemovedEventHandler(HidDevice hd);
+        public delegate void DeviceListUpdatedEventHandler();
 
         public static event PacketReceivedEventHandler PacketReceived;
         public static event PacketSentEventHandler PacketSent;
         public static event DeviceAddedEventHandler DeviceAdded;
         public static event DeviceRemovedEventHandler DeviceRemoved;
+        public static event DeviceListUpdatedEventHandler DeviceListUpdated;
 
-        
         public static bool IsConnected
         {
             get
@@ -40,29 +42,45 @@ namespace FreeJoyConfigurator
         }
         #endregion
 
-        static public void Connect()
+        static public void Start()
         {
+            int lastDeviceCnt = 0;
+            HidDevicesList = new List<HidDevice>();
+
             if (!IsConnected)
             {
-                Task.Run(() =>
+                var _hidTask = Task.Factory.StartNew(() =>
                 {
-                    while (hidDevice == null)
+                    //while (hidDevice == null)
+                    while (true)
                     {
-                        hidDevice = HidDevices.Enumerate(vid, pid).FirstOrDefault();
-                        Thread.Sleep(500);
-                    }
+                        HidDevicesList = HidDevices.Enumerate(vid, pid).ToList();
 
-                    if (!hidDevice.IsOpen)
-                    {
-                        hidDevice.OpenDevice();
+                        if (HidDevicesList.Count != lastDeviceCnt)
+                            DeviceListUpdated?.Invoke();
 
-                        hidDevice.Inserted += HidDeviceAddedEventHandler;
-                        hidDevice.Removed += HidDeviceRemovedEventHandler;
-                        hidDevice.MonitorDeviceEvents = true;
-                    }
+                        lastDeviceCnt = HidDevicesList.Count;
+                        Thread.Sleep(50);
+                    } 
                 });
             }
         }
+
+        static public void Connect(HidDevice device)
+        {
+            hidDevice = device;
+
+            if (!hidDevice.IsOpen)
+            {
+                hidDevice.OpenDevice();
+
+                hidDevice.Inserted += HidDeviceAddedEventHandler;
+                hidDevice.Removed += HidDeviceRemovedEventHandler;
+                hidDevice.MonitorDeviceEvents = true;
+            }
+
+        }
+
 
         static public ObservableCollection<HidDevice> GetDevices()
         {

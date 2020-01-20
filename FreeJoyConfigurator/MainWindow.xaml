@@ -8,7 +8,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="FreeJoy Configurator" MinHeight="800" Height="800" MinWidth="1060" Width="1060">
+        Title="{Binding Version}" MinHeight="800" Height="800" MinWidth="1060" Width="1060">
 
     <Window.DataContext>
         <local:MainVM/>
@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="0.22*" />
+            <RowDefinition Height="0.25*" />
         </Grid.RowDefinitions>
 
         <!--Row 0-->
@@ -43,12 +43,18 @@
                 </Grid.RowDefinitions>
 
                 <!--Row 0-->
-                <Label Name="Devices_ComboBox" Grid.Row="0" Content="{Binding HidName, Mode=OneWay}"
+                <ComboBox Name="Devices_ComboBox" Grid.Row="0" 
+                          ItemsSource="{Binding HidDevices, Mode=OneWay}" 
+                          SelectedIndex="{Binding SelectedDeviceIndex}"
                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,10,10,10" />
 
                 <!--Row 1-->
                 <TextBlock Name="ConnectionStatus_TextBlock" Grid.Row="1"  TextAlignment="Center" 
                     Text="{Binding ConnectionStatusVM}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="19" Width="125"/>
+
+                <!--Row 2-->
+                <TextBlock Name="DeviceVersion_TextBlock" Grid.Row="2"  TextAlignment="Center" 
+                    Text="{Binding DeviceFirmwareVersionVM}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="19" Width="125"/>
 
                 <!--Row 3-->
                 <Button Name="Button_ReadConfig" Grid.Row="3"  Content="Read Config from Device"
@@ -119,9 +125,9 @@
                 <local:AxesToButtonsView/>
             </TabItem>
 
-            <!--<TabItem Header="Shift Registers">
+            <TabItem Header="Shift Registers">
                 <local:ShiftRegistersView/>
-            </TabItem>-->
+            </TabItem>
 
         </TabControl>
 

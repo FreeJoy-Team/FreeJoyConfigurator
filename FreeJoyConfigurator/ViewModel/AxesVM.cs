@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace FreeJoyConfigurator
@@ -17,6 +19,8 @@ namespace FreeJoyConfigurator
         private AxesCurvesVM _axesCurvesVM;
         private Joystick _joystick;
         private ObservableCollection<Axis> _axes;
+
+        
 
         public DeviceConfig Config
         {
@@ -61,20 +65,33 @@ namespace FreeJoyConfigurator
             AxesCurvesVM = new AxesCurvesVM(_config);
 
             Axes = new ObservableCollection<Axis>(_joystick.Axes);
+
+            
+
         }
 
         public void Update(DeviceConfig config)
         {
             Config = config;
-            for (int i = 0; i < 8; i++)
+
+            for (int i = 0; i < Config.AxisConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog || Config.PinConfig[i] == PinType.AxisToButtons)
+                Axes[i].IsEnabled = false;
+                Axes[i].AxisConfig = Config.AxisConfig[i];
+            }
+
+            for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.AxisAnalog || 
+                    Config.PinConfig[i] == PinType.TLE501x_CS)
                 {
-                    Axes[i].IsEnabled = true;
+                    Axes[k++].IsEnabled = true;
                 }
-                else Axes[i].IsEnabled = false;
+                
             }
             AxesCurvesVM.Update(Config);
         }
+
+        
     }
 }

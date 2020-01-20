@@ -15,11 +15,18 @@ namespace FreeJoyConfigurator
         private ObservableContentCollection<RangeItem> m_rangeItems;
         private int _buttonCnt;
         private bool _isEnabled;
+        private bool _isAllowed;
 
         public bool IsEnabled
         {
             get { return _isEnabled; }
             set { SetProperty(ref _isEnabled, value); }
+        }
+
+        public bool IsAllowed
+        {
+            get { return _isAllowed; }
+            set { SetProperty(ref _isAllowed, value); }
         }
 
         public ObservableContentCollection<RangeItem> RangeItems
@@ -34,26 +41,6 @@ namespace FreeJoyConfigurator
             set
             {
                 SetProperty(ref _buttonCnt, value);
-
-                //while (_buttonCnt > RangeItems.Count)
-                //{
-                //    for (int i=0; i<RangeItems.Count; i++)
-                //    {
-                //        RangeItems[i].From = i * (100 / (RangeItems.Count + 1));
-                //        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count + 1));
-                //    }
-                //    RangeItems.Add(new RangeItem { From = RangeItems.Last().To, To = 100 });
-                //}
-                //while (_buttonCnt < RangeItems.Count)
-                //{                    
-                //    for (int i = RangeItems.Count-2; i >=0; i--)
-                //    {                       
-                //        RangeItems[i].From = i * (100 / (RangeItems.Count-1));
-                //        RangeItems[i].To = (i + 1) * (100 / (RangeItems.Count-1));
-                //    }
-                //    RangeItems[RangeItems.Count - 1].To = 100;
-                //    RangeItems.Remove(RangeItems.Last());
-                //}
             }
         }
 
@@ -61,8 +48,6 @@ namespace FreeJoyConfigurator
 
         public AxisToButtons ()
         {
-            //ranges = new ObservableCollection<RangeItem>();
-            //for (int i = 0; i < 10; i++) ranges.Add(new RangeItem());
             m_rangeItems = new ObservableContentCollection<RangeItem>
                             {
                                 new RangeItem {From = 0, To = 50},
@@ -71,6 +56,7 @@ namespace FreeJoyConfigurator
 
             _buttonCnt = m_rangeItems.Count;
             _isEnabled = false;
+            _isAllowed = false;
         }
 
     }

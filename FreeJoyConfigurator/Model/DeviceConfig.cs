@@ -20,10 +20,13 @@ namespace FreeJoyConfigurator
         private ushort _calibMin;
         private ushort _calibCenter;
         private ushort _calibMax;
-        private bool _isAutocalib;
         private bool _isInverted;
+        private bool _isMagnetOffset;
         private ObservableCollection<Point> _curveShape;
         private byte _filterLevel;
+        private bool _isOutEnabled;
+        private byte _resolution;
+        
 
         private bool _isCalibCenterUnlocked;
 
@@ -42,7 +45,7 @@ namespace FreeJoyConfigurator
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
             }
         }
@@ -68,7 +71,7 @@ namespace FreeJoyConfigurator
                 }
                 else
                 {
-                    SetProperty(ref _calibCenter, (ushort)((CalibMax - CalibMin) / 2));
+                    SetProperty(ref _calibCenter, (ushort)((CalibMax - CalibMin) / 2 + CalibMin));
                 }
             }
         }
@@ -87,20 +90,8 @@ namespace FreeJoyConfigurator
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
-            }
-        }
-      
-        public bool IsAutoCalib
-        {
-            get
-            {
-                return _isAutocalib;
-            }
-            set
-            {
-                SetProperty(ref _isAutocalib, value);
             }
         }
       
@@ -113,6 +104,18 @@ namespace FreeJoyConfigurator
             set
             {
                 SetProperty(ref _isInverted, value);
+            }
+        }
+
+        public bool IsMagnetOffset
+        {
+            get
+            {
+                return _isMagnetOffset;
+            }
+            set
+            {
+                SetProperty(ref _isMagnetOffset, value);
             }
         }
 
@@ -140,6 +143,30 @@ namespace FreeJoyConfigurator
             }
         }
 
+        public bool IsOutEnabled
+        {
+            get
+            {
+                return _isOutEnabled;
+            }
+            set
+            {
+                SetProperty(ref _isOutEnabled, value);
+            }
+        }
+
+        public byte Resolution
+        {
+            get
+            {
+                return _resolution;
+            }
+            set
+            {
+                SetProperty(ref _resolution, value);
+            }
+        }
+
         public bool IsCalibCenterUnlocked
         {
             get
@@ -161,8 +188,10 @@ namespace FreeJoyConfigurator
             _calibMin = 0;
             _calibCenter = 2047;
             _calibMax = 4095;
-            _isAutocalib = false;
             _isInverted = false;
+            _isMagnetOffset = false;
+            _isOutEnabled = true;
+            _resolution = 12;
 
             _curveShape = new ObservableCollection<Point>();
             for (int i = 0; i < 10; i++) _curveShape.Add(new Point(i, 0));
@@ -205,10 +234,17 @@ namespace FreeJoyConfigurator
         ButtonColumn,
 
         AxisAnalog,
-        AxisToButtons,
+//        AxisToButtons,
 
-        HC165_LATCH,
-        HC165_DATA,
+        SPI_SCK = 7,
+
+        TLE501x_CS,
+        TLE501x_DATA,
+        TLE501x_GEN,
+
+        ShiftReg_LATCH,
+        ShiftReg_DATA,
+        
     };
 
 
@@ -274,7 +310,7 @@ namespace FreeJoyConfigurator
     {
         private ObservableCollection<sbyte> _points;
         private byte _buttonsCnt;
-        private bool _isAnalogEnabled;
+        private bool _isEnabled;
 
         public ObservableCollection<sbyte> Points
         {
@@ -288,31 +324,70 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _buttonsCnt, value); }
         }
 
-        public bool IsAnalogEnabled
+        public bool IsEnabled
         {
-            get { return _isAnalogEnabled; }
-            set { SetProperty(ref _isAnalogEnabled, value); }
+            get { return _isEnabled; }
+            set { SetProperty(ref _isEnabled, value); }
         }
 
         public AxisToButtonsConfig()
         {
             _points = new ObservableCollection<sbyte>();
-            for (int i = 0; i < 12; i++) _points.Add(new sbyte());
+            for (int i = 0; i < 13; i++) _points.Add(new sbyte());
 
             _points[0] = 0;
             _points[1] = 50;
             _points[2] = 100;
 
             _buttonsCnt = 2;
-            _isAnalogEnabled = true;
+            _isEnabled = false;
         }
     }
 
+    public enum ShiftRegisterType
+    {
+        HC165 = 0,
+        CD4021 = 1,
+    };
+
     public class ShiftRegisterConfig : BindableBase
     {
-        private short buttonCnt;
-        private byte latchPin;
-        private byte clockPin;
+        private ShiftRegisterType _type;
+        private short _buttonCnt;
+        //private byte _selectPin;
+        //private byte _dataPin;
+
+        public ShiftRegisterType Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
+
+        public short ButtonCnt
+        {
+            get { return _buttonCnt; }
+            set { SetProperty(ref _buttonCnt, value); }
+        }
+
+        //public byte LatchPin
+        //{
+        //    get { return _selectPin; }
+        //    set { SetProperty(ref _selectPin, value); }
+        //}
+        //public byte ClockPin
+
+        //{
+        //    get { return _dataPin; }
+        //    set { SetProperty(ref _dataPin, value); }
+        //}
+
+        public ShiftRegisterConfig()
+        {
+            _type = ShiftRegisterType.CD4021;
+            _buttonCnt = 0;
+            //_selectPin = 0xFF;
+            //_dataPin = 0xFF;
+        }
     }
 
     public class DeviceConfig : BindableBase
@@ -337,7 +412,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
         [XmlElement("AxisToButtons_Config")]
         public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
-
+        [XmlElement("ShitRegisters_Config")]
+        public ObservableCollection<ShiftRegisterConfig> ShiftRegistersConfig { get; set; }
 
         public DeviceConfig()
         {
@@ -358,6 +434,9 @@ namespace FreeJoyConfigurator
 
             AxisToButtonsConfig = new ObservableCollection<AxisToButtonsConfig>();
             for (int i = 0; i < 8; i++) AxisToButtonsConfig.Add(new AxisToButtonsConfig());
+
+            ShiftRegistersConfig = new ObservableCollection<ShiftRegisterConfig>();
+            for (int i = 0; i < 4; i++) ShiftRegistersConfig.Add(new ShiftRegisterConfig());
         }
     }
         
