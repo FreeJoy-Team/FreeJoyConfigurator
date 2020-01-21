@@ -8,7 +8,9 @@ FreeJoy Configurator is a vusial utility allowing you to setup your [FreeJoy](ht
 
 * Pin mapping configuration
 * Digital inputs configuration (buttons, toggle switches, encoders, etc.)
-* Analog input configuration (calibration, smoothing, curve shapes)
+* Analog input configuration (calibration, smoothing, curve shapes, etc.)
+* Axes to buttons configuration
+* Shift registers confgiguration
 * Saving and loading configuration to file
 * Flashing device firmware
 
