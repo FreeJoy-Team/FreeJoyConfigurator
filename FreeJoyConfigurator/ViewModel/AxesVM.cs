@@ -80,15 +80,27 @@ namespace FreeJoyConfigurator
                 Axes[i].AxisConfig = Config.AxisConfig[i];
             }
 
-            for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
+            int k = 0;
+            for (int i = 0; i < Config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog || 
-                    Config.PinConfig[i] == PinType.TLE501x_CS)
+                if (Config.PinConfig[i] == PinType.TLE501x_CS)
                 {
+                    Axes[k].AxisConfig.MaxResolution = 16;
+                    Axes[k].AxisConfig.Resolution = 16;
                     Axes[k++].IsEnabled = true;
                 }
-                
             }
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.AxisAnalog)
+                {
+                    Axes[k].AxisConfig.MaxResolution = 12;
+                    Axes[k].AxisConfig.Resolution = 12;
+                    Axes[k++].IsEnabled = true;
+                }
+            }
+
+            
             AxesCurvesVM.Update(Config);
         }
 

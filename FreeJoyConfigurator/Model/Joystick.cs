@@ -207,8 +207,8 @@ namespace FreeJoyConfigurator
 
     public class Axis : BindableBase
     {
-        private ushort _value;
-        private ushort _rawValue;
+        private short _value;
+        private short _rawValue;
         private bool _isEnabled;
         private AxisConfig _axisConfig;
         private bool _isCalibrating;
@@ -234,12 +234,12 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _isEnabled, value); }
         }
 
-        public ushort Value
+        public short Value
         {
             get { return _value; }
             set { SetProperty(ref _value, value); }
         }
-        public ushort RawValue
+        public short RawValue
         {
             get { return _rawValue; }
             set { SetProperty(ref _rawValue, value); }

@@ -17,9 +17,9 @@ namespace FreeJoyConfigurator
 
     public class AxisConfig : BindableBase
     {
-        private ushort _calibMin;
-        private ushort _calibCenter;
-        private ushort _calibMax;
+        private short _calibMin;
+        private short _calibCenter;
+        private short _calibMax;
         private bool _isInverted;
         private bool _isMagnetOffset;
         private ObservableCollection<Point> _curveShape;
@@ -29,8 +29,9 @@ namespace FreeJoyConfigurator
         
 
         private bool _isCalibCenterUnlocked;
+        private byte _maxResolution;
 
-        public ushort CalibMin
+        public short CalibMin
         {
             get
             {
@@ -38,18 +39,18 @@ namespace FreeJoyConfigurator
             }
             set
             {
-                if (value < 0) SetProperty(ref _calibMin, (ushort)0);
-                else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (ushort)(CalibCenter - 1));
-                else if (value >= CalibMax) SetProperty(ref _calibMin, (ushort)(CalibMax - 2));
+                if (value < -32767) SetProperty(ref _calibMin, (short)-32767);
+                else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (short)(CalibCenter - 1));
+                else if (value >= CalibMax) SetProperty(ref _calibMin, (short)(CalibMax - 2));
                 else SetProperty(ref _calibMin, value);
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
+                    CalibCenter = (short)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
             }
         }
-        public ushort CalibCenter
+        public short CalibCenter
         {
             get
             {
@@ -61,21 +62,21 @@ namespace FreeJoyConfigurator
                 {
                     if (value <= CalibMin)
                     {
-                        SetProperty(ref _calibCenter, (ushort)(CalibMin + 1));
+                        SetProperty(ref _calibCenter, (short)(CalibMin + 1));
                     }
                     else if (value >= CalibMax)
                     {
-                        SetProperty(ref _calibCenter, (ushort)(CalibMax - 1));
+                        SetProperty(ref _calibCenter, (short)(CalibMax - 1));
                     }
                     else SetProperty(ref _calibCenter, value);
                 }
                 else
                 {
-                    SetProperty(ref _calibCenter, (ushort)((CalibMax - CalibMin) / 2 + CalibMin));
+                    SetProperty(ref _calibCenter, (short)((CalibMax - CalibMin) / 2 + CalibMin));
                 }
             }
         }
-        public ushort CalibMax
+        public short CalibMax
         {
             get
             {
@@ -83,14 +84,14 @@ namespace FreeJoyConfigurator
             }
             set
             {
-                if (value <= CalibMin) SetProperty(ref _calibMax, (ushort)(CalibMin + 2));
-                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (ushort)(CalibCenter + 1));
-                else if (value > 4095) SetProperty(ref _calibMax, (ushort) 4095);
+                if (value <= CalibMin) SetProperty(ref _calibMax, (short)(CalibMin + 2));
+                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (short)(CalibCenter + 1));
+                else if (value > 32767) SetProperty(ref _calibMax, (short) 32767);
                 else SetProperty(ref _calibMax, value);
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
+                    CalibCenter = (short)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
             }
         }
@@ -178,23 +179,36 @@ namespace FreeJoyConfigurator
                 SetProperty(ref _isCalibCenterUnlocked, value);
                 if (!_isCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                    CalibCenter = (short)((CalibMax - CalibMin) / 2);
                 }
+            }
+        }
+
+        public byte MaxResolution
+        {
+            get
+            {
+                return _maxResolution;
+            }
+            set
+            {
+                SetProperty(ref _maxResolution, value);
             }
         }
 
         public AxisConfig()
         {
-            _calibMin = 0;
-            _calibCenter = 2047;
-            _calibMax = 4095;
+            _calibMin = -32767;
+            _calibCenter = 0;
+            _calibMax = 32767;
             _isInverted = false;
             _isMagnetOffset = false;
             _isOutEnabled = true;
-            _resolution = 12;
+            _resolution = 16;
+            _maxResolution = 16;
 
             _curveShape = new ObservableCollection<Point>();
-            for (int i = 0; i < 10; i++) _curveShape.Add(new Point(i, 0));
+            for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, 0));
             _filterLevel = 0;
 
             _isCalibCenterUnlocked = false;

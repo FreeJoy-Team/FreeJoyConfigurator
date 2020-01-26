@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Firmware_Version>258</Firmware_Version>
-  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
+  <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>30</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
   <Encoder_Press_Time>30</Encoder_Press_Time>
@@ -37,9 +37,9 @@
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -49,38 +49,99 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
+        <Y>100</Y>
+      </Point>
+    </CurveShape>
+    <FilterLevel>0</FilterLevel>
+    <IsOutEnabled>true</IsOutEnabled>
+    <Resolution>12</Resolution>
+    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+  </Axis_Config>
+  <Axis_Config>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsInverted>false</IsInverted>
+    <IsMagnetOffset>false</IsMagnetOffset>
+    <CurveShape>
+      <Point>
+        <X>0</X>
+        <Y>-100</Y>
+      </Point>
+      <Point>
+        <X>1</X>
+        <Y>-80</Y>
+      </Point>
+      <Point>
+        <X>2</X>
+        <Y>-60</Y>
+      </Point>
+      <Point>
+        <X>3</X>
+        <Y>-40</Y>
+      </Point>
+      <Point>
+        <X>4</X>
+        <Y>-20</Y>
+      </Point>
+      <Point>
+        <X>5</X>
+        <Y>0</Y>
+      </Point>
+      <Point>
+        <X>6</X>
+        <Y>20</Y>
+      </Point>
+      <Point>
+        <X>7</X>
+        <Y>40</Y>
+      </Point>
+      <Point>
+        <X>8</X>
+        <Y>60</Y>
+      </Point>
+      <Point>
+        <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
@@ -91,8 +152,8 @@
   </Axis_Config>
   <Axis_Config>
     <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -102,38 +163,42 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
@@ -143,9 +208,9 @@
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -155,38 +220,42 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
@@ -196,9 +265,9 @@
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -208,38 +277,42 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
@@ -249,9 +322,9 @@
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -261,38 +334,42 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
@@ -302,9 +379,9 @@
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -314,38 +391,42 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
@@ -355,9 +436,9 @@
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -367,91 +448,42 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
-        <Y>100</Y>
-      </Point>
-    </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
-  </Axis_Config>
-  <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
-    <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
-    <CurveShape>
-      <Point>
-        <X>0</X>
-        <Y>-100</Y>
+        <Y>80</Y>
       </Point>
       <Point>
-        <X>1</X>
-        <Y>-77</Y>
-      </Point>
-      <Point>
-        <X>2</X>
-        <Y>-55</Y>
-      </Point>
-      <Point>
-        <X>3</X>
-        <Y>-33</Y>
-      </Point>
-      <Point>
-        <X>4</X>
-        <Y>-11</Y>
-      </Point>
-      <Point>
-        <X>5</X>
-        <Y>11</Y>
-      </Point>
-      <Point>
-        <X>6</X>
-        <Y>33</Y>
-      </Point>
-      <Point>
-        <X>7</X>
-        <Y>55</Y>
-      </Point>
-      <Point>
-        <X>8</X>
-        <Y>77</Y>
-      </Point>
-      <Point>
-        <X>9</X>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>

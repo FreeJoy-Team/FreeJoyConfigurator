@@ -223,7 +223,7 @@ namespace FreeJoyConfigurator
                     while (tmp.AxisConfig.Count > 8) tmp.AxisConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++)
                     {
-                        while (tmp.AxisConfig[i].CurveShape.Count > 10) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                        while (tmp.AxisConfig[i].CurveShape.Count > 11) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                     }
                     while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
                     while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);
@@ -260,7 +260,7 @@ namespace FreeJoyConfigurator
                 while (tmp.AxisConfig.Count > 8) tmp.AxisConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++)
                 {
-                    while (tmp.AxisConfig[i].CurveShape.Count > 10) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                    while (tmp.AxisConfig[i].CurveShape.Count > 11) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                 }
                 while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
                 while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);

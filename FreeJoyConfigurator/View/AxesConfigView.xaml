@@ -57,9 +57,11 @@
                                   IsChecked="{Binding AxisConfig.IsMagnetOffset}"/>
 
                         <TextBlock Grid.Column="0" Grid.Row="3"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                                            Width="50"
                                             Value="{Binding AxisConfig.Resolution, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="12" Minimum="1"/>
+                                            Maximum="{Binding AxisConfig.MaxResolution, Mode=OneWay}" Minimum="1"/>
+                        <TextBlock Grid.Column="1" Grid.Row="3"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
                         <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
                                     Margin="10,2,10,1"

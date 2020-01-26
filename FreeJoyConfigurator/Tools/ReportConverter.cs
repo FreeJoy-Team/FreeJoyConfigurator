@@ -32,7 +32,7 @@ namespace FreeJoyConfigurator
 
                 for (int i = 0; i < joystick.Axes.Count; i++)
                 {
-                    joystick.Axes[i].Value =  (ushort) (hr.Data[17 + 2 * i] << 8 |  hr.Data[16 + 2 * i]);
+                    joystick.Axes[i].Value =  (short) (hr.Data[17 + 2 * i] << 8 |  hr.Data[16 + 2 * i]);
                 }
 
                 for (int i = 0; i < joystick.Povs.Count; i++)
@@ -42,7 +42,7 @@ namespace FreeJoyConfigurator
 
                 for (int i = 0; i < joystick.Axes.Count; i++)
                 {
-                    joystick.Axes[i].RawValue = (ushort)(hr.Data[37 + 2 * i] << 8 | hr.Data[36 + 2 * i]);
+                    joystick.Axes[i].RawValue = (short)(hr.Data[37 + 2 * i] << 8 | hr.Data[36 + 2 * i]);
                 }
             }
         }
@@ -76,123 +76,123 @@ namespace FreeJoyConfigurator
             else if (hr.Data[0] == 2)
             {
                 config.AxisConfig[0] = new AxisConfig();
-                config.AxisConfig[0].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
-                config.AxisConfig[0].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
-                config.AxisConfig[0].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
+                config.AxisConfig[0].CalibMin = (short)(hr.Data[2] << 8 | hr.Data[1]);
+                config.AxisConfig[0].CalibCenter = (short)(hr.Data[4] << 8 | hr.Data[3]);
+                config.AxisConfig[0].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[0].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[0].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[0].FilterLevel = hr.Data[9];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[0].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
-                config.AxisConfig[0].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
-                config.AxisConfig[0].Resolution = hr.Data[21];
+                config.AxisConfig[0].IsOutEnabled = Convert.ToBoolean(hr.Data[21]);
+                config.AxisConfig[0].Resolution = hr.Data[22];
 
                 config.AxisConfig[1] = new AxisConfig();
-                config.AxisConfig[1].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
-                config.AxisConfig[1].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
-                config.AxisConfig[1].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
+                config.AxisConfig[1].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
+                config.AxisConfig[1].CalibCenter = (short)(hr.Data[34] << 8 | hr.Data[33]);
+                config.AxisConfig[1].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[1].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[1].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[1].FilterLevel = hr.Data[39];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[1].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
-                config.AxisConfig[1].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
-                config.AxisConfig[1].Resolution = hr.Data[51];
+                config.AxisConfig[1].IsOutEnabled = Convert.ToBoolean(hr.Data[51]);
+                config.AxisConfig[1].Resolution = hr.Data[52];
 
             }
             else if (hr.Data[0] == 3)
             {
                 config.AxisConfig[2] = new AxisConfig();
-                config.AxisConfig[2].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
-                config.AxisConfig[2].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
-                config.AxisConfig[2].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
+                config.AxisConfig[2].CalibMin = (short)(hr.Data[2] << 8 | hr.Data[1]);
+                config.AxisConfig[2].CalibCenter = (short)(hr.Data[4] << 8 | hr.Data[3]);
+                config.AxisConfig[2].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[2].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[2].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[2].FilterLevel = hr.Data[9];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[2].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
-                config.AxisConfig[2].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
-                config.AxisConfig[2].Resolution = hr.Data[21];
+                config.AxisConfig[2].IsOutEnabled = Convert.ToBoolean(hr.Data[21]);
+                config.AxisConfig[2].Resolution = hr.Data[22];
 
                 config.AxisConfig[3] = new AxisConfig();
-                config.AxisConfig[3].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
-                config.AxisConfig[3].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
-                config.AxisConfig[3].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
+                config.AxisConfig[3].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
+                config.AxisConfig[3].CalibCenter = (short)(hr.Data[34] << 8 | hr.Data[33]);
+                config.AxisConfig[3].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[3].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[3].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[3].FilterLevel = hr.Data[39];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[3].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
-                config.AxisConfig[3].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
-                config.AxisConfig[3].Resolution = hr.Data[51];
+                config.AxisConfig[3].IsOutEnabled = Convert.ToBoolean(hr.Data[51]);
+                config.AxisConfig[3].Resolution = hr.Data[52];
             }
             else if (hr.Data[0] == 4)
             {
                 config.AxisConfig[4] = new AxisConfig();
-                config.AxisConfig[4].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
-                config.AxisConfig[4].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
-                config.AxisConfig[4].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
+                config.AxisConfig[4].CalibMin = (short)(hr.Data[2] << 8 | hr.Data[1]);
+                config.AxisConfig[4].CalibCenter = (short)(hr.Data[4] << 8 | hr.Data[3]);
+                config.AxisConfig[4].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[4].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[4].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[4].FilterLevel = hr.Data[9];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[4].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
-                config.AxisConfig[4].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
-                config.AxisConfig[4].Resolution = hr.Data[21];
+                config.AxisConfig[4].IsOutEnabled = Convert.ToBoolean(hr.Data[21]);
+                config.AxisConfig[4].Resolution = hr.Data[22];
 
                 config.AxisConfig[5] = new AxisConfig();
-                config.AxisConfig[5].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
-                config.AxisConfig[5].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
-                config.AxisConfig[5].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
+                config.AxisConfig[5].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
+                config.AxisConfig[5].CalibCenter = (short)(hr.Data[34] << 8 | hr.Data[33]);
+                config.AxisConfig[5].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[5].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[5].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[5].FilterLevel = hr.Data[39];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[5].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
-                config.AxisConfig[5].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
-                config.AxisConfig[5].Resolution = hr.Data[51];
+                config.AxisConfig[5].IsOutEnabled = Convert.ToBoolean(hr.Data[51]);
+                config.AxisConfig[5].Resolution = hr.Data[52];
             }
             else if (hr.Data[0] == 5)
             {
                 config.AxisConfig[6] = new AxisConfig();
-                config.AxisConfig[6].CalibMin = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
-                config.AxisConfig[6].CalibCenter = (ushort)(hr.Data[4] << 8 | hr.Data[3]);
-                config.AxisConfig[6].CalibMax = (ushort)(hr.Data[6] << 8 | hr.Data[5]);
+                config.AxisConfig[6].CalibMin = (short)(hr.Data[2] << 8 | hr.Data[1]);
+                config.AxisConfig[6].CalibCenter = (short)(hr.Data[4] << 8 | hr.Data[3]);
+                config.AxisConfig[6].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[6].IsMagnetOffset = Convert.ToBoolean(hr.Data[7]);
                 config.AxisConfig[6].IsInverted = Convert.ToBoolean(hr.Data[8]);
                 config.AxisConfig[6].FilterLevel = hr.Data[9];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[6].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[10 + i]);
                 }
-                config.AxisConfig[6].IsOutEnabled = Convert.ToBoolean(hr.Data[20]);
-                config.AxisConfig[6].Resolution = hr.Data[21];
+                config.AxisConfig[6].IsOutEnabled = Convert.ToBoolean(hr.Data[21]);
+                config.AxisConfig[6].Resolution = hr.Data[22];
 
                 config.AxisConfig[7] = new AxisConfig();
-                config.AxisConfig[7].CalibMin = (ushort)(hr.Data[32] << 8 | hr.Data[31]);
-                config.AxisConfig[7].CalibCenter = (ushort)(hr.Data[34] << 8 | hr.Data[33]);
-                config.AxisConfig[7].CalibMax = (ushort)(hr.Data[36] << 8 | hr.Data[35]);
+                config.AxisConfig[7].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
+                config.AxisConfig[7].CalibCenter = (short)(hr.Data[34] << 8 | hr.Data[33]);
+                config.AxisConfig[7].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[7].IsMagnetOffset = Convert.ToBoolean(hr.Data[37]);
                 config.AxisConfig[7].IsInverted = Convert.ToBoolean(hr.Data[38]);
                 config.AxisConfig[7].FilterLevel = hr.Data[39];
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[7].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[40 + i]);
                 }
-                config.AxisConfig[7].IsOutEnabled = Convert.ToBoolean(hr.Data[50]);
-                config.AxisConfig[7].Resolution = hr.Data[51];
+                config.AxisConfig[7].IsOutEnabled = Convert.ToBoolean(hr.Data[51]);
+                config.AxisConfig[7].Resolution = hr.Data[52];
             }
             else if (hr.Data[0] == 6)
             {
@@ -332,12 +332,12 @@ namespace FreeJoyConfigurator
             buffer[8] = (byte)(config.AxisConfig[0].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[0].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[0].FilterLevel);
-            for (int i=0; i<10; i++)
+            for (int i=0; i<11; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[0].CurveShape[i].Y;
             }
-            buffer[21] = (byte)(config.AxisConfig[0].IsOutEnabled ? 0x01 : 0x00);
-            buffer[22] = (byte)(config.AxisConfig[0].Resolution);
+            buffer[22] = (byte)(config.AxisConfig[0].IsOutEnabled ? 0x01 : 0x00);
+            buffer[23] = (byte)(config.AxisConfig[0].Resolution);
 
             buffer[32] = (byte)(config.AxisConfig[1].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[1].CalibMin >> 8);
@@ -348,12 +348,12 @@ namespace FreeJoyConfigurator
             buffer[38] = (byte)(config.AxisConfig[1].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[1].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[1].FilterLevel);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[1].CurveShape[i].Y;
             }
-            buffer[51] = (byte)(config.AxisConfig[1].IsOutEnabled ? 0x01 : 0x00);
-            buffer[52] = (byte)(config.AxisConfig[1].Resolution);
+            buffer[52] = (byte)(config.AxisConfig[1].IsOutEnabled ? 0x01 : 0x00);
+            buffer[53] = (byte)(config.AxisConfig[1].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 3
@@ -369,12 +369,12 @@ namespace FreeJoyConfigurator
             buffer[8] = (byte)(config.AxisConfig[2].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[2].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[2].FilterLevel);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[2].CurveShape[i].Y;
             }
-            buffer[21] = (byte)(config.AxisConfig[2].IsOutEnabled ? 0x01 : 0x00);
-            buffer[22] = (byte)(config.AxisConfig[2].Resolution);
+            buffer[22] = (byte)(config.AxisConfig[2].IsOutEnabled ? 0x01 : 0x00);
+            buffer[23] = (byte)(config.AxisConfig[2].Resolution);
 
             buffer[32] = (byte)(config.AxisConfig[3].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[3].CalibMin >> 8);
@@ -385,12 +385,12 @@ namespace FreeJoyConfigurator
             buffer[38] = (byte)(config.AxisConfig[3].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[3].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[3].FilterLevel);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[3].CurveShape[i].Y;
             }
-            buffer[51] = (byte)(config.AxisConfig[3].IsOutEnabled ? 0x01 : 0x00);
-            buffer[52] = (byte)(config.AxisConfig[3].Resolution);
+            buffer[52] = (byte)(config.AxisConfig[3].IsOutEnabled ? 0x01 : 0x00);
+            buffer[53] = (byte)(config.AxisConfig[3].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 4
@@ -406,12 +406,12 @@ namespace FreeJoyConfigurator
             buffer[8] = (byte)(config.AxisConfig[4].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[4].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[4].FilterLevel);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[4].CurveShape[i].Y;
             }
-            buffer[21] = (byte)(config.AxisConfig[4].IsOutEnabled ? 0x01 : 0x00);
-            buffer[22] = (byte)(config.AxisConfig[4].Resolution);
+            buffer[22] = (byte)(config.AxisConfig[4].IsOutEnabled ? 0x01 : 0x00);
+            buffer[23] = (byte)(config.AxisConfig[4].Resolution);
             
             buffer[32] = (byte)(config.AxisConfig[5].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[5].CalibMin >> 8);
@@ -422,12 +422,12 @@ namespace FreeJoyConfigurator
             buffer[38] = (byte)(config.AxisConfig[5].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[5].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[5].FilterLevel);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[5].CurveShape[i].Y;
             }
-            buffer[51] = (byte)(config.AxisConfig[5].IsOutEnabled ? 0x01 : 0x00);
-            buffer[52] = (byte)(config.AxisConfig[5].Resolution);
+            buffer[52] = (byte)(config.AxisConfig[5].IsOutEnabled ? 0x01 : 0x00);
+            buffer[53] = (byte)(config.AxisConfig[5].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 5
@@ -443,12 +443,12 @@ namespace FreeJoyConfigurator
             buffer[8] = (byte)(config.AxisConfig[6].IsMagnetOffset ? 0x01 : 0x00);
             buffer[9] = (byte)(config.AxisConfig[6].IsInverted ? 0x01 : 0x00);
             buffer[10] = (byte)(config.AxisConfig[6].FilterLevel);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 11] = (byte)config.AxisConfig[6].CurveShape[i].Y;
             }
-            buffer[21] = (byte)(config.AxisConfig[6].IsOutEnabled ? 0x01 : 0x00);
-            buffer[22] = (byte)(config.AxisConfig[6].Resolution);
+            buffer[22] = (byte)(config.AxisConfig[6].IsOutEnabled ? 0x01 : 0x00);
+            buffer[23] = (byte)(config.AxisConfig[6].Resolution);
 
             buffer[32] = (byte)(config.AxisConfig[7].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[7].CalibMin >> 8);
@@ -459,12 +459,12 @@ namespace FreeJoyConfigurator
             buffer[38] = (byte)(config.AxisConfig[7].IsMagnetOffset ? 0x01 : 0x00);
             buffer[39] = (byte)(config.AxisConfig[7].IsInverted ? 0x01 : 0x00);
             buffer[40] = (byte)(config.AxisConfig[7].FilterLevel);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 41] = (byte)config.AxisConfig[7].CurveShape[i].Y;
             }
-            buffer[51] = (byte)(config.AxisConfig[7].IsOutEnabled ? 0x01 : 0x00);
-            buffer[52] = (byte)(config.AxisConfig[7].Resolution);
+            buffer[52] = (byte)(config.AxisConfig[7].IsOutEnabled ? 0x01 : 0x00);
+            buffer[53] = (byte)(config.AxisConfig[7].Resolution);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 6

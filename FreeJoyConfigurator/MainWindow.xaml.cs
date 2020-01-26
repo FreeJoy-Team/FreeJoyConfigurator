@@ -30,5 +30,10 @@ namespace FreeJoyConfigurator
         {
             ActivityLogScrollViewer.ScrollToBottom();
         }
+
+        private void AxesCurvesView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
