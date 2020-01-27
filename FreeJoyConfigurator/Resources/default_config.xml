@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<DeviceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Firmware_Version>258</Firmware_Version>
-  <Device_Name>FreeJoy</Device_Name>
+<DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Firmware_Version>259</Firmware_Version>
+  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>30</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
   <Encoder_Press_Time>30</Encoder_Press_Time>
@@ -17,16 +17,16 @@
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
+  <Pin_Config>ButtonColumn</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
+  <Pin_Config>ButtonRow</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
   <Pin_Config>NotUsed</Pin_Config>
@@ -92,6 +92,7 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -149,11 +150,12 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>0</CalibMin>
-    <CalibMin>-32767</CalibMin>
-    <CalibCenter>0</CalibCenter>
+    <CalibCenter>16383</CalibCenter>
+    <CalibMax>32767</CalibMax>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <CurveShape>
@@ -206,6 +208,7 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -263,6 +266,7 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -320,6 +324,7 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -377,6 +382,7 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -434,6 +440,7 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -491,6 +498,7 @@
     <IsOutEnabled>true</IsOutEnabled>
     <Resolution>12</Resolution>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <MaxResolution>16</MaxResolution>
   </Axis_Config>
   <Button_Config>
     <Type>BtnNormal</Type>

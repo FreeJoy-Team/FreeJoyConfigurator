@@ -68,7 +68,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
@@ -148,6 +148,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\ShiftRegister.cs" />
+    <Compile Include="View\PhysicalButtonsView.xaml.cs">
+      <DependentUpon>PhysicalButtonsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AxesConfigView.xaml.cs">
       <DependentUpon>AxesConfigView.xaml</DependentUpon>
     </Compile>
@@ -164,8 +167,8 @@
     </Compile>
     <Compile Include="Model\AxisToButtons.cs" />
     <Compile Include="ViewModel\ButtonsVM.cs" />
-    <Compile Include="View\ButtonsView.xaml.cs">
-      <DependentUpon>ButtonsView.xaml</DependentUpon>
+    <Compile Include="View\LogicalButtonsView.xaml.cs">
+      <DependentUpon>LogicalButtonsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Crc16.cs" />
     <Compile Include="ViewModel\DeviceConfigExchangerVM.cs" />
@@ -191,6 +194,10 @@
     <Compile Include="View\ShiftRegistersView.xaml.cs">
       <DependentUpon>ShiftRegistersView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\PhysicalButtonsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AxesConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,7 +214,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ButtonsView.xaml">
+    <Page Include="View\LogicalButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

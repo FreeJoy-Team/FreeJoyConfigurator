@@ -20,7 +20,8 @@ namespace FreeJoyConfigurator
         private int _totalBtnCnt;
 
         private DeviceConfig _config;
-        private ObservableCollection<Button> _buttons;
+        private ObservableCollection<Button> _logicalButtons;
+        private ObservableCollection<Button> _physicalButtons;
 
         public int RowCnt
         {
@@ -82,10 +83,16 @@ namespace FreeJoyConfigurator
             }
         }
 
-        public ObservableCollection<Button> Buttons
+        public ObservableCollection<Button> LogicalButtons
         {
-            get { return _buttons; }
-            set { SetProperty(ref _buttons, value); }
+            get { return _logicalButtons; }
+            set { SetProperty(ref _logicalButtons, value); }
+        }
+
+        public ObservableCollection<Button> PhysicalButtons
+        {
+            get { return _physicalButtons; }
+            set { SetProperty(ref _physicalButtons, value); }
         }
 
         public Joystick Joystick;
@@ -96,8 +103,14 @@ namespace FreeJoyConfigurator
             Joystick.PropertyChanged += Joystick_PropertyChanged;
             _config = deviceConfig;
 
-            _buttons = new ObservableCollection<Button>();
+            _logicalButtons = new ObservableCollection<Button>();
+            for (int i = 0; i < 128; i++)
+            {
+                _logicalButtons.Add(new Button(false, _config.ButtonConfig[i].Type,  i + 1, 0));
+            }
+            foreach (var button in _logicalButtons) button.PropertyChanged += Button_PropertyChanged;
 
+            _physicalButtons = new ObservableCollection<Button>();
         }
 
         public void Update(DeviceConfig config)
@@ -219,89 +232,99 @@ namespace FreeJoyConfigurator
                 }
             }
             
+            PhysicalButtons = new ObservableCollection<Button>(tmp);
+            RaisePropertyChanged(nameof(PhysicalButtons));
 
+            tmp = new ObservableCollection<Button>();
+            for (int i=0; i<128; i++)
+            {
+                tmp.Add(new Button(false, config.ButtonConfig[i].Type, i+1));
+            }
+            foreach (var button in LogicalButtons) button.PropertyChanged += Button_PropertyChanged;
 
-            Buttons = new ObservableCollection<Button>(tmp);
-            foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
-
-            RaisePropertyChanged(nameof(Buttons));
+            RaisePropertyChanged(nameof(LogicalButtons));
         }
 
         private void Joystick_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            for (int i = 0; i < Buttons.Count; i++)
+            for (int i=0;i<PhysicalButtons.Count;i++)
+            {
+                PhysicalButtons[i].State = Joystick.PhysicalButtons[i].State;
+            }
+
+            for (int i = 0; i < LogicalButtons.Count; i++)
             {
                 // OV1
-                if (Buttons[i].Type == ButtonType.Pov1Down)
+                if (LogicalButtons[i].Type == ButtonType.Pov1Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x03 || Joystick.Povs[0].State == 0x04 || Joystick.Povs[0].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x03 || Joystick.Povs[0].State == 0x04 || Joystick.Povs[0].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov1Left)
+                else if (LogicalButtons[i].Type == ButtonType.Pov1Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x05 || Joystick.Povs[0].State == 0x06 || Joystick.Povs[0].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x05 || Joystick.Povs[0].State == 0x06 || Joystick.Povs[0].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov1Right)
+                else if (LogicalButtons[i].Type == ButtonType.Pov1Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x02 || Joystick.Povs[0].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x02 || Joystick.Povs[0].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov1Up)
+                else if (LogicalButtons[i].Type == ButtonType.Pov1Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x00 || Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x00 || Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x07) ? true : false;
                 }
                 // POV2
-                else if(Buttons[i].Type == ButtonType.Pov2Down)
+                else if(LogicalButtons[i].Type == ButtonType.Pov2Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x03 || Joystick.Povs[1].State == 0x04 || Joystick.Povs[1].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x03 || Joystick.Povs[1].State == 0x04 || Joystick.Povs[1].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov2Left)
+                else if (LogicalButtons[i].Type == ButtonType.Pov2Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x05 || Joystick.Povs[1].State == 0x06 || Joystick.Povs[1].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x05 || Joystick.Povs[1].State == 0x06 || Joystick.Povs[1].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov2Right)
+                else if (LogicalButtons[i].Type == ButtonType.Pov2Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x02 || Joystick.Povs[1].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x02 || Joystick.Povs[1].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov2Up)
+                else if (LogicalButtons[i].Type == ButtonType.Pov2Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x00 || Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x00 || Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x07) ? true : false;
                 }
                 // POV3
-                else if (Buttons[i].Type == ButtonType.Pov3Down)
+                else if (LogicalButtons[i].Type == ButtonType.Pov3Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x03 || Joystick.Povs[2].State == 0x04 || Joystick.Povs[2].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x03 || Joystick.Povs[2].State == 0x04 || Joystick.Povs[2].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov3Left)
+                else if (LogicalButtons[i].Type == ButtonType.Pov3Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x05 || Joystick.Povs[2].State == 0x06 || Joystick.Povs[2].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x05 || Joystick.Povs[2].State == 0x06 || Joystick.Povs[2].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov3Right)
+                else if (LogicalButtons[i].Type == ButtonType.Pov3Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x02 || Joystick.Povs[2].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x02 || Joystick.Povs[2].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov3Up)
+                else if (LogicalButtons[i].Type == ButtonType.Pov3Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x00 || Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x00 || Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x07) ? true : false;
                 }
                 // POV4
-                else if (Buttons[i].Type == ButtonType.Pov4Down)
+                else if (LogicalButtons[i].Type == ButtonType.Pov4Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x03 || Joystick.Povs[3].State == 0x04 || Joystick.Povs[3].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x03 || Joystick.Povs[3].State == 0x04 || Joystick.Povs[3].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov4Left)
+                else if (LogicalButtons[i].Type == ButtonType.Pov4Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x05 || Joystick.Povs[3].State == 0x06 || Joystick.Povs[3].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x05 || Joystick.Povs[3].State == 0x06 || Joystick.Povs[3].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov4Right)
+                else if (LogicalButtons[i].Type == ButtonType.Pov4Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x02 || Joystick.Povs[3].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x02 || Joystick.Povs[3].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov4Up)
+                else if (LogicalButtons[i].Type == ButtonType.Pov4Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x00 || Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x00 || Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x07) ? true : false;
                 }
                 else 
                 {
-                    Buttons[i].State = Joystick.Buttons[i].State;
+                    LogicalButtons[i].State = Joystick.LogicalButtons[i].State;
                 }
             }
         }
@@ -310,13 +333,13 @@ namespace FreeJoyConfigurator
         {
             DeviceConfig tmp = Config;
 
-            for (int i=0; i<Buttons.Count;i++)
+            for (int i=0; i<LogicalButtons.Count;i++)
             {
-                tmp.ButtonConfig[i].Type = Buttons[i].Type;
+                tmp.ButtonConfig[i].Type = LogicalButtons[i].Type;
             }
             Config = tmp;
 
-            RaisePropertyChanged(nameof(Buttons));
+            RaisePropertyChanged(nameof(LogicalButtons));
         }
     }
 

@@ -97,7 +97,21 @@
                 <local:PinsView/>
             </TabItem>
             <TabItem Header="Button Config">
-                <local:ButtonsView/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Header="Physical buttons" Grid.Column="0">
+                        <local:PhysicalButtonsView/>
+                    </GroupBox>
+                    
+                    <GroupBox Header="Logical buttons" Grid.Column="1">
+                        <local:LogicalButtonsView/>
+                    </GroupBox>
+                </Grid>
+                
             </TabItem>
             <TabItem Header="Axes Config">
                 <ScrollViewer>

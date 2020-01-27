@@ -18,9 +18,9 @@ namespace FreeJoyConfigurator
     /// <summary>
     /// Логика взаимодействия для ButtonView.xaml
     /// </summary>
-    public partial class ButtonsView : UserControl
+    public partial class LogicalButtonsView : UserControl
     {
-        public ButtonsView()
+        public LogicalButtonsView()
         {
             InitializeComponent();
         }
