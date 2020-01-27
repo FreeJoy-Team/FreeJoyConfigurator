@@ -234,6 +234,14 @@ namespace FreeJoyConfigurator
                     while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
                     tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
+                    if (tmp.FirmwareVersion != Config.FirmwareVersion)
+                    {
+                        MessageBoxService mbs = new MessageBoxService();
+
+                        mbs.ShowMessage("Config file was created in other version of configurator!\r\n" +
+                            "Configuration loading will be canceled", "Error");
+                        return;
+                    }
                     Config = tmp;
                 }
                 PinsVM.Config = Config;
