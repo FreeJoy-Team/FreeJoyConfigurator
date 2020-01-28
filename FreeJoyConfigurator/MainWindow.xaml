@@ -180,7 +180,7 @@
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Axes to buttons:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PinsVM.AxesToButtonsCnt}"
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ButtonsVM.AxesToButtonsCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Single buttons:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>

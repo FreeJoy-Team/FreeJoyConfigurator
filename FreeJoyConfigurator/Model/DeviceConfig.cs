@@ -296,7 +296,10 @@ namespace FreeJoyConfigurator
 
     public class ButtonConfig : BindableBase
     {
+        private sbyte _physicalNumber;
+        private byte _shiftModificator;
         private ButtonType _type;
+
         public ButtonType Type
         {
             get
@@ -309,13 +312,41 @@ namespace FreeJoyConfigurator
             }
         }
 
+        public sbyte PhysicalNumber
+        {
+            get
+            {
+                return _physicalNumber;
+            }
+            set
+            {
+                SetProperty(ref _physicalNumber, value);
+            }
+        }
+
+        public byte ShiftModificator
+        {
+            get
+            {
+                return _shiftModificator;
+            }
+            set
+            {
+                SetProperty(ref _shiftModificator, value);
+            }
+        }
+
         public ButtonConfig()
         {
+            _physicalNumber = 0;
+            _shiftModificator = 0;
             _type = ButtonType.BtnNormal;
         }
 
         public ButtonConfig (ButtonType type)
         {
+            _physicalNumber = 0;
+            _shiftModificator = 0;
             _type = type;
         }
     }

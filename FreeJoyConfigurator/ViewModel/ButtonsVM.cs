@@ -18,6 +18,7 @@ namespace FreeJoyConfigurator
         private int _colCnt;
         private int _singleBtnCnt;
         private int _totalBtnCnt;
+        private int _axesToButtonsCnt;
 
         private DeviceConfig _config;
         private ObservableCollection<Button> _logicalButtons;
@@ -71,6 +72,18 @@ namespace FreeJoyConfigurator
             }
         }
 
+        public int AxesToButtonsCnt
+        {
+            get
+            {
+                return _axesToButtonsCnt;
+            }
+            private set
+            {
+                SetProperty(ref _axesToButtonsCnt, value);
+            }
+        }
+
         public DeviceConfig Config
         {
             get
@@ -119,6 +132,7 @@ namespace FreeJoyConfigurator
             RowCnt = 0;
             SingleBtnCnt = 0;
             TotalBtnCnt = 0;
+            AxesToButtonsCnt = 0;
 
             Config = config;
 
@@ -189,6 +203,7 @@ namespace FreeJoyConfigurator
             {
                 if (Config.AxisToButtonsConfig[i].IsEnabled)
                 {
+                    AxesToButtonsCnt++;
                     for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
                     {
                         ObservableCollection<ButtonType> tmpTypes = new ObservableCollection<ButtonType>()
@@ -238,8 +253,9 @@ namespace FreeJoyConfigurator
             tmp = new ObservableCollection<Button>();
             for (int i=0; i<128; i++)
             {
-                tmp.Add(new Button(false, config.ButtonConfig[i].Type, i+1));
+                tmp.Add(new Button(false, config.ButtonConfig[i].Type, i+1, config.ButtonConfig[i].PhysicalNumber));
             }
+            LogicalButtons = new ObservableCollection<Button>(tmp);
             foreach (var button in LogicalButtons) button.PropertyChanged += Button_PropertyChanged;
 
             RaisePropertyChanged(nameof(LogicalButtons));
@@ -335,7 +351,9 @@ namespace FreeJoyConfigurator
 
             for (int i=0; i<LogicalButtons.Count;i++)
             {
+                tmp.ButtonConfig[i].PhysicalNumber = (sbyte)LogicalButtons[i].PhysicalNumber;
                 tmp.ButtonConfig[i].Type = LogicalButtons[i].Type;
+                //tmp.ButtonConfig[i].Type |= ShiftModificator;
             }
             Config = tmp;
 

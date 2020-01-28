@@ -260,7 +260,7 @@ namespace FreeJoyConfigurator
         {
             {   // TODO: fix serialization
                 var xmlStr = Properties.Resources.default_config;
-                
+
 
                 DeviceConfig tmp = Config;
                 tmp = DeSerializeObject<DeviceConfig>(xmlStr, xmlStr.Length);
