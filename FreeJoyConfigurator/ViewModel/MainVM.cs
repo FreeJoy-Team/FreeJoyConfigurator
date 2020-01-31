@@ -160,6 +160,7 @@ namespace FreeJoyConfigurator
             _joystick = new Joystick(Config);
             AxesVM = new AxesVM(_joystick, Config);
             ButtonsVM = new ButtonsVM(_joystick, Config);
+            ButtonsVM.ConfigChanged += ButtonsVM_ConfigChanged;
             AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
             AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
             ShiftRegistersVM = new ShiftRegistersVM(_joystick, Config);
@@ -190,6 +191,8 @@ namespace FreeJoyConfigurator
 
             WriteLog("Program started", true);
         }
+
+       
 
         private void SaveConfigToFile()
         {
@@ -225,6 +228,7 @@ namespace FreeJoyConfigurator
                     {
                         while (tmp.AxisConfig[i].CurveShape.Count > 11) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                     }
+                    while (tmp.ShiftModificatorConfig.Count > 5) tmp.ShiftModificatorConfig.RemoveAt(0);
                     while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
                     while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++)
@@ -270,6 +274,7 @@ namespace FreeJoyConfigurator
                 {
                     while (tmp.AxisConfig[i].CurveShape.Count > 11) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                 }
+                while (tmp.ShiftModificatorConfig.Count > 5) tmp.ShiftModificatorConfig.RemoveAt(0);
                 while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
                 while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++)
@@ -280,9 +285,8 @@ namespace FreeJoyConfigurator
                 tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                 Config = tmp;
-
-
             }
+
             PinsVM.Config = Config;
             AxesVM.Config = Config;
             ButtonsVM.Config = Config;
@@ -300,6 +304,11 @@ namespace FreeJoyConfigurator
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
             ShiftRegistersVM.Update(Config);
+        }
+
+        private void ButtonsVM_ConfigChanged()
+        {
+
         }
 
         private void AxesToButtonsVM_ConfigChanged()

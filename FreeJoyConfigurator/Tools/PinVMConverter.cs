@@ -53,17 +53,17 @@ namespace FreeJoyConfigurator
         public PinVMConverter()
         {
             _allowedTypes = new ObservableCollection<PinType>()
-            {       PinType.NotUsed,
-                    PinType.ButtonGnd,
-                    PinType.ButtonVcc,
-                    PinType.ButtonRow,
-                    PinType.ButtonColumn,
+            {       PinType.Not_Used,
+                    PinType.Button_Gnd,
+                    PinType.Button_Vcc,
+                    PinType.Button_Row,
+                    PinType.Button_Column,
                     PinType.ShiftReg_LATCH,
                     PinType.ShiftReg_DATA,
                     PinType.TLE501x_CS,
             };
 
-            _selectedType = PinType.NotUsed;
+            _selectedType = PinType.Not_Used;
             _typeError = false;
         }
     }

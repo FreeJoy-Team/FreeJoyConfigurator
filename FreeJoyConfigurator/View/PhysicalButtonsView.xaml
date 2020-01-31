@@ -31,7 +31,7 @@
     </UserControl.Resources>
 
     <ScrollViewer d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
-        <ItemsControl ItemsSource="{Binding Path=ButtonsVM.PhysicalButtons}"
+        <ItemsControl x:Name="PhysicalBtnItemsControl" ItemsSource="{Binding Path=ButtonsVM.PhysicalButtons}"
                   AlternationCount="{Binding ButtonsVM.PhysicalButtons.Count}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -50,7 +50,7 @@
                         </Grid.RowDefinitions>
 
                         <Button Style="{StaticResource RoundButtonTemplate}" 
-                                Margin="15,5,5,5"
+                                Margin="7,7,7,7"
                                 Width="30" Height="30"
                                 Content="{Binding Number}">
 

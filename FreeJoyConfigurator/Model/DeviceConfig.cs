@@ -241,13 +241,13 @@ namespace FreeJoyConfigurator
 
     public enum PinType : byte
     {
-        NotUsed = 0,
-        ButtonGnd,
-        ButtonVcc,
-        ButtonRow,
-        ButtonColumn,
+        Not_Used = 0,
+        Button_Gnd,
+        Button_Vcc,
+        Button_Row,
+        Button_Column,
 
-        AxisAnalog,
+        Axis_Analog,
 //        AxisToButtons,
 
         SPI_SCK = 7,
@@ -264,91 +264,135 @@ namespace FreeJoyConfigurator
 
     public enum ButtonType
     {
-        BtnNormal = 0,
-        BtnInverted,
-        BtnToggle,
-        ToggleSw,
-        ToggleSwOn,
-        ToggleSwOff,
+        Button_Normal = 0,
+        Button_Inverted,
+        Button_Toggle,
+        ToggleSwitch_OnOff,
+        ToggleSwitch_On,
+        ToggleSwitch_Off,
 
-        Pov1Up,
-        Pov1Right,
-        Pov1Down,
-        Pov1Left,
-        Pov2Up,
-        Pov2Right,
-        Pov2Down,
-        Pov2Left,
-        Pov3Up,
-        Pov3Right,
-        Pov3Down,
-        Pov3Left,
-        Pov4Up,
-        Pov4Right,
-        Pov4Down,
-        Pov4Left,
+        Pov1_Up,
+        Pov1_Right,
+        Pov1_Down,
+        Pov1_Left,
+        Pov2_Up,
+        Pov2_Right,
+        Pov2_Down,
+        Pov2_Left,
+        Pov3_Up,
+        Pov3_Right,
+        Pov3_Down,
+        Pov3_Left,
+        Pov4_Up,
+        Pov4_Right,
+        Pov4_Down,
+        Pov4_Left,
 
         Encoder_A,
-        Encoder_B,
-        
-        
+        Encoder_B, 
     };
+
+    public enum ButtonSourceType
+    {
+        NoSource = 0,
+        SingleButton,
+        MatrixButton,
+        ShiftRegister,
+        AxisToButtons,
+        Shift,
+    }
+
 
     public class ButtonConfig : BindableBase
     {
         private sbyte _physicalNumber;
-        private byte _shiftModificator;
+        private int _maxPhysicalNumber;
+        private ShiftType _shiftModificator;
         private ButtonType _type;
+        private bool _isEnabled;
+        
+        
 
         public ButtonType Type
         {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                SetProperty(ref _type, value);
-            }
+            get {return _type;}
+            set{SetProperty(ref _type, value);}
+        }
+
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { SetProperty(ref _isEnabled, value); }
         }
 
         public sbyte PhysicalNumber
         {
-            get
-            {
-                return _physicalNumber;
-            }
+            get{return _physicalNumber;}
             set
             {
                 SetProperty(ref _physicalNumber, value);
+                if (value > 0) IsEnabled = true;
+                else IsEnabled = false;
             }
         }
 
-        public byte ShiftModificator
+        public int MaxPhysicalNumber
         {
-            get
-            {
-                return _shiftModificator;
-            }
+            get { return _maxPhysicalNumber; }
             set
             {
-                SetProperty(ref _shiftModificator, value);
+                SetProperty(ref _maxPhysicalNumber, value);
             }
+        }
+
+        public ShiftType ShiftModificator
+        {
+            get { return _shiftModificator; }
+            set {SetProperty(ref _shiftModificator, value);}
         }
 
         public ButtonConfig()
         {
+            _isEnabled = false;
             _physicalNumber = 0;
             _shiftModificator = 0;
-            _type = ButtonType.BtnNormal;
+
+            _type = ButtonType.Button_Normal;
+            
         }
 
         public ButtonConfig (ButtonType type)
         {
+            _isEnabled = false;
             _physicalNumber = 0;
             _shiftModificator = 0;
+
             _type = type;
         }
+    }
+
+    public enum ShiftType
+    {
+        NoShift = 0,
+        Shift1,
+        Shift2,
+        Shift3,
+        Shift4,
+        Shift5,
+    }
+
+
+    public class ShiftModificatorConfig : BindableBase
+    {
+        private sbyte _button;
+
+        public sbyte Button
+        {
+            get { return _button; }
+            set { SetProperty(ref _button, value); }
+        }
+        
+
     }
 
     public class AxisToButtonsConfig : BindableBase
@@ -453,6 +497,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<PinType> PinConfig { get; set; }
         [XmlElement("Axis_Config")]
         public ObservableCollection<AxisConfig> AxisConfig { get; set; }
+        [XmlElement("ShiftModificator_Config")]
+        public ObservableCollection<ShiftModificatorConfig> ShiftModificatorConfig { get; set; }
         [XmlElement("Button_Config")]
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
         [XmlElement("AxisToButtons_Config")]
@@ -472,7 +518,10 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 8; i++) AxisConfig.Add(new AxisConfig());
 
             PinConfig = new ObservableCollection<PinType>();
-            for (int i = 0; i < 30; i++) PinConfig.Add(PinType.NotUsed);
+            for (int i = 0; i < 30; i++) PinConfig.Add(PinType.Not_Used);
+
+            ShiftModificatorConfig = new ObservableCollection<ShiftModificatorConfig>();
+            for (int i = 0; i < 5; i++) ShiftModificatorConfig.Add(new ShiftModificatorConfig());
 
             ButtonConfig = new ObservableCollection<ButtonConfig>();
             for (int i = 0; i < 128; i++) ButtonConfig.Add(new ButtonConfig());

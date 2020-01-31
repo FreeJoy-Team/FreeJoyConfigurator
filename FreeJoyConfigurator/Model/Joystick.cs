@@ -39,7 +39,7 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 8; i++)
             {
                 Axes.Add(new Axis(i+1, Config.AxisConfig[i]));
-                if(config.PinConfig[i] == PinType.AxisAnalog)
+                if(config.PinConfig[i] == PinType.Axis_Analog)
                 {
                     Axes[i].IsEnabled = true;
                 }
@@ -79,18 +79,24 @@ namespace FreeJoyConfigurator
     }
 
     public class Button : BindableBase
-    {
-        private ButtonType _type;
-        private ObservableCollection<ButtonType> _allowedTypes;
+    {        
         private bool _state;
-        private int _physicalNumber;
+        private ButtonConfig _config;
+        private ObservableCollection<ButtonType> _allowedTypes;
+        private ButtonSourceType _sourceType;
 
-        public int Number { get; private set; }
+        public int Number { get; private set; }      
 
-        public ButtonType Type
+        public bool State
         {
-            get { return _type; }
-            set { SetProperty(ref _type, value); }
+            get { return _state; }
+            set { SetProperty(ref _state, value); }
+        }
+
+        public ButtonConfig Config
+        {
+            get { return _config; }
+            set { SetProperty(ref _config, value); }
         }
 
         public ObservableCollection<ButtonType> AllowedTypes
@@ -99,164 +105,44 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _allowedTypes, value); }
         }
 
-        public bool State
+        public ButtonSourceType SourceType
         {
-            get { return _state; }
-            set { SetProperty(ref _state, value); }
-        }
-
-        public int PhysicalNumber
-        {
-            get { return _physicalNumber; }
-            set { SetProperty(ref _physicalNumber, value); }
+            get { return _sourceType; }
+            set
+            {
+                SetProperty(ref _sourceType, value);
+            }
         }
 
         public Button(int number)
         {
-            Number = number;
-            _type = ButtonType.BtnNormal;
-            _allowedTypes = new ObservableCollection<ButtonType>()
-            {       ButtonType.BtnInverted,
-                    ButtonType.BtnNormal,
-                    ButtonType.BtnToggle,
-                    ButtonType.ToggleSw,
-                    ButtonType.ToggleSwOff,
-                    ButtonType.ToggleSwOn,
-                    ButtonType.Pov1Down,
-                    ButtonType.Pov1Left,
-                    ButtonType.Pov1Right,
-                    ButtonType.Pov1Up,
-                    ButtonType.Pov2Down,
-                    ButtonType.Pov2Left,
-                    ButtonType.Pov2Right,
-                    ButtonType.Pov2Up,
-                    ButtonType.Pov3Down,
-                    ButtonType.Pov3Left,
-                    ButtonType.Pov3Right,
-                    ButtonType.Pov3Up,
-                    ButtonType.Pov4Down,
-                    ButtonType.Pov4Left,
-                    ButtonType.Pov4Right,
-                    ButtonType.Pov4Up,
-                    ButtonType.Encoder_A,
-                    ButtonType.Encoder_B
-            };
+            _allowedTypes = new ObservableCollection<ButtonType>();
+            _allowedTypes.Add(ButtonType.Button_Inverted);
+            _allowedTypes.Add(ButtonType.Button_Normal);
 
+            _sourceType = ButtonSourceType.NoSource;
+
+            _config = new ButtonConfig();
+            _config.PhysicalNumber = 0;
+            _config.Type = ButtonType.Button_Normal;
+            
             _state = false;
-        }
-
-        public Button(bool state, int number)
-        {
             Number = number;
-            _type = ButtonType.BtnNormal;
-            _allowedTypes = new ObservableCollection<ButtonType>()
-            {       ButtonType.BtnInverted,
-                    ButtonType.BtnNormal,
-                    ButtonType.BtnToggle,
-                    ButtonType.ToggleSw,
-                    ButtonType.ToggleSwOff,
-                    ButtonType.ToggleSwOn,
-                    ButtonType.Pov1Down,
-                    ButtonType.Pov1Left,
-                    ButtonType.Pov1Right,
-                    ButtonType.Pov1Up,
-                    ButtonType.Pov2Down,
-                    ButtonType.Pov2Left,
-                    ButtonType.Pov2Right,
-                    ButtonType.Pov2Up,
-                    ButtonType.Pov3Down,
-                    ButtonType.Pov3Left,
-                    ButtonType.Pov3Right,
-                    ButtonType.Pov3Up,
-                    ButtonType.Pov4Down,
-                    ButtonType.Pov4Left,
-                    ButtonType.Pov4Right,
-                    ButtonType.Pov4Up,
-                    ButtonType.Encoder_A,
-                    ButtonType.Encoder_B
-            };
-            _state = state;
-        }
-        public Button(bool state, ButtonType type, int number)
-        {
-            Number = number;
-            _type = type;
-            _allowedTypes = new ObservableCollection<ButtonType>()
-            {       ButtonType.BtnInverted,
-                    ButtonType.BtnNormal,
-                    ButtonType.BtnToggle,
-                    ButtonType.ToggleSw,
-                    ButtonType.ToggleSwOff,
-                    ButtonType.ToggleSwOn,
-                    ButtonType.Pov1Down,
-                    ButtonType.Pov1Left,
-                    ButtonType.Pov1Right,
-                    ButtonType.Pov1Up,
-                    ButtonType.Pov2Down,
-                    ButtonType.Pov2Left,
-                    ButtonType.Pov2Right,
-                    ButtonType.Pov2Up,
-                    ButtonType.Pov3Down,
-                    ButtonType.Pov3Left,
-                    ButtonType.Pov3Right,
-                    ButtonType.Pov3Up,
-                    ButtonType.Pov4Down,
-                    ButtonType.Pov4Left,
-                    ButtonType.Pov4Right,
-                    ButtonType.Pov4Up,
-                    ButtonType.Encoder_A,
-                    ButtonType.Encoder_B
-            };
-            _state = state;
-        }
-
-        public Button(bool state, ButtonType type, ObservableCollection<ButtonType> allowedTypes, int number)
-        {
-            Number = number;
-            _type = type;
-            _allowedTypes = allowedTypes;
-            _state = state;
-            _physicalNumber = 0;
-        }
-
-        public Button(bool state, ButtonType type, int number, int physicalNumber)
-        {
-            Number = number;
-            _type = type;
-            _allowedTypes = new ObservableCollection<ButtonType>()
-            {       ButtonType.BtnInverted,
-                    ButtonType.BtnNormal,
-                    ButtonType.BtnToggle,
-                    ButtonType.ToggleSw,
-                    ButtonType.ToggleSwOff,
-                    ButtonType.ToggleSwOn,
-                    ButtonType.Pov1Down,
-                    ButtonType.Pov1Left,
-                    ButtonType.Pov1Right,
-                    ButtonType.Pov1Up,
-                    ButtonType.Pov2Down,
-                    ButtonType.Pov2Left,
-                    ButtonType.Pov2Right,
-                    ButtonType.Pov2Up,
-                    ButtonType.Pov3Down,
-                    ButtonType.Pov3Left,
-                    ButtonType.Pov3Right,
-                    ButtonType.Pov3Up,
-                    ButtonType.Pov4Down,
-                    ButtonType.Pov4Left,
-                    ButtonType.Pov4Right,
-                    ButtonType.Pov4Up,
-                    ButtonType.Encoder_A,
-                    ButtonType.Encoder_B
-            };
-            _state = state;
-            _physicalNumber = physicalNumber;
         }
 
         public Button(int number, int physicalNumber)
         {
+            _allowedTypes = new ObservableCollection<ButtonType>();
+            _allowedTypes.Add(ButtonType.Button_Inverted);
+            _allowedTypes.Add(ButtonType.Button_Normal);
+
+            _sourceType = ButtonSourceType.NoSource;
+
+            _config = new ButtonConfig();           
+            _config.PhysicalNumber = (sbyte) physicalNumber;
+            _config.Type = ButtonType.Button_Normal;
+            
             Number = number;
-            _physicalNumber = physicalNumber;
         }
     }
 

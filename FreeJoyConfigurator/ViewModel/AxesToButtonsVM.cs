@@ -51,7 +51,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.AxisToButtonsConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog ||
+                if (Config.PinConfig[i] == PinType.Axis_Analog ||
                     Config.PinConfig[i] == PinType.TLE501x_CS)
                 {
                     AxesToButtons[k++].IsAllowed = true;
@@ -198,7 +198,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.AxisToButtonsConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog ||
+                if (Config.PinConfig[i] == PinType.Axis_Analog ||
                     Config.PinConfig[i] == PinType.TLE501x_CS)
                 {
                     tmp[k++].IsAllowed = true;

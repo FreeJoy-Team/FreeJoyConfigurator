@@ -92,7 +92,7 @@ namespace FreeJoyConfigurator
             }
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog)
+                if (Config.PinConfig[i] == PinType.Axis_Analog)
                 {
                     Axes[k].AxisConfig.MaxResolution = 12;
                     Axes[k].AxisConfig.Resolution = 12;
