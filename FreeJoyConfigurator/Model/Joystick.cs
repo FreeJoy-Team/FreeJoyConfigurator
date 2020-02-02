@@ -152,10 +152,15 @@ namespace FreeJoyConfigurator
         private short _rawValue;
         private bool _isEnabled;
         private AxisConfig _axisConfig;
+
+        private ObservableCollection<AxisSourceType> _allowedSources;
+        private byte _maxResolution;
+
         private bool _isCalibrating;
         private Task _calibrationTask;
         private CancellationTokenSource ts;
         private CancellationToken ct;
+
 
         public string CalibrationString
         {
@@ -192,6 +197,18 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _axisConfig, value); }
         }
 
+        public ObservableCollection<AxisSourceType> AllowedSources
+        {
+            get { return _allowedSources; }
+            set { SetProperty(ref _allowedSources, value); }
+        }
+
+        public byte MaxResolution
+        {
+            get { return _maxResolution; }
+            set { SetProperty(ref _maxResolution, value); }
+        }
+
         public Axis(int number, AxisConfig axisConfig)
         {
             _axisConfig = axisConfig;
@@ -199,6 +216,11 @@ namespace FreeJoyConfigurator
             Number = number;
             _value = 0;
             _rawValue = 0;
+
+            _allowedSources = new ObservableCollection<AxisSourceType>();
+            _allowedSources.Add(AxisSourceType.Buttons);
+            _maxResolution = 16;
+            
 
             CalibrateCommand = new DelegateCommand(() => Calibrate());
         }

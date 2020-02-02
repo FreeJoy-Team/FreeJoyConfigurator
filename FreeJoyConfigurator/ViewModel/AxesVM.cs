@@ -76,31 +76,28 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < Config.AxisConfig.Count; i++)
             {
-                Axes[i].IsEnabled = false;
+                Axes[i].IsEnabled = true;
                 Axes[i].AxisConfig = Config.AxisConfig[i];
-            }
-
-            int k = 0;
-            for (int i = 0; i < Config.PinConfig.Count; i++)
-            {
-                if (Config.PinConfig[i] == PinType.TLE501x_CS)
+                for (int k = 0; k < Config.PinConfig.Count; k++)
                 {
-                    Axes[k].AxisConfig.MaxResolution = 16;
-                    Axes[k].AxisConfig.Resolution = 16;
-                    Axes[k++].IsEnabled = true;
-                }
-            }
-            for (int i = 0; i < Config.PinConfig.Count; i++)
-            {
-                if (Config.PinConfig[i] == PinType.Axis_Analog)
-                {
-                    Axes[k].AxisConfig.MaxResolution = 12;
-                    Axes[k].AxisConfig.Resolution = 12;
-                    Axes[k++].IsEnabled = true;
+                    if (Axes[i].AllowedSources.Contains((AxisSourceType)k))
+                        Axes[i].AllowedSources.Remove((AxisSourceType)k);
                 }
             }
 
-            
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.TLE501x_CS || Config.PinConfig[i] == PinType.Axis_Analog)
+                {
+                    foreach (var axis in Axes)
+                    {
+                        if (!axis.AllowedSources.Contains((AxisSourceType)i))
+                            axis.AllowedSources.Add((AxisSourceType)i);
+                    }
+                }
+            }
+
+
             AxesCurvesVM.Update(Config);
         }
 

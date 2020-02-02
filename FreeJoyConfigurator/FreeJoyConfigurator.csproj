@@ -147,7 +147,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Tools\AxisTypeConverter.cs" />
     <Compile Include="Model\ShiftRegister.cs" />
+    <Compile Include="Tools\NumericToBooleanConverter.cs" />
     <Compile Include="View\ShiftModificatorsView.xaml.cs">
       <DependentUpon>ShiftModificatorsView.xaml</DependentUpon>
     </Compile>

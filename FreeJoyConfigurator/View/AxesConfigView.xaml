@@ -14,21 +14,15 @@
         <local:FilterLevelConverter x:Key="filterConverter"/>
     </UserControl.Resources>
 
-    <ItemsControl ItemsSource="{Binding AxesVM.Axes, Mode=OneWay}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <StackPanel/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="{x:Type local:AxesConfigView}">
-                <Border BorderThickness="0.5" BorderBrush="LightGray" Height="170" IsEnabled="{Binding IsEnabled}">
+
+                <Border BorderThickness="0.5" BorderBrush="LightGray" IsEnabled="{Binding IsEnabled}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MaxWidth="80"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.3*"/>
                             <ColumnDefinition Width="0.8*"/>
-                        </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -40,18 +34,12 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        
-
-                        
-
-                        
-
                         <TextBlock Grid.Column="0" Grid.Row="0"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,5,0"
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                             Width="50"
                                             Value="{Binding AxisConfig.Resolution, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="{Binding AxisConfig.MaxResolution, Mode=OneWay}" Minimum="1"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                            Maximum="{Binding MaxResolution, Mode=OneWay}" Minimum="1"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                         <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
                                   Content="Magnet offset" 
@@ -59,13 +47,15 @@
                                   IsChecked="{Binding AxisConfig.IsMagnetOffset}"/>
                         
                         <TextBlock Grid.Column="0" Grid.Row="2"  Text="Dead zone"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Stretch"  Margin="0,0,5,0"
-                                            Width="50" Minimum="1"/>
-                        
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                            Width="50" Minimum="0"
+                                            Value="{Binding AxisConfig.DeadZone}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2"  Text="%"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
+
                         <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
-                                    Margin="10,2,10,1"
-                                    Content="{Binding CalibrationString}"
-                                    Command="{Binding CalibrateCommand }"/>
+                                                Margin="10,2,10,1"
+                                                Content="{Binding CalibrationString}"
+                                                Command="{Binding CalibrateCommand }"/>
                         
 
                         <TextBlock Grid.Column="0" Grid.Row="4" Text="Minimum" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
@@ -84,20 +74,18 @@
                         <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
                                             Value="{Binding AxisConfig.CalibMax, UpdateSourceTrigger=LostFocus}"/>
 
-                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Slider Grid.Column="2" Grid.Row="1" Grid.RowSpan="5" Orientation="Vertical"
+                        <TextBlock Grid.Column="3" Grid.Row="0" Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Slider Grid.Column="3" Grid.Row="1" Grid.RowSpan="5" Orientation="Vertical"
                                 HorizontalAlignment="Center" Minimum="0" Maximum="3" IsSnapToTickEnabled="True" TickFrequency="1"
                                 Value="{Binding AxisConfig.FilterLevel}"/>
-                        <TextBlock Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                        <TextBlock Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
                                Text="{Binding AxisConfig.FilterLevel, Converter={StaticResource filterConverter}}"/>
 
+                        
+                        
                         
 
                     </Grid>
                 </Border>
 
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-
-    </ItemsControl>
 </UserControl>

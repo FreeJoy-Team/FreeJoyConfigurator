@@ -124,20 +124,9 @@
                 </Grid>
 
             </TabItem>
+            
             <TabItem Header="Axes Config">
-                <ScrollViewer>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="*"/>
-
-                        </Grid.ColumnDefinitions>
-
-                        <local:AxesView Grid.Column="0"/>
-                        <local:AxesConfigView Grid.Column="1"/>
-                    </Grid>
-                </ScrollViewer>
-
+                <local:AxesView Grid.Column="0"/>
             </TabItem>
 
             <TabItem Header="Axes Curves">
@@ -185,7 +174,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Number of axes:" 
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Axis sources:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PinsVM.AxesCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
