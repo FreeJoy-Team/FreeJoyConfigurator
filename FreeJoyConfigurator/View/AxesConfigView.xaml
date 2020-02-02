@@ -20,8 +20,8 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MaxWidth="80"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="0.8*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="0.7*"/>
             </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -48,9 +48,9 @@
                         
                         <TextBlock Grid.Column="0" Grid.Row="2"  Text="Dead zone"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                            Width="50" Minimum="0"
+                                            Width="50" Minimum="0" Maximum="255"
                                             Value="{Binding AxisConfig.DeadZone}"/>
-                        <TextBlock Grid.Column="2" Grid.Row="2"  Text="%"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2"  Text="x0.1%"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>
 
                         <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
                                                 Margin="10,2,10,1"

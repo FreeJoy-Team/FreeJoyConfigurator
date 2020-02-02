@@ -65,8 +65,10 @@ namespace FreeJoyConfigurator
     public enum AxisFunction :byte
     {
         None = 0,
-        Plus,
-        Minus,
+        Plus_Absolute,
+        Plus_Relative,
+        Minus_Absolute,
+        Minus_Relative,
     };
 
     public class AxisConfig : BindableBase
