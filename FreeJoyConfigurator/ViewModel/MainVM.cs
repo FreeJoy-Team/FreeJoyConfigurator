@@ -331,7 +331,7 @@ namespace FreeJoyConfigurator
         {
             Config = deviceConfig;
 
-            DeviceFirmwareVersionVM = "Device firmware v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".");
+            DeviceFirmwareVersionVM = "Device firmware v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".").Insert(3,".").Insert(5, "b");
 
             PinsVM.Update(Config);
             ButtonsVM.Update(Config);

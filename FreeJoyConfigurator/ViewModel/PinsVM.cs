@@ -174,12 +174,12 @@ namespace FreeJoyConfigurator
                 Pins[i].PropertyChanged += PinsVM_PropertyChanged;
             }
             // update config
-            DeviceConfig tmp = Config;
-            for (int i = 0; i < tmp.PinConfig.Count; i++)
+            //DeviceConfig tmp = Config;
+            for (int i = 0; i < Config.PinConfig.Count; i++)
             {
-                tmp.PinConfig[i] = Pins[i].SelectedType;
+                Config.PinConfig[i] = Pins[i].SelectedType;
             }
-            Config = tmp;
+            //Config = tmp;
             PinsVM_PropertyChanged(this, null);
         }
         #endregion

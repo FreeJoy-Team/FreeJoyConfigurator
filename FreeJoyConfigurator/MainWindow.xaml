@@ -57,7 +57,7 @@
 
                 <!--Row 2-->
                 <TextBlock Name="DeviceVersion_TextBlock" Grid.Row="2"  TextAlignment="Center" 
-                    Text="{Binding DeviceFirmwareVersionVM}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="19" Width="125"/>
+                    Text="{Binding DeviceFirmwareVersionVM}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="19" Width="140"/>
 
                 <!--Row 3-->
                 <Button Name="Button_ReadConfig" Grid.Row="3"  Content="Read Config from Device"

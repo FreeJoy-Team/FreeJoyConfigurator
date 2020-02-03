@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>259</Firmware_Version>
+  <Firmware_Version>4897</Firmware_Version>
   <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>30</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
@@ -575,896 +575,768 @@
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
-    <MaxPhysicalNumber>0</MaxPhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <AxisToButtons_Config>

@@ -84,8 +84,18 @@ namespace FreeJoyConfigurator
         private ButtonConfig _config;
         private ObservableCollection<ButtonType> _allowedTypes;
         private ButtonSourceType _sourceType;
+        private int _maxPhysicalNumber;
 
-        public int Number { get; private set; }      
+        public int Number { get; private set; }
+
+        public int MaxPhysicalNumber
+        {
+            get { return _maxPhysicalNumber; }
+            set
+            {
+                SetProperty(ref _maxPhysicalNumber, value);
+            }
+        }
 
         public bool State
         {

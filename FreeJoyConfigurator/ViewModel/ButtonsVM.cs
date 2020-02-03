@@ -213,18 +213,19 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < LogicalButtons.Count; i++)
             {
                 LogicalButtons[i].Config.PropertyChanged -= Button_PropertyChanged;
-                LogicalButtons[i].Config.MaxPhysicalNumber = TotalBtnCnt;
+                LogicalButtons[i].MaxPhysicalNumber = TotalBtnCnt;
                 LogicalButtons[i].Config.PhysicalNumber = config.ButtonConfig[i].PhysicalNumber;
                 LogicalButtons[i].Config.ShiftModificator = config.ButtonConfig[i].ShiftModificator;
                 LogicalButtons[i].Config.Type = config.ButtonConfig[i].Type;
                 if (PhysicalButtons.Count > 0)
                 {
-                    if (config.ButtonConfig[i].PhysicalNumber > 0)
+                    if (config.ButtonConfig[i].PhysicalNumber > 0 && config.ButtonConfig[i].PhysicalNumber < TotalBtnCnt)
                     {
                         LogicalButtons[i].SourceType = PhysicalButtons[config.ButtonConfig[i].PhysicalNumber - 1].SourceType;
                     }
                     else
                     {
+                        if (LogicalButtons[i].Config.PhysicalNumber >= TotalBtnCnt) LogicalButtons[i].Config.PhysicalNumber = 0;
                         LogicalButtons[i].SourceType = ButtonSourceType.NoSource;
                     }
 
@@ -336,7 +337,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < LogicalButtons.Count; i++)
             {
-                if (LogicalButtons[i].Config.PhysicalNumber > 0 && TotalBtnCnt > 0)
+                if (LogicalButtons[i].Config.PhysicalNumber > 0 && LogicalButtons[i].Config.PhysicalNumber < TotalBtnCnt)
                 {
                     LogicalButtons[i].SourceType = PhysicalButtons[LogicalButtons[i].Config.PhysicalNumber - 1].SourceType;
 
@@ -348,6 +349,7 @@ namespace FreeJoyConfigurator
                 }
                 else
                 {
+                    if (LogicalButtons[i].Config.PhysicalNumber >= TotalBtnCnt) LogicalButtons[i].Config.PhysicalNumber = 0;
                     LogicalButtons[i].SourceType = ButtonSourceType.NoSource;
                 }
 

@@ -368,7 +368,6 @@ namespace FreeJoyConfigurator
     public class ButtonConfig : BindableBase
     {
         private sbyte _physicalNumber;
-        private int _maxPhysicalNumber;
         private ShiftType _shiftModificator;
         private ButtonType _type;
         private bool _isEnabled;
@@ -398,14 +397,7 @@ namespace FreeJoyConfigurator
             }
         }
 
-        public int MaxPhysicalNumber
-        {
-            get { return _maxPhysicalNumber; }
-            set
-            {
-                SetProperty(ref _maxPhysicalNumber, value);
-            }
-        }
+        
 
         public ShiftType ShiftModificator
         {
