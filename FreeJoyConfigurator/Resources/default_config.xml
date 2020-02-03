@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>4897</Firmware_Version>
+  <Firmware_Version>4898</Firmware_Version>
   <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>30</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
-  <Encoder_Press_Time>30</Encoder_Press_Time>
+  <Encoder_Press_Time>25</Encoder_Press_Time>
   <Exchange_Period>5</Exchange_Period>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>

@@ -351,7 +351,12 @@ namespace FreeJoyConfigurator
         Pov4_Left,
 
         Encoder_A,
-        Encoder_B, 
+        Encoder_B,
+        
+        RadioButton1,
+        RadioButton2,
+        RadioButton3,
+        RadioButton4,
     };
 
     public enum ButtonSourceType
