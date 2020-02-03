@@ -212,7 +212,7 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
                 
-                if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonGnd)
+                if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonVcc)
                 {
                     tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
                     SingleBtnCnt++;
