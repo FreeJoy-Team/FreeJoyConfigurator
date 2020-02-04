@@ -238,7 +238,7 @@ namespace FreeJoyConfigurator
                     while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
                     tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
-                    if (tmp.FirmwareVersion != Config.FirmwareVersion)
+                    if ((tmp.FirmwareVersion & 0xFFF0) != (Config.FirmwareVersion & 0xFFF0))
                     {
                         MessageBoxService mbs = new MessageBoxService();
 

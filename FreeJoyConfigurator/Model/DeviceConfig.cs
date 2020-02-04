@@ -494,8 +494,10 @@ namespace FreeJoyConfigurator
 
     public enum ShiftRegisterType
     {
-        HC165 = 0,
-        CD4021 = 1,
+        HC165_PullDown = 0,
+        CD4021_PullDown,
+        HC165_PullUp,
+        CD4021_PullUp,
     };
 
     public class ShiftRegisterConfig : BindableBase
@@ -531,7 +533,7 @@ namespace FreeJoyConfigurator
 
         public ShiftRegisterConfig()
         {
-            _type = ShiftRegisterType.CD4021;
+            _type = ShiftRegisterType.HC165_PullUp;
             _buttonCnt = 0;
             //_selectPin = 0xFF;
             //_dataPin = 0xFF;

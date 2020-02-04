@@ -219,7 +219,7 @@ namespace FreeJoyConfigurator
                 LogicalButtons[i].Config.Type = config.ButtonConfig[i].Type;
                 if (PhysicalButtons.Count > 0)
                 {
-                    if (config.ButtonConfig[i].PhysicalNumber > 0 && config.ButtonConfig[i].PhysicalNumber < TotalBtnCnt)
+                    if (config.ButtonConfig[i].PhysicalNumber > 0 && config.ButtonConfig[i].PhysicalNumber <= TotalBtnCnt)
                     {
                         LogicalButtons[i].SourceType = PhysicalButtons[config.ButtonConfig[i].PhysicalNumber - 1].SourceType;
                     }
@@ -337,7 +337,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < LogicalButtons.Count; i++)
             {
-                if (LogicalButtons[i].Config.PhysicalNumber > 0 && LogicalButtons[i].Config.PhysicalNumber < TotalBtnCnt)
+                if (LogicalButtons[i].Config.PhysicalNumber > 0 && LogicalButtons[i].Config.PhysicalNumber <= TotalBtnCnt)
                 {
                     LogicalButtons[i].SourceType = PhysicalButtons[LogicalButtons[i].Config.PhysicalNumber - 1].SourceType;
 

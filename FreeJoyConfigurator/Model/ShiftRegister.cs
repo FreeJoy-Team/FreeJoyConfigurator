@@ -58,7 +58,7 @@ namespace FreeJoyConfigurator
             _number = number;
             _buttonCnt = 0;
             _registerCnt = 0;
-            _type = ShiftRegisterType.HC165; 
+            _type = ShiftRegisterType.HC165_PullUp; 
         }
 
         public ShiftRegister(int number, int buttonCnt)
@@ -67,7 +67,7 @@ namespace FreeJoyConfigurator
             _number = number;
             _buttonCnt = buttonCnt;
             _registerCnt = (int) Math.Ceiling((float)_buttonCnt / 8.0);
-            _type = ShiftRegisterType.HC165;
+            _type = ShiftRegisterType.HC165_PullUp;
         }
         public ShiftRegister(int number, ShiftRegisterType type)
         {
