@@ -4,8 +4,8 @@
   <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>300</Toggle_Press_Time>
-  <Encoder_Press_Time>100</Encoder_Press_Time>
-  <Exchange_Period>10</Exchange_Period>
+  <Encoder_Press_Time>10</Encoder_Press_Time>
+  <Exchange_Period>5</Exchange_Period>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -98,7 +98,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -163,7 +163,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -228,7 +228,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -293,7 +293,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -358,7 +358,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -423,7 +423,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -488,7 +488,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -553,7 +553,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>0</Step>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <ShiftModificator_Config>

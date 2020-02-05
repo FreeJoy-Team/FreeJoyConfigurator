@@ -121,7 +121,7 @@
                                             IsEnabled="{Binding AxisConfig.SourceMain, Converter={StaticResource AxisSrcBoolConverter}}"
                                             Maximum="128" Minimum="0"/>
 
-                            <TextBlock Grid.Column="5" Grid.Row="2" Text="Step %"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="5" Grid.Row="2" Text="Step (1-255)"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <xctk:IntegerUpDown Grid.Column="5" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"
                                             Width="50" Margin="0,0,0,5"
                                             Value="{Binding AxisConfig.Step, UpdateSourceTrigger=LostFocus}"

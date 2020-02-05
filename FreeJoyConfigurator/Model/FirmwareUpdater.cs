@@ -15,8 +15,11 @@ namespace FreeJoyConfigurator
 
         private int _updatePercent;
 
-        public delegate void FlashFinishedEventHandler();
-        public event FlashFinishedEventHandler Finished;
+        public delegate void FlashEventHandler();
+        public event FlashEventHandler Finished;
+        public event FlashEventHandler SizeError;
+        public event FlashEventHandler CrcError;
+        public event FlashEventHandler EraseError;
 
         public int UpdatePercent
         {
@@ -50,9 +53,24 @@ namespace FreeJoyConfigurator
             {
                 ushort cnt = (ushort)(hr.Data[0] << 8 | hr.Data[1]);
 
-                if (cnt == 0)  // error packet
+                if ((cnt & 0xF000) == 0xF000)  // status packet
                 {
-                    // TODO: errors handler
+                    if (cnt == 0xF001)  // firmware size error
+                    {
+                        SizeError();
+                    }
+                    else if (cnt == 0xF002) // CRC error
+                    {
+                        CrcError();
+                    }
+                    else if (cnt == 0xF003) // flash erase error
+                    {
+                        EraseError();
+                    }
+                    else if (cnt == 0xF000) // OK
+                    {
+                        Finished();
+                    }
                 }
                 else
                 {
@@ -79,7 +97,6 @@ namespace FreeJoyConfigurator
                         Hid.ReportSend((byte)ReportID.FIRMWARE_REPORT, buffer);
                         Console.WriteLine("Firmware packet sent: {0}", cnt);
 
-                        Finished();
                     }
 
                     

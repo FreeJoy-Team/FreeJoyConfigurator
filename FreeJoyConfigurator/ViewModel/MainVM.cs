@@ -222,6 +222,16 @@ namespace FreeJoyConfigurator
             {
                 {   // TODO: fix serialization
                     DeviceConfig tmp = DeSerializeObject<DeviceConfig>(dlg.FileName);
+
+                    if (tmp != null && (tmp.FirmwareVersion & 0xFFF0) != (Config.FirmwareVersion & 0xFFF0))
+                    {
+                        MessageBoxService mbs = new MessageBoxService();
+
+                        mbs.ShowMessage("Config file is broken or was created in other version of configurator!\r\n" +
+                            "Configuration loading will be canceled", "Error");
+                        return;
+                    }
+
                     while (tmp.PinConfig.Count > 30) tmp.PinConfig.RemoveAt(0);
                     while (tmp.AxisConfig.Count > 8) tmp.AxisConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++)
@@ -238,14 +248,6 @@ namespace FreeJoyConfigurator
                     while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
                     tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
-                    if ((tmp.FirmwareVersion & 0xFFF0) != (Config.FirmwareVersion & 0xFFF0))
-                    {
-                        MessageBoxService mbs = new MessageBoxService();
-
-                        mbs.ShowMessage("Config file was created in other version of configurator!\r\n" +
-                            "Configuration loading will be canceled", "Error");
-                        return;
-                    }
                     Config = tmp;
                 }
                 PinsVM.Config = Config;
