@@ -15,186 +15,262 @@ using System.Xml.Serialization;
 namespace FreeJoyConfigurator
 {
 
+    public enum AxisSourceType : sbyte
+    {
+        Buttons = -1,
+        A0 = 0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5,
+        A6,
+        A7,
+        A8,
+        A9,
+        A10,
+        A15,
+        B0,
+        B1,
+        B2,
+        B4,
+        B6,
+        B7,
+        B8,
+        B9,
+        B10,
+        B11,
+        B12,
+        B13,
+        B14,
+        B15,
+        C13,
+        C14,
+        C15,
+
+    };
+
+    public enum AxisType : byte
+    {
+        X = 0,
+        Y,
+        Z,
+        Rx,
+        Ry,
+        Rz,
+        Slider1,
+        Slider2,
+    };
+
+    public enum AxisFunction :byte
+    {
+        None = 0,
+        Plus_Absolute,
+        Plus_Relative,
+        Minus_Absolute,
+        Minus_Relative,
+    };
+
     public class AxisConfig : BindableBase
     {
-        private ushort _calibMin;
-        private ushort _calibCenter;
-        private ushort _calibMax;
-        private bool _isInverted;
-        private bool _isMagnetOffset;
-        private ObservableCollection<Point> _curveShape;
-        private byte _filterLevel;
+        private short _calibMin;
+        private short _calibCenter;
+        private short _calibMax;
+
         private bool _isOutEnabled;
+        private bool _isMagnetOffset;
+        private bool _isInverted;
+        private byte _filterLevel;
+
+        private ObservableCollection<Point> _curveShape;
+
         private byte _resolution;
-        
+        private byte _deadZone;
+
+        private AxisSourceType _sourceMain;
+        private AxisType _sourceSecondary;
+        private AxisFunction _function;
+
+        private sbyte _incrementButton;
+        private sbyte _decrementButton;
+        private sbyte _centerButton;
+        private byte _step;
 
         private bool _isCalibCenterUnlocked;
+        
 
-        public ushort CalibMin
+        public short CalibMin
         {
-            get
-            {
-                return _calibMin;
-            }
+            get{return _calibMin;}
             set
             {
-                if (value < 0) SetProperty(ref _calibMin, (ushort)0);
-                else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (ushort)(CalibCenter - 1));
-                else if (value >= CalibMax) SetProperty(ref _calibMin, (ushort)(CalibMax - 2));
+                if (value < -32767) SetProperty(ref _calibMin, (short)-32767);
+                else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (short)(CalibCenter - 1));
+                else if (value >= CalibMax) SetProperty(ref _calibMin, (short)(CalibMax - 2));
                 else SetProperty(ref _calibMin, value);
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
+                    CalibCenter = (short)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
             }
         }
-        public ushort CalibCenter
+        public short CalibCenter
         {
-            get
-            {
-                return _calibCenter;
-            }
+            get{return _calibCenter;}
             set
             {
                 if (IsCalibCenterUnlocked)
                 {
                     if (value <= CalibMin)
                     {
-                        SetProperty(ref _calibCenter, (ushort)(CalibMin + 1));
+                        SetProperty(ref _calibCenter, (short)(CalibMin + 1));
                     }
                     else if (value >= CalibMax)
                     {
-                        SetProperty(ref _calibCenter, (ushort)(CalibMax - 1));
+                        SetProperty(ref _calibCenter, (short)(CalibMax - 1));
                     }
                     else SetProperty(ref _calibCenter, value);
                 }
                 else
                 {
-                    SetProperty(ref _calibCenter, (ushort)((CalibMax - CalibMin) / 2 + CalibMin));
+                    SetProperty(ref _calibCenter, (short)((CalibMax - CalibMin) / 2 + CalibMin));
                 }
             }
         }
-        public ushort CalibMax
+        public short CalibMax
         {
-            get
-            {
-                return _calibMax;
-            }
+            get {return _calibMax;}
             set
             {
-                if (value <= CalibMin) SetProperty(ref _calibMax, (ushort)(CalibMin + 2));
-                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (ushort)(CalibCenter + 1));
-                else if (value > 4095) SetProperty(ref _calibMax, (ushort) 4095);
+                if (value <= CalibMin) SetProperty(ref _calibMax, (short)(CalibMin + 2));
+                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (short)(CalibCenter + 1));
+                else if (value > 32767) SetProperty(ref _calibMax, (short) 32767);
                 else SetProperty(ref _calibMax, value);
 
                 if (!IsCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2 + CalibMin);
+                    CalibCenter = (short)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
-            }
-        }
-      
-        public bool IsInverted
-        {
-            get
-            {
-                return _isInverted;
-            }
-            set
-            {
-                SetProperty(ref _isInverted, value);
-            }
-        }
-
-        public bool IsMagnetOffset
-        {
-            get
-            {
-                return _isMagnetOffset;
-            }
-            set
-            {
-                SetProperty(ref _isMagnetOffset, value);
-            }
-        }
-
-        public ObservableCollection<Point> CurveShape
-        {
-            get
-            {
-                return _curveShape;
-            }
-            set
-            {
-                SetProperty(ref _curveShape, value);
-            }
-        }
-
-        public byte FilterLevel
-        {
-            get
-            {
-                return _filterLevel;
-            }
-            set
-            {
-                SetProperty(ref _filterLevel, value);
             }
         }
 
         public bool IsOutEnabled
         {
-            get
-            {
-                return _isOutEnabled;
-            }
-            set
-            {
-                SetProperty(ref _isOutEnabled, value);
-            }
+            get {return _isOutEnabled;}
+            set{ SetProperty(ref _isOutEnabled, value);}
+        }
+        public bool IsInverted
+        {
+            get {return _isInverted;}
+            set{ SetProperty(ref _isInverted, value);}
+        }
+        public bool IsMagnetOffset
+        {
+            get { return _isMagnetOffset; }
+            set{SetProperty(ref _isMagnetOffset, value);}
+        }
+        public byte FilterLevel
+        {
+            get{ return _filterLevel;}
+            set{SetProperty(ref _filterLevel, value);}
+        }
+
+        public ObservableCollection<Point> CurveShape
+        {
+            get {return _curveShape;}
+            set{SetProperty(ref _curveShape, value);}
         }
 
         public byte Resolution
         {
-            get
-            {
-                return _resolution;
-            }
-            set
-            {
-                SetProperty(ref _resolution, value);
-            }
+            get {return _resolution; }
+            set { SetProperty(ref _resolution, value);}
         }
+        public byte DeadZone
+        {
+            get { return _deadZone; }
+            set { SetProperty(ref _deadZone, value); }
+        }
+
+        public AxisSourceType SourceMain
+        {
+            get{return _sourceMain;}
+            set{ SetProperty(ref _sourceMain, value);}
+        }
+
+        public AxisType SourceSecondary
+        {
+            get{return _sourceSecondary; }
+            set { SetProperty(ref _sourceSecondary, value);}
+        }
+        public AxisFunction Function
+        {
+            get { return _function; }
+            set { SetProperty(ref _function, value); }
+        }
+
+        public sbyte IncrementButton
+        {
+            get { return _incrementButton; }
+            set { SetProperty(ref _incrementButton, value); }
+        }
+        public sbyte DecrementButton
+        {
+            get { return _decrementButton; }
+            set { SetProperty(ref _decrementButton, value); }
+        }
+        public sbyte CenterButton
+        {
+            get { return _centerButton; }
+            set { SetProperty(ref _centerButton, value); }
+        }
+        public byte Step
+        {
+            get { return _step; }
+            set { SetProperty(ref _step, value); }
+        }
+
 
         public bool IsCalibCenterUnlocked
         {
-            get
-            {
-                return _isCalibCenterUnlocked;
-            }
+            get{return _isCalibCenterUnlocked;}
             set
             {
                 SetProperty(ref _isCalibCenterUnlocked, value);
                 if (!_isCalibCenterUnlocked)
                 {
-                    CalibCenter = (ushort)((CalibMax - CalibMin) / 2);
+                    CalibCenter = (short)((CalibMax - CalibMin) / 2);
                 }
             }
         }
 
+
         public AxisConfig()
         {
-            _calibMin = 0;
-            _calibCenter = 2047;
-            _calibMax = 4095;
+            _calibMin = -32767;
+            _calibCenter = 0;
+            _calibMax = 32767;
+
             _isInverted = false;
             _isMagnetOffset = false;
             _isOutEnabled = true;
-            _resolution = 12;
+
+            _sourceMain = AxisSourceType.Buttons;
+            _sourceSecondary = AxisType.X;
+            _function = AxisFunction.None;
+
+            _decrementButton = 0;
+            _incrementButton = 0;
+            _centerButton = 0;
+            _step = 0;
+
+            _resolution = 16;
+            _deadZone = 0;
+
 
             _curveShape = new ObservableCollection<Point>();
-            for (int i = 0; i < 10; i++) _curveShape.Add(new Point(i, 0));
+            for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, 0));
             _filterLevel = 0;
 
             _isCalibCenterUnlocked = false;
@@ -227,13 +303,13 @@ namespace FreeJoyConfigurator
 
     public enum PinType : byte
     {
-        NotUsed = 0,
-        ButtonGnd,
-        ButtonVcc,
-        ButtonRow,
-        ButtonColumn,
+        Not_Used = 0,
+        Button_Gnd,
+        Button_Vcc,
+        Button_Row,
+        Button_Column,
 
-        AxisAnalog,
+        Axis_Analog,
 //        AxisToButtons,
 
         SPI_SCK = 7,
@@ -250,60 +326,132 @@ namespace FreeJoyConfigurator
 
     public enum ButtonType
     {
-        BtnNormal = 0,
-        BtnInverted,
-        BtnToggle,
-        ToggleSw,
-        ToggleSwOn,
-        ToggleSwOff,
+        Button_Normal = 0,
+        Button_Inverted,
+        Button_Toggle,
+        ToggleSwitch_OnOff,
+        ToggleSwitch_On,
+        ToggleSwitch_Off,
 
-        Pov1Up,
-        Pov1Right,
-        Pov1Down,
-        Pov1Left,
-        Pov2Up,
-        Pov2Right,
-        Pov2Down,
-        Pov2Left,
-        Pov3Up,
-        Pov3Right,
-        Pov3Down,
-        Pov3Left,
-        Pov4Up,
-        Pov4Right,
-        Pov4Down,
-        Pov4Left,
+        Pov1_Up,
+        Pov1_Right,
+        Pov1_Down,
+        Pov1_Left,
+        Pov2_Up,
+        Pov2_Right,
+        Pov2_Down,
+        Pov2_Left,
+        Pov3_Up,
+        Pov3_Right,
+        Pov3_Down,
+        Pov3_Left,
+        Pov4_Up,
+        Pov4_Right,
+        Pov4_Down,
+        Pov4_Left,
 
         Encoder_A,
         Encoder_B,
         
-        
+        RadioButton1,
+        RadioButton2,
+        RadioButton3,
+        RadioButton4,
     };
+
+    public enum ButtonSourceType
+    {
+        NoSource = 0,
+        SingleButton,
+        MatrixButton,
+        ShiftRegister,
+        AxisToButtons,
+        Shift,
+    }
+
 
     public class ButtonConfig : BindableBase
     {
+        private sbyte _physicalNumber;
+        private ShiftType _shiftModificator;
         private ButtonType _type;
+        private bool _isEnabled;
+        
+        
+
         public ButtonType Type
         {
-            get
-            {
-                return _type;
-            }
+            get {return _type;}
+            set{SetProperty(ref _type, value);}
+        }
+
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { SetProperty(ref _isEnabled, value); }
+        }
+
+        public sbyte PhysicalNumber
+        {
+            get{return _physicalNumber;}
             set
             {
-                SetProperty(ref _type, value);
+                SetProperty(ref _physicalNumber, value);
+                if (value > 0) IsEnabled = true;
+                else IsEnabled = false;
             }
+        }
+
+        
+
+        public ShiftType ShiftModificator
+        {
+            get { return _shiftModificator; }
+            set {SetProperty(ref _shiftModificator, value);}
         }
 
         public ButtonConfig()
         {
-            _type = ButtonType.BtnNormal;
+            _isEnabled = false;
+            _physicalNumber = 0;
+            _shiftModificator = 0;
+
+            _type = ButtonType.Button_Normal;
+            
         }
 
         public ButtonConfig (ButtonType type)
         {
+            _isEnabled = false;
+            _physicalNumber = 0;
+            _shiftModificator = 0;
+
             _type = type;
         }
+    }
+
+    public enum ShiftType
+    {
+        NoShift = 0,
+        Shift1,
+        Shift2,
+        Shift3,
+        Shift4,
+        Shift5,
+    }
+
+
+    public class ShiftModificatorConfig : BindableBase
+    {
+        private sbyte _button;
+
+        public sbyte Button
+        {
+            get { return _button; }
+            set { SetProperty(ref _button, value); }
+        }
+        
+
     }
 
     public class AxisToButtonsConfig : BindableBase
@@ -346,8 +494,10 @@ namespace FreeJoyConfigurator
 
     public enum ShiftRegisterType
     {
-        HC165 = 0,
-        CD4021 = 1,
+        HC165_PullDown = 0,
+        CD4021_PullDown,
+        HC165_PullUp,
+        CD4021_PullUp,
     };
 
     public class ShiftRegisterConfig : BindableBase
@@ -383,7 +533,7 @@ namespace FreeJoyConfigurator
 
         public ShiftRegisterConfig()
         {
-            _type = ShiftRegisterType.CD4021;
+            _type = ShiftRegisterType.HC165_PullUp;
             _buttonCnt = 0;
             //_selectPin = 0xFF;
             //_dataPin = 0xFF;
@@ -408,6 +558,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<PinType> PinConfig { get; set; }
         [XmlElement("Axis_Config")]
         public ObservableCollection<AxisConfig> AxisConfig { get; set; }
+        [XmlElement("ShiftModificator_Config")]
+        public ObservableCollection<ShiftModificatorConfig> ShiftModificatorConfig { get; set; }
         [XmlElement("Button_Config")]
         public ObservableCollection<ButtonConfig> ButtonConfig { get; set; }
         [XmlElement("AxisToButtons_Config")]
@@ -427,7 +579,10 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 8; i++) AxisConfig.Add(new AxisConfig());
 
             PinConfig = new ObservableCollection<PinType>();
-            for (int i = 0; i < 30; i++) PinConfig.Add(PinType.NotUsed);
+            for (int i = 0; i < 30; i++) PinConfig.Add(PinType.Not_Used);
+
+            ShiftModificatorConfig = new ObservableCollection<ShiftModificatorConfig>();
+            for (int i = 0; i < 5; i++) ShiftModificatorConfig.Add(new ShiftModificatorConfig());
 
             ButtonConfig = new ObservableCollection<ButtonConfig>();
             for (int i = 0; i < 128; i++) ButtonConfig.Add(new ButtonConfig());

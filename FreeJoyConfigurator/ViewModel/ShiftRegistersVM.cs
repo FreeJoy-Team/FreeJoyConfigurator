@@ -38,7 +38,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < 4; i++)
             {
-                ShiftRegisters.Add(new ShiftRegister(i+1, ShiftRegisterType.HC165));
+                ShiftRegisters.Add(new ShiftRegister(i+1, ShiftRegisterType.HC165_PullUp));
                 ShiftRegisters[i].PropertyChanged += ShiftRegistersVM_PropertyChanged;
             }
 

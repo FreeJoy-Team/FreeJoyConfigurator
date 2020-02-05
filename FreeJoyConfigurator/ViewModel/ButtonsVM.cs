@@ -18,9 +18,14 @@ namespace FreeJoyConfigurator
         private int _colCnt;
         private int _singleBtnCnt;
         private int _totalBtnCnt;
+        private int _buttonsFromAxes;
 
         private DeviceConfig _config;
-        private ObservableCollection<Button> _buttons;
+        private ObservableCollection<Button> _logicalButtons;
+        private ObservableCollection<Button> _physicalButtons;
+
+        public delegate void ButtonsChangedEvent();
+        public event ButtonsChangedEvent ConfigChanged;
 
         public int RowCnt
         {
@@ -70,6 +75,18 @@ namespace FreeJoyConfigurator
             }
         }
 
+        public int ButtonsFromAxesCnt
+        {
+            get
+            {
+                return _buttonsFromAxes;
+            }
+            private set
+            {
+                SetProperty(ref _buttonsFromAxes, value);
+            }
+        }
+
         public DeviceConfig Config
         {
             get
@@ -82,10 +99,16 @@ namespace FreeJoyConfigurator
             }
         }
 
-        public ObservableCollection<Button> Buttons
+        public ObservableCollection<Button> LogicalButtons
         {
-            get { return _buttons; }
-            set { SetProperty(ref _buttons, value); }
+            get { return _logicalButtons; }
+            set { SetProperty(ref _logicalButtons, value); }
+        }
+
+        public ObservableCollection<Button> PhysicalButtons
+        {
+            get { return _physicalButtons; }
+            set { SetProperty(ref _physicalButtons, value); }
         }
 
         public Joystick Joystick;
@@ -96,8 +119,14 @@ namespace FreeJoyConfigurator
             Joystick.PropertyChanged += Joystick_PropertyChanged;
             _config = deviceConfig;
 
-            _buttons = new ObservableCollection<Button>();
+            _logicalButtons = new ObservableCollection<Button>();
+            for (int i = 0; i < 128; i++)
+            {
+                _logicalButtons.Add(new Button(i + 1, 0));
+            }
+            foreach (var button in _logicalButtons) button.Config.PropertyChanged += Button_PropertyChanged;
 
+            _physicalButtons = new ObservableCollection<Button>();
         }
 
         public void Update(DeviceConfig config)
@@ -106,217 +135,430 @@ namespace FreeJoyConfigurator
             RowCnt = 0;
             SingleBtnCnt = 0;
             TotalBtnCnt = 0;
+            ButtonsFromAxesCnt = 0;
 
             Config = config;
 
             ObservableCollection<Button> tmp = new ObservableCollection<Button>();
 
             // matrix buttons
-            for (int i = 0; i < Config.PinConfig.Count; i++)
+            for (int i = 0; i < config.PinConfig.Count; i++)
             {
 
-                if (Config.PinConfig[i] == PinType.ButtonColumn)
+                if (config.PinConfig[i] == PinType.Button_Column)
                 {
                     ColCnt++;
-                    for (int k = 0; k < Config.PinConfig.Count; k++)
+                    for (int k = 0; k < config.PinConfig.Count; k++)
                     {
-                        if (Config.PinConfig[k] == PinType.ButtonRow)
+                        if (config.PinConfig[k] == PinType.Button_Row)
                         {
-                            ObservableCollection<ButtonType> tmpTypes = new ObservableCollection<ButtonType>()
-                            {       ButtonType.BtnInverted,
-                                    ButtonType.BtnNormal,
-                                    ButtonType.BtnToggle,
-                                    ButtonType.ToggleSw,
-                                    ButtonType.ToggleSwOff,
-                                    ButtonType.ToggleSwOn,
-                                    ButtonType.Pov1Up,
-                                    ButtonType.Pov1Down,
-                                    ButtonType.Pov1Left,
-                                    ButtonType.Pov1Right,
-                                    ButtonType.Pov2Up,
-                                    ButtonType.Pov2Down,
-                                    ButtonType.Pov2Left,
-                                    ButtonType.Pov2Right,
-                                    ButtonType.Pov3Up,
-                                    ButtonType.Pov3Down,
-                                    ButtonType.Pov3Left,
-                                    ButtonType.Pov3Right,
-                                    ButtonType.Pov4Up,
-                                    ButtonType.Pov4Down,
-                                    ButtonType.Pov4Left,
-                                    ButtonType.Pov4Right,
-
-                            };
-                            config.ButtonConfig[TotalBtnCnt].Type = ButtonType.BtnNormal;
-                            tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, tmpTypes, TotalBtnCnt));
+                            tmp.Add(new Button(TotalBtnCnt + 1));
+                            tmp[TotalBtnCnt].SourceType = ButtonSourceType.MatrixButton;
+                            TotalBtnCnt++;
                         }
                     }
                 }
-                else if (Config.PinConfig[i] == PinType.ButtonRow)
+                else if (config.PinConfig[i] == PinType.Button_Row)
                 {
                     RowCnt++;
                 }
             }
 
             // Shift registers
-            for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
+            for (int i = 0, k = 0; i < config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.ShiftReg_LATCH)
+                if (config.PinConfig[i] == PinType.ShiftReg_LATCH)
                 {
-                    for (int j=0; j<Config.ShiftRegistersConfig[k].ButtonCnt; j++)
+                    for (int j = 0; j < config.ShiftRegistersConfig[k].ButtonCnt; j++)
                     {
-                        tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
+                        tmp.Add(new Button(TotalBtnCnt + 1));
+                        tmp[TotalBtnCnt].SourceType = ButtonSourceType.ShiftRegister;
+                        TotalBtnCnt++;
                     }
                     k++;
                 }
-            } 
+            }
 
-             // axes to buttons
-            for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
+            // axes to buttons
+            for (int i = 0; i < config.AxisToButtonsConfig.Count; i++)
             {
-                if (Config.AxisToButtonsConfig[i].IsEnabled)
+                if (config.AxisToButtonsConfig[i].IsEnabled)
                 {
+
                     for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
                     {
-                        ObservableCollection<ButtonType> tmpTypes = new ObservableCollection<ButtonType>()
-                        {       ButtonType.BtnInverted,
-                                ButtonType.BtnNormal,
-                                ButtonType.BtnToggle,
-                                ButtonType.ToggleSw,
-                                ButtonType.ToggleSwOff,
-                                ButtonType.ToggleSwOn,
-                                ButtonType.Pov1Up,
-                                ButtonType.Pov1Down,
-                                ButtonType.Pov1Left,
-                                ButtonType.Pov1Right,
-                                ButtonType.Pov2Up,
-                                ButtonType.Pov2Down,
-                                ButtonType.Pov2Left,
-                                ButtonType.Pov2Right,
-                                ButtonType.Pov3Up,
-                                ButtonType.Pov3Down,
-                                ButtonType.Pov3Left,
-                                ButtonType.Pov3Right,
-                                ButtonType.Pov4Up,
-                                ButtonType.Pov4Down,
-                                ButtonType.Pov4Left,
-                                ButtonType.Pov4Right,
-
-                        };
-                        config.ButtonConfig[TotalBtnCnt].Type = ButtonType.BtnNormal;
-                        tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, tmpTypes, TotalBtnCnt));
+                        tmp.Add(new Button(TotalBtnCnt + 1));
+                        tmp[TotalBtnCnt].SourceType = ButtonSourceType.AxisToButtons;
+                        TotalBtnCnt++;
+                        ButtonsFromAxesCnt++;
                     }
                 }
             }
             // single buttons
-            for (int i = 0; i < Config.PinConfig.Count; i++)
+            for (int i = 0; i < config.PinConfig.Count; i++)
             {
-                
-                if (Config.PinConfig[i] == PinType.ButtonGnd || Config.PinConfig[i] == PinType.ButtonVcc)
+
+                if (config.PinConfig[i] == PinType.Button_Gnd || config.PinConfig[i] == PinType.Button_Vcc)
                 {
-                    tmp.Add(new Button(false, config.ButtonConfig[TotalBtnCnt++].Type, TotalBtnCnt));
+                    tmp.Add(new Button(TotalBtnCnt + 1));
+                    tmp[TotalBtnCnt].SourceType = ButtonSourceType.SingleButton;
+                    TotalBtnCnt++;
                     SingleBtnCnt++;
                 }
             }
-            
 
+            PhysicalButtons = tmp;
+            RaisePropertyChanged(nameof(PhysicalButtons));
 
-            Buttons = new ObservableCollection<Button>(tmp);
-            foreach (var button in Buttons) button.PropertyChanged += Button_PropertyChanged;
+            for (int i = 0; i < LogicalButtons.Count; i++)
+            {
+                LogicalButtons[i].Config.PropertyChanged -= Button_PropertyChanged;
+                LogicalButtons[i].MaxPhysicalNumber = TotalBtnCnt;
+                LogicalButtons[i].Config.PhysicalNumber = config.ButtonConfig[i].PhysicalNumber;
+                LogicalButtons[i].Config.ShiftModificator = config.ButtonConfig[i].ShiftModificator;
+                LogicalButtons[i].Config.Type = config.ButtonConfig[i].Type;
+                if (PhysicalButtons.Count > 0)
+                {
+                    if (config.ButtonConfig[i].PhysicalNumber > 0 && config.ButtonConfig[i].PhysicalNumber <= TotalBtnCnt)
+                    {
+                        LogicalButtons[i].SourceType = PhysicalButtons[config.ButtonConfig[i].PhysicalNumber - 1].SourceType;
+                    }
+                    else
+                    {
+                        if (LogicalButtons[i].Config.PhysicalNumber >= TotalBtnCnt) LogicalButtons[i].Config.PhysicalNumber = 0;
+                        LogicalButtons[i].SourceType = ButtonSourceType.NoSource;
+                    }
 
-            RaisePropertyChanged(nameof(Buttons));
+                }
+            }
+            // shifts
+            for (int i = 0; i < config.ShiftModificatorConfig.Count; i++)
+            {
+                if (config.ShiftModificatorConfig[i].Button > 0)
+                {
+                    LogicalButtons[config.ShiftModificatorConfig[i].Button].SourceType = ButtonSourceType.Shift;
+                }
+            }
+
+            foreach (var button in LogicalButtons)
+            {
+                button.Config.PropertyChanged += Button_PropertyChanged;
+            }
+
+            Button_PropertyChanged(null, null);
         }
 
         private void Joystick_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            for (int i = 0; i < Buttons.Count; i++)
+            for (int i = 0; i < PhysicalButtons.Count; i++)
+            {
+                PhysicalButtons[i].State = Joystick.PhysicalButtons[i].State;
+            }
+
+            for (int i = 0; i < LogicalButtons.Count; i++)
             {
                 // OV1
-                if (Buttons[i].Type == ButtonType.Pov1Down)
+                if (LogicalButtons[i].Config.Type == ButtonType.Pov1_Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x03 || Joystick.Povs[0].State == 0x04 || Joystick.Povs[0].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x03 || Joystick.Povs[0].State == 0x04 || Joystick.Povs[0].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov1Left)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov1_Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x05 || Joystick.Povs[0].State == 0x06 || Joystick.Povs[0].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x05 || Joystick.Povs[0].State == 0x06 || Joystick.Povs[0].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov1Right)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov1_Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x02 || Joystick.Povs[0].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x02 || Joystick.Povs[0].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov1Up)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov1_Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[0].State == 0x00 || Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[0].State == 0x00 || Joystick.Povs[0].State == 0x01 || Joystick.Povs[0].State == 0x07) ? true : false;
                 }
                 // POV2
-                else if(Buttons[i].Type == ButtonType.Pov2Down)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov2_Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x03 || Joystick.Povs[1].State == 0x04 || Joystick.Povs[1].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x03 || Joystick.Povs[1].State == 0x04 || Joystick.Povs[1].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov2Left)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov2_Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x05 || Joystick.Povs[1].State == 0x06 || Joystick.Povs[1].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x05 || Joystick.Povs[1].State == 0x06 || Joystick.Povs[1].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov2Right)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov2_Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x02 || Joystick.Povs[1].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x02 || Joystick.Povs[1].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov2Up)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov2_Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[1].State == 0x00 || Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[1].State == 0x00 || Joystick.Povs[1].State == 0x01 || Joystick.Povs[1].State == 0x07) ? true : false;
                 }
                 // POV3
-                else if (Buttons[i].Type == ButtonType.Pov3Down)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov3_Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x03 || Joystick.Povs[2].State == 0x04 || Joystick.Povs[2].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x03 || Joystick.Povs[2].State == 0x04 || Joystick.Povs[2].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov3Left)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov3_Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x05 || Joystick.Povs[2].State == 0x06 || Joystick.Povs[2].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x05 || Joystick.Povs[2].State == 0x06 || Joystick.Povs[2].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov3Right)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov3_Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x02 || Joystick.Povs[2].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x02 || Joystick.Povs[2].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov3Up)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov3_Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[2].State == 0x00 || Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[2].State == 0x00 || Joystick.Povs[2].State == 0x01 || Joystick.Povs[2].State == 0x07) ? true : false;
                 }
                 // POV4
-                else if (Buttons[i].Type == ButtonType.Pov4Down)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov4_Down)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x03 || Joystick.Povs[3].State == 0x04 || Joystick.Povs[3].State == 0x05) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x03 || Joystick.Povs[3].State == 0x04 || Joystick.Povs[3].State == 0x05) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov4Left)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov4_Left)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x05 || Joystick.Povs[3].State == 0x06 || Joystick.Povs[3].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x05 || Joystick.Povs[3].State == 0x06 || Joystick.Povs[3].State == 0x07) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov4Right)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov4_Right)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x02 || Joystick.Povs[3].State == 0x03) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x02 || Joystick.Povs[3].State == 0x03) ? true : false;
                 }
-                else if (Buttons[i].Type == ButtonType.Pov4Up)
+                else if (LogicalButtons[i].Config.Type == ButtonType.Pov4_Up)
                 {
-                    Buttons[i].State = (Joystick.Povs[3].State == 0x00 || Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x07) ? true : false;
+                    LogicalButtons[i].State = (Joystick.Povs[3].State == 0x00 || Joystick.Povs[3].State == 0x01 || Joystick.Povs[3].State == 0x07) ? true : false;
                 }
-                else 
+                else
                 {
-                    Buttons[i].State = Joystick.Buttons[i].State;
+                    LogicalButtons[i].State = Joystick.LogicalButtons[i].State;
                 }
             }
         }
 
         private void Button_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            DeviceConfig tmp = Config;
 
-            for (int i=0; i<Buttons.Count;i++)
+            for (int i = 0; i < LogicalButtons.Count; i++)
             {
-                tmp.ButtonConfig[i].Type = Buttons[i].Type;
+                if (LogicalButtons[i].Config.PhysicalNumber > 0 && LogicalButtons[i].Config.PhysicalNumber <= TotalBtnCnt)
+                {
+                    LogicalButtons[i].SourceType = PhysicalButtons[LogicalButtons[i].Config.PhysicalNumber - 1].SourceType;
+
+                    for (int j = 0; j < Config.ShiftModificatorConfig.Count; j++)
+                    {
+                        if (Config.ShiftModificatorConfig[j].Button == i+1)
+                            LogicalButtons[j].SourceType = ButtonSourceType.Shift;
+                    }
+                }
+                else
+                {
+                    if (LogicalButtons[i].Config.PhysicalNumber >= TotalBtnCnt) LogicalButtons[i].Config.PhysicalNumber = 0;
+                    LogicalButtons[i].SourceType = ButtonSourceType.NoSource;
+                }
+
+                switch (LogicalButtons[i].SourceType)
+                {
+                    case ButtonSourceType.SingleButton:
+                    case ButtonSourceType.ShiftRegister:
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal)) 
+                            LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Inverted))
+                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Inverted);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Toggle))
+                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.Button_Toggle);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_OnOff))
+                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_OnOff);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_On))
+                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_On);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_Off))
+                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.ToggleSwitch_Off);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.Pov1_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.Pov1_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.Pov1_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.Pov1_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Pov2_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(11, ButtonType.Pov2_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(12, ButtonType.Pov2_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(13, ButtonType.Pov2_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(14, ButtonType.Pov3_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(15, ButtonType.Pov3_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(16, ButtonType.Pov3_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(17, ButtonType.Pov3_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(18, ButtonType.Pov4_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(19, ButtonType.Pov4_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(20, ButtonType.Pov4_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(21, ButtonType.Pov4_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton1))
+                            LogicalButtons[i].AllowedTypes.Insert(22, ButtonType.RadioButton1);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton2))
+                            LogicalButtons[i].AllowedTypes.Insert(23, ButtonType.RadioButton2);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton3))
+                            LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
+                            LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_A))
+                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Encoder_A);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_B))
+                            LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_B);
+                        break;
+                    case ButtonSourceType.MatrixButton:
+                    case ButtonSourceType.AxisToButtons:
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal))
+                            LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Inverted))
+                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Inverted);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Toggle))
+                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.Button_Toggle);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_OnOff))
+                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_OnOff);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_On))
+                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_On);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_Off))
+                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.ToggleSwitch_Off);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.Pov1_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.Pov1_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.Pov1_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.Pov1_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Pov2_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(11, ButtonType.Pov2_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(12, ButtonType.Pov2_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(13, ButtonType.Pov2_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(14, ButtonType.Pov3_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(15, ButtonType.Pov3_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(16, ButtonType.Pov3_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(17, ButtonType.Pov3_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Down))
+                            LogicalButtons[i].AllowedTypes.Insert(18, ButtonType.Pov4_Down);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Up))
+                            LogicalButtons[i].AllowedTypes.Insert(19, ButtonType.Pov4_Up);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Left))
+                            LogicalButtons[i].AllowedTypes.Insert(20, ButtonType.Pov4_Left);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Right))
+                            LogicalButtons[i].AllowedTypes.Insert(21, ButtonType.Pov4_Right);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton1))
+                            LogicalButtons[i].AllowedTypes.Insert(22, ButtonType.RadioButton1);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton2))
+                            LogicalButtons[i].AllowedTypes.Insert(23, ButtonType.RadioButton2);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton3))
+                            LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
+                            LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+
+                        if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
+                            LogicalButtons[i].Config.Type == ButtonType.Encoder_B)
+                        {
+                            LogicalButtons[i].Config.Type = ButtonType.Button_Normal;
+                        }
+
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Encoder_A);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Encoder_B);
+                        break;
+                    case ButtonSourceType.Shift:
+                    default:
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal))
+                            LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Inverted))
+                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Inverted);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Toggle))
+                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.Button_Toggle);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_OnOff))
+                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_OnOff);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_On))
+                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_On);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_Off))
+                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.ToggleSwitch_Off);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton1))
+                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.RadioButton1);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton2))
+                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.RadioButton2);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton3))
+                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.RadioButton3);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
+                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.RadioButton4);
+
+                        if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
+                            LogicalButtons[i].Config.Type == ButtonType.Encoder_B ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov1_Down ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov1_Up ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov1_Left ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov1_Right ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov2_Down ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov2_Up ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov2_Left ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov2_Right ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov3_Down ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov3_Up ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov3_Left ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov3_Right ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov4_Down ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov4_Up ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov4_Left ||
+                            LogicalButtons[i].Config.Type == ButtonType.Pov4_Right )
+                        {
+                            LogicalButtons[i].Config.Type = ButtonType.Button_Normal;
+                        }
+
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Encoder_A);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Encoder_B);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov1_Down);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov1_Up);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov1_Left);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov1_Right);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov2_Down);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov2_Up);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov2_Left);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov2_Right);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov3_Down);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov3_Up);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov3_Left);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov3_Right);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov4_Down);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov4_Up);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov4_Left);
+                        LogicalButtons[i].AllowedTypes.Remove(ButtonType.Pov4_Right);
+
+
+                        break;
+                }
+            }
+
+
+            DeviceConfig tmp = Config;
+            for (int i = 0; i < LogicalButtons.Count; i++)
+            {
+                tmp.ButtonConfig[i].PhysicalNumber = (sbyte)LogicalButtons[i].Config.PhysicalNumber;
+                tmp.ButtonConfig[i].ShiftModificator = LogicalButtons[i].Config.ShiftModificator;
+                tmp.ButtonConfig[i].Type = LogicalButtons[i].Config.Type;
             }
             Config = tmp;
 
-            RaisePropertyChanged(nameof(Buttons));
+            RaisePropertyChanged(nameof(LogicalButtons));
+            ConfigChanged();
         }
     }
 

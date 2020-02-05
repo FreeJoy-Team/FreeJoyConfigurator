@@ -18,7 +18,7 @@ namespace FreeJoyConfigurator
     public class AxesCurvesVM : BindableBase
     {
         const double FullScaleX = 750;
-        const double FullScaleY = 510;
+        const double FullScaleY = 500;
 
         #region Fields
         public DeviceConfig Config { get; set; }
@@ -52,7 +52,7 @@ namespace FreeJoyConfigurator
 
                 for (int j = 0; j < Config.AxisConfig[i].CurveShape.Count; j++)
                 {
-                    tmp.Points.Add(new Point((int)(Config.AxisConfig[i].CurveShape[j].X * FullScaleX / 9),
+                    tmp.Points.Add(new Point((int)(Config.AxisConfig[i].CurveShape[j].X * FullScaleX / (Config.AxisConfig[i].CurveShape.Count-1)),
                                         (int)((FullScaleY / 2) + (FullScaleY / 2) * Config.AxisConfig[i].CurveShape[j].Y / 100)));
                     
                 }
@@ -107,7 +107,7 @@ namespace FreeJoyConfigurator
 
                 for (int j = 0; j < Config.AxisConfig[i].CurveShape.Count; j++)
                 {
-                    tmp.Points.Add(new Point((int)(Config.AxisConfig[i].CurveShape[j].X * FullScaleX / 9),
+                    tmp.Points.Add(new Point((int)(Config.AxisConfig[i].CurveShape[j].X * FullScaleX / (Config.AxisConfig[i].CurveShape.Count - 1)),
                                         (int)((FullScaleY / 2) + (FullScaleY / 2) * Config.AxisConfig[i].CurveShape[j].Y / 100)));
 
                 }
@@ -172,7 +172,7 @@ namespace FreeJoyConfigurator
 
                 for (int j = 0; j < Config.AxisConfig[i].CurveShape.Count; j++)
                 {
-                    _curves[i].Points[j*3] = new Point((int)(Config.AxisConfig[i].CurveShape[j].X * FullScaleX / 9),
+                    _curves[i].Points[j*3] = new Point((int)(Config.AxisConfig[i].CurveShape[j].X * FullScaleX / (Config.AxisConfig[i].CurveShape.Count - 1)),
                                         (int)((FullScaleY / 2) + (FullScaleY / 2) * Config.AxisConfig[i].CurveShape[j].Y / 100));
                 }
                 for (int j = 0; j<_curves[i].Points.Count; j+=3)
@@ -319,15 +319,16 @@ namespace FreeJoyConfigurator
         void SetPointsShape()
         {
             Sliders[0] = new Point(0, 0);
-            Sliders[1] = new Point(1, 0.25 * MaxY);
+            Sliders[1] = new Point(1, 0.20 * MaxY);
             Sliders[2] = new Point(2, 0.40 * MaxY);
             Sliders[3] = new Point(3, 0.47 * MaxY);
             Sliders[4] = new Point(4, 0.49 * MaxY);
-            Sliders[5] = new Point(5, 0.51 * MaxY);
-            Sliders[6] = new Point(6, 0.53 * MaxY);
-            Sliders[7] = new Point(7, 0.60 * MaxY);
-            Sliders[8] = new Point(8, 0.75 * MaxY);
-            Sliders[9] = new Point(9, MaxY);
+            Sliders[5] = new Point(5, 0.50 * MaxY);
+            Sliders[6] = new Point(6, 0.51 * MaxY);
+            Sliders[7] = new Point(7, 0.53 * MaxY);
+            Sliders[8] = new Point(8, 0.60 * MaxY);
+            Sliders[9] = new Point(9, 0.75 * MaxY);
+            Sliders[10] = new Point(10, MaxY);
         }
     }
 

@@ -1,47 +1,49 @@
 <?xml version="1.0"?>
-<DeviceConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Firmware_Version>258</Firmware_Version>
-  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
-  <Button_Debounce_Time>30</Button_Debounce_Time>
-  <Toggle_Press_Time>200</Toggle_Press_Time>
-  <Encoder_Press_Time>30</Encoder_Press_Time>
-  <Exchange_Period>2</Exchange_Period>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
-  <Pin_Config>NotUsed</Pin_Config>
+<DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Firmware_Version>4912</Firmware_Version>
+  <Device_Name>FreeJoy</Device_Name>
+  <Button_Debounce_Time>50</Button_Debounce_Time>
+  <Toggle_Press_Time>300</Toggle_Press_Time>
+  <Encoder_Press_Time>10</Encoder_Press_Time>
+  <Exchange_Period>5</Exchange_Period>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -49,52 +51,64 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -102,52 +116,64 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -155,52 +181,64 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -208,52 +246,64 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -261,52 +311,64 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -314,52 +376,64 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -367,52 +441,64 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
-    <CalibMin>0</CalibMin>
-    <CalibCenter>2047</CalibCenter>
-    <CalibMax>4095</CalibMax>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
+    <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
         <X>0</X>
@@ -420,429 +506,838 @@
       </Point>
       <Point>
         <X>1</X>
-        <Y>-77</Y>
+        <Y>-80</Y>
       </Point>
       <Point>
         <X>2</X>
-        <Y>-55</Y>
+        <Y>-60</Y>
       </Point>
       <Point>
         <X>3</X>
-        <Y>-33</Y>
+        <Y>-40</Y>
       </Point>
       <Point>
         <X>4</X>
-        <Y>-11</Y>
+        <Y>-20</Y>
       </Point>
       <Point>
         <X>5</X>
-        <Y>11</Y>
+        <Y>0</Y>
       </Point>
       <Point>
         <X>6</X>
-        <Y>33</Y>
+        <Y>20</Y>
       </Point>
       <Point>
         <X>7</X>
-        <Y>55</Y>
+        <Y>40</Y>
       </Point>
       <Point>
         <X>8</X>
-        <Y>77</Y>
+        <Y>60</Y>
       </Point>
       <Point>
         <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
         <Y>100</Y>
       </Point>
     </CurveShape>
-    <FilterLevel>0</FilterLevel>
-    <IsOutEnabled>true</IsOutEnabled>
-    <Resolution>12</Resolution>
+    <Resolution>16</Resolution>
+    <DeadZone>0</DeadZone>
+    <SourceMain>Buttons</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
+  <ShiftModificator_Config>
+    <Button>0</Button>
+  </ShiftModificator_Config>
+  <ShiftModificator_Config>
+    <Button>0</Button>
+  </ShiftModificator_Config>
+  <ShiftModificator_Config>
+    <Button>0</Button>
+  </ShiftModificator_Config>
+  <ShiftModificator_Config>
+    <Button>0</Button>
+  </ShiftModificator_Config>
+  <ShiftModificator_Config>
+    <Button>0</Button>
+  </ShiftModificator_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>BtnNormal</Type>
+    <Type>Button_Normal</Type>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
+    <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <AxisToButtons_Config>
     <Points>
@@ -997,19 +1492,19 @@
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <ShitRegisters_Config>
-    <Type>HC165</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
   <ShitRegisters_Config>
-    <Type>HC165</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
   <ShitRegisters_Config>
-    <Type>HC165</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
   <ShitRegisters_Config>
-    <Type>HC165</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
 </DeviceConfig>

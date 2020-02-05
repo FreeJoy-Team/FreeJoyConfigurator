@@ -160,6 +160,7 @@ namespace FreeJoyConfigurator
             _joystick = new Joystick(Config);
             AxesVM = new AxesVM(_joystick, Config);
             ButtonsVM = new ButtonsVM(_joystick, Config);
+            ButtonsVM.ConfigChanged += ButtonsVM_ConfigChanged;
             AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
             AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
             ShiftRegistersVM = new ShiftRegistersVM(_joystick, Config);
@@ -191,6 +192,8 @@ namespace FreeJoyConfigurator
             WriteLog("Program started", true);
         }
 
+       
+
         private void SaveConfigToFile()
         {
             SaveFileDialog dlg = new SaveFileDialog();
@@ -219,12 +222,23 @@ namespace FreeJoyConfigurator
             {
                 {   // TODO: fix serialization
                     DeviceConfig tmp = DeSerializeObject<DeviceConfig>(dlg.FileName);
+
+                    if (tmp != null && (tmp.FirmwareVersion & 0xFFF0) != (Config.FirmwareVersion & 0xFFF0))
+                    {
+                        MessageBoxService mbs = new MessageBoxService();
+
+                        mbs.ShowMessage("Config file is broken or was created in other version of configurator!\r\n" +
+                            "Configuration loading will be canceled", "Error");
+                        return;
+                    }
+
                     while (tmp.PinConfig.Count > 30) tmp.PinConfig.RemoveAt(0);
                     while (tmp.AxisConfig.Count > 8) tmp.AxisConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++)
                     {
-                        while (tmp.AxisConfig[i].CurveShape.Count > 10) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                        while (tmp.AxisConfig[i].CurveShape.Count > 11) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                     }
+                    while (tmp.ShiftModificatorConfig.Count > 5) tmp.ShiftModificatorConfig.RemoveAt(0);
                     while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
                     while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);
                     for (int i = 0; i < 8; i++)
@@ -252,7 +266,7 @@ namespace FreeJoyConfigurator
         {
             {   // TODO: fix serialization
                 var xmlStr = Properties.Resources.default_config;
-                
+
 
                 DeviceConfig tmp = Config;
                 tmp = DeSerializeObject<DeviceConfig>(xmlStr, xmlStr.Length);
@@ -260,8 +274,9 @@ namespace FreeJoyConfigurator
                 while (tmp.AxisConfig.Count > 8) tmp.AxisConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++)
                 {
-                    while (tmp.AxisConfig[i].CurveShape.Count > 10) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
+                    while (tmp.AxisConfig[i].CurveShape.Count > 11) tmp.AxisConfig[i].CurveShape.RemoveAt(0);
                 }
+                while (tmp.ShiftModificatorConfig.Count > 5) tmp.ShiftModificatorConfig.RemoveAt(0);
                 while (tmp.ButtonConfig.Count > 128) tmp.ButtonConfig.RemoveAt(0);
                 while (tmp.AxisToButtonsConfig.Count > 8) tmp.AxisToButtonsConfig.RemoveAt(0);
                 for (int i = 0; i < 8; i++)
@@ -272,9 +287,8 @@ namespace FreeJoyConfigurator
                 tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                 Config = tmp;
-
-
             }
+
             PinsVM.Config = Config;
             AxesVM.Config = Config;
             ButtonsVM.Config = Config;
@@ -292,6 +306,11 @@ namespace FreeJoyConfigurator
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
             ShiftRegistersVM.Update(Config);
+        }
+
+        private void ButtonsVM_ConfigChanged()
+        {
+
         }
 
         private void AxesToButtonsVM_ConfigChanged()
@@ -314,7 +333,7 @@ namespace FreeJoyConfigurator
         {
             Config = deviceConfig;
 
-            DeviceFirmwareVersionVM = "Device firmware v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".");
+            DeviceFirmwareVersionVM = "Device firmware v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".").Insert(3,".").Insert(5, "b");
 
             PinsVM.Update(Config);
             ButtonsVM.Update(Config);

@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:FreeJoyConfigurator"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
@@ -13,6 +14,8 @@
     <Window.DataContext>
         <local:MainVM/>
     </Window.DataContext>
+
+    
 
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
@@ -54,7 +57,7 @@
 
                 <!--Row 2-->
                 <TextBlock Name="DeviceVersion_TextBlock" Grid.Row="2"  TextAlignment="Center" 
-                    Text="{Binding DeviceFirmwareVersionVM}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="19" Width="125"/>
+                    Text="{Binding DeviceFirmwareVersionVM}"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="19" Width="140"/>
 
                 <!--Row 3-->
                 <Button Name="Button_ReadConfig" Grid.Row="3"  Content="Read Config from Device"
@@ -96,23 +99,34 @@
             <TabItem Header="Pin Config">
                 <local:PinsView/>
             </TabItem>
+            
             <TabItem Header="Button Config">
-                <local:ButtonsView/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="12*"/>
+                    </Grid.RowDefinitions>
+
+                    <local:ShiftModificatorsView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+
+                    <GroupBox Header="Physical buttons" Grid.Column="0" Grid.Row="1">
+                        <local:PhysicalButtonsView/>
+                    </GroupBox>
+
+                    <GroupBox Header="Logical buttons" Grid.Column="2" Grid.Row="1">
+                        <local:LogicalButtonsView/>
+                    </GroupBox>
+                </Grid>
+
             </TabItem>
+            
             <TabItem Header="Axes Config">
-                <ScrollViewer>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="*"/>
-
-                        </Grid.ColumnDefinitions>
-
-                        <local:AxesView Grid.Column="0"/>
-                        <local:AxesConfigView Grid.Column="1"/>
-                    </Grid>
-                </ScrollViewer>
-
+                <local:AxesView Grid.Column="0"/>
             </TabItem>
 
             <TabItem Header="Axes Curves">
@@ -160,13 +174,13 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Number of axes:" 
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Axis sources:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PinsVM.AxesCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Axes to buttons:" 
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Buttons from axes:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PinsVM.AxesToButtonsCnt}"
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ButtonsVM.ButtonsFromAxesCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Single buttons:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -221,7 +235,7 @@
 
                             <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Button debounce time" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="False" TextAlignment="Center" Maximum="5000" Minimum="0" 
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="0" 
                                                 Grid.Row="4" Grid.Column="0" Text="{Binding Config.ButtonDebounceMs}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
                                                 HorizontalContentAlignment="Center" MinWidth="40"/>
@@ -230,7 +244,7 @@
 
                             <TextBlock Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="2" Text="Toggle press time" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="False" TextAlignment="Center" Maximum="5000" Minimum="1"
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="1"
                                                 Grid.Row="6" Grid.Column="0" Text="{Binding Config.TogglePressMs}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="40"/>
                             <TextBlock Grid.Row="6" Grid.Column="1" Text="ms" 
@@ -238,7 +252,7 @@
 
                             <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="Encoder press time" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="False" TextAlignment="Center" Maximum="1000" Minimum="1"
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="1000" Minimum="1"
                                                 Grid.Row="8" Grid.Column="0" Text="{Binding Config.EncoderPressMs}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="40"/>
                             <TextBlock Grid.Row="8" Grid.Column="1" Text="ms" 
@@ -246,7 +260,7 @@
 
                             <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Text="USB exchange period" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="False" TextAlignment="Center" Maximum="100" Minimum="1"
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="50" Minimum="1"
                                                 Grid.Row="10" Grid.Column="0" Text="{Binding Config.ExchangePeriod}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="40"/>
                             <TextBlock Grid.Row="10" Grid.Column="1" Text="ms" 

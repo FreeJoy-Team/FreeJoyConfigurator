@@ -18,7 +18,7 @@
         <System:Double x:Key="PlotHeight">510</System:Double>
         <System:Double x:Key="PlotWidth">750</System:Double>
 
-        <System:Double x:Key="SliderOffsetY">535</System:Double>
+        <System:Double x:Key="SliderOffsetY">525</System:Double>
     </UserControl.Resources>
 
     <ItemsControl ItemsSource="{Binding AxesVM.AxesCurvesVM.Curves}">
@@ -68,26 +68,29 @@
                                         </Label.RenderTransform>
                                     </Label>
 
-                                    <Line Canvas.Left="25" Canvas.Bottom="25" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="525" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Bottom="86" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="475" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Bottom="141" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="425" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Bottom="196" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="375" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Bottom="252"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="325"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Top="252"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="275"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Top="197" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="225"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Top="142"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="175" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
-                                    <Line Canvas.Left="25" Canvas.Top="87" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                    <Line Canvas.Left="25" Canvas.Top="125"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
+                                               Stroke="White" StrokeThickness="1"/>
+                                    <Line Canvas.Left="25" Canvas.Top="75" X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
                                     <Line Canvas.Left="25" Canvas.Top="25"  X1="0" Y1="0" X2="{StaticResource PlotWidth}" Y2="0" 
                                                Stroke="White" StrokeThickness="1"/>
+                                    
 
                                     <Path Canvas.Top="25" Canvas.Left="25" Stroke="Red" StrokeThickness="3">
                                         <Path.Data>
@@ -120,6 +123,9 @@
                                                 <PathFigure StartPoint="{Binding Points[24]}">
                                                     <BezierSegment Point1="{Binding Points[25]}" Point2="{Binding Points[26]}" Point3="{Binding Points[27]}"/>
                                                 </PathFigure>
+                                                <PathFigure StartPoint="{Binding Points[27]}">
+                                                    <BezierSegment Point1="{Binding Points[28]}" Point2="{Binding Points[29]}" Point3="{Binding Points[30]}"/>
+                                                </PathFigure>
                                             </PathGeometry>
                                         </Path.Data>
                                     </Path>
@@ -142,7 +148,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="117"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="110"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -153,7 +159,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="200"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="185"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -164,7 +170,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="283"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="260"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -175,7 +181,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="367"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="335"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -186,7 +192,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="450"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="410"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -197,7 +203,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="535"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="485"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -208,7 +214,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="616"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="560"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -219,7 +225,7 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="701"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="635"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>
@@ -230,7 +236,18 @@
                                         <Slider.RenderTransform>
                                             <TransformGroup>
                                                 <RotateTransform Angle="180"/>
-                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="783"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="710"/>
+                                            </TransformGroup>
+                                        </Slider.RenderTransform>
+                                    </Slider>
+                                    <Slider Height="{Binding Path=MaxY}" Orientation="Vertical" TickFrequency="10"
+                                        Minimum="0" Maximum="{Binding Path=MaxY}" 
+                                        Value="{Binding Sliders[10], ConverterParameter=10,
+                                                Converter={StaticResource pointConverter}}">
+                                        <Slider.RenderTransform>
+                                            <TransformGroup>
+                                                <RotateTransform Angle="180"/>
+                                                <TranslateTransform Y="{StaticResource SliderOffsetY}" X="785"/>
                                             </TransformGroup>
                                         </Slider.RenderTransform>
                                     </Slider>

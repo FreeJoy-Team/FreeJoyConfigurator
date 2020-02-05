@@ -74,21 +74,36 @@ namespace FreeJoyConfigurator
         {
             Config = config;
 
+            for (int i = 0; i < Config.PinConfig.Count; i++)
+            {
+                if (Config.PinConfig[i] == PinType.TLE501x_CS || Config.PinConfig[i] == PinType.Axis_Analog)
+                {
+                    foreach (var axis in Axes)
+                    {
+                        if (!axis.AllowedSources.Contains((AxisSourceType)i))
+                        {
+                            axis.AllowedSources.Add((AxisSourceType)i);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var axis in Axes)
+                    {
+                        if (axis.AxisConfig.SourceMain == (AxisSourceType)i) axis.AxisConfig.SourceMain = AxisSourceType.Buttons;
+                        axis.AllowedSources.Remove((AxisSourceType)i);
+                    }
+
+                }
+            }
+
             for (int i = 0; i < Config.AxisConfig.Count; i++)
             {
-                Axes[i].IsEnabled = false;
+                Axes[i].IsEnabled = true;
                 Axes[i].AxisConfig = Config.AxisConfig[i];
             }
 
-            for (int i = 0, k = 0; i < Config.PinConfig.Count; i++)
-            {
-                if (Config.PinConfig[i] == PinType.AxisAnalog || 
-                    Config.PinConfig[i] == PinType.TLE501x_CS)
-                {
-                    Axes[k++].IsEnabled = true;
-                }
-                
-            }
+
             AxesCurvesVM.Update(Config);
         }
 

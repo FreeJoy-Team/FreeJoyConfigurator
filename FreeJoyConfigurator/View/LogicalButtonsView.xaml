@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="FreeJoyConfigurator.LogicalButtonsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:FreeJoyConfigurator"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="ButtonTypeFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:ButtonType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <ObjectDataProvider x:Key="ShiftTypeFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:ShiftType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
+
+        <ScrollViewer d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
+
+        <StackPanel Orientation="Vertical">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Logical №" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="1" Text="Physical №" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="2" Text="Function" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="3" Text="Shift" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        </Grid>
+
+        <ItemsControl ItemsSource="{Binding Path=ButtonsVM.LogicalButtons}"
+                  AlternationCount="{Binding ButtonsVM.LogicalButtons.Count}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate >
+                    <Border BorderBrush="LightGray" BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.8*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding State}" Value="True">
+                                            <Setter Property="Background" Value="Green"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+
+                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalContentAlignment="Center"
+                                   Content="{Binding Number}">
+                            </Label>
+
+                            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Minimum="0"  
+                                                MinWidth="50" Margin="10,3,10,3" 
+                                                HorizontalAlignment="Center" Value="{Binding Path=Config.PhysicalNumber}"
+                                                Maximum="{Binding MaxPhysicalNumber}"/>
+
+                            <ComboBox Grid.Column="2" Grid.Row="1" HorizontalContentAlignment="Center"
+                                      ItemsSource="{Binding Path=AllowedTypes}"
+                                      SelectedItem="{Binding Path=Config.Type}"
+                                      IsEnabled="{Binding Config.IsEnabled}">
+                            </ComboBox>
+
+                            <ComboBox Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center"
+                                      ItemsSource="{Binding Source={StaticResource ShiftTypeFromEnum}}"
+                                      SelectedItem="{Binding Path=Config.ShiftModificator}"
+                                      IsEnabled="{Binding Config.IsEnabled}">
+                                       
+                            </ComboBox>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+            </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

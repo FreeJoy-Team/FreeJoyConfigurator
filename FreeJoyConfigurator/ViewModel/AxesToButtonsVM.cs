@@ -51,7 +51,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.AxisToButtonsConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog ||
+                if (Config.PinConfig[i] == PinType.Axis_Analog ||
                     Config.PinConfig[i] == PinType.TLE501x_CS)
                 {
                     AxesToButtons[k++].IsAllowed = true;
@@ -198,7 +198,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.AxisToButtonsConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.AxisAnalog ||
+                if (Config.PinConfig[i] == PinType.Axis_Analog ||
                     Config.PinConfig[i] == PinType.TLE501x_CS)
                 {
                     tmp[k++].IsAllowed = true;
@@ -207,10 +207,12 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < AxesToButtons.Count; i++)
             {
+                AxesToButtons[i].PropertyChanged -= AxesToButtonsVM_PropertyChanged;
                 AxesToButtons[i].IsAllowed = tmp[i].IsAllowed;
                 AxesToButtons[i].IsEnabled = tmp[i].IsEnabled;
                 AxesToButtons[i].ButtonCnt = tmp[i].ButtonCnt;
 
+                AxesToButtons[i].PropertyChanged += AxesToButtonsVM_PropertyChanged;
                 for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
                 {
                     AxesToButtons[i].RangeItems[j].PropertyChanged -= AxesToButtonsVM_Range_PropertyChanged;

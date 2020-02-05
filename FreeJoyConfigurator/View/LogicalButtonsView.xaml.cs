@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace FreeJoyConfigurator
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ButtonView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LogicalButtonsView : UserControl
     {
-        public MainWindow()
+        public LogicalButtonsView()
         {
             InitializeComponent();
-        }
-
-        //Scroll to bottom when text is changed
-        public void ActivityLogTextChangedHandler(object sender, EventArgs e)
-        {
-            ActivityLogScrollViewer.ScrollToBottom();
-        }
-
-        private void AxesCurvesView_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

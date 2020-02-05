@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FreeJoyConfigurator
 {
     /// <summary>
-    /// Логика взаимодействия для ButtonView.xaml
+    /// Логика взаимодействия для ShiftModificatorsView.xaml
     /// </summary>
-    public partial class ButtonsView : UserControl
+    public partial class ShiftModificatorsView : UserControl
     {
-        public ButtonsView()
+        public ShiftModificatorsView()
         {
             InitializeComponent();
         }

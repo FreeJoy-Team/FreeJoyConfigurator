@@ -28,8 +28,9 @@ namespace FreeJoyConfigurator
             }
         }
         public ObservableCollection<Axis> Axes { get; private set; }
-        public ObservableCollection<Button> Buttons { get; private set; }
+        public ObservableCollection<Button> LogicalButtons { get; private set; }
         public ObservableCollection<Pov> Povs { get; private set; }
+        public ObservableCollection<Button> PhysicalButtons { get; private set; }
 
         public Joystick(DeviceConfig config)
         {
@@ -38,21 +39,26 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 8; i++)
             {
                 Axes.Add(new Axis(i+1, Config.AxisConfig[i]));
-                if(config.PinConfig[i] == PinType.AxisAnalog)
+                if(config.PinConfig[i] == PinType.Axis_Analog)
                 {
                     Axes[i].IsEnabled = true;
                 }
                 else Axes[i].IsEnabled = false;
             }
-            Buttons = new ObservableCollection<Button>();
+            LogicalButtons = new ObservableCollection<Button>();
             for (int i = 0; i < 128; i++)
             {
-                Buttons.Add(new Button(i+1));
+                LogicalButtons.Add(new Button(i+1));
             }
             Povs = new ObservableCollection<Pov>();
             for (int i=0; i<4; i++)
             {
                 Povs.Add(new Pov(0xFF, i));
+            }
+            PhysicalButtons = new ObservableCollection<Button>();
+            for (int i = 0; i < 128; i++)
+            {
+                PhysicalButtons.Add(new Button(i + 1));
             }
 
             Hid.PacketReceived += PacketReceivedEventHandler;
@@ -73,22 +79,22 @@ namespace FreeJoyConfigurator
     }
 
     public class Button : BindableBase
-    {
-        private ButtonType _type;
-        private ObservableCollection<ButtonType> _allowedTypes;
+    {        
         private bool _state;
+        private ButtonConfig _config;
+        private ObservableCollection<ButtonType> _allowedTypes;
+        private ButtonSourceType _sourceType;
+        private int _maxPhysicalNumber;
+
         public int Number { get; private set; }
 
-        public ButtonType Type
+        public int MaxPhysicalNumber
         {
-            get { return _type; }
-            set { SetProperty(ref _type, value); }
-        }
-
-        public ObservableCollection<ButtonType> AllowedTypes
-        {
-            get { return _allowedTypes; }
-            set { SetProperty(ref _allowedTypes, value); }
+            get { return _maxPhysicalNumber; }
+            set
+            {
+                SetProperty(ref _maxPhysicalNumber, value);
+            }
         }
 
         public bool State
@@ -97,124 +103,74 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _state, value); }
         }
 
+        public ButtonConfig Config
+        {
+            get { return _config; }
+            set { SetProperty(ref _config, value); }
+        }
+
+        public ObservableCollection<ButtonType> AllowedTypes
+        {
+            get { return _allowedTypes; }
+            set { SetProperty(ref _allowedTypes, value); }
+        }
+
+        public ButtonSourceType SourceType
+        {
+            get { return _sourceType; }
+            set
+            {
+                SetProperty(ref _sourceType, value);
+            }
+        }
+
         public Button(int number)
         {
-            Number = number;
-            _type = ButtonType.BtnNormal;
-            _allowedTypes = new ObservableCollection<ButtonType>()
-            {       ButtonType.BtnInverted,
-                    ButtonType.BtnNormal,
-                    ButtonType.BtnToggle,
-                    ButtonType.ToggleSw,
-                    ButtonType.ToggleSwOff,
-                    ButtonType.ToggleSwOn,
-                    ButtonType.Pov1Down,
-                    ButtonType.Pov1Left,
-                    ButtonType.Pov1Right,
-                    ButtonType.Pov1Up,
-                    ButtonType.Pov2Down,
-                    ButtonType.Pov2Left,
-                    ButtonType.Pov2Right,
-                    ButtonType.Pov2Up,
-                    ButtonType.Pov3Down,
-                    ButtonType.Pov3Left,
-                    ButtonType.Pov3Right,
-                    ButtonType.Pov3Up,
-                    ButtonType.Pov4Down,
-                    ButtonType.Pov4Left,
-                    ButtonType.Pov4Right,
-                    ButtonType.Pov4Up,
-                    ButtonType.Encoder_A,
-                    ButtonType.Encoder_B
-            };
+            _allowedTypes = new ObservableCollection<ButtonType>();
+            _allowedTypes.Add(ButtonType.Button_Inverted);
+            _allowedTypes.Add(ButtonType.Button_Normal);
 
+            _sourceType = ButtonSourceType.NoSource;
+
+            _config = new ButtonConfig();
+            _config.PhysicalNumber = 0;
+            _config.Type = ButtonType.Button_Normal;
+            
             _state = false;
+            Number = number;
         }
 
-        public Button(bool state, int number)
+        public Button(int number, int physicalNumber)
         {
-            Number = number;
-            _type = ButtonType.BtnNormal;
-            _allowedTypes = new ObservableCollection<ButtonType>()
-            {       ButtonType.BtnInverted,
-                    ButtonType.BtnNormal,
-                    ButtonType.BtnToggle,
-                    ButtonType.ToggleSw,
-                    ButtonType.ToggleSwOff,
-                    ButtonType.ToggleSwOn,
-                    ButtonType.Pov1Down,
-                    ButtonType.Pov1Left,
-                    ButtonType.Pov1Right,
-                    ButtonType.Pov1Up,
-                    ButtonType.Pov2Down,
-                    ButtonType.Pov2Left,
-                    ButtonType.Pov2Right,
-                    ButtonType.Pov2Up,
-                    ButtonType.Pov3Down,
-                    ButtonType.Pov3Left,
-                    ButtonType.Pov3Right,
-                    ButtonType.Pov3Up,
-                    ButtonType.Pov4Down,
-                    ButtonType.Pov4Left,
-                    ButtonType.Pov4Right,
-                    ButtonType.Pov4Up,
-                    ButtonType.Encoder_A,
-                    ButtonType.Encoder_B
-            };
-            _state = state;
-        }
-        public Button(bool state, ButtonType type, int number)
-        {
-            Number = number;
-            _type = type;
-            _allowedTypes = new ObservableCollection<ButtonType>()
-            {       ButtonType.BtnInverted,
-                    ButtonType.BtnNormal,
-                    ButtonType.BtnToggle,
-                    ButtonType.ToggleSw,
-                    ButtonType.ToggleSwOff,
-                    ButtonType.ToggleSwOn,
-                    ButtonType.Pov1Down,
-                    ButtonType.Pov1Left,
-                    ButtonType.Pov1Right,
-                    ButtonType.Pov1Up,
-                    ButtonType.Pov2Down,
-                    ButtonType.Pov2Left,
-                    ButtonType.Pov2Right,
-                    ButtonType.Pov2Up,
-                    ButtonType.Pov3Down,
-                    ButtonType.Pov3Left,
-                    ButtonType.Pov3Right,
-                    ButtonType.Pov3Up,
-                    ButtonType.Pov4Down,
-                    ButtonType.Pov4Left,
-                    ButtonType.Pov4Right,
-                    ButtonType.Pov4Up,
-                    ButtonType.Encoder_A,
-                    ButtonType.Encoder_B
-            };
-            _state = state;
-        }
+            _allowedTypes = new ObservableCollection<ButtonType>();
+            _allowedTypes.Add(ButtonType.Button_Inverted);
+            _allowedTypes.Add(ButtonType.Button_Normal);
 
-        public Button(bool state, ButtonType type, ObservableCollection<ButtonType> allowedTypes, int number)
-        {
+            _sourceType = ButtonSourceType.NoSource;
+
+            _config = new ButtonConfig();           
+            _config.PhysicalNumber = (sbyte) physicalNumber;
+            _config.Type = ButtonType.Button_Normal;
+            
             Number = number;
-            _type = type;
-            _allowedTypes = allowedTypes;
-            _state = state;
         }
     }
 
     public class Axis : BindableBase
     {
-        private ushort _value;
-        private ushort _rawValue;
+        private short _value;
+        private short _rawValue;
         private bool _isEnabled;
         private AxisConfig _axisConfig;
+
+        private ObservableCollection<AxisSourceType> _allowedSources;
+        private byte _maxResolution;
+
         private bool _isCalibrating;
         private Task _calibrationTask;
         private CancellationTokenSource ts;
         private CancellationToken ct;
+
 
         public string CalibrationString
         {
@@ -234,12 +190,12 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _isEnabled, value); }
         }
 
-        public ushort Value
+        public short Value
         {
             get { return _value; }
             set { SetProperty(ref _value, value); }
         }
-        public ushort RawValue
+        public short RawValue
         {
             get { return _rawValue; }
             set { SetProperty(ref _rawValue, value); }
@@ -251,6 +207,18 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _axisConfig, value); }
         }
 
+        public ObservableCollection<AxisSourceType> AllowedSources
+        {
+            get { return _allowedSources; }
+            set { SetProperty(ref _allowedSources, value); }
+        }
+
+        public byte MaxResolution
+        {
+            get { return _maxResolution; }
+            set { SetProperty(ref _maxResolution, value); }
+        }
+
         public Axis(int number, AxisConfig axisConfig)
         {
             _axisConfig = axisConfig;
@@ -258,6 +226,11 @@ namespace FreeJoyConfigurator
             Number = number;
             _value = 0;
             _rawValue = 0;
+
+            _allowedSources = new ObservableCollection<AxisSourceType>();
+            _allowedSources.Add(AxisSourceType.Buttons);
+            _maxResolution = 16;
+            
 
             CalibrateCommand = new DelegateCommand(() => Calibrate());
         }
