@@ -2,7 +2,7 @@
 
 FreeJoy Configurator is a vusial utility allowing you to setup your [FreeJoy](https://github.com/vostrenkov/FreeJoy) device for your own requirements.
 
-<img src="https://d.radikal.ru/d35/2002/4f/200365b4d9d8.png">
+<img src="https://a.radikal.ru/a34/2002/03/f0d4b201b5b9.png">
 
 # Features
 
