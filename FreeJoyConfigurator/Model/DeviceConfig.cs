@@ -566,14 +566,24 @@ namespace FreeJoyConfigurator
         public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
         [XmlElement("ShitRegisters_Config")]
         public ObservableCollection<ShiftRegisterConfig> ShiftRegistersConfig { get; set; }
+        [XmlElement("IsDinamicHidDescriptor")]
+        public bool IsDinamicHidDescriptor { get; set; }
+        [XmlElement("Vid")]
+        public UInt16 Vid { get; set; }
+        [XmlElement("Pid")]
+        public UInt16 Pid { get; set; }
 
-        public DeviceConfig()
+
+public DeviceConfig()
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
             TogglePressMs = 300;
-            EncoderPressMs = 100;
-            ExchangePeriod = 10;
+            EncoderPressMs = 10;
+            ExchangePeriod = 5;
+            IsDinamicHidDescriptor = false;
+            Vid = 0x0483;
+            Pid = 0x5750;
 
             AxisConfig = new ObservableCollection<AxisConfig>();
             for (int i = 0; i < 8; i++) AxisConfig.Add(new AxisConfig());

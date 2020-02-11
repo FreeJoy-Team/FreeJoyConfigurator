@@ -1507,4 +1507,7 @@
     <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
+  <IsDinamicHidDescriptor>false</IsDinamicHidDescriptor>
+  <Vid>1155</Vid>
+  <Pid>22352</Pid>
 </DeviceConfig>

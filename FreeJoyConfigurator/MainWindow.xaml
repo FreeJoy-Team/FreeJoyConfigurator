@@ -218,55 +218,96 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="0.3*" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Device USB name" 
+                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="Device USB name" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.DeviceName, UpdateSourceTrigger=LostFocus}"
-                                       MinWidth="80" TextAlignment="Center"
+                            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Config.DeviceName, UpdateSourceTrigger=LostFocus}"
+                                       MinWidth="80" TextAlignment="Center" MaxLength="20"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Button debounce time" 
+                            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="Button debounce time" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="0" 
-                                                Grid.Row="4" Grid.Column="0" Text="{Binding Config.ButtonDebounceMs}"
+                                                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ButtonDebounceMs}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Center"
-                                                HorizontalContentAlignment="Center" MinWidth="40"/>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Text="ms" 
+                                                HorizontalContentAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="4" Grid.Column="2" Text="ms" 
                                        HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="2" Text="Toggle press time" 
+                            <TextBlock Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" Text="Toggle press time" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="1"
-                                                Grid.Row="6" Grid.Column="0" Text="{Binding Config.TogglePressMs}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="40"/>
-                            <TextBlock Grid.Row="6" Grid.Column="1" Text="ms" 
+                                                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.TogglePressMs}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="6" Grid.Column="2" Text="ms" 
                                        HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                            <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="Encoder press time" 
+                            <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Text="Encoder press time" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="1000" Minimum="1"
-                                                Grid.Row="8" Grid.Column="0" Text="{Binding Config.EncoderPressMs}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="40"/>
-                            <TextBlock Grid.Row="8" Grid.Column="1" Text="ms" 
+                                                Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.EncoderPressMs}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="8" Grid.Column="2" Text="ms" 
                                        HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                            <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Text="USB exchange period" 
+                            <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Text="USB exchange period" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="50" Minimum="1"
-                                                Grid.Row="10" Grid.Column="0" Text="{Binding Config.ExchangePeriod}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="40"/>
-                            <TextBlock Grid.Row="10" Grid.Column="1" Text="ms" 
+                                                Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ExchangePeriod}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="10" Grid.Column="2" Text="ms" 
                                        HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
+                        </Grid>
+                    </GroupBox>
+                </Expander>
 
+                <Expander Header="HID Settings"  Margin="10,10,10,10">
+                    <GroupBox>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" MinHeight="20"/>
+                                <RowDefinition Height="*" MinHeight="5" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+
+                            <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Dynamic descriptor"
+                                          IsChecked="{Binding Config.IsDinamicHidDescriptor}"
+                                              HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="VID" 
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox TextAlignment="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
+                                     Text="{Binding VidVM}" MaxLength="4" IsEnabled="False"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="0x" 
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="PID" 
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox TextAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
+                                     Text="{Binding PidVM}" MaxLength="4"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="0x" 
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
                     </GroupBox>
                 </Expander>

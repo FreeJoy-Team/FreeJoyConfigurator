@@ -70,6 +70,7 @@ namespace FreeJoyConfigurator
                     if (chars[i] == 0) break;   // end of string
                 }
                 config.DeviceName = new string(chars);
+                config.DeviceName.TrimEnd('\0');
                 config.ButtonDebounceMs = (ushort)(hr.Data[24] << 8 | hr.Data[23]);
                 config.TogglePressMs = (ushort)(hr.Data[26] << 8 | hr.Data[25]);
                 config.EncoderPressMs = (ushort)(hr.Data[28] << 8 | hr.Data[27]);
@@ -392,6 +393,9 @@ namespace FreeJoyConfigurator
                     config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[32 + i]+1);
                     //config.ShiftModificatorConfig[i].Mode = (ShiftMode)hr.Data[33 + i * 2];
                 }
+
+                config.Vid = (ushort)((ushort) (hr.Data[38] << 8) | (ushort) hr.Data[37]);
+                config.Pid = (ushort)((ushort)(hr.Data[40] << 8) | (ushort)hr.Data[39]);
             }
         }
 
@@ -773,6 +777,12 @@ namespace FreeJoyConfigurator
                 buffer[i + 33] = (byte)(config.ShiftModificatorConfig[i].Button-1);
                 //buffer[2 * i + 34] = (byte)config.ShiftModificatorConfig[i].Mode;
             }
+
+            buffer[38] = (byte)(config.Vid & 0xFF);
+            buffer[39] = (byte)(config.Vid >> 8);
+            buffer[40] = (byte)(config.Pid & 0xFF);
+            buffer[41] = (byte)(config.Pid >> 8);          
+
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             return hidReports;
