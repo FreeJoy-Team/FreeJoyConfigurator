@@ -31,6 +31,7 @@ namespace FreeJoyConfigurator
         public ObservableCollection<Button> LogicalButtons { get; private set; }
         public ObservableCollection<Pov> Povs { get; private set; }
         public ObservableCollection<Button> PhysicalButtons { get; private set; }
+        public ObservableCollection<Button> ShiftButtons { get; private set; }
 
         public Joystick(DeviceConfig config)
         {
@@ -59,6 +60,11 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 128; i++)
             {
                 PhysicalButtons.Add(new Button(i + 1));
+            }
+            ShiftButtons = new ObservableCollection<Button>();
+            for (int i = 0; i < 5; i++)
+            {
+                ShiftButtons.Add(new Button(i + 1));
             }
 
             Hid.PacketReceived += PacketReceivedEventHandler;

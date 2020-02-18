@@ -23,6 +23,7 @@ namespace FreeJoyConfigurator
         private DeviceConfig _config;
         private ObservableCollection<Button> _logicalButtons;
         private ObservableCollection<Button> _physicalButtons;
+        private ObservableCollection<Button> _shiftButtons;
 
         public delegate void ButtonsChangedEvent();
         public event ButtonsChangedEvent ConfigChanged;
@@ -111,6 +112,12 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _physicalButtons, value); }
         }
 
+        public ObservableCollection<Button> ShiftButtons
+        {
+            get { return _shiftButtons; }
+            set { SetProperty(ref _shiftButtons, value); }
+        }
+
         public Joystick Joystick;
 
         public ButtonsVM(Joystick joystick, DeviceConfig deviceConfig)
@@ -127,6 +134,7 @@ namespace FreeJoyConfigurator
             foreach (var button in _logicalButtons) button.Config.PropertyChanged += Button_PropertyChanged;
 
             _physicalButtons = new ObservableCollection<Button>();
+            _shiftButtons = new ObservableCollection<Button>(Joystick.ShiftButtons);
         }
 
         public void Update(DeviceConfig config)
@@ -250,6 +258,11 @@ namespace FreeJoyConfigurator
 
         private void Joystick_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            for (int i=0; i< ShiftButtons.Count; i++)
+            {
+                ShiftButtons[i].State = Joystick.ShiftButtons[i].State;
+            }
+
             for (int i = 0; i < PhysicalButtons.Count; i++)
             {
                 PhysicalButtons[i].State = Joystick.PhysicalButtons[i].State;
