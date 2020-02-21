@@ -153,12 +153,12 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < config.PinConfig.Count; i++)
             {
 
-                if (config.PinConfig[i] == PinType.Button_Column)
+                if (config.PinConfig[i] == PinType.Button_Row)
                 {
-                    ColCnt++;
+                    RowCnt++;
                     for (int k = 0; k < config.PinConfig.Count; k++)
                     {
-                        if (config.PinConfig[k] == PinType.Button_Row)
+                        if (config.PinConfig[k] == PinType.Button_Column)
                         {
                             tmp.Add(new Button(TotalBtnCnt + 1));
                             tmp[TotalBtnCnt].SourceType = ButtonSourceType.MatrixButton;
@@ -166,9 +166,9 @@ namespace FreeJoyConfigurator
                         }
                     }
                 }
-                else if (config.PinConfig[i] == PinType.Button_Row)
+                else if (config.PinConfig[i] == PinType.Button_Column)
                 {
-                    RowCnt++;
+                    ColCnt++;
                 }
             }
 
@@ -370,6 +370,7 @@ namespace FreeJoyConfigurator
                 {
                     case ButtonSourceType.SingleButton:
                     case ButtonSourceType.ShiftRegister:
+                    case ButtonSourceType.MatrixButton:
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal)) 
                             LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Inverted))
@@ -427,7 +428,7 @@ namespace FreeJoyConfigurator
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_B))
                             LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_B);
                         break;
-                    case ButtonSourceType.MatrixButton:
+                    
                     case ButtonSourceType.AxisToButtons:
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal))
                             LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
