@@ -40,11 +40,6 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 8; i++)
             {
                 Axes.Add(new Axis(i+1, Config.AxisConfig[i]));
-                if(config.PinConfig[i] == PinType.Axis_Analog)
-                {
-                    Axes[i].IsEnabled = true;
-                }
-                else Axes[i].IsEnabled = false;
             }
             LogicalButtons = new ObservableCollection<Button>();
             for (int i = 0; i < 128; i++)
@@ -166,7 +161,6 @@ namespace FreeJoyConfigurator
     {
         private short _value;
         private short _rawValue;
-        private bool _isEnabled;
         private AxisConfig _axisConfig;
 
         private ObservableCollection<AxisSourceType> _allowedSources;
@@ -190,11 +184,6 @@ namespace FreeJoyConfigurator
         public DelegateCommand CalibrateCommand { get; }
 
         public int Number { get; private set; }
-        public bool IsEnabled
-        {
-            get { return _isEnabled; }
-            set { SetProperty(ref _isEnabled, value); }
-        }
 
         public short Value
         {

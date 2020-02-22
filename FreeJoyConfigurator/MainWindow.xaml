@@ -274,7 +274,7 @@
                     <GroupBox>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" MinHeight="20"/>
+                                <RowDefinition Height="*" MinHeight="5"/>
                                 <RowDefinition Height="*" MinHeight="5" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
@@ -286,12 +286,6 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-
-
-
-                            <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Dynamic descriptor"
-                                          IsChecked="{Binding Config.IsDinamicHidDescriptor}"
-                                              HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                             <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="VID" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>

@@ -287,9 +287,10 @@ namespace FreeJoyConfigurator
             Byte original = (Byte) value;
 
             if (original == 0) converted = "Off";
-            else if(original == 1) converted = "Low";
+            else if (original == 1) converted = "Low";
             else if (original == 2) converted = "Medium";
-            else if(original == 3) converted = "High";
+            else if (original == 3) converted = "High";
+            else if (original == 4) converted = "Highest";
             else converted = "Filter No";
 
             return converted;
@@ -566,8 +567,6 @@ namespace FreeJoyConfigurator
         public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
         [XmlElement("ShitRegisters_Config")]
         public ObservableCollection<ShiftRegisterConfig> ShiftRegistersConfig { get; set; }
-        [XmlElement("IsDinamicHidDescriptor")]
-        public bool IsDinamicHidDescriptor { get; set; }
         [XmlElement("Vid")]
         public UInt16 Vid { get; set; }
         [XmlElement("Pid")]
@@ -578,10 +577,9 @@ public DeviceConfig()
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
-            TogglePressMs = 300;
+            TogglePressMs = 100;
             EncoderPressMs = 10;
             ExchangePeriod = 5;
-            IsDinamicHidDescriptor = false;
             Vid = 0x0483;
             Pid = 0x5750;
 

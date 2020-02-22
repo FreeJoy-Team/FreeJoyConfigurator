@@ -15,7 +15,7 @@
     </UserControl.Resources>
 
 
-                <Border BorderThickness="0.5" BorderBrush="LightGray" IsEnabled="{Binding IsEnabled}">
+                <Border BorderThickness="0.5" BorderBrush="LightGray">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MaxWidth="80"/>
@@ -76,7 +76,7 @@
 
                         <TextBlock Grid.Column="3" Grid.Row="0" Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Slider Grid.Column="3" Grid.Row="1" Grid.RowSpan="5" Orientation="Vertical"
-                                HorizontalAlignment="Center" Minimum="0" Maximum="3" IsSnapToTickEnabled="True" TickFrequency="1"
+                                HorizontalAlignment="Center" Minimum="0" Maximum="4" IsSnapToTickEnabled="True" TickFrequency="1"
                                 Value="{Binding AxisConfig.FilterLevel}"/>
                         <TextBlock Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
                                Text="{Binding AxisConfig.FilterLevel, Converter={StaticResource filterConverter}}"/>
