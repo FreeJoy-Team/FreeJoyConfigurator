@@ -1,25 +1,14 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>4928</Firmware_Version>
+  <Firmware_Version>4929</Firmware_Version>
   <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
-  <Exchange_Period>1</Exchange_Period>
+  <Exchange_Period>5</Exchange_Period>
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Button_Row</Pin_Config>
-  <Pin_Config>Button_Row</Pin_Config>
-  <Pin_Config>Button_Row</Pin_Config>
-  <Pin_Config>Button_Row</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Button_Column</Pin_Config>
-  <Pin_Config>Button_Column</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -27,8 +16,19 @@
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Button_Column</Pin_Config>
-  <Pin_Config>Button_Column</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -235,7 +235,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <IsMagnetOffset>false</IsMagnetOffset>
     <FilterLevel>0</FilterLevel>
@@ -287,7 +287,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <DeadZone>0</DeadZone>
-    <SourceMain>A3</SourceMain>
+    <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
@@ -572,27 +572,27 @@
     <Button>0</Button>
   </ShiftModificator_Config>
   <Button_Config>
-    <Type>Encoder_A</Type>
+    <Type>Button_Normal</Type>
     <IsEnabled>true</IsEnabled>
     <PhysicalNumber>1</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
-    <Type>Encoder_B</Type>
+    <Type>Button_Normal</Type>
     <IsEnabled>true</IsEnabled>
     <PhysicalNumber>2</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>3</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>4</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
@@ -1507,6 +1507,7 @@
     <Type>HC165_PullDown</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
+  <DynamicConfig>false</DynamicConfig>
   <Vid>1155</Vid>
   <Pid>22352</Pid>
 </DeviceConfig>

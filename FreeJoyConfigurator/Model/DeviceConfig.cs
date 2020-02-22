@@ -567,6 +567,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
         [XmlElement("ShitRegisters_Config")]
         public ObservableCollection<ShiftRegisterConfig> ShiftRegistersConfig { get; set; }
+        [XmlElement("DynamicConfig")]
+        public bool IsDynamicConfig { get; set; }
         [XmlElement("Vid")]
         public UInt16 Vid { get; set; }
         [XmlElement("Pid")]
@@ -580,6 +582,7 @@ public DeviceConfig()
             TogglePressMs = 100;
             EncoderPressMs = 10;
             ExchangePeriod = 5;
+            IsDynamicConfig = false;
             Vid = 0x0483;
             Pid = 0x5750;
 

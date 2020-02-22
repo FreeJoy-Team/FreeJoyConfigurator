@@ -287,6 +287,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
+                            <CheckBox Grid.Row="1" Grid.ColumnSpan="3" Content="Dynamic HID config" 
+                                      IsChecked="{Binding Config.IsDynamicConfig}"/>
                             <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="VID" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBox TextAlignment="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 

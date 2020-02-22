@@ -403,6 +403,7 @@ namespace FreeJoyConfigurator
 
                 config.Vid = (ushort)((ushort) (hr.Data[38] << 8) | (ushort) hr.Data[37]);
                 config.Pid = (ushort)((ushort)(hr.Data[40] << 8) | (ushort)hr.Data[39]);
+                config.IsDynamicConfig = (hr.Data[41] > 0) ? true : false;
             }
         }
 
@@ -788,7 +789,8 @@ namespace FreeJoyConfigurator
             buffer[38] = (byte)(config.Vid & 0xFF);
             buffer[39] = (byte)(config.Vid >> 8);
             buffer[40] = (byte)(config.Pid & 0xFF);
-            buffer[41] = (byte)(config.Pid >> 8);          
+            buffer[41] = (byte)(config.Pid >> 8);
+            buffer[42] = (byte)(config.IsDynamicConfig ? 0x01 : 0x00);
 
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
