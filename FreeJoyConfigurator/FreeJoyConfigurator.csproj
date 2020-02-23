@@ -31,8 +31,8 @@
     <PublisherName>FreeJoy</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.3.3.%2a</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.3.4.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -60,7 +60,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E1D6204ACFC0D058ED72E2DBC461D384F4306274</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>4FBB0E5B57811EC8189952D7ED1A96E876647FB9</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>FreeJoyConfigurator_TemporaryKey.pfx</ManifestKeyFile>

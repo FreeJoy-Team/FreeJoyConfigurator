@@ -99,7 +99,6 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < Config.AxisConfig.Count; i++)
             {
-                Axes[i].IsEnabled = true;
                 Axes[i].AxisConfig = Config.AxisConfig[i];
             }
 

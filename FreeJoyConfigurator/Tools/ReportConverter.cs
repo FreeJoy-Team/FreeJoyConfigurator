@@ -28,30 +28,37 @@ namespace FreeJoyConfigurator
         {
             if (hr != null)
             {
-                for (int i = 0; i < joystick.LogicalButtons.Count; i++)
+                for (int i = 0; i < joystick.Axes.Count; i++)
                 {
-                    joystick.LogicalButtons[i].State = (hr.Data[1 + (i & 0xF8) >> 3] & (1 << (i & 0x07))) > 0 ? true : false;
+                    joystick.Axes[i].RawValue = (short)(hr.Data[1 + 2 * i] << 8 | hr.Data[0 + 2 * i]);
+                }
+
+                for (int i = 0; i < 64; i++)
+                {
+                    joystick.PhysicalButtons[hr.Data[16] + i].State = (hr.Data[17 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
+                }
+
+                for (int i = 0; i < 5; i++)
+                {
+                    joystick.ShiftButtons[i].State = (hr.Data[25] & (1 << i)) > 0 ? true : false;
                 }
 
                 for (int i = 0; i < joystick.Axes.Count; i++)
                 {
-                    joystick.Axes[i].Value =  (short) (hr.Data[17 + 2 * i] << 8 |  hr.Data[16 + 2 * i]);
+                    joystick.Axes[i].Value =  (short) (hr.Data[27 + 2 * i] << 8 |  hr.Data[26 + 2 * i]);
                 }
 
                 for (int i = 0; i < joystick.Povs.Count; i++)
                 {
-                    joystick.Povs[i].State =  hr.Data[32 + i];
+                    joystick.Povs[i].State =  hr.Data[42 + i];
                 }
 
-                for (int i = 0; i < joystick.Axes.Count; i++)
+                for (int i = 0; i < joystick.LogicalButtons.Count; i++)
                 {
-                    joystick.Axes[i].RawValue = (short)(hr.Data[37 + 2 * i] << 8 | hr.Data[36 + 2 * i]);
+                    joystick.LogicalButtons[i].State = (hr.Data[46 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
                 }
-               
-                for (int i=0; i<8; i++)
-                {
-                    joystick.PhysicalButtons[hr.Data[52]+i].State = hr.Data[53+i] > 0 ? true : false;
-                }
+
+                
             }
         }
     
@@ -70,6 +77,7 @@ namespace FreeJoyConfigurator
                     if (chars[i] == 0) break;   // end of string
                 }
                 config.DeviceName = new string(chars);
+                config.DeviceName.TrimEnd('\0');
                 config.ButtonDebounceMs = (ushort)(hr.Data[24] << 8 | hr.Data[23]);
                 config.TogglePressMs = (ushort)(hr.Data[26] << 8 | hr.Data[25]);
                 config.EncoderPressMs = (ushort)(hr.Data[28] << 8 | hr.Data[27]);
@@ -392,6 +400,10 @@ namespace FreeJoyConfigurator
                     config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[32 + i]+1);
                     //config.ShiftModificatorConfig[i].Mode = (ShiftMode)hr.Data[33 + i * 2];
                 }
+
+                config.Vid = (ushort)((ushort) (hr.Data[38] << 8) | (ushort) hr.Data[37]);
+                config.Pid = (ushort)((ushort)(hr.Data[40] << 8) | (ushort)hr.Data[39]);
+                config.IsDynamicConfig = (hr.Data[41] > 0) ? true : false;
             }
         }
 
@@ -773,6 +785,13 @@ namespace FreeJoyConfigurator
                 buffer[i + 33] = (byte)(config.ShiftModificatorConfig[i].Button-1);
                 //buffer[2 * i + 34] = (byte)config.ShiftModificatorConfig[i].Mode;
             }
+
+            buffer[38] = (byte)(config.Vid & 0xFF);
+            buffer[39] = (byte)(config.Vid >> 8);
+            buffer[40] = (byte)(config.Pid & 0xFF);
+            buffer[41] = (byte)(config.Pid >> 8);
+            buffer[42] = (byte)(config.IsDynamicConfig ? 0x01 : 0x00);
+
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             return hidReports;

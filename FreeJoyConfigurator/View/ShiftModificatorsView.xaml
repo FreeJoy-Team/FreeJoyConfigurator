@@ -39,6 +39,16 @@
                 <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="128"
                                                     Value="{Binding Config.ShiftModificatorConfig[0].Button}"/>
             </Grid>
+
+            <GroupBox.Style>
+                <Style TargetType="GroupBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ButtonsVM.ShiftButtons[0].State}" Value="True">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>
         </GroupBox>
         <GroupBox Header="Shift2" Grid.Column="1">
             <Grid>
@@ -55,6 +65,16 @@
                 <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
                                                     Value="{Binding Config.ShiftModificatorConfig[1].Button}"/>
             </Grid>
+
+            <GroupBox.Style>
+                <Style TargetType="GroupBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ButtonsVM.ShiftButtons[1].State}" Value="True">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>
         </GroupBox>
         <GroupBox Header="Shift3" Grid.Column="2">
             <Grid>
@@ -71,6 +91,16 @@
                 <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
                                                     Value="{Binding Config.ShiftModificatorConfig[2].Button}"/>
             </Grid>
+
+            <GroupBox.Style>
+                <Style TargetType="GroupBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ButtonsVM.ShiftButtons[2].State}" Value="True">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>
         </GroupBox>
         <GroupBox Header="Shift4" Grid.Column="3">
             <Grid>
@@ -87,6 +117,16 @@
                 <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
                                                     Value="{Binding Config.ShiftModificatorConfig[3].Button}"/>
             </Grid>
+
+            <GroupBox.Style>
+                <Style TargetType="GroupBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ButtonsVM.ShiftButtons[3].State}" Value="True">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>
         </GroupBox>
         <GroupBox Header="Shift5" Grid.Column="4">
             <Grid>
@@ -103,6 +143,16 @@
                 <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
                                                     Value="{Binding Config.ShiftModificatorConfig[4].Button}"/>
             </Grid>
+
+            <GroupBox.Style>
+                <Style TargetType="GroupBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ButtonsVM.ShiftButtons[4].State}" Value="True">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>
         </GroupBox>
     </Grid>
 </UserControl>

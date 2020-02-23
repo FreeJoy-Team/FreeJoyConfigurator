@@ -40,6 +40,29 @@ namespace FreeJoyConfigurator
                 SetProperty(ref _config, value);
             }
         }
+        public string VidVM
+        {
+            get
+            {
+                return Config.Vid.ToString("X4");
+            }
+            set
+            {
+                Config.Vid = Convert.ToUInt16(value, 16);
+            }
+        }
+        public string PidVM
+        {
+            get
+            {
+                return Config.Pid.ToString("X4");
+            }
+            set
+            {
+                Config.Pid = Convert.ToUInt16(value, 16);
+            }
+        }
+
         public PinsVM PinsVM {get; set; }
         public AxesVM AxesVM { get; private set; }
         public ButtonsVM ButtonsVM { get; private set; }
@@ -138,11 +161,7 @@ namespace FreeJoyConfigurator
         public MainVM()
         {
 
-            Hid.Start();
-
-            Hid.DeviceAdded += DeviceAddedEventHandler;
-            Hid.DeviceRemoved += DeviceRemovedEventHandler;
-            Hid.DeviceListUpdated += Hid_DeviceListUpdated;
+            
 
             // getting current version
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -185,6 +204,12 @@ namespace FreeJoyConfigurator
             SetDefault = new DelegateCommand(() => LoadDefaultConfig());
 
             LoadDefaultConfig();
+
+            Hid.Start(Config.Vid);
+
+            Hid.DeviceAdded += DeviceAddedEventHandler;
+            Hid.DeviceRemoved += DeviceRemovedEventHandler;
+            Hid.DeviceListUpdated += Hid_DeviceListUpdated;
 
             // Try to connect to device
             if (HidDevices.Count > 0) SelectedDeviceIndex = 0;

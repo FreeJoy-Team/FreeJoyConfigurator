@@ -12,8 +12,8 @@ namespace FreeJoyConfigurator
     static class Hid
     {
         #region Fields
-        private const int vid = 0x0483;
-        private const int pid = 0x5750;
+        //private const int vid = 0x0483;
+        //private const int pid = 0x5750;
 
         private static HidDevice hidDevice { get; set; }
         public static List<HidDevice> HidDevicesList { get; set; }
@@ -42,7 +42,7 @@ namespace FreeJoyConfigurator
         }
         #endregion
 
-        static public void Start()
+        static public void Start(int vid)
         {
             int lastDeviceCnt = 0;
             HidDevicesList = new List<HidDevice>();
@@ -54,7 +54,7 @@ namespace FreeJoyConfigurator
                     //while (hidDevice == null)
                     while (true)
                     {
-                        HidDevicesList = HidDevices.Enumerate(vid, pid).ToList();
+                        HidDevicesList = HidDevices.Enumerate(vid).ToList();
 
                         if (HidDevicesList.Count != lastDeviceCnt)
                             DeviceListUpdated?.Invoke();
@@ -82,10 +82,10 @@ namespace FreeJoyConfigurator
         }
 
 
-        static public ObservableCollection<HidDevice> GetDevices()
+        static public ObservableCollection<HidDevice> GetDevices(int vid)
         {
 
-            ObservableCollection<HidDevice> devices = new ObservableCollection<HidDevice>( HidDevices.Enumerate(vid, pid));
+            ObservableCollection<HidDevice> devices = new ObservableCollection<HidDevice>( HidDevices.Enumerate(vid));
 
             return devices;
         }
