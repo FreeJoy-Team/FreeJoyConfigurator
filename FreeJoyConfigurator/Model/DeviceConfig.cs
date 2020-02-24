@@ -85,7 +85,8 @@ namespace FreeJoyConfigurator
         private ObservableCollection<Point> _curveShape;
 
         private byte _resolution;
-        private byte _deadZone;
+        private byte _deadband;
+        private bool _isDynamicDeadband;
 
         private AxisSourceType _sourceMain;
         private AxisType _sourceSecondary;
@@ -187,10 +188,15 @@ namespace FreeJoyConfigurator
             get {return _resolution; }
             set { SetProperty(ref _resolution, value);}
         }
-        public byte DeadZone
+        public byte Deadband
         {
-            get { return _deadZone; }
-            set { SetProperty(ref _deadZone, value); }
+            get { return _deadband; }
+            set { SetProperty(ref _deadband, value); }
+        }
+        public bool IsDynamicDeadband
+        {
+            get { return _isDynamicDeadband; }
+            set { SetProperty(ref _isDynamicDeadband, value); }
         }
 
         public AxisSourceType SourceMain
@@ -266,7 +272,7 @@ namespace FreeJoyConfigurator
             _step = 0;
 
             _resolution = 16;
-            _deadZone = 0;
+            _deadband = 0;
 
 
             _curveShape = new ObservableCollection<Point>();
@@ -287,11 +293,14 @@ namespace FreeJoyConfigurator
             Byte original = (Byte) value;
 
             if (original == 0) converted = "Off";
-            else if (original == 1) converted = "Low";
-            else if (original == 2) converted = "Medium";
-            else if (original == 3) converted = "High";
-            else if (original == 4) converted = "Highest";
-            else converted = "Filter No";
+            else if (original == 1) converted = "Level 1";
+            else if (original == 2) converted = "Level 2";
+            else if (original == 3) converted = "Level 3";
+            else if (original == 4) converted = "Level 4";
+            else if (original == 5) converted = "Level 5";
+            else if (original == 6) converted = "Level 6";
+            else if (original == 7) converted = "Level 7";
+            else converted = "Off";
 
             return converted;
         }

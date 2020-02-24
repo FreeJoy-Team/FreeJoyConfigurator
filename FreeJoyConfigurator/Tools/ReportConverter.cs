@@ -104,7 +104,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[0].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[8 + i]);
                 }               
                 config.AxisConfig[0].Resolution = hr.Data[19];
-                config.AxisConfig[0].DeadZone = hr.Data[20];
+                config.AxisConfig[0].Deadband = (byte)(hr.Data[20] & 0x7F);
+                config.AxisConfig[0].IsDynamicDeadband = (hr.Data[20] & 0x80) > 0 ? true : false;
                 config.AxisConfig[0].SourceMain = (AxisSourceType)(hr.Data[21]);
                 config.AxisConfig[0].Function = (AxisFunction)(hr.Data[22] & 0x07);
                 config.AxisConfig[0].SourceSecondary = (AxisType)(hr.Data[22]>>3);
@@ -126,7 +127,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[1].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[38 + i]);
                 }
                 config.AxisConfig[1].Resolution = hr.Data[49];
-                config.AxisConfig[1].DeadZone = hr.Data[50];
+                config.AxisConfig[1].Deadband = (byte)(hr.Data[50] & 0x7F);
+                config.AxisConfig[1].IsDynamicDeadband = (hr.Data[50] & 0x80) > 0 ? true : false;
                 config.AxisConfig[1].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[1].Function = (AxisFunction)(hr.Data[52] & 0x07);
                 config.AxisConfig[1].SourceSecondary = (AxisType)(hr.Data[52]>>3);
@@ -151,7 +153,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[2].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[8 + i]);
                 }
                 config.AxisConfig[2].Resolution = hr.Data[19];
-                config.AxisConfig[2].DeadZone = hr.Data[20];
+                config.AxisConfig[2].Deadband = (byte)(hr.Data[20] & 0x7F);
+                config.AxisConfig[2].IsDynamicDeadband = (hr.Data[20] & 0x80) > 0 ? true : false;
                 config.AxisConfig[2].SourceMain = (AxisSourceType)hr.Data[21];
                 config.AxisConfig[2].Function = (AxisFunction)(hr.Data[22] & 0x07);
                 config.AxisConfig[2].SourceSecondary = (AxisType)(hr.Data[22] >> 3);
@@ -173,7 +176,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[3].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[38 + i]);
                 }
                 config.AxisConfig[3].Resolution = hr.Data[49];
-                config.AxisConfig[3].DeadZone = hr.Data[50];
+                config.AxisConfig[3].Deadband = (byte)(hr.Data[50] & 0x7F);
+                config.AxisConfig[3].IsDynamicDeadband = (hr.Data[50] & 0x80) > 0 ? true : false;
                 config.AxisConfig[3].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[3].Function = (AxisFunction)(hr.Data[52] & 0x07);
                 config.AxisConfig[3].SourceSecondary = (AxisType)(hr.Data[52] >> 3);
@@ -197,7 +201,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[4].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[8 + i]);
                 }
                 config.AxisConfig[4].Resolution = hr.Data[19];
-                config.AxisConfig[4].DeadZone = hr.Data[20];
+                config.AxisConfig[4].Deadband = (byte)(hr.Data[20] & 0x7F);
+                config.AxisConfig[4].IsDynamicDeadband = (hr.Data[20] & 0x80) > 0 ? true : false;
                 config.AxisConfig[4].SourceMain = (AxisSourceType)hr.Data[21];
                 config.AxisConfig[4].Function = (AxisFunction)(hr.Data[22] & 0x07);
                 config.AxisConfig[4].SourceSecondary = (AxisType)(hr.Data[22] >> 3);
@@ -219,7 +224,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[5].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[38 + i]);
                 }
                 config.AxisConfig[5].Resolution = hr.Data[49];
-                config.AxisConfig[5].DeadZone = hr.Data[50];
+                config.AxisConfig[5].Deadband = (byte)(hr.Data[50] & 0x7F);
+                config.AxisConfig[5].IsDynamicDeadband = (hr.Data[50] & 0x80) > 0 ? true : false;
                 config.AxisConfig[5].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[5].Function = (AxisFunction)(hr.Data[52] & 0x07);
                 config.AxisConfig[5].SourceSecondary = (AxisType)(hr.Data[52] >> 3);
@@ -243,7 +249,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[6].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[8 + i]);
                 }
                 config.AxisConfig[6].Resolution = hr.Data[19];
-                config.AxisConfig[6].DeadZone = hr.Data[20];
+                config.AxisConfig[6].Deadband = (byte)(hr.Data[20] & 0x7F);
+                config.AxisConfig[6].IsDynamicDeadband = (hr.Data[20] & 0x80) > 0 ? true : false;
                 config.AxisConfig[6].SourceMain = (AxisSourceType)hr.Data[21];
                 config.AxisConfig[6].Function = (AxisFunction)(hr.Data[22] & 0x07);
                 config.AxisConfig[6].SourceSecondary = (AxisType)(hr.Data[22] >> 3);
@@ -265,7 +272,8 @@ namespace FreeJoyConfigurator
                     config.AxisConfig[7].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[38 + i]);
                 }
                 config.AxisConfig[7].Resolution = hr.Data[49];
-                config.AxisConfig[7].DeadZone = hr.Data[50];
+                config.AxisConfig[7].Deadband = (byte)(hr.Data[50] & 0x7F);
+                config.AxisConfig[7].IsDynamicDeadband = (hr.Data[50] & 0x80) > 0 ? true : false;
                 config.AxisConfig[7].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[7].Function = (AxisFunction)(hr.Data[52] & 0x07);
                 config.AxisConfig[7].SourceSecondary = (AxisType)(hr.Data[52] >> 3);
@@ -454,7 +462,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 9] = (byte)config.AxisConfig[0].CurveShape[i].Y;
             }
             buffer[20] = (byte)(config.AxisConfig[0].Resolution);
-            buffer[21] = (byte)(config.AxisConfig[0].DeadZone);
+            buffer[21] = (byte)(config.AxisConfig[0].Deadband);
+            buffer[21] |= (byte)(config.AxisConfig[0].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[22] = (byte)(config.AxisConfig[0].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[0].Function);
             buffer[23] |= (byte)((byte)(config.AxisConfig[0].SourceSecondary) << 3);
@@ -478,7 +487,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 39] = (byte)config.AxisConfig[1].CurveShape[i].Y;
             }
             buffer[50] = (byte)(config.AxisConfig[1].Resolution);
-            buffer[51] = (byte)(config.AxisConfig[1].DeadZone);
+            buffer[51] = (byte)(config.AxisConfig[1].Deadband);
+            buffer[51] |= (byte)(config.AxisConfig[1].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[52] = (byte)(config.AxisConfig[1].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[1].Function);
             buffer[53] |= (byte)((byte)(config.AxisConfig[1].SourceSecondary) << 3);
@@ -507,7 +517,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 9] = (byte)config.AxisConfig[2].CurveShape[i].Y;
             }
             buffer[20] = (byte)(config.AxisConfig[2].Resolution);
-            buffer[21] = (byte)(config.AxisConfig[2].DeadZone);
+            buffer[21] = (byte)(config.AxisConfig[2].Deadband);
+            buffer[21] |= (byte)(config.AxisConfig[2].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[22] = (byte)(config.AxisConfig[2].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[2].Function);
             buffer[23] |= (byte)((byte)(config.AxisConfig[2].SourceSecondary) << 3);
@@ -531,7 +542,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 39] = (byte)config.AxisConfig[3].CurveShape[i].Y;
             }
             buffer[50] = (byte)(config.AxisConfig[3].Resolution);
-            buffer[51] = (byte)(config.AxisConfig[3].DeadZone);
+            buffer[51] = (byte)(config.AxisConfig[3].Deadband);
+            buffer[51] |= (byte)(config.AxisConfig[3].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[52] = (byte)(config.AxisConfig[3].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[3].Function);
             buffer[53] |= (byte)((byte)(config.AxisConfig[3].SourceSecondary) << 3);
@@ -560,7 +572,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 9] = (byte)config.AxisConfig[4].CurveShape[i].Y;
             }
             buffer[20] = (byte)(config.AxisConfig[4].Resolution);
-            buffer[21] = (byte)(config.AxisConfig[4].DeadZone);
+            buffer[21] = (byte)(config.AxisConfig[4].Deadband);
+            buffer[21] |= (byte)(config.AxisConfig[4].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[22] = (byte)(config.AxisConfig[4].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[4].Function);
             buffer[23] |= (byte)((byte)(config.AxisConfig[4].SourceSecondary) << 3);
@@ -584,7 +597,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 39] = (byte)config.AxisConfig[5].CurveShape[i].Y;
             }
             buffer[50] = (byte)(config.AxisConfig[5].Resolution);
-            buffer[51] = (byte)(config.AxisConfig[5].DeadZone);
+            buffer[51] = (byte)(config.AxisConfig[5].Deadband);
+            buffer[51] |= (byte)(config.AxisConfig[5].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[52] = (byte)(config.AxisConfig[5].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[5].Function);
             buffer[53] |= (byte)((byte)(config.AxisConfig[5].SourceSecondary) << 3);
@@ -613,7 +627,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 9] = (byte)config.AxisConfig[6].CurveShape[i].Y;
             }
             buffer[20] = (byte)(config.AxisConfig[6].Resolution);
-            buffer[21] = (byte)(config.AxisConfig[6].DeadZone);
+            buffer[21] = (byte)(config.AxisConfig[6].Deadband);
+            buffer[21] |= (byte)(config.AxisConfig[6].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[22] = (byte)(config.AxisConfig[6].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[6].Function);
             buffer[23] |= (byte)((byte)(config.AxisConfig[6].SourceSecondary) << 2);
@@ -637,7 +652,8 @@ namespace FreeJoyConfigurator
                 buffer[i + 39] = (byte)config.AxisConfig[7].CurveShape[i].Y;
             }
             buffer[50] = (byte)(config.AxisConfig[7].Resolution);
-            buffer[51] = (byte)(config.AxisConfig[7].DeadZone);
+            buffer[51] = (byte)(config.AxisConfig[7].Deadband);
+            buffer[51] |= (byte)(config.AxisConfig[7].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[52] = (byte)(config.AxisConfig[7].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[7].Function);
             buffer[53] |= (byte)((byte)(config.AxisConfig[7].SourceSecondary) << 2);
