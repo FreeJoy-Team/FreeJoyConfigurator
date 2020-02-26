@@ -423,10 +423,12 @@ namespace FreeJoyConfigurator
                             LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
                             LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Button))
+                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Sequential_Button);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_A))
-                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Encoder_A);
+                            LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_A);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_B))
-                            LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_B);
+                            LogicalButtons[i].AllowedTypes.Insert(28, ButtonType.Encoder_B);
                         break;
                     
                     case ButtonSourceType.AxisToButtons:
@@ -482,6 +484,8 @@ namespace FreeJoyConfigurator
                             LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
                             LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Button))
+                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Sequential_Button);
 
                         if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
                             LogicalButtons[i].Config.Type == ButtonType.Encoder_B)
@@ -514,6 +518,8 @@ namespace FreeJoyConfigurator
                             LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
                             LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.RadioButton4);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Button))
+                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Sequential_Button);
 
                         if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
                             LogicalButtons[i].Config.Type == ButtonType.Encoder_B ||

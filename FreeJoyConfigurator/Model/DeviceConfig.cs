@@ -367,6 +367,8 @@ namespace FreeJoyConfigurator
         RadioButton2,
         RadioButton3,
         RadioButton4,
+
+        Sequential_Button,
     };
 
     public enum ButtonSourceType
