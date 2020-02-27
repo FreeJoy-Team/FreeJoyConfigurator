@@ -9,7 +9,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="{Binding Version}" MinHeight="800" Height="800" MinWidth="1060" Width="1060">
+        Title="{Binding Version}" MinHeight="650" Height="800" MinWidth="1060" Width="1060">
 
     <Window.DataContext>
         <local:MainVM/>
@@ -95,7 +95,7 @@
             </Grid>
         </GroupBox>
 
-        <TabControl Grid.Column="1" Margin="10" >
+        <TabControl Grid.Column="1" Margin="10">
             <TabItem Header="Pin Config">
                 <local:PinsView/>
             </TabItem>
