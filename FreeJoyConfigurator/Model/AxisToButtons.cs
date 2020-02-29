@@ -15,18 +15,11 @@ namespace FreeJoyConfigurator
         private ObservableContentCollection<RangeItem> m_rangeItems;
         private int _buttonCnt;
         private bool _isEnabled;
-        private bool _isAllowed;
 
         public bool IsEnabled
         {
             get { return _isEnabled; }
             set { SetProperty(ref _isEnabled, value); }
-        }
-
-        public bool IsAllowed
-        {
-            get { return _isAllowed; }
-            set { SetProperty(ref _isAllowed, value); }
         }
 
         public ObservableContentCollection<RangeItem> RangeItems
@@ -56,7 +49,6 @@ namespace FreeJoyConfigurator
 
             _buttonCnt = m_rangeItems.Count;
             _isEnabled = false;
-            _isAllowed = false;
         }
 
     }
