@@ -223,7 +223,14 @@ namespace FreeJoyConfigurator
         {
             SaveFileDialog dlg = new SaveFileDialog();
 
-            dlg.FileName = "default";
+            if (HidDevices[SelectedDeviceIndex] != null)
+            {
+                dlg.FileName = HidDevices[SelectedDeviceIndex].ToString();
+            }
+            else
+            {
+                dlg.FileName = "default";
+            }
             dlg.DefaultExt = ".conf";
             dlg.Filter = "Config files (*.conf)|*.conf|All files (*.*)|*.*";
             Nullable<bool> result = dlg.ShowDialog();

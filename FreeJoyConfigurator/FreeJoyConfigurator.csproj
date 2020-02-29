@@ -31,8 +31,8 @@
     <PublisherName>FreeJoy</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.3.4.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.3.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -302,7 +302,6 @@
     <Resource Include="Resources\button_linear.png" />
     <Resource Include="Resources\button_shape.png" />
     <Resource Include="Resources\favicon.ico" />
-    <None Include="Resources\FreeJoy.bin" />
     <Resource Include="Resources\ms-icon-310x310.ico" />
   </ItemGroup>
   <ItemGroup>
