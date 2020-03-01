@@ -31,8 +31,8 @@
     <PublisherName>FreeJoy</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.3.5.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.4.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -148,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\LedVM.cs" />
+    <Compile Include="View\LedView.xaml.cs">
+      <DependentUpon>LedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\AxisSourceToBooleanConverter.cs" />
     <Compile Include="Tools\AxisTypeConverter.cs" />
     <Compile Include="Model\ShiftRegister.cs" />
@@ -201,6 +205,10 @@
     <Compile Include="View\ShiftRegistersView.xaml.cs">
       <DependentUpon>ShiftRegistersView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\LedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ShiftModificatorsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -43,10 +43,11 @@
                                             Maximum="{Binding MaxResolution, Mode=OneWay}" Minimum="1"/>
                         <TextBlock Grid.Column="2" Grid.Row="0"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
-                        <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" 
-                                  Content="Magnet offset" 
-                                  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
-                                  IsChecked="{Binding AxisConfig.IsMagnetOffset}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1"  Text="Offset"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                        Width="50" Minimum="0" Maximum="360" Increment="15"
+                                                        Value="{Binding AxisConfig.OffsetAngle}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1"  Text="°"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                         <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
                                               Content="Dynamic deadband" 

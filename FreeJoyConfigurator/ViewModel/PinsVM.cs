@@ -121,6 +121,10 @@ namespace FreeJoyConfigurator
             {
                 tmp.Add(new PinVMConverter());
                 if (i < 8) tmp[i].AllowedTypes.Add(PinType.Axis_Analog);
+                if (i == 12 || i == 13 || i == 15)
+                {
+                    if (!tmp[i].AllowedTypes.Contains(PinType.LED_PWM)) tmp[i].AllowedTypes.Add(PinType.LED_PWM);
+                }
                 if (i == 14)
                 {
                     tmp[i].AllowedTypes.Remove(PinType.TLE501x_CS);
@@ -154,6 +158,10 @@ namespace FreeJoyConfigurator
             {
                 _pins[i] = new PinVMConverter();
                 if (i < 8) Pins[i].AllowedTypes.Add(PinType.Axis_Analog);
+                if (i == 12 || i == 13 || i == 15)
+                {
+                    if (!Pins[i].AllowedTypes.Contains(PinType.LED_PWM)) Pins[i].AllowedTypes.Add(PinType.LED_PWM);
+                }
                 if (i == 14)
                 {
                     Pins[i].AllowedTypes.Remove(PinType.TLE501x_CS);

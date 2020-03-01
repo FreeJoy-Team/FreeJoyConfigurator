@@ -78,13 +78,14 @@ namespace FreeJoyConfigurator
         private short _calibMax;
 
         private bool _isOutEnabled;
-        private bool _isMagnetOffset;
+        private int _offsetAngle;
         private bool _isInverted;
         private byte _filterLevel;
 
         private ObservableCollection<Point> _curveShape;
 
         private byte _resolution;
+        private byte _adcChannel;
         private byte _deadband;
         private bool _isDynamicDeadband;
 
@@ -166,10 +167,10 @@ namespace FreeJoyConfigurator
             get {return _isInverted;}
             set{ SetProperty(ref _isInverted, value);}
         }
-        public bool IsMagnetOffset
+        public int OffsetAngle
         {
-            get { return _isMagnetOffset; }
-            set{SetProperty(ref _isMagnetOffset, value);}
+            get { return _offsetAngle; }
+            set{SetProperty(ref _offsetAngle, value);}
         }
         public byte FilterLevel
         {
@@ -187,6 +188,11 @@ namespace FreeJoyConfigurator
         {
             get {return _resolution; }
             set { SetProperty(ref _resolution, value);}
+        }
+        public byte AdcChannel
+        {
+            get { return _adcChannel; }
+            set { SetProperty(ref _adcChannel, value); }
         }
         public byte Deadband
         {
@@ -259,7 +265,7 @@ namespace FreeJoyConfigurator
             _calibMax = 32767;
 
             _isInverted = false;
-            _isMagnetOffset = false;
+            _offsetAngle = 0;
             _isOutEnabled = true;
 
             _sourceMain = AxisSourceType.Buttons;
@@ -330,6 +336,8 @@ namespace FreeJoyConfigurator
 
         ShiftReg_LATCH,
         ShiftReg_DATA,
+
+        LED_PWM,
         
     };
 
@@ -462,8 +470,6 @@ namespace FreeJoyConfigurator
             get { return _button; }
             set { SetProperty(ref _button, value); }
         }
-        
-
     }
 
     public class AxisToButtonsConfig : BindableBase
@@ -552,6 +558,23 @@ namespace FreeJoyConfigurator
         }
     }
 
+    public class LedPwmConfig : BindableBase
+    {
+        private ObservableCollection<byte> _dutyCycle;
+
+        public ObservableCollection<byte> DutyCycle
+        {
+            get { return _dutyCycle; }
+            set { SetProperty(ref _dutyCycle, value); }
+        }
+
+        public LedPwmConfig()
+        {
+            _dutyCycle = new ObservableCollection<byte>();
+            for (int i = 0; i < 3; i++) _dutyCycle.Add(0);
+        }
+    }
+
     public class DeviceConfig : BindableBase
     {
         [XmlElement("Firmware_Version")]
@@ -584,6 +607,8 @@ namespace FreeJoyConfigurator
         public UInt16 Vid { get; set; }
         [XmlElement("Pid")]
         public UInt16 Pid { get; set; }
+        [XmlElement("LedPwmConfig")]
+        public LedPwmConfig LedPwmConfig { get; set; }
 
 
 public DeviceConfig()
@@ -614,6 +639,8 @@ public DeviceConfig()
 
             ShiftRegistersConfig = new ObservableCollection<ShiftRegisterConfig>();
             for (int i = 0; i < 4; i++) ShiftRegistersConfig.Add(new ShiftRegisterConfig());
+
+            LedPwmConfig = new LedPwmConfig();
         }
     }
         

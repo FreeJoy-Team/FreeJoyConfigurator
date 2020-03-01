@@ -143,6 +143,10 @@
                 <local:ShiftRegistersView/>
             </TabItem>
 
+            <TabItem Header="LED">
+                <local:LedView/>
+            </TabItem>
+
         </TabControl>
 
         <Grid Grid.Column="2" Margin="0,20,0,0">
