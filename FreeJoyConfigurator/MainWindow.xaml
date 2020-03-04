@@ -179,7 +179,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
-
+                        <RowDefinition Height="*" />
 
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -188,9 +188,29 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Axis sources:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                               HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PinsVM.AxesCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
+                                                <Setter Property="Background" Value="Red"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Buttons from axes:" 
                                HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ButtonsVM.ButtonsFromAxesCnt}"
@@ -208,9 +228,53 @@
                     <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ButtonsVM.ColCnt}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Total buttons:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                               HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ButtonsVM.ButtonsError}" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ButtonsVM.TotalBtnCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ButtonsVM.ButtonsError}" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Total LEDs:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PinsVM.LedsError}" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding PinsVM.TotalLedCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PinsVM.LedsError}" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </Grid>
             </GroupBox>
 

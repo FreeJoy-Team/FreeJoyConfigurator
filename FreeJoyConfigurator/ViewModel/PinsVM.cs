@@ -29,7 +29,13 @@ namespace FreeJoyConfigurator
         private int _tleCnt;
         private int _ledRowCnt;
         private int _ledColCnt;
-        private int _ledCnt;
+        private int _singleLedCnt;
+        private int _totalLedCnt;
+
+        private bool _axesError;
+        
+        private bool _ledsError;
+
         private ObservableCollection<PinVMConverter> _pins;
 
         public delegate void PinConfigChangedEvent();
@@ -72,17 +78,41 @@ namespace FreeJoyConfigurator
                 SetProperty(ref _axesToButtonsCnt, value);
             }
         }
-        public int LedCnt
+        public int TotalLedCnt
         {
             get
             {
-                return _ledCnt;
+                return _totalLedCnt;
             }
             private set
             {
-                SetProperty(ref _ledCnt, value);
+                SetProperty(ref _totalLedCnt, value);
             }
         }
+        public bool AxesError
+        {
+            get
+            {
+                return _axesError;
+            }
+            private set
+            {
+                SetProperty(ref _axesError, value);
+            }
+        }
+        
+        public bool LedsError
+        {
+            get
+            {
+                return _ledsError;
+            }
+            private set
+            {
+                SetProperty(ref _ledsError, value);
+            }
+        }
+
         public ObservableCollection<PinVMConverter> Pins
         {
             get
@@ -217,11 +247,18 @@ namespace FreeJoyConfigurator
             _rowCnt = 0;
             _colCnt = 0;
             _singleBtnCnt = 0;
+            _ledColCnt = 0;
+            _ledRowCnt = 0;
+            _singleLedCnt = 0;
+            TotalLedCnt = 0;
 
             AxesCnt = 0;
             AxesToButtonsCnt = 0;
             _spiDevicesCnt = 0;
             _tleCnt = 0;
+
+            AxesError = false;
+            LedsError = false;
 
             // count buttons and axes
             for (int i = 0; i < Pins.Count; i++)
@@ -255,7 +292,7 @@ namespace FreeJoyConfigurator
                 }
                 else if (Pins[i].SelectedType == PinType.LED_Single)
                 {
-                    LedCnt++;
+                    _singleLedCnt++;
                 }
                 else if (Pins[i].SelectedType == PinType.LED_Row)
                 {
@@ -273,6 +310,11 @@ namespace FreeJoyConfigurator
                     AxesToButtonsCnt++;
                 }
             }
+
+            TotalLedCnt = _singleLedCnt + _ledColCnt * _ledRowCnt;
+
+            if (AxesCnt > maxAxesCnt) AxesError = true;
+            if (TotalLedCnt > maxLedCnt) LedsError = true;
 
             // SPI pins management
             if (_spiDevicesCnt <= 0)
@@ -334,7 +376,7 @@ namespace FreeJoyConfigurator
                     }
                 }
             }
-            if (maxBtnCnt - _singleBtnCnt == _rowCnt * _colCnt)
+            if (maxBtnCnt - _singleBtnCnt <= _rowCnt * _colCnt)
             {
                 for (int i = 0; i < Pins.Count; i++)
                 {
@@ -351,6 +393,39 @@ namespace FreeJoyConfigurator
                     
                 }
             }
+            if (maxLedCnt - _singleLedCnt < _ledRowCnt * (_ledColCnt + 1))
+            {
+                for (int i = 0; i < Pins.Count; i++)
+                {
+                    if (Pins[i].SelectedType != PinType.LED_Column)
+                    {
+                        Pins[i].AllowedTypes.Remove(PinType.LED_Column);
+                    }
+                }
+            }
+            if (maxLedCnt - _singleLedCnt < _ledColCnt * (_ledRowCnt + 1))
+            {
+                for (int i = 0; i < Pins.Count; i++)
+                {
+                    if (Pins[i].SelectedType != PinType.LED_Row)
+                    {
+                        Pins[i].AllowedTypes.Remove(PinType.LED_Row);
+                    }
+                }
+            }
+            if (maxLedCnt - _singleLedCnt <= _ledRowCnt * _ledRowCnt)
+            {
+                for (int i = 0; i < Pins.Count; i++)
+                {
+                    if (Pins[i].SelectedType != PinType.LED_Single &&
+                        Pins[i].SelectedType != PinType.LED_Row && Pins[i].SelectedType != PinType.LED_Column)
+                    {
+                        Pins[i].AllowedTypes.Remove(PinType.LED_Single);
+                    }
+
+                }
+            }
+
             if (_shiftRegisterCsCnt >= maxShiftRegistersCnt)
             {
                 for (int i = 0; i < Pins.Count; i++)
@@ -420,6 +495,42 @@ namespace FreeJoyConfigurator
                     if (!Pins[i].AllowedTypes.Contains(PinType.Button_Vcc)) Pins[i].AllowedTypes.Add(PinType.Button_Vcc);
                 }
             }
+
+            for (int i = 0; i < Pins.Count; i++)
+            {
+                if (Pins[i].SelectedType == PinType.LED_Row && !Pins[i].AllowedTypes.Contains(PinType.LED_Column))
+                {
+                    Pins[i].AllowedTypes.Add(PinType.LED_Column);
+                }
+                if (Pins[i].SelectedType == PinType.LED_Column && !Pins[i].AllowedTypes.Contains(PinType.LED_Row))
+                {
+                    Pins[i].AllowedTypes.Add(PinType.LED_Row);
+                }
+            }
+            if (maxLedCnt - _singleLedCnt >= _ledColCnt * (_ledRowCnt + 1))
+            {
+                for (int i = 0; i < Pins.Count; i++)
+                {
+                    if (!Pins[i].AllowedTypes.Contains(PinType.LED_Single)) Pins[i].AllowedTypes.Add(PinType.LED_Single);
+                    if (!Pins[i].AllowedTypes.Contains(PinType.LED_Row)) Pins[i].AllowedTypes.Add(PinType.LED_Row);
+                }
+            }
+            if (maxLedCnt - _singleLedCnt >= _ledRowCnt * (_ledColCnt + 1))
+            {
+                for (int i = 0; i < Pins.Count; i++)
+                {
+                    if (!Pins[i].AllowedTypes.Contains(PinType.LED_Single)) Pins[i].AllowedTypes.Add(PinType.LED_Single);
+                    if (!Pins[i].AllowedTypes.Contains(PinType.LED_Column)) Pins[i].AllowedTypes.Add(PinType.LED_Column);
+                }
+            }
+            if (maxLedCnt - _singleLedCnt > _ledRowCnt * _ledColCnt)
+            {
+                for (int i = 0; i < Pins.Count; i++)
+                {
+                    if (!Pins[i].AllowedTypes.Contains(PinType.LED_Single)) Pins[i].AllowedTypes.Add(PinType.LED_Single);
+                }
+            }
+
             if (_shiftRegisterCsCnt < maxShiftRegistersCnt)
             {
                 for (int i = 0; i < Pins.Count; i++)
