@@ -31,8 +31,8 @@
     <PublisherName>FreeJoy</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.4.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.4.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -148,9 +148,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\LedVM.cs" />
-    <Compile Include="View\LedView.xaml.cs">
+    <Compile Include="Model\Led.cs" />
+    <Compile Include="LedView.xaml.cs">
       <DependentUpon>LedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\LedVM.cs" />
+    <Compile Include="View\LedPwmView.xaml.cs">
+      <DependentUpon>LedPwmView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\AxisSourceToBooleanConverter.cs" />
     <Compile Include="Tools\AxisTypeConverter.cs" />
@@ -205,7 +209,11 @@
     <Compile Include="View\ShiftRegistersView.xaml.cs">
       <DependentUpon>ShiftRegistersView.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\LedView.xaml">
+    <Page Include="LedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LedPwmView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

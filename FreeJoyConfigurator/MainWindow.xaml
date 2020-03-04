@@ -144,7 +144,16 @@
             </TabItem>
 
             <TabItem Header="LED">
-                <local:LedView/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <local:LedPwmView Grid.Row="0" Grid.Column="0"/>
+                    <local:LedView Grid.Row="0" Grid.Column="1"/>
+                </Grid>
+                
             </TabItem>
 
         </TabControl>

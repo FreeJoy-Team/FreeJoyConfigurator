@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FreeJoyConfigurator.LedView"
+﻿<UserControl x:Class="FreeJoyConfigurator.LedPwmView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,7 @@
 
     <Border BorderBrush="LightGray" BorderThickness="0.5">
 
-        <GroupBox Header="PWM" MaxHeight="300" MinHeight="150" Height="200" VerticalAlignment="Top">
+        <GroupBox Header="PWM" MaxHeight="250" MinHeight="150" Height="200" VerticalAlignment="Top">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

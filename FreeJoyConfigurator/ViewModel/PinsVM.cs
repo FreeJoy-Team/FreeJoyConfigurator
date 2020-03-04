@@ -14,6 +14,7 @@ namespace FreeJoyConfigurator
     {
         #region Fields
         const int maxBtnCnt = 128;
+        const int maxLedCnt = 24;
         const int maxShiftRegistersCnt = 4;
         const int maxAxesCnt = 8;
 
@@ -26,6 +27,9 @@ namespace FreeJoyConfigurator
         private int _axesToButtonsCnt;
         private int _spiDevicesCnt;
         private int _tleCnt;
+        private int _ledRowCnt;
+        private int _ledColCnt;
+        private int _ledCnt;
         private ObservableCollection<PinVMConverter> _pins;
 
         public delegate void PinConfigChangedEvent();
@@ -66,6 +70,17 @@ namespace FreeJoyConfigurator
             private set
             {
                 SetProperty(ref _axesToButtonsCnt, value);
+            }
+        }
+        public int LedCnt
+        {
+            get
+            {
+                return _ledCnt;
+            }
+            private set
+            {
+                SetProperty(ref _ledCnt, value);
             }
         }
         public ObservableCollection<PinVMConverter> Pins
@@ -237,6 +252,18 @@ namespace FreeJoyConfigurator
                     AxesCnt++;
                     _spiDevicesCnt++;
                     _tleCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.LED_Single)
+                {
+                    LedCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.LED_Row)
+                {
+                    _ledRowCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.LED_Column)
+                {
+                    _ledColCnt++;
                 }
             }
             for (int i=0; i<Config.AxisToButtonsConfig.Count;i++)

@@ -338,6 +338,9 @@ namespace FreeJoyConfigurator
         ShiftReg_DATA,
 
         LED_PWM,
+        LED_Single,
+        LED_Row,
+        LED_Column,
         
     };
 
@@ -522,8 +525,6 @@ namespace FreeJoyConfigurator
     {
         private ShiftRegisterType _type;
         private short _buttonCnt;
-        //private byte _selectPin;
-        //private byte _dataPin;
 
         public ShiftRegisterType Type
         {
@@ -537,24 +538,10 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _buttonCnt, value); }
         }
 
-        //public byte LatchPin
-        //{
-        //    get { return _selectPin; }
-        //    set { SetProperty(ref _selectPin, value); }
-        //}
-        //public byte ClockPin
-
-        //{
-        //    get { return _dataPin; }
-        //    set { SetProperty(ref _dataPin, value); }
-        //}
-
         public ShiftRegisterConfig()
         {
             _type = ShiftRegisterType.HC165_PullUp;
             _buttonCnt = 0;
-            //_selectPin = 0xFF;
-            //_dataPin = 0xFF;
         }
     }
 
@@ -573,6 +560,32 @@ namespace FreeJoyConfigurator
             _dutyCycle = new ObservableCollection<byte>();
             for (int i = 0; i < 3; i++) _dutyCycle.Add(0);
         }
+    }
+
+    public enum LedType
+    {
+        Normal = 0,
+        Inverted,
+        //Blink_Slow,
+        //Blink_Fast,
+    }
+
+    public class LedConfig : BindableBase
+    {
+        private sbyte _inputNumber;
+        private LedType _type;
+
+        public sbyte InputNumber
+        {
+            get { return _inputNumber; }
+            set { SetProperty(ref _inputNumber, value); }
+        }
+        public LedType Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
+    
     }
 
     public class DeviceConfig : BindableBase
@@ -609,9 +622,11 @@ namespace FreeJoyConfigurator
         public UInt16 Pid { get; set; }
         [XmlElement("LedPwmConfig")]
         public LedPwmConfig LedPwmConfig { get; set; }
+        [XmlElement("LedConfig")]
+        public ObservableCollection<LedConfig> LedConfig { get; set; }
 
 
-public DeviceConfig()
+        public DeviceConfig()
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
@@ -641,6 +656,9 @@ public DeviceConfig()
             for (int i = 0; i < 4; i++) ShiftRegistersConfig.Add(new ShiftRegisterConfig());
 
             LedPwmConfig = new LedPwmConfig();
+
+            LedConfig = new ObservableCollection<LedConfig>();
+            for (int i = 0; i < 24; i++) LedConfig.Add(new LedConfig());
         }
     }
         

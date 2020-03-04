@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>5120</Firmware_Version>
+  <Firmware_Version>5136</Firmware_Version>
   <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
@@ -10,10 +10,10 @@
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -362,7 +362,7 @@
     <AdcChannel>0</AdcChannel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A4</SourceMain>
+    <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
@@ -429,7 +429,7 @@
     <AdcChannel>0</AdcChannel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A5</SourceMain>
+    <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
@@ -496,7 +496,7 @@
     <AdcChannel>0</AdcChannel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A6</SourceMain>
+    <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
@@ -563,7 +563,7 @@
     <AdcChannel>0</AdcChannel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A7</SourceMain>
+    <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
@@ -1533,4 +1533,100 @@
       <unsignedByte>0</unsignedByte>
     </DutyCycle>
   </LedPwmConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Inverted</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
 </DeviceConfig>

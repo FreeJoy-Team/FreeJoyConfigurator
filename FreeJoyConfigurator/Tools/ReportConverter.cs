@@ -70,9 +70,9 @@ namespace FreeJoyConfigurator
                 char[] chars = new char[20];
 
                 config.FirmwareVersion = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
-                for (int i=0;i<20;i++)
+                for (int i = 0; i < 20; i++)
                 {
-                    
+
                     chars[i] = (char)hr.Data[i + 3];
                     if (chars[i] == 0) break;   // end of string
                 }
@@ -87,7 +87,7 @@ namespace FreeJoyConfigurator
                 {
                     config.PinConfig[i] = (PinType)hr.Data[i + 32];
                 }
-                
+
             }
             else if (hr.Data[0] == 2)
             {
@@ -97,22 +97,22 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[0].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[0].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[0].Function = (AxisFunction)((hr.Data[7] & 0x0C)>>2);
-                config.AxisConfig[0].FilterLevel = (byte)((hr.Data[7] & 0xE0)>>5);
+                config.AxisConfig[0].Function = (AxisFunction)((hr.Data[7] & 0x0C) >> 2);
+                config.AxisConfig[0].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
                     config.AxisConfig[0].CurveShape[i] = new System.Windows.Point(i, (sbyte)hr.Data[8 + i]);
-                }               
+                }
                 config.AxisConfig[0].Resolution = (byte)((hr.Data[19] & 0x0F) + 1);
                 config.AxisConfig[0].AdcChannel = (byte)(hr.Data[19] >> 4);
                 config.AxisConfig[0].Deadband = (byte)(hr.Data[20] & 0x7F);
                 config.AxisConfig[0].IsDynamicDeadband = (hr.Data[20] & 0x80) > 0 ? true : false;
                 config.AxisConfig[0].SourceMain = (AxisSourceType)(hr.Data[21]);
                 config.AxisConfig[0].SourceSecondary = (AxisType)(hr.Data[22] & 0x07);
-                config.AxisConfig[0].OffsetAngle = (hr.Data[22]>>3)*15;
-                config.AxisConfig[0].DecrementButton = (sbyte)(hr.Data[23]+1);
-                config.AxisConfig[0].CenterButton = (sbyte)(hr.Data[24]+1);
-                config.AxisConfig[0].IncrementButton = (sbyte)(hr.Data[25]+1);
+                config.AxisConfig[0].OffsetAngle = (hr.Data[22] >> 3) * 15;
+                config.AxisConfig[0].DecrementButton = (sbyte)(hr.Data[23] + 1);
+                config.AxisConfig[0].CenterButton = (sbyte)(hr.Data[24] + 1);
+                config.AxisConfig[0].IncrementButton = (sbyte)(hr.Data[25] + 1);
                 config.AxisConfig[0].Step = hr.Data[26];
 
                 config.AxisConfig[1] = new AxisConfig();
@@ -134,9 +134,9 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[1].SourceSecondary = (AxisType)(hr.Data[52] & 0x07);
                 config.AxisConfig[1].OffsetAngle = (hr.Data[52] >> 3) * 15;
-                config.AxisConfig[1].DecrementButton = (sbyte)(hr.Data[53]+1);
-                config.AxisConfig[1].CenterButton = (sbyte)(hr.Data[54]+1);
-                config.AxisConfig[1].IncrementButton = (sbyte)(hr.Data[55]+1);
+                config.AxisConfig[1].DecrementButton = (sbyte)(hr.Data[53] + 1);
+                config.AxisConfig[1].CenterButton = (sbyte)(hr.Data[54] + 1);
+                config.AxisConfig[1].IncrementButton = (sbyte)(hr.Data[55] + 1);
                 config.AxisConfig[1].Step = hr.Data[56];
 
             }
@@ -294,10 +294,10 @@ namespace FreeJoyConfigurator
             else if (hr.Data[0] == 6)
             {
                 // buttons group 1
-                for (int i=0;i<31;i++)
+                for (int i = 0; i < 31; i++)
                 {
-                    config.ButtonConfig[i].PhysicalNumber = (sbyte)(hr.Data[2*i + 1] + 1);
-                    config.ButtonConfig[i].ShiftModificator = (ShiftType)((hr.Data[2 * i + 2] & SHIFT_MASK)>>5);
+                    config.ButtonConfig[i].PhysicalNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
+                    config.ButtonConfig[i].ShiftModificator = (ShiftType)((hr.Data[2 * i + 2] & SHIFT_MASK) >> 5);
                     config.ButtonConfig[i].Type = (ButtonType)(hr.Data[2 * i + 2] & BUTTON_TYPE_MASK);
                 }
             }
@@ -413,17 +413,25 @@ namespace FreeJoyConfigurator
 
                 for (int i = 0; i < 5; i++)
                 {
-                    config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[32 + i]+1);
+                    config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[32 + i] + 1);
                     //config.ShiftModificatorConfig[i].Mode = (ShiftMode)hr.Data[33 + i * 2];
                 }
 
-                config.Vid = (ushort)((ushort) (hr.Data[38] << 8) | (ushort) hr.Data[37]);
+                config.Vid = (ushort)((ushort)(hr.Data[38] << 8) | (ushort)hr.Data[37]);
                 config.Pid = (ushort)((ushort)(hr.Data[40] << 8) | (ushort)hr.Data[39]);
                 config.IsDynamicConfig = (hr.Data[41] > 0) ? true : false;
 
                 for (int i = 0; i < 3; i++)
                 {
                     config.LedPwmConfig.DutyCycle[i] = hr.Data[42 + i];
+                }
+            }
+            else if (hr.Data[0] == 13)
+            {
+                for (int i = 0; i < 24; i++)
+                {
+                    config.LedConfig[i].InputNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
+                    config.ButtonConfig[i].Type = (ButtonType)(hr.Data[2 * i + 2] & 0x07);
                 }
             }
         }
@@ -832,6 +840,18 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 3; i++)
             {
                 buffer[43 + i] =  config.LedPwmConfig.DutyCycle[i];
+            }
+            hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
+
+            // Report 13
+            buffer.Initialize();
+            buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
+            buffer[1] = 0x0D;
+
+            for (int i = 0; i < 24; i++)
+            {
+                buffer[2 * i + 2] = (byte)(config.LedConfig[i].InputNumber - 1);
+                buffer[2 * i + 3] = (byte)config.LedConfig[i].Type;
             }
 
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
