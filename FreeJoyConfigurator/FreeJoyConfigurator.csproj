@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.3.4.%2a</ApplicationVersion>
+    <ApplicationVersion>1.4.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -148,6 +148,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Led.cs" />
+    <Compile Include="LedView.xaml.cs">
+      <DependentUpon>LedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\LedVM.cs" />
+    <Compile Include="View\LedPwmView.xaml.cs">
+      <DependentUpon>LedPwmView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\AxisSourceToBooleanConverter.cs" />
     <Compile Include="Tools\AxisTypeConverter.cs" />
     <Compile Include="Model\ShiftRegister.cs" />
@@ -201,6 +209,14 @@
     <Compile Include="View\ShiftRegistersView.xaml.cs">
       <DependentUpon>ShiftRegistersView.xaml</DependentUpon>
     </Compile>
+    <Page Include="LedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LedPwmView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ShiftModificatorsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -302,7 +318,6 @@
     <Resource Include="Resources\button_linear.png" />
     <Resource Include="Resources\button_shape.png" />
     <Resource Include="Resources\favicon.ico" />
-    <None Include="Resources\FreeJoy.bin" />
     <Resource Include="Resources\ms-icon-310x310.ico" />
   </ItemGroup>
   <ItemGroup>

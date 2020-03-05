@@ -139,7 +139,4 @@
   <data name="default_config" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default_config.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
-  <data name="FreeJoy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FreeJoy.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>

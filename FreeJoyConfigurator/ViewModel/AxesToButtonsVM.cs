@@ -46,29 +46,12 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
                 axesToButtons.Add(new AxisToButtons());
-                AxesToButtons[i].IsAllowed = false;
-            }
-
-            for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.AxisToButtonsConfig.Count; i++)
-            {
-                if (Config.PinConfig[i] == PinType.Axis_Analog ||
-                    Config.PinConfig[i] == PinType.TLE501x_CS)
-                {
-                    AxesToButtons[k++].IsAllowed = true;
-                }
             }
 
             for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
-                if (Config.AxisToButtonsConfig[i].IsEnabled && AxesToButtons[i].IsAllowed)
-                {
-                    AxesToButtons[i].IsEnabled = true;
-                }
-                else
-                {
-                    AxesToButtons[i].IsEnabled = false;
-                    AxesToButtons[i].ButtonCnt = 2;
-                }
+                AxesToButtons[i].IsEnabled = true;
+
 
                 AxesToButtons[i].PropertyChanged += AxesToButtonsVM_PropertyChanged;
                 for (int k =0; k<AxesToButtons[i].RangeItems.Count; k++)
@@ -107,7 +90,6 @@ namespace FreeJoyConfigurator
                     AxesToButtons[i].RangeItems[AxesToButtons[i].RangeItems.Count - 1].To = 100;
                     AxesToButtons[i].RangeItems.Remove(AxesToButtons[i].RangeItems.Last());
                 }
-                if (!AxesToButtons[i].IsAllowed) AxesToButtons[i].IsEnabled = false;
 
 
                 // enable range changed notification
@@ -151,7 +133,6 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
                 tmp.Add(new AxisToButtons());
-                tmp[i].IsAllowed = false;
 
                 if (Config.AxisToButtonsConfig[i].IsEnabled)
                 {
@@ -196,19 +177,10 @@ namespace FreeJoyConfigurator
                 
             }
 
-            for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.AxisToButtonsConfig.Count; i++)
-            {
-                if (Config.PinConfig[i] == PinType.Axis_Analog ||
-                    Config.PinConfig[i] == PinType.TLE501x_CS)
-                {
-                    tmp[k++].IsAllowed = true;
-                }
-            }
 
             for (int i = 0; i < AxesToButtons.Count; i++)
             {
                 AxesToButtons[i].PropertyChanged -= AxesToButtonsVM_PropertyChanged;
-                AxesToButtons[i].IsAllowed = tmp[i].IsAllowed;
                 AxesToButtons[i].IsEnabled = tmp[i].IsEnabled;
                 AxesToButtons[i].ButtonCnt = tmp[i].ButtonCnt;
 

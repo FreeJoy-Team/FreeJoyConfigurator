@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>4929</Firmware_Version>
+  <Firmware_Version>5137</Firmware_Version>
   <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
@@ -9,6 +9,17 @@
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
+  <Pin_Config>Axis_Analog</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -19,21 +30,10 @@
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>LED_Single</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Axis_Config>
@@ -42,7 +42,7 @@
     <CalibMax>32767</CalibMax>
     <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
+    <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
@@ -91,7 +91,9 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A0</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
@@ -107,7 +109,7 @@
     <CalibMax>32767</CalibMax>
     <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
+    <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
@@ -156,7 +158,9 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A1</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
@@ -172,7 +176,7 @@
     <CalibMax>32767</CalibMax>
     <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
+    <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
@@ -221,7 +225,9 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A2</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
@@ -235,9 +241,9 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>false</IsOutEnabled>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
+    <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
@@ -286,7 +292,76 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
+    <SourceMain>A3</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <IncrementButton>0</IncrementButton>
+    <DecrementButton>0</DecrementButton>
+    <CenterButton>0</CenterButton>
+    <Step>1</Step>
+    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+  </Axis_Config>
+  <Axis_Config>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>false</IsOutEnabled>
+    <IsInverted>false</IsInverted>
+    <OffsetAngle>0</OffsetAngle>
+    <FilterLevel>0</FilterLevel>
+    <CurveShape>
+      <Point>
+        <X>0</X>
+        <Y>-100</Y>
+      </Point>
+      <Point>
+        <X>1</X>
+        <Y>-80</Y>
+      </Point>
+      <Point>
+        <X>2</X>
+        <Y>-60</Y>
+      </Point>
+      <Point>
+        <X>3</X>
+        <Y>-40</Y>
+      </Point>
+      <Point>
+        <X>4</X>
+        <Y>-20</Y>
+      </Point>
+      <Point>
+        <X>5</X>
+        <Y>0</Y>
+      </Point>
+      <Point>
+        <X>6</X>
+        <Y>20</Y>
+      </Point>
+      <Point>
+        <X>7</X>
+        <Y>40</Y>
+      </Point>
+      <Point>
+        <X>8</X>
+        <Y>60</Y>
+      </Point>
+      <Point>
+        <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
+        <Y>100</Y>
+      </Point>
+    </CurveShape>
+    <Resolution>16</Resolution>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
@@ -302,7 +377,7 @@
     <CalibMax>32767</CalibMax>
     <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
+    <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
@@ -351,7 +426,9 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
@@ -367,7 +444,7 @@
     <CalibMax>32767</CalibMax>
     <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
+    <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
@@ -416,7 +493,9 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
@@ -432,7 +511,7 @@
     <CalibMax>32767</CalibMax>
     <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
+    <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
     <CurveShape>
       <Point>
@@ -481,72 +560,9 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
-    <SourceMain>Buttons</SourceMain>
-    <SourceSecondary>X</SourceSecondary>
-    <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
-    <Step>1</Step>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
-  </Axis_Config>
-  <Axis_Config>
-    <CalibMin>-32767</CalibMin>
-    <CalibCenter>0</CalibCenter>
-    <CalibMax>32767</CalibMax>
-    <IsOutEnabled>false</IsOutEnabled>
-    <IsInverted>false</IsInverted>
-    <IsMagnetOffset>false</IsMagnetOffset>
-    <FilterLevel>0</FilterLevel>
-    <CurveShape>
-      <Point>
-        <X>0</X>
-        <Y>-100</Y>
-      </Point>
-      <Point>
-        <X>1</X>
-        <Y>-80</Y>
-      </Point>
-      <Point>
-        <X>2</X>
-        <Y>-60</Y>
-      </Point>
-      <Point>
-        <X>3</X>
-        <Y>-40</Y>
-      </Point>
-      <Point>
-        <X>4</X>
-        <Y>-20</Y>
-      </Point>
-      <Point>
-        <X>5</X>
-        <Y>0</Y>
-      </Point>
-      <Point>
-        <X>6</X>
-        <Y>20</Y>
-      </Point>
-      <Point>
-        <X>7</X>
-        <Y>40</Y>
-      </Point>
-      <Point>
-        <X>8</X>
-        <Y>60</Y>
-      </Point>
-      <Point>
-        <X>9</X>
-        <Y>80</Y>
-      </Point>
-      <Point>
-        <X>10</X>
-        <Y>100</Y>
-      </Point>
-    </CurveShape>
-    <Resolution>16</Resolution>
-    <DeadZone>0</DeadZone>
+    <AdcChannel>0</AdcChannel>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
@@ -579,20 +595,20 @@
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
-    <IsEnabled>true</IsEnabled>
-    <PhysicalNumber>2</PhysicalNumber>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
-    <IsEnabled>true</IsEnabled>
-    <PhysicalNumber>3</PhysicalNumber>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
-    <IsEnabled>true</IsEnabled>
-    <PhysicalNumber>4</PhysicalNumber>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
@@ -1510,4 +1526,107 @@
   <DynamicConfig>false</DynamicConfig>
   <Vid>1155</Vid>
   <Pid>22352</Pid>
+  <LedPwmConfig>
+    <DutyCycle>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+    </DutyCycle>
+  </LedPwmConfig>
+  <LedConfig>
+    <InputNumber>1</InputNumber>
+    <Type>Inverted</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
 </DeviceConfig>

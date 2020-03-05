@@ -68,6 +68,7 @@ namespace FreeJoyConfigurator
         public ButtonsVM ButtonsVM { get; private set; }
         public AxesToButtonsVM AxesToButtonsVM { get; private set; }
         public ShiftRegistersVM ShiftRegistersVM { get; private set; }
+        public LedVM LedVM { get; private set; }
         public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
         private ObservableCollection<string> _hidDevices;
@@ -121,12 +122,12 @@ namespace FreeJoyConfigurator
                 if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
                 {
                     Version ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                    return string.Format("{3} v{0}.{1}.{2}", ver.Major, ver.Minor, ver.Build, Assembly.GetEntryAssembly().GetName().Name);
+                    return string.Format("FreeJoy Configurator v{0}.{1}.{2}b{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
                 }
                 else
                 {
                     var ver = Assembly.GetExecutingAssembly().GetName().Version;
-                    return string.Format("{3} v{0}.{1}.{2}", ver.Major, ver.Minor, ver.Build, Assembly.GetEntryAssembly().GetName().Name);
+                    return string.Format("FreeJoy Configurator v{0}.{1}.{2}b{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
                 }
             }
         }
@@ -184,6 +185,8 @@ namespace FreeJoyConfigurator
             AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
             ShiftRegistersVM = new ShiftRegistersVM(_joystick, Config);
             ShiftRegistersVM.ConfigChanged += ShiftRegistersVM_ConfigChanged;
+            LedVM = new LedVM(_joystick, Config);
+            LedVM.ConfigChanged += LedVM_ConfigChanged;
 
             FirmwareUpdaterVM = new FirmwareUpdaterVM();
 
@@ -217,13 +220,18 @@ namespace FreeJoyConfigurator
             WriteLog("Program started", true);
         }
 
-       
-
         private void SaveConfigToFile()
         {
             SaveFileDialog dlg = new SaveFileDialog();
 
-            dlg.FileName = "default";
+            if (HidDevices[SelectedDeviceIndex] != null)
+            {
+                dlg.FileName = HidDevices[SelectedDeviceIndex].ToString();
+            }
+            else
+            {
+                dlg.FileName = "default";
+            }
             dlg.DefaultExt = ".conf";
             dlg.Filter = "Config files (*.conf)|*.conf|All files (*.*)|*.*";
             Nullable<bool> result = dlg.ShowDialog();
@@ -331,6 +339,7 @@ namespace FreeJoyConfigurator
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
             ShiftRegistersVM.Update(Config);
+            LedVM.Update(Config);
         }
 
         private void ButtonsVM_ConfigChanged()
@@ -347,6 +356,12 @@ namespace FreeJoyConfigurator
         private void ShiftRegistersVM_ConfigChanged()
         {
             ButtonsVM.Update(Config);
+        }
+
+
+        private void LedVM_ConfigChanged()
+        {
+            
         }
 
         private void ConfigSent(DeviceConfig deviceConfig)
