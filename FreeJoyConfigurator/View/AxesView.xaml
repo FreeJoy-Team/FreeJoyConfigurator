@@ -47,7 +47,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:AxesView}">
-                    <GroupBox Header="{Binding Number, Converter={StaticResource AxisTypeConverter}}" BorderThickness="0.5" BorderBrush="LightGray" Height="170">
+                    <GroupBox Header="{Binding Number, Converter={StaticResource AxisTypeConverter}}" BorderThickness="0.5" BorderBrush="LightGray" Height="200">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*" />

@@ -14,11 +14,14 @@ namespace FreeJoyConfigurator
 {
     public class ButtonsVM : BindableBase
     {
+        const int maxBtnCnt = 128;
+
         private int _rowCnt;
         private int _colCnt;
         private int _singleBtnCnt;
         private int _totalBtnCnt;
         private int _buttonsFromAxes;
+        private bool _buttonsError;
 
         private DeviceConfig _config;
         private ObservableCollection<Button> _logicalButtons;
@@ -87,7 +90,17 @@ namespace FreeJoyConfigurator
                 SetProperty(ref _buttonsFromAxes, value);
             }
         }
-
+        public bool ButtonsError
+        {
+            get
+            {
+                return _buttonsError;
+            }
+            private set
+            {
+                SetProperty(ref _buttonsError, value);
+            }
+        }
         public DeviceConfig Config
         {
             get
@@ -144,6 +157,7 @@ namespace FreeJoyConfigurator
             SingleBtnCnt = 0;
             TotalBtnCnt = 0;
             ButtonsFromAxesCnt = 0;
+            ButtonsError = false;
 
             Config = config;
 
@@ -160,10 +174,14 @@ namespace FreeJoyConfigurator
                     {
                         if (config.PinConfig[k] == PinType.Button_Column)
                         {
-                            tmp.Add(new Button(TotalBtnCnt + 1));
-                            tmp[TotalBtnCnt].SourceType = ButtonSourceType.MatrixButton;
+                            if (TotalBtnCnt < maxBtnCnt)
+                            {
+                                tmp.Add(new Button(TotalBtnCnt + 1));
+                                tmp[TotalBtnCnt].SourceType = ButtonSourceType.MatrixButton;
+                            }
                             TotalBtnCnt++;
                         }
+                        
                     }
                 }
                 else if (config.PinConfig[i] == PinType.Button_Column)
@@ -179,8 +197,12 @@ namespace FreeJoyConfigurator
                 {
                     for (int j = 0; j < config.ShiftRegistersConfig[k].ButtonCnt; j++)
                     {
-                        tmp.Add(new Button(TotalBtnCnt + 1));
-                        tmp[TotalBtnCnt].SourceType = ButtonSourceType.ShiftRegister;
+                        if (TotalBtnCnt < maxBtnCnt)
+                        {
+                            tmp.Add(new Button(TotalBtnCnt + 1));
+                            tmp[TotalBtnCnt].SourceType = ButtonSourceType.ShiftRegister;
+                            
+                        }
                         TotalBtnCnt++;
                     }
                     k++;
@@ -195,10 +217,14 @@ namespace FreeJoyConfigurator
 
                     for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
                     {
-                        tmp.Add(new Button(TotalBtnCnt + 1));
-                        tmp[TotalBtnCnt].SourceType = ButtonSourceType.AxisToButtons;
+                        if (TotalBtnCnt < maxBtnCnt)
+                        {
+                            tmp.Add(new Button(TotalBtnCnt + 1));
+                            tmp[TotalBtnCnt].SourceType = ButtonSourceType.AxisToButtons;
+                            
+                            ButtonsFromAxesCnt++;
+                        }
                         TotalBtnCnt++;
-                        ButtonsFromAxesCnt++;
                     }
                 }
             }
@@ -208,10 +234,14 @@ namespace FreeJoyConfigurator
 
                 if (config.PinConfig[i] == PinType.Button_Gnd || config.PinConfig[i] == PinType.Button_Vcc)
                 {
-                    tmp.Add(new Button(TotalBtnCnt + 1));
-                    tmp[TotalBtnCnt].SourceType = ButtonSourceType.SingleButton;
+                    if (TotalBtnCnt < maxBtnCnt)
+                    {
+                        tmp.Add(new Button(TotalBtnCnt + 1));
+                        tmp[TotalBtnCnt].SourceType = ButtonSourceType.SingleButton;
+                        
+                        SingleBtnCnt++;
+                    }
                     TotalBtnCnt++;
-                    SingleBtnCnt++;
                 }
             }
 
@@ -252,6 +282,8 @@ namespace FreeJoyConfigurator
             {
                 button.Config.PropertyChanged += Button_PropertyChanged;
             }
+
+            if (TotalBtnCnt > maxBtnCnt) ButtonsError = true;
 
             Button_PropertyChanged(null, null);
         }
@@ -423,10 +455,12 @@ namespace FreeJoyConfigurator
                             LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
                             LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Button))
+                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Sequential_Button);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_A))
-                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Encoder_A);
+                            LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_A);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_B))
-                            LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_B);
+                            LogicalButtons[i].AllowedTypes.Insert(28, ButtonType.Encoder_B);
                         break;
                     
                     case ButtonSourceType.AxisToButtons:
@@ -482,6 +516,8 @@ namespace FreeJoyConfigurator
                             LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
                             LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Button))
+                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Sequential_Button);
 
                         if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
                             LogicalButtons[i].Config.Type == ButtonType.Encoder_B)
@@ -514,6 +550,8 @@ namespace FreeJoyConfigurator
                             LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
                             LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.RadioButton4);
+                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Button))
+                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Sequential_Button);
 
                         if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
                             LogicalButtons[i].Config.Type == ButtonType.Encoder_B ||

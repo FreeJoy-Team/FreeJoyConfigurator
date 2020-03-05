@@ -70,18 +70,8 @@ namespace FreeJoyConfigurator
             {
                 OpenFileDialog dlg = new OpenFileDialog();
 
-                try
-                {
-                    File.WriteAllBytes(Environment.CurrentDirectory + "/FreeJoy.bin",
-                        FreeJoyConfigurator.Properties.Resources.FreeJoy);
-                    dlg.InitialDirectory = Environment.CurrentDirectory;
-                }
-                catch
-                {
+                //dlg.InitialDirectory = Environment.CurrentDirectory;
 
-                }
-
-                
                 dlg.DefaultExt = ".bin";
                 dlg.Filter = "Binary files (.bin)|*.bin";
                 

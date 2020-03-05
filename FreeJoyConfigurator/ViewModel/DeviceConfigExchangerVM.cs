@@ -44,7 +44,7 @@ namespace FreeJoyConfigurator
                         ReportConverter.ReportToConfig(ref _config, hr);
                     }));
 
-                    if (configPacketNumber < 12)
+                    if (configPacketNumber < 13)
                     {
                         buffer[0] = ++configPacketNumber;
                         Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
@@ -68,7 +68,7 @@ namespace FreeJoyConfigurator
                     Hid.ReportSend(hrs[configPacketNumber - 1]);
                     Console.WriteLine("Sending config packet..: {0}", configPacketNumber);
 
-                    if (configPacketNumber >= 12)
+                    if (configPacketNumber >= 13)
                     {
                         App.Current.Dispatcher.BeginInvoke((Action)(() =>
                         {
