@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>5136</Firmware_Version>
+  <Firmware_Version>5137</Firmware_Version>
   <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
@@ -29,11 +29,11 @@
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>LED_Single</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Axis_Config>
@@ -308,7 +308,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -375,7 +375,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -442,7 +442,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -509,7 +509,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -589,8 +589,8 @@
   </ShiftModificator_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>1</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
   </Button_Config>
   <Button_Config>
@@ -1534,7 +1534,7 @@
     </DutyCycle>
   </LedPwmConfig>
   <LedConfig>
-    <InputNumber>0</InputNumber>
+    <InputNumber>1</InputNumber>
     <Type>Inverted</Type>
   </LedConfig>
   <LedConfig>
