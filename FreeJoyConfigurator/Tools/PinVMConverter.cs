@@ -60,7 +60,7 @@ namespace FreeJoyConfigurator
                     PinType.Button_Column,
                     PinType.ShiftReg_LATCH,
                     PinType.ShiftReg_DATA,
-                    PinType.TLE501x_CS,
+                    PinType.TLE5011_CS,
                     PinType.LED_Single,
                     PinType.LED_Row,
                     PinType.LED_Column,

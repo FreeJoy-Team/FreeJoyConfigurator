@@ -76,7 +76,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.TLE501x_CS || Config.PinConfig[i] == PinType.Axis_Analog)
+                if (Config.PinConfig[i] == PinType.TLE5011_CS || Config.PinConfig[i] == PinType.Axis_Analog)
                 {
                     foreach (var axis in Axes)
                     {
