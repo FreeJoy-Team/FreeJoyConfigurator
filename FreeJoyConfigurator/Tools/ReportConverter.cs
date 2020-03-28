@@ -431,7 +431,7 @@ namespace FreeJoyConfigurator
                 for (int i = 0; i < 24; i++)
                 {
                     config.LedConfig[i].InputNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
-                    config.ButtonConfig[i].Type = (ButtonType)(hr.Data[2 * i + 2] & 0x07);
+                    config.LedConfig[i].Type = (LedType)(hr.Data[2 * i + 2] & 0x07);
                 }
             }
         }
