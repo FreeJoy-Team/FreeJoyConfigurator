@@ -122,7 +122,7 @@ namespace FreeJoyConfigurator
         private ObservableCollection<Point> _curveShape;
 
         private byte _resolution;
-        private byte _adcChannel;
+        private byte _channel;
         private byte _deadband;
         private bool _isDynamicDeadband;
 
@@ -136,7 +136,6 @@ namespace FreeJoyConfigurator
         private byte _step;
 
         private bool _isCalibCenterUnlocked;
-        
 
         public short CalibMin
         {
@@ -226,10 +225,10 @@ namespace FreeJoyConfigurator
             get {return _resolution; }
             set { SetProperty(ref _resolution, value);}
         }
-        public byte AdcChannel
+        public byte Channel
         {
-            get { return _adcChannel; }
-            set { SetProperty(ref _adcChannel, value); }
+            get { return _channel; }
+            set { SetProperty(ref _channel, value); }
         }
         public byte Deadband
         {
@@ -294,7 +293,6 @@ namespace FreeJoyConfigurator
             }
         }
 
-
         public AxisConfig()
         {
             _calibMin = -32767;
@@ -317,6 +315,7 @@ namespace FreeJoyConfigurator
             _resolution = 16;
             _deadband = 0;
 
+            _channel = 0;
 
             _curveShape = new ObservableCollection<Point>();
             for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, 0));
@@ -366,10 +365,18 @@ namespace FreeJoyConfigurator
 //        AxisToButtons,
 
         SPI_SCK = 7,
+        SPI_MOSI,
+        SPI_MISO,
 
         TLE5011_CS,
-        TLE5011_DATA,
         TLE5011_GEN,
+
+        MCP3201_CS,
+        MCP3202_CS,
+        MCP3204_CS,
+        MCP3208_CS,
+
+        MLX90393_CS,
 
         ShiftReg_LATCH,
         ShiftReg_DATA,
@@ -378,6 +385,7 @@ namespace FreeJoyConfigurator
         LED_Single,
         LED_Row,
         LED_Column,
+
         
     };
 
@@ -416,6 +424,7 @@ namespace FreeJoyConfigurator
         RadioButton3,
         RadioButton4,
 
+        Sequential_Toggle,
         Sequential_Button,
     };
 

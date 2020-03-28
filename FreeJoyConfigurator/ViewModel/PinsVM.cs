@@ -17,23 +17,26 @@ namespace FreeJoyConfigurator
         const int maxLedCnt = 24;
         const int maxShiftRegistersCnt = 4;
         const int maxAxesCnt = 8;
-
-        private int _shiftRegisterDataCnt;
-        private int _shiftRegisterCsCnt;
+       
         private int _rowCnt;
         private int _colCnt;
         private int _singleBtnCnt;
         private int _axesCnt;
         private int _axesToButtonsCnt;
+
+        private int _shiftRegisterDataCnt;
+        private int _shiftRegisterCsCnt;
+
         private int _spiDevicesCnt;
-        private int _tleCnt;
+        private int _spiHalfDuplexCnt;
+        private int _spiFullDuplexCnt;
+
         private int _ledRowCnt;
         private int _ledColCnt;
         private int _singleLedCnt;
         private int _totalLedCnt;
 
-        private bool _axesError;
-        
+        private bool _axesError;        
         private bool _ledsError;
 
         private ObservableCollection<PinVMConverter> _pins;
@@ -173,14 +176,34 @@ namespace FreeJoyConfigurator
                 if (i == 14)
                 {
                     tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3201_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3202_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3208_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MLX90393_CS);
                     tmp[i].AllowedTypes.Remove(PinType.ShiftReg_LATCH);
                     tmp[i].AllowedTypes.Remove(PinType.ShiftReg_DATA);
                     if (!tmp[i].AllowedTypes.Contains(PinType.SPI_SCK)) tmp[i].AllowedTypes.Add(PinType.SPI_SCK);
                 }
+                if (i == 15)
+                {
+                    tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3201_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3202_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3208_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    if (!tmp[i].AllowedTypes.Contains(PinType.SPI_MISO)) tmp[i].AllowedTypes.Add(PinType.SPI_MISO);
+                }
                 if (i == 16)
                 {
                     tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    if (!tmp[i].AllowedTypes.Contains(PinType.TLE5011_DATA)) tmp[i].AllowedTypes.Add(PinType.TLE5011_DATA);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3201_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3202_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MCP3208_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    if (!tmp[i].AllowedTypes.Contains(PinType.SPI_MOSI)) tmp[i].AllowedTypes.Add(PinType.SPI_MOSI);
                 }
                 if (i == 17)
                 {
@@ -210,14 +233,34 @@ namespace FreeJoyConfigurator
                 if (i == 14)
                 {
                     Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3201_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3202_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3208_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MLX90393_CS);
                     Pins[i].AllowedTypes.Remove(PinType.ShiftReg_LATCH);
                     Pins[i].AllowedTypes.Remove(PinType.ShiftReg_DATA);
                     if (!Pins[i].AllowedTypes.Contains(PinType.SPI_SCK)) Pins[i].AllowedTypes.Add(PinType.SPI_SCK);
                 }
+                if (i == 15)
+                {
+                    Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3201_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3202_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3208_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    if (!Pins[i].AllowedTypes.Contains(PinType.SPI_MISO)) Pins[i].AllowedTypes.Add(PinType.SPI_MISO);
+                }
                 if (i == 16)
                 {
                     Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE5011_DATA)) Pins[i].AllowedTypes.Add(PinType.TLE5011_DATA);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3201_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3202_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MCP3208_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    if (!Pins[i].AllowedTypes.Contains(PinType.SPI_MOSI)) Pins[i].AllowedTypes.Add(PinType.SPI_MOSI);
                 }
                 if (i == 17)
                 {
@@ -255,7 +298,8 @@ namespace FreeJoyConfigurator
             AxesCnt = 0;
             AxesToButtonsCnt = 0;
             _spiDevicesCnt = 0;
-            _tleCnt = 0;
+            _spiHalfDuplexCnt = 0;
+            _spiFullDuplexCnt = 0;
 
             AxesError = false;
             LedsError = false;
@@ -288,7 +332,37 @@ namespace FreeJoyConfigurator
                 {
                     AxesCnt++;
                     _spiDevicesCnt++;
-                    _tleCnt++;
+                    _spiHalfDuplexCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.MCP3201_CS)
+                {
+                    AxesCnt++;
+                    _spiDevicesCnt++;
+                    _spiFullDuplexCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.MCP3202_CS)
+                {
+                    AxesCnt++;
+                    _spiDevicesCnt++;
+                    _spiFullDuplexCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.MCP3204_CS)
+                {
+                    AxesCnt++;
+                    _spiDevicesCnt++;
+                    _spiFullDuplexCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.MCP3208_CS)
+                {
+                    AxesCnt++;
+                    _spiDevicesCnt++;
+                    _spiFullDuplexCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.MLX90393_CS)
+                {
+                    AxesCnt++;
+                    _spiDevicesCnt++;
+                    _spiFullDuplexCnt++;
                 }
                 else if (Pins[i].SelectedType == PinType.LED_Single)
                 {
@@ -329,15 +403,25 @@ namespace FreeJoyConfigurator
                 Pins[14].AllowedTypes.Remove(PinType.TLE5011_CS);
                 Pins[14].AllowedTypes.Remove(PinType.ShiftReg_LATCH);
                 Pins[14].AllowedTypes.Remove(PinType.ShiftReg_DATA);
+
             }
-            if (_tleCnt <= 0)
+            if (_spiFullDuplexCnt <= 0)
+            {
+                if (!Pins[15].AllowedTypes.Contains(PinType.Not_Used)) Pins[15].AllowedTypes.Insert(0, PinType.Not_Used);
+                if (!Pins[15].AllowedTypes.Contains(PinType.Button_Gnd)) Pins[15].AllowedTypes.Insert(1, PinType.Button_Gnd);
+                if (!Pins[15].AllowedTypes.Contains(PinType.Button_Vcc)) Pins[15].AllowedTypes.Insert(2, PinType.Button_Vcc);
+                if (!Pins[15].AllowedTypes.Contains(PinType.Button_Row)) Pins[15].AllowedTypes.Insert(3, PinType.Button_Row);
+                if (!Pins[15].AllowedTypes.Contains(PinType.Button_Column)) Pins[15].AllowedTypes.Insert(4, PinType.Button_Column);
+                if (!Pins[15].AllowedTypes.Contains(PinType.SPI_MISO)) Pins[15].AllowedTypes.Insert(5, PinType.SPI_MISO);
+            }
+            if (_spiHalfDuplexCnt <= 0)
             {
                 if (!Pins[16].AllowedTypes.Contains(PinType.Not_Used)) Pins[16].AllowedTypes.Insert(0, PinType.Not_Used);
                 if (!Pins[16].AllowedTypes.Contains(PinType.Button_Gnd)) Pins[16].AllowedTypes.Insert(1, PinType.Button_Gnd);
                 if (!Pins[16].AllowedTypes.Contains(PinType.Button_Vcc)) Pins[16].AllowedTypes.Insert(2, PinType.Button_Vcc);
                 if (!Pins[16].AllowedTypes.Contains(PinType.Button_Row)) Pins[16].AllowedTypes.Insert(3, PinType.Button_Row);
                 if (!Pins[16].AllowedTypes.Contains(PinType.Button_Column)) Pins[16].AllowedTypes.Insert(4, PinType.Button_Column);
-                if (!Pins[16].AllowedTypes.Contains(PinType.TLE5011_DATA)) Pins[16].AllowedTypes.Insert(5, PinType.TLE5011_DATA);
+                if (!Pins[16].AllowedTypes.Contains(PinType.SPI_MOSI)) Pins[16].AllowedTypes.Insert(5, PinType.SPI_MOSI);
 
                 Pins[16].AllowedTypes.Remove(PinType.TLE5011_CS);
                 Pins[16].AllowedTypes.Remove(PinType.ShiftReg_LATCH);
@@ -353,7 +437,7 @@ namespace FreeJoyConfigurator
                 Pins[17].AllowedTypes.Remove(PinType.TLE5011_CS);
             }
 
-            
+
 
             // section of disabling not allowed types
             if (maxBtnCnt - _singleBtnCnt < _rowCnt * (_colCnt + 1))
@@ -569,14 +653,25 @@ namespace FreeJoyConfigurator
                 Pins[14].AllowedTypes.Add(PinType.SPI_SCK);
                 Pins[14].SelectedType = PinType.SPI_SCK;
             }
-            if (_tleCnt > 0)
+            if (_spiFullDuplexCnt > 0)
+            {
+                Pins[15].AllowedTypes.Clear();
+                Pins[15].AllowedTypes.Add(PinType.SPI_MISO);
+                Pins[15].SelectedType = PinType.SPI_MISO;
+
+                Pins[16].AllowedTypes.Clear();
+                Pins[16].AllowedTypes.Add(PinType.SPI_MOSI);
+                Pins[16].SelectedType = PinType.SPI_MOSI;
+            }
+            if (_spiHalfDuplexCnt > 0)
             {
                 Pins[16].AllowedTypes.Clear();
-                Pins[16].AllowedTypes.Add(PinType.TLE5011_DATA);
-                Pins[16].SelectedType = PinType.TLE5011_DATA;
+                Pins[16].AllowedTypes.Add(PinType.SPI_MOSI);
+                Pins[16].SelectedType = PinType.SPI_MOSI;
 
                 Pins[17].SelectedType = PinType.TLE5011_GEN;
             }
+            
 
             // update config
             DeviceConfig tmp = Config;
