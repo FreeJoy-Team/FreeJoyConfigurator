@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>5152</Firmware_Version>
+  <Firmware_Version>5376</Firmware_Version>
   <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
@@ -91,7 +91,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A0</SourceMain>
@@ -158,7 +158,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A1</SourceMain>
@@ -225,7 +225,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A2</SourceMain>
@@ -292,7 +292,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A3</SourceMain>
@@ -359,7 +359,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
@@ -426,7 +426,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
@@ -493,7 +493,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
@@ -560,7 +560,7 @@
       </Point>
     </CurveShape>
     <Resolution>16</Resolution>
-    <AdcChannel>0</AdcChannel>
+    <Channel>0</Channel>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
