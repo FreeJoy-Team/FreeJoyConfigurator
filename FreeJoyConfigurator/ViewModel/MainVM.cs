@@ -224,7 +224,7 @@ namespace FreeJoyConfigurator
         {
             SaveFileDialog dlg = new SaveFileDialog();
 
-            if (HidDevices[SelectedDeviceIndex] != null)
+            if (HidDevices.Count > 0)
             {
                 dlg.FileName = HidDevices[SelectedDeviceIndex].ToString();
             }
