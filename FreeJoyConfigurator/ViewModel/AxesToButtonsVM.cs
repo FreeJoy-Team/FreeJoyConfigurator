@@ -150,6 +150,10 @@ namespace FreeJoyConfigurator
                             tmp[i].RangeItems[j].To = (j + 1) * (100 / (tmp[i].RangeItems.Count + 1));
                         }
                         tmp[i].RangeItems.Add(new RangeItem { From = tmp[i].RangeItems.Last().To, To = 100 });
+                        if (AxesToButtons[i].RangeItems.Count < Config.AxisToButtonsConfig[i].ButtonsCnt)
+                        {
+                            AxesToButtons[i].RangeItems.Add(new RangeItem { From = tmp[i].RangeItems.Last().To, To = 100 });
+                        }
                     }
                     while (tmp[i].ButtonCnt < tmp[i].RangeItems.Count)
                     {
