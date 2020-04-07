@@ -1358,8 +1358,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -1377,8 +1377,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -1396,8 +1396,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -1415,8 +1415,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -1434,8 +1434,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -1453,8 +1453,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -1472,8 +1472,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>
@@ -1491,8 +1491,8 @@
   <AxisToButtons_Config>
     <Points>
       <byte>0</byte>
-      <byte>50</byte>
-      <byte>100</byte>
+      <byte>127</byte>
+      <byte>255</byte>
       <byte>0</byte>
       <byte>0</byte>
       <byte>0</byte>

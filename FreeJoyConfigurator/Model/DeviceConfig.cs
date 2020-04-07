@@ -523,11 +523,11 @@ namespace FreeJoyConfigurator
 
     public class AxisToButtonsConfig : BindableBase
     {
-        private ObservableCollection<sbyte> _points;
+        private ObservableCollection<byte> _points;
         private byte _buttonsCnt;
         private bool _isEnabled;
 
-        public ObservableCollection<sbyte> Points
+        public ObservableCollection<byte> Points
         {
             get { return _points; }
             set { SetProperty(ref _points, value); }
@@ -547,12 +547,12 @@ namespace FreeJoyConfigurator
 
         public AxisToButtonsConfig()
         {
-            _points = new ObservableCollection<sbyte>();
-            for (int i = 0; i < 13; i++) _points.Add(new sbyte());
+            _points = new ObservableCollection<byte>();
+            for (int i = 0; i < 13; i++) _points.Add(new byte());
 
             _points[0] = 0;
-            _points[1] = 50;
-            _points[2] = 100;
+            _points[1] = 127;
+            _points[2] = 255;
 
             _buttonsCnt = 2;
             _isEnabled = false;

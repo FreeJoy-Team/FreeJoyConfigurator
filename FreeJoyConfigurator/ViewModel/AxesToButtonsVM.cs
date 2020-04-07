@@ -75,20 +75,20 @@ namespace FreeJoyConfigurator
                 {
                     for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
                     {
-                        AxesToButtons[i].RangeItems[j].From = j * (100 / (AxesToButtons[i].RangeItems.Count + 1));
-                        AxesToButtons[i].RangeItems[j].To = (j + 1) * (100 / (AxesToButtons[i].RangeItems.Count + 1));
+                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
+                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
                     }
-                    AxesToButtons[i].RangeItems.Add(new RangeItem { From = AxesToButtons[i].RangeItems.Last().To, To = 100 });
+                    AxesToButtons[i].RangeItems.Add(new RangeItem { From = AxesToButtons[i].RangeItems.Last().To, To = 255 });
                 }
                 while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count)
                 {
                     for (int j = AxesToButtons[i].RangeItems.Count - 2; j >= 0; j--)
                     {
-                        AxesToButtons[i].RangeItems[j].From = j * (100 / (AxesToButtons[i].RangeItems.Count - 1));
-                        AxesToButtons[i].RangeItems[j].To = (j + 1) * (100 / (AxesToButtons[i].RangeItems.Count - 1));
+                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
+                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
                     }
-                    AxesToButtons[i].RangeItems[AxesToButtons[i].RangeItems.Count - 1].To = 100;
                     AxesToButtons[i].RangeItems.Remove(AxesToButtons[i].RangeItems.Last());
+                    AxesToButtons[i].RangeItems[AxesToButtons[i].RangeItems.Count - 1].To = 255;
                 }
 
 
@@ -112,10 +112,10 @@ namespace FreeJoyConfigurator
 
                 for (int j = 0; j < AxesToButtons[i].ButtonCnt; j++)
                 {
-                    conf.AxisToButtonsConfig[i].Points[j] = (sbyte)AxesToButtons[i].RangeItems[j].From;
+                    conf.AxisToButtonsConfig[i].Points[j] = (byte)AxesToButtons[i].RangeItems[j].From;
                 }
                 conf.AxisToButtonsConfig[i].Points[AxesToButtons[i].ButtonCnt] =
-                    (sbyte)AxesToButtons[i].RangeItems.Last().To;
+                    (byte)AxesToButtons[i].RangeItems.Last().To;
 
                 conf.AxisToButtonsConfig[i].IsEnabled = AxesToButtons[i].IsEnabled;
             }
@@ -146,19 +146,23 @@ namespace FreeJoyConfigurator
                     {
                         for (int j = 0; j < tmp[i].RangeItems.Count; j++)
                         {
-                            tmp[i].RangeItems[j].From = j * (100 / (tmp[i].RangeItems.Count + 1));
-                            tmp[i].RangeItems[j].To = (j + 1) * (100 / (tmp[i].RangeItems.Count + 1));
+                            tmp[i].RangeItems[j].From = (int)(j * (255.0 / (tmp[i].RangeItems.Count + 1)));
+                            tmp[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (tmp[i].RangeItems.Count + 1)));
                         }
-                        tmp[i].RangeItems.Add(new RangeItem { From = tmp[i].RangeItems.Last().To, To = 100 });
+                        tmp[i].RangeItems.Add(new RangeItem { From = tmp[i].RangeItems.Last().To, To = 255 });
+                        if (AxesToButtons[i].RangeItems.Count < Config.AxisToButtonsConfig[i].ButtonsCnt)
+                        {
+                            AxesToButtons[i].RangeItems.Add(new RangeItem { From = tmp[i].RangeItems.Last().To, To = 255 });
+                        }
                     }
                     while (tmp[i].ButtonCnt < tmp[i].RangeItems.Count)
                     {
                         for (int j = tmp[i].RangeItems.Count - 2; j >= 0; j--)
                         {
-                            tmp[i].RangeItems[j].From = j * (100 / (tmp[i].RangeItems.Count - 1));
-                            tmp[i].RangeItems[j].To = (j + 1) * (100 / (tmp[i].RangeItems.Count - 1));
+                            tmp[i].RangeItems[j].From = (int)(j * (255.0 / (tmp[i].RangeItems.Count - 1)));
+                            tmp[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (tmp[i].RangeItems.Count - 1)));
                         }
-                        tmp[i].RangeItems[tmp[i].RangeItems.Count - 1].To = 100;
+                        tmp[i].RangeItems[tmp[i].RangeItems.Count - 1].To = 255;
                         tmp[i].RangeItems.Remove(tmp[i].RangeItems.Last());
                     }
 

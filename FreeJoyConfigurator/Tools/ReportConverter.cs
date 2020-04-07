@@ -344,21 +344,21 @@ namespace FreeJoyConfigurator
                 // axes to buttons group 1
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[0].Points[i] = (sbyte)hr.Data[9 + i];
+                    config.AxisToButtonsConfig[0].Points[i] = (byte)hr.Data[9 + i];
                 }
                 config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[22];
                 config.AxisToButtonsConfig[0].IsEnabled = (hr.Data[23] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[1].Points[i] = (sbyte)hr.Data[24 + i];
+                    config.AxisToButtonsConfig[1].Points[i] = (byte)hr.Data[24 + i];
                 }
                 config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[37];
                 config.AxisToButtonsConfig[1].IsEnabled = (hr.Data[38] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[2].Points[i] = (sbyte)hr.Data[39 + i];
+                    config.AxisToButtonsConfig[2].Points[i] = (byte)hr.Data[39 + i];
                 }
                 config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[52];
                 config.AxisToButtonsConfig[2].IsEnabled = (hr.Data[53] > 0) ? true : false;
@@ -369,28 +369,28 @@ namespace FreeJoyConfigurator
                 // axes to buttons group 2
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[3].Points[i] = (sbyte)hr.Data[1 + i];
+                    config.AxisToButtonsConfig[3].Points[i] = (byte)hr.Data[1 + i];
                 }
                 config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[14];
                 config.AxisToButtonsConfig[3].IsEnabled = (hr.Data[15] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[4].Points[i] = (sbyte)hr.Data[16 + i];
+                    config.AxisToButtonsConfig[4].Points[i] = (byte)hr.Data[16 + i];
                 }
                 config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[29];
                 config.AxisToButtonsConfig[4].IsEnabled = (hr.Data[30] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[5].Points[i] = (sbyte)hr.Data[31 + i];
+                    config.AxisToButtonsConfig[5].Points[i] = (byte)hr.Data[31 + i];
                 }
                 config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[44];
                 config.AxisToButtonsConfig[5].IsEnabled = (hr.Data[45] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[6].Points[i] = (sbyte)hr.Data[46 + i];
+                    config.AxisToButtonsConfig[6].Points[i] = (byte)hr.Data[46 + i];
                 }
                 config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[59];
                 config.AxisToButtonsConfig[6].IsEnabled = (hr.Data[60] > 0) ? true : false;
@@ -400,7 +400,7 @@ namespace FreeJoyConfigurator
             {
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[7].Points[i] = (sbyte)hr.Data[1 + i];
+                    config.AxisToButtonsConfig[7].Points[i] = (byte)hr.Data[1 + i];
                 }
                 config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[14];
                 config.AxisToButtonsConfig[7].IsEnabled = (hr.Data[15] > 0) ? true : false;
