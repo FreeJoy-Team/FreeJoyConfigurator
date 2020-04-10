@@ -17,6 +17,7 @@ namespace FreeJoyConfigurator
 
     public enum AxisSourceType : sbyte
     {
+        I2C = -2,
         Buttons = -1,
         A0 = 0,
         A1,
@@ -48,7 +49,6 @@ namespace FreeJoyConfigurator
         C13,
         C14,
         C15,
-
     };
 
     public enum ShiftRegSourceType : sbyte
@@ -123,6 +123,7 @@ namespace FreeJoyConfigurator
 
         private byte _resolution;
         private byte _channel;
+        private byte _i2cAddress;
         private byte _deadband;
         private bool _isDynamicDeadband;
 
@@ -230,6 +231,11 @@ namespace FreeJoyConfigurator
             get { return _channel; }
             set { SetProperty(ref _channel, value); }
         }
+        public byte I2cAddress
+        {
+            get { return _i2cAddress; }
+            set { SetProperty(ref _i2cAddress, value); }
+        }
         public byte Deadband
         {
             get { return _deadband; }
@@ -316,6 +322,7 @@ namespace FreeJoyConfigurator
             _deadband = 0;
 
             _channel = 0;
+            _i2cAddress = 0x48;
 
             _curveShape = new ObservableCollection<Point>();
             for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, 0));
@@ -386,7 +393,8 @@ namespace FreeJoyConfigurator
         LED_Row,
         LED_Column,
 
-        
+        I2C_SCL,
+        I2C_SDA,
     };
 
 

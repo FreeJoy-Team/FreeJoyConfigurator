@@ -92,6 +92,16 @@ namespace FreeJoyConfigurator
                         }
                     }
                 }
+                else if (Config.PinConfig[i] == PinType.I2C_SCL)
+                {
+                    foreach (var axis in Axes)
+                    {
+                        if (!axis.AllowedSources.Contains(AxisSourceType.I2C))
+                        {
+                            axis.AllowedSources.Add(AxisSourceType.I2C);
+                        }
+                    }
+                }
                 else
                 {
                     foreach (var axis in Axes)
