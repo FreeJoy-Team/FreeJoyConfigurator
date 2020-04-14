@@ -297,7 +297,8 @@ namespace FreeJoyConfigurator
 
         private void LoadDefaultConfig()
         {
-            {   // TODO: fix serialization
+            {
+                //TODO: fix serialization
                 var xmlStr = Properties.Resources.default_config;
 
 

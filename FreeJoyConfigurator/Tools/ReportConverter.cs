@@ -114,7 +114,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[0].IncrementButton = (sbyte)(hr.Data[25] + 1);
                 config.AxisConfig[0].Step = hr.Data[26];
-                config.AxisConfig[0].I2cAddress = hr.Data[27];
+                config.AxisConfig[0].I2cAddress = (AxisAddressType) hr.Data[27];
 
                 config.AxisConfig[1] = new AxisConfig();
                 config.AxisConfig[1].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -139,7 +139,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[1].IncrementButton = (sbyte)(hr.Data[55] + 1);
                 config.AxisConfig[1].Step = hr.Data[56];
-                config.AxisConfig[1].I2cAddress = hr.Data[57];
+                config.AxisConfig[1].I2cAddress = (AxisAddressType) hr.Data[57];
 
             }
             else if (hr.Data[0] == 3)
@@ -167,7 +167,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[2].IncrementButton = (sbyte)(hr.Data[25] + 1);
                 config.AxisConfig[2].Step = hr.Data[26];
-                config.AxisConfig[2].I2cAddress = hr.Data[27];
+                config.AxisConfig[2].I2cAddress = (AxisAddressType)hr.Data[27];
 
                 config.AxisConfig[3] = new AxisConfig();
                 config.AxisConfig[3].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -192,7 +192,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[3].IncrementButton = (sbyte)(hr.Data[55] + 1);
                 config.AxisConfig[3].Step = hr.Data[56];
-                config.AxisConfig[3].I2cAddress = hr.Data[57];
+                config.AxisConfig[3].I2cAddress = (AxisAddressType)hr.Data[57];
             }
             else if (hr.Data[0] == 4)
             {
@@ -219,7 +219,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[4].IncrementButton = (sbyte)(hr.Data[25] + 1);
                 config.AxisConfig[4].Step = hr.Data[26];
-                config.AxisConfig[4].I2cAddress = hr.Data[27];
+                config.AxisConfig[4].I2cAddress = (AxisAddressType)hr.Data[27];
 
                 config.AxisConfig[5] = new AxisConfig();
                 config.AxisConfig[5].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -244,7 +244,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[5].IncrementButton = (sbyte)(hr.Data[55] + 1);
                 config.AxisConfig[5].Step = hr.Data[56];
-                config.AxisConfig[5].I2cAddress = hr.Data[57];
+                config.AxisConfig[5].I2cAddress = (AxisAddressType)hr.Data[57];
             }
             else if (hr.Data[0] == 5)
             {
@@ -271,7 +271,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[6].IncrementButton = (sbyte)(hr.Data[25] + 1);
                 config.AxisConfig[6].Step = hr.Data[26];
-                config.AxisConfig[6].I2cAddress = hr.Data[27];
+                config.AxisConfig[6].I2cAddress = (AxisAddressType)hr.Data[27];
 
                 config.AxisConfig[7] = new AxisConfig();
                 config.AxisConfig[7].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -296,7 +296,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[7].IncrementButton = (sbyte)(hr.Data[55] + 1);
                 config.AxisConfig[7].Step = hr.Data[56];
-                config.AxisConfig[7].I2cAddress = hr.Data[57];
+                config.AxisConfig[7].I2cAddress = (AxisAddressType)hr.Data[57];
 
             }
             else if (hr.Data[0] == 6)
