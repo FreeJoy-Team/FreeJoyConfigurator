@@ -275,7 +275,8 @@ namespace FreeJoyConfigurator
 
         private void LoadDefaultConfig()
         {
-            {   // TODO: fix serialization
+            {
+                //TODO: fix serialization
                 var xmlStr = Properties.Resources.default_config;
 
 
@@ -422,8 +423,7 @@ namespace FreeJoyConfigurator
         {
             if (serializableObject == null) { return; }
 
-            try
-            {
+
                 XmlDocument xmlDocument = new XmlDocument();
                 XmlSerializer serializer = new XmlSerializer(serializableObject.GetType());
                 using (MemoryStream stream = new MemoryStream())
@@ -433,11 +433,7 @@ namespace FreeJoyConfigurator
                     xmlDocument.Load(stream);
                     xmlDocument.Save(fileName);
                 }
-            }
-            catch (Exception ex)
-            {
-                //Log exception here
-            }
+
         }
 
 
@@ -453,8 +449,6 @@ namespace FreeJoyConfigurator
 
             T objectOut = default(T);
 
-            try
-            {
                 XmlDocument xmlDocument = new XmlDocument();
                 xmlDocument.Load(fileName);
                 string xmlString = xmlDocument.OuterXml;
@@ -469,11 +463,7 @@ namespace FreeJoyConfigurator
                         objectOut = (T)serializer.Deserialize(reader);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                //Log exception here
-            }
+  
 
             return objectOut;
         }

@@ -17,6 +17,7 @@ namespace FreeJoyConfigurator
 
     public enum AxisSourceType : sbyte
     {
+        I2C = -2,
         Buttons = -1,
         A0 = 0,
         A1,
@@ -32,8 +33,44 @@ namespace FreeJoyConfigurator
         A15,
         B0,
         B1,
-        B2,
+        B3,
         B4,
+        B5,
+        B6,
+        B7,
+        B8,
+        B9,
+        B10,
+        B11,
+        B12,
+        B13,
+        B14,
+        B15,
+        C13,
+        C14,
+        C15,
+    };
+
+    public enum ShiftRegSourceType : sbyte
+    {
+        NotDefined = -1,
+        A0 = 0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5,
+        A6,
+        A7,
+        A8,
+        A9,
+        A10,
+        A15,
+        B0,
+        B1,
+        B3,
+        B4,
+        B5,
         B6,
         B7,
         B8,
@@ -71,6 +108,15 @@ namespace FreeJoyConfigurator
         Minus_Relative,
     };
 
+    public enum AxisAddressType : byte
+    {
+        AS5600 = 0x36,
+        ADS1115_00 = 0x48,
+        ADS1115_01,
+        ADS1115_10,
+        ADS1115_11,
+    }
+
     public class AxisConfig : BindableBase
     {
         private short _calibMin;
@@ -85,7 +131,8 @@ namespace FreeJoyConfigurator
         private ObservableCollection<Point> _curveShape;
 
         private byte _resolution;
-        private byte _adcChannel;
+        private byte _channel;
+        private AxisAddressType _i2cAddress;
         private byte _deadband;
         private bool _isDynamicDeadband;
 
@@ -99,7 +146,6 @@ namespace FreeJoyConfigurator
         private byte _step;
 
         private bool _isCalibCenterUnlocked;
-        
 
         public short CalibMin
         {
@@ -189,10 +235,15 @@ namespace FreeJoyConfigurator
             get {return _resolution; }
             set { SetProperty(ref _resolution, value);}
         }
-        public byte AdcChannel
+        public byte Channel
         {
-            get { return _adcChannel; }
-            set { SetProperty(ref _adcChannel, value); }
+            get { return _channel; }
+            set { SetProperty(ref _channel, value); }
+        }
+        public AxisAddressType I2cAddress
+        {
+            get { return _i2cAddress; }
+            set { SetProperty(ref _i2cAddress, value); }
         }
         public byte Deadband
         {
@@ -257,7 +308,6 @@ namespace FreeJoyConfigurator
             }
         }
 
-
         public AxisConfig()
         {
             _calibMin = -32767;
@@ -280,6 +330,8 @@ namespace FreeJoyConfigurator
             _resolution = 16;
             _deadband = 0;
 
+            _channel = 0;
+            _i2cAddress = AxisAddressType.ADS1115_00;
 
             _curveShape = new ObservableCollection<Point>();
             for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, 0));
@@ -329,10 +381,18 @@ namespace FreeJoyConfigurator
 //        AxisToButtons,
 
         SPI_SCK = 7,
+        SPI_MOSI,
+        SPI_MISO,
 
-        TLE501x_CS,
-        TLE501x_DATA,
-        TLE501x_GEN,
+        TLE5011_CS,
+        TLE5011_GEN,
+
+        MCP3201_CS,
+        MCP3202_CS,
+        MCP3204_CS,
+        MCP3208_CS,
+
+        MLX90393_CS,
 
         ShiftReg_LATCH,
         ShiftReg_DATA,
@@ -341,7 +401,9 @@ namespace FreeJoyConfigurator
         LED_Single,
         LED_Row,
         LED_Column,
-        
+
+        I2C_SCL,
+        I2C_SDA,
     };
 
 
@@ -379,6 +441,7 @@ namespace FreeJoyConfigurator
         RadioButton3,
         RadioButton4,
 
+        Sequential_Toggle,
         Sequential_Button,
     };
 
@@ -477,11 +540,11 @@ namespace FreeJoyConfigurator
 
     public class AxisToButtonsConfig : BindableBase
     {
-        private ObservableCollection<sbyte> _points;
+        private ObservableCollection<byte> _points;
         private byte _buttonsCnt;
         private bool _isEnabled;
 
-        public ObservableCollection<sbyte> Points
+        public ObservableCollection<byte> Points
         {
             get { return _points; }
             set { SetProperty(ref _points, value); }
@@ -501,12 +564,12 @@ namespace FreeJoyConfigurator
 
         public AxisToButtonsConfig()
         {
-            _points = new ObservableCollection<sbyte>();
-            for (int i = 0; i < 13; i++) _points.Add(new sbyte());
+            _points = new ObservableCollection<byte>();
+            for (int i = 0; i < 13; i++) _points.Add(new byte());
 
             _points[0] = 0;
-            _points[1] = 50;
-            _points[2] = 100;
+            _points[1] = 127;
+            _points[2] = 255;
 
             _buttonsCnt = 2;
             _isEnabled = false;

@@ -43,8 +43,8 @@ namespace FreeJoyConfigurator
         {
             m_rangeItems = new ObservableContentCollection<RangeItem>
                             {
-                                new RangeItem {From = 0, To = 50},
-                                new RangeItem {From = 50, To = 100},
+                                new RangeItem {From = 0, To = 127},
+                                new RangeItem {From = 127, To = 255},
                             };
 
             _buttonCnt = m_rangeItems.Count;

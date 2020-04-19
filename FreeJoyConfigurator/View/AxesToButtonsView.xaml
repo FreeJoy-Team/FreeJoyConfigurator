@@ -38,7 +38,7 @@
                                             
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[0].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
@@ -52,7 +52,7 @@
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[1].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[1].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
@@ -66,7 +66,7 @@
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[2].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[2].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
@@ -80,7 +80,7 @@
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[3].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[3].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
@@ -94,7 +94,7 @@
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[4].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[4].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
@@ -108,7 +108,7 @@
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[5].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[5].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
@@ -122,7 +122,7 @@
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[6].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[6].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
@@ -136,7 +136,7 @@
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[7].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="100"/>
+                                            Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[7].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"

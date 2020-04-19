@@ -13,6 +13,8 @@ namespace FreeJoyConfigurator
         private int _number;
         private int _buttonCnt;
         private int _registerCnt;
+        private ShiftRegSourceType _latchPin;
+        private ShiftRegSourceType _dataPin;
         private ShiftRegisterType _type;
 
         public bool IsEnabled
@@ -46,6 +48,18 @@ namespace FreeJoyConfigurator
             private set { SetProperty(ref _registerCnt, value); }
         }
 
+        public ShiftRegSourceType LatchPin
+        {
+            get { return _latchPin; }
+            set { SetProperty(ref _latchPin, value); }
+        }
+
+        public ShiftRegSourceType DataPin
+        {
+            get { return _dataPin; }
+            set { SetProperty(ref _dataPin, value); }
+        }
+
         public ShiftRegisterType Type
         {
             get { return _type; }
@@ -58,7 +72,9 @@ namespace FreeJoyConfigurator
             _number = number;
             _buttonCnt = 0;
             _registerCnt = 0;
-            _type = ShiftRegisterType.HC165_PullUp; 
+            _type = ShiftRegisterType.HC165_PullUp;
+            _latchPin = ShiftRegSourceType.NotDefined;
+            _dataPin = ShiftRegSourceType.NotDefined;
         }
 
         public ShiftRegister(int number, int buttonCnt)
@@ -68,6 +84,8 @@ namespace FreeJoyConfigurator
             _buttonCnt = buttonCnt;
             _registerCnt = (int) Math.Ceiling((float)_buttonCnt / 8.0);
             _type = ShiftRegisterType.HC165_PullUp;
+            _latchPin = ShiftRegSourceType.NotDefined;
+            _dataPin = ShiftRegSourceType.NotDefined;
         }
         public ShiftRegister(int number, ShiftRegisterType type)
         {
@@ -76,6 +94,8 @@ namespace FreeJoyConfigurator
             _buttonCnt = 0;
             _registerCnt = 0;
             _type = type;
+            _latchPin = ShiftRegSourceType.NotDefined;
+            _dataPin = ShiftRegSourceType.NotDefined;
         }
 
         public ShiftRegister(int number, int buttonCnt, ShiftRegisterType type)
@@ -85,6 +105,19 @@ namespace FreeJoyConfigurator
             _buttonCnt = buttonCnt;
             _registerCnt = (int)((float)_buttonCnt / 8.0);
             _type = type;
+            _latchPin = ShiftRegSourceType.NotDefined;
+            _dataPin = ShiftRegSourceType.NotDefined;
+        }
+
+        public ShiftRegister(int number, int buttonCnt, ShiftRegisterType type, ShiftRegSourceType latchPin, ShiftRegSourceType dataPin)
+        {
+            _isEnabled = false;
+            _number = number;
+            _buttonCnt = buttonCnt;
+            _registerCnt = (int)((float)_buttonCnt / 8.0);
+            _type = type;
+            _latchPin = latchPin;
+            _dataPin = dataPin;
         }
     }
 }
