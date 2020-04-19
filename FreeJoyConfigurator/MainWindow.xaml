@@ -15,6 +15,9 @@
         <local:MainVM/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <local:StringToHexConverter x:Key="StringToHexConverter" />
+    </Window.Resources>
     
 
     <Grid Width="Auto" Height="Auto">
@@ -369,7 +372,7 @@
                             <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="VID" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBox TextAlignment="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
-                                     Text="{Binding VidVM}" MaxLength="4" IsEnabled="False"
+                                     Text="{Binding Config.Vid, Converter={StaticResource StringToHexConverter}}" MaxLength="4" IsEnabled="False"
                                      HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"/>
                             <TextBlock Grid.Row="3" Grid.Column="0" Text="0x" 
                                            HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -377,7 +380,8 @@
                             <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="PID" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBox TextAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
-                                     Text="{Binding PidVM}" MaxLength="4"
+                                     Text="{Binding Config.Pid, Converter={StaticResource StringToHexConverter}}" MaxLength="4"
+                                     
                                      HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"/>
                             <TextBlock Grid.Row="5" Grid.Column="0" Text="0x" 
                                            HorizontalAlignment="Right" VerticalAlignment="Center"/>

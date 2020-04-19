@@ -31,7 +31,7 @@
     <PublisherName>FreeJoy</PublisherName>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.4.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -152,6 +152,7 @@
     <Compile Include="LedView.xaml.cs">
       <DependentUpon>LedView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\StringToHexConverter.cs" />
     <Compile Include="ViewModel\LedVM.cs" />
     <Compile Include="View\LedPwmView.xaml.cs">
       <DependentUpon>LedPwmView.xaml</DependentUpon>
