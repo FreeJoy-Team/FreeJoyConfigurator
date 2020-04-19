@@ -146,6 +146,7 @@ namespace FreeJoyConfigurator
         private byte _step;
 
         private bool _isCalibCenterUnlocked;
+        private bool _isAddressEnabled;
 
         public short CalibMin
         {
@@ -259,7 +260,12 @@ namespace FreeJoyConfigurator
         public AxisSourceType SourceMain
         {
             get{return _sourceMain;}
-            set{ SetProperty(ref _sourceMain, value);}
+            set
+            {
+                SetProperty(ref _sourceMain, value);
+                if (_sourceMain == AxisSourceType.I2C) IsAddressEnabled = true;
+                else IsAddressEnabled = false;
+            }
         }
 
         public AxisType SourceSecondary
@@ -305,6 +311,18 @@ namespace FreeJoyConfigurator
                 {
                     CalibCenter = (short)((CalibMax - CalibMin) / 2);
                 }
+            }
+        }
+
+        public bool IsAddressEnabled
+        {
+            get
+            {
+                return _isAddressEnabled;
+            }
+            set
+            {
+                SetProperty(ref _isAddressEnabled, value);
             }
         }
 

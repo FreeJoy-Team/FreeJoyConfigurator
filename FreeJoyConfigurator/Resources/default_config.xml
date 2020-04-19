@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Firmware_Version>5395</Firmware_Version>
-  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
+  <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
@@ -103,6 +103,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -171,6 +172,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -239,6 +241,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -307,6 +310,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -375,6 +379,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -443,6 +448,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -511,6 +517,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -579,6 +586,7 @@
     <CenterButton>0</CenterButton>
     <Step>1</Step>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <ShiftModificator_Config>
     <Button>0</Button>
@@ -1539,8 +1547,107 @@
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </DutyCycle>
   </LedPwmConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
+  <LedConfig>
+    <InputNumber>0</InputNumber>
+    <Type>Normal</Type>
+  </LedConfig>
   <LedConfig>
     <InputNumber>0</InputNumber>
     <Type>Normal</Type>
