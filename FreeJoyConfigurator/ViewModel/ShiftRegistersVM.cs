@@ -38,7 +38,7 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < 4; i++)
             {
-                ShiftRegisters.Add(new ShiftRegister(i+1, ShiftRegisterType.HC165_PullUp));
+                ShiftRegisters.Add(new ShiftRegister(i + 1, ShiftRegisterType.HC165_PullUp));
                 ShiftRegisters[i].PropertyChanged += ShiftRegistersVM_PropertyChanged;
             }
 
@@ -48,12 +48,12 @@ namespace FreeJoyConfigurator
         {
             DeviceConfig tmp = Config;
 
-            for (int i=0; i<tmp.ShiftRegistersConfig.Count; i++)
+            for (int i = 0; i < tmp.ShiftRegistersConfig.Count; i++)
             {
                 tmp.ShiftRegistersConfig[i].Type = ShiftRegisters[i].Type;
-                tmp.ShiftRegistersConfig[i].ButtonCnt = (byte) ShiftRegisters[i].ButtonCnt;
+                tmp.ShiftRegistersConfig[i].ButtonCnt = (byte)ShiftRegisters[i].ButtonCnt;
             }
-            
+
             Config = tmp;
             ConfigChanged();
         }
@@ -67,25 +67,50 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < ShiftRegisters.Count; i++)
             {
                 tmp.Add(new ShiftRegister(i + 1, Config.ShiftRegistersConfig[i].ButtonCnt, Config.ShiftRegistersConfig[i].Type));
-            }           
+            }
 
             ShiftRegisters = tmp;
             foreach (var item in ShiftRegisters) item.PropertyChanged += ShiftRegistersVM_PropertyChanged;
 
             // check pins and enable register
             int prevData = -1;
-            for (int i = 0, k = 0; i < Config.PinConfig.Count && k < Config.ShiftRegistersConfig.Count; i++)
+            int prevLatch = -1;
+            for (int k = 0; k < Config.ShiftRegistersConfig.Count; k++)
             {
-                if (Config.PinConfig[i] == PinType.ShiftReg_LATCH)
+
+                for (int j = prevData + 1; j < Config.PinConfig.Count; j++)
                 {
-                    for (int j = prevData + 1; j < Config.PinConfig.Count; j++)
+                    if (Config.PinConfig[j] == PinType.ShiftReg_DATA)
                     {
-                        if (Config.PinConfig[j] == PinType.ShiftReg_DATA)
-                        {
-                            ShiftRegisters[k++].IsEnabled = true;
-                            prevData = j;
-                        }
+                        ShiftRegisters[k].DataPin = (ShiftRegSourceType)j;
+                        prevData = j;
+                        break;
                     }
+                }
+                for (int j = prevLatch + 1; j < Config.PinConfig.Count; j++)
+                {
+                    if (Config.PinConfig[j] == PinType.ShiftReg_LATCH)
+                    {
+                        ShiftRegisters[k].LatchPin = (ShiftRegSourceType)j;
+                        prevLatch = j;
+                        break;
+                    }
+                }
+            }
+            for (int k = 0; k < Config.ShiftRegistersConfig.Count; k++)
+            {
+                if (ShiftRegisters[k].LatchPin == ShiftRegSourceType.NotDefined && 
+                    prevLatch >= 0)
+                {
+                    ShiftRegisters[k].LatchPin = (ShiftRegSourceType)prevLatch;
+                }
+            }
+            for (int k = 0; k < Config.ShiftRegistersConfig.Count; k++)
+            {
+                if (ShiftRegisters[k].LatchPin != ShiftRegSourceType.NotDefined &&
+                    ShiftRegisters[k].DataPin != ShiftRegSourceType.NotDefined)
+                {
+                    ShiftRegisters[k].IsEnabled = true;
                 }
             }
         }

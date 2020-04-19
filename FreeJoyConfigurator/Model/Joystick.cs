@@ -165,6 +165,7 @@ namespace FreeJoyConfigurator
 
         private ObservableCollection<AxisSourceType> _allowedSources;
         private byte _maxResolution;
+        
 
         private bool _isCalibrating;
         private Task _calibrationTask;
@@ -213,6 +214,8 @@ namespace FreeJoyConfigurator
             get { return _maxResolution; }
             set { SetProperty(ref _maxResolution, value); }
         }
+
+        
 
         public Axis(int number, AxisConfig axisConfig)
         {

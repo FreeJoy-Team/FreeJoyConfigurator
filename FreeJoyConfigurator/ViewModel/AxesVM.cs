@@ -76,7 +76,13 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
-                if (Config.PinConfig[i] == PinType.TLE501x_CS || Config.PinConfig[i] == PinType.Axis_Analog)
+                if (Config.PinConfig[i] == PinType.Axis_Analog ||
+                    Config.PinConfig[i] == PinType.TLE5011_CS || 
+                    Config.PinConfig[i] == PinType.MCP3201_CS ||
+                    Config.PinConfig[i] == PinType.MCP3202_CS ||
+                    Config.PinConfig[i] == PinType.MCP3204_CS ||
+                    Config.PinConfig[i] == PinType.MCP3208_CS ||
+                    Config.PinConfig[i] == PinType.MLX90393_CS)
                 {
                     foreach (var axis in Axes)
                     {
@@ -92,8 +98,28 @@ namespace FreeJoyConfigurator
                     {
                         if (axis.AxisConfig.SourceMain == (AxisSourceType)i) axis.AxisConfig.SourceMain = AxisSourceType.Buttons;
                         axis.AllowedSources.Remove((AxisSourceType)i);
+                        //
                     }
 
+                }
+            }
+
+            if (Config.PinConfig[19] == PinType.I2C_SCL && Config.PinConfig[20] == PinType.I2C_SDA)    // PB8 and PB9
+            {
+                foreach (var axis in Axes)
+                {
+                    if (!axis.AllowedSources.Contains(AxisSourceType.I2C))
+                    {
+                        axis.AllowedSources.Add(AxisSourceType.I2C);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var axis in Axes)
+                {
+                    if (axis.AxisConfig.SourceMain == AxisSourceType.I2C) axis.AxisConfig.SourceMain = AxisSourceType.Buttons;
+                    if (axis.AllowedSources.Contains(AxisSourceType.I2C)) axis.AllowedSources.Remove(AxisSourceType.I2C);
                 }
             }
 
