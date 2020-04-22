@@ -118,7 +118,7 @@
                                 <ComboBox Grid.Column="4" Grid.Row="1" HorizontalContentAlignment="Center"
                                       ItemsSource="{Binding Source={StaticResource DelayTypeFromEnum}}"
                                       SelectedItem="{Binding Path=Config.ButtonDelayNumber}"
-                                      IsEnabled="{Binding Config.IsEnabled}">
+                                      IsEnabled="{Binding Config.IsEnabled}" Padding="0,3,-10,3">
 
                                 </ComboBox>
 

@@ -95,7 +95,7 @@
             </Grid>
         </GroupBox>
 
-        <TabControl Grid.Column="1" Margin="0,10,0,1">
+        <TabControl Grid.Column="1" Margin="10,10,10,1">
             <TabItem Header="Pin Config">
                 <local:PinsView/>
             </TabItem>
@@ -103,7 +103,7 @@
             <TabItem Header="Button Config">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.76*"/>
+                        <ColumnDefinition Width="1.72*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
