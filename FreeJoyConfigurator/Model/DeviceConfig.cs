@@ -461,9 +461,9 @@ namespace FreeJoyConfigurator
         private sbyte _physicalNumber;
         private ShiftType _shiftModificator;
         private ButtonType _type;
+        private DelayType _buttonDelayNumber;
         private bool _isEnabled;
-        
-        
+
 
         public ButtonType Type
         {
@@ -488,12 +488,16 @@ namespace FreeJoyConfigurator
             }
         }
 
-        
-
         public ShiftType ShiftModificator
         {
             get { return _shiftModificator; }
             set {SetProperty(ref _shiftModificator, value);}
+        }
+
+        public DelayType ButtonDelayNumber
+        {
+            get { return _buttonDelayNumber; }
+            set { SetProperty(ref _buttonDelayNumber, value); }
         }
 
         public ButtonConfig()
@@ -501,6 +505,7 @@ namespace FreeJoyConfigurator
             _isEnabled = false;
             _physicalNumber = 0;
             _shiftModificator = 0;
+            _buttonDelayNumber = 0;
 
             _type = ButtonType.Button_Normal;
             
@@ -511,6 +516,7 @@ namespace FreeJoyConfigurator
             _isEnabled = false;
             _physicalNumber = 0;
             _shiftModificator = 0;
+            _buttonDelayNumber = 0;
 
             _type = type;
         }
@@ -526,6 +532,13 @@ namespace FreeJoyConfigurator
         Shift5,
     }
 
+    public enum DelayType
+    {
+        No = 0,
+        Delay1,
+        Delay2,
+        Delay3,
+    }
 
     public class ShiftModificatorConfig : BindableBase
     {
@@ -663,6 +676,12 @@ namespace FreeJoyConfigurator
         public UInt16 TogglePressMs { get; set; }
         [XmlElement("Encoder_Press_Time")]
         public UInt16 EncoderPressMs { get; set; }
+        [XmlElement("Button_Delay1_Time")]
+        public UInt16 ButtonDelay1Ms { get; set; }
+        [XmlElement("Button_Delay2_Time")]
+        public UInt16 ButtonDelay2Ms { get; set; }
+        [XmlElement("Button_Delay3_Time")]
+        public UInt16 ButtonDelay3Ms { get; set; }
         [XmlElement("Exchange_Period")]
         public UInt16 ExchangePeriod { get; set; }
         [XmlElement("Pin_Config")]
@@ -695,6 +714,9 @@ namespace FreeJoyConfigurator
             ButtonDebounceMs = 50;
             TogglePressMs = 100;
             EncoderPressMs = 10;
+            ButtonDelay1Ms = 100;
+            ButtonDelay2Ms = 200;
+            ButtonDelay3Ms = 300;
             ExchangePeriod = 5;
             IsDynamicConfig = false;
             Vid = 0x0483;

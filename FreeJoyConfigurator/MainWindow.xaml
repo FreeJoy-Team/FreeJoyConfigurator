@@ -15,7 +15,7 @@
         <local:MainVM/>
     </Window.DataContext>
 
-    
+
 
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <!--Row 0-->
-        <GroupBox Header="Device" Name ="Status_GroupBox" Grid.Column="0" Grid.Row="0" Margin="10,10,10,10" Grid.ColumnSpan="1">
+        <GroupBox Header="Device" Name ="Status_GroupBox" Grid.Column="0" Grid.Row="0" Margin="10,10,10,0" Grid.ColumnSpan="1">
             <Grid Width="Auto" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -95,15 +95,15 @@
             </Grid>
         </GroupBox>
 
-        <TabControl Grid.Column="1" Margin="10">
+        <TabControl Grid.Column="1" Margin="0,10,0,1">
             <TabItem Header="Pin Config">
                 <local:PinsView/>
             </TabItem>
-            
+
             <TabItem Header="Button Config">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.76*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -124,7 +124,7 @@
                 </Grid>
 
             </TabItem>
-            
+
             <TabItem Header="Axes Config">
                 <local:AxesView Grid.Column="0"/>
             </TabItem>
@@ -153,7 +153,7 @@
                     <local:LedPwmView Grid.Row="0" Grid.Column="0"/>
                     <local:LedView Grid.Row="0" Grid.Column="1"/>
                 </Grid>
-                
+
             </TabItem>
 
         </TabControl>
@@ -203,11 +203,11 @@
                                HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
-                                                <Setter Property="Background" Value="Red"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
@@ -280,11 +280,17 @@
 
             <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
 
-                <Expander Header="Advanced Settings"  Margin="10,10,10,10">
+                <Expander Header="Advanced Settings"  Margin="10,8,10,8">
                     <GroupBox>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.3*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
@@ -335,19 +341,43 @@
                             <TextBlock Grid.Row="8" Grid.Column="2" Text="ms" 
                                        HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                            <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Text="USB exchange period" 
+                            <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Text="Button Delay 1" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="50" Minimum="1"
-                                                Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ExchangePeriod}"
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="10000" Minimum="1"
+                                                Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ButtonDelay1Ms}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
                             <TextBlock Grid.Row="10" Grid.Column="2" Text="ms" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Text="Button Delay 2" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="10000" Minimum="1"
+                                                Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ButtonDelay2Ms}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="12" Grid.Column="2" Text="ms" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="3" Text="Button Delay 3" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="10000" Minimum="1"
+                                                Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ButtonDelay3Ms}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="14" Grid.Column="2" Text="ms" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3" Text="USB exchange period" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="50" Minimum="1"
+                                                Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ExchangePeriod}"
+                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
+                            <TextBlock Grid.Row="16" Grid.Column="2" Text="ms" 
                                        HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                         </Grid>
                     </GroupBox>
                 </Expander>
 
-                <Expander Header="HID Settings"  Margin="10,10,10,10">
+                <Expander Header="HID Settings"  Margin="10,8,10,8">
                     <GroupBox>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -385,7 +415,7 @@
                     </GroupBox>
                 </Expander>
 
-                <Expander Header="Firmware Programmer"  Margin="10,10,10,10">
+                <Expander Header="Firmware Programmer"  Margin="10,8,10,8">
                     <local:FirmwareUpdaterView/>
                 </Expander>
             </StackPanel>

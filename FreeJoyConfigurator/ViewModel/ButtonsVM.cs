@@ -255,6 +255,7 @@ namespace FreeJoyConfigurator
                 LogicalButtons[i].Config.PhysicalNumber = config.ButtonConfig[i].PhysicalNumber;
                 LogicalButtons[i].Config.ShiftModificator = config.ButtonConfig[i].ShiftModificator;
                 LogicalButtons[i].Config.Type = config.ButtonConfig[i].Type;
+                LogicalButtons[i].Config.ButtonDelayNumber = config.ButtonConfig[i].ButtonDelayNumber;          //!!!!!
                 if (PhysicalButtons.Count > 0)
                 {
                     if (config.ButtonConfig[i].PhysicalNumber > 0 && config.ButtonConfig[i].PhysicalNumber <= TotalBtnCnt)
@@ -606,6 +607,7 @@ namespace FreeJoyConfigurator
                 tmp.ButtonConfig[i].PhysicalNumber = (sbyte)LogicalButtons[i].Config.PhysicalNumber;
                 tmp.ButtonConfig[i].ShiftModificator = LogicalButtons[i].Config.ShiftModificator;
                 tmp.ButtonConfig[i].Type = LogicalButtons[i].Config.Type;
+                tmp.ButtonConfig[i].ButtonDelayNumber = LogicalButtons[i].Config.ButtonDelayNumber;             //!!!!!
             }
             Config = tmp;
 
