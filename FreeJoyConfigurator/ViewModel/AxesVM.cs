@@ -98,8 +98,28 @@ namespace FreeJoyConfigurator
                     {
                         if (axis.AxisConfig.SourceMain == (AxisSourceType)i) axis.AxisConfig.SourceMain = AxisSourceType.Buttons;
                         axis.AllowedSources.Remove((AxisSourceType)i);
+                        //
                     }
 
+                }
+            }
+
+            if (Config.PinConfig[19] == PinType.I2C_SCL && Config.PinConfig[20] == PinType.I2C_SDA)    // PB8 and PB9
+            {
+                foreach (var axis in Axes)
+                {
+                    if (!axis.AllowedSources.Contains(AxisSourceType.I2C))
+                    {
+                        axis.AllowedSources.Add(AxisSourceType.I2C);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var axis in Axes)
+                {
+                    if (axis.AxisConfig.SourceMain == AxisSourceType.I2C) axis.AxisConfig.SourceMain = AxisSourceType.Buttons;
+                    if (axis.AllowedSources.Contains(AxisSourceType.I2C)) axis.AllowedSources.Remove(AxisSourceType.I2C);
                 }
             }
 

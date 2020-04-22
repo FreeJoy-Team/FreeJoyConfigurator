@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>5376</Firmware_Version>
+  <Firmware_Version>5394</Firmware_Version>
   <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Toggle_Press_Time>200</Toggle_Press_Time>
@@ -92,6 +92,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A0</SourceMain>
@@ -159,6 +160,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A1</SourceMain>
@@ -226,6 +228,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A2</SourceMain>
@@ -293,6 +296,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>A3</SourceMain>
@@ -360,6 +364,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
@@ -427,6 +432,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
@@ -494,6 +500,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
@@ -561,6 +568,7 @@
     </CurveShape>
     <Resolution>16</Resolution>
     <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
     <SourceMain>Buttons</SourceMain>
@@ -1357,152 +1365,152 @@
   </Button_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <AxisToButtons_Config>
     <Points>
-      <byte>0</byte>
-      <byte>127</byte>
-      <byte>255</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
-      <byte>0</byte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>50</unsignedByte>
+      <unsignedByte>100</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
     </Points>
     <ButtonsCnt>2</ButtonsCnt>
     <IsEnabled>false</IsEnabled>

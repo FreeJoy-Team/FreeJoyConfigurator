@@ -17,6 +17,7 @@ namespace FreeJoyConfigurator
 
     public enum AxisSourceType : sbyte
     {
+        I2C = -2,
         Buttons = -1,
         A0 = 0,
         A1,
@@ -32,9 +33,9 @@ namespace FreeJoyConfigurator
         A15,
         B0,
         B1,
-        B2,
         B3,
         B4,
+        B5,
         B6,
         B7,
         B8,
@@ -48,7 +49,6 @@ namespace FreeJoyConfigurator
         C13,
         C14,
         C15,
-
     };
 
     public enum ShiftRegSourceType : sbyte
@@ -68,9 +68,9 @@ namespace FreeJoyConfigurator
         A15,
         B0,
         B1,
-        B2,
         B3,
         B4,
+        B5,
         B6,
         B7,
         B8,
@@ -108,6 +108,15 @@ namespace FreeJoyConfigurator
         Minus_Relative,
     };
 
+    public enum AxisAddressType : byte
+    {
+        AS5600 = 0x36,
+        ADS1115_00 = 0x48,
+        ADS1115_01,
+        ADS1115_10,
+        ADS1115_11,
+    }
+
     public class AxisConfig : BindableBase
     {
         private short _calibMin;
@@ -123,6 +132,7 @@ namespace FreeJoyConfigurator
 
         private byte _resolution;
         private byte _channel;
+        private AxisAddressType _i2cAddress;
         private byte _deadband;
         private bool _isDynamicDeadband;
 
@@ -230,6 +240,11 @@ namespace FreeJoyConfigurator
             get { return _channel; }
             set { SetProperty(ref _channel, value); }
         }
+        public AxisAddressType I2cAddress
+        {
+            get { return _i2cAddress; }
+            set { SetProperty(ref _i2cAddress, value); }
+        }
         public byte Deadband
         {
             get { return _deadband; }
@@ -316,6 +331,7 @@ namespace FreeJoyConfigurator
             _deadband = 0;
 
             _channel = 0;
+            _i2cAddress = AxisAddressType.ADS1115_00;
 
             _curveShape = new ObservableCollection<Point>();
             for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, 0));
@@ -386,7 +402,8 @@ namespace FreeJoyConfigurator
         LED_Row,
         LED_Column,
 
-        
+        I2C_SCL,
+        I2C_SDA,
     };
 
 
