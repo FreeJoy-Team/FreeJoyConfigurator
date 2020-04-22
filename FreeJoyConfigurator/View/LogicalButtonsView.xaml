@@ -105,13 +105,13 @@
                                 <ComboBox Grid.Column="2" Grid.Row="1" HorizontalContentAlignment="Center"
                                       ItemsSource="{Binding Path=AllowedTypes}"
                                       SelectedItem="{Binding Path=Config.Type}"
-                                      IsEnabled="{Binding Config.IsEnabled}">
+                                      IsEnabled="{Binding Config.IsEnabled}" Padding="0,3,-10,3">
                             </ComboBox>
 
                             <ComboBox Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center"
                                       ItemsSource="{Binding Source={StaticResource ShiftTypeFromEnum}}"
                                       SelectedItem="{Binding Path=Config.ShiftModificator}"
-                                      IsEnabled="{Binding Config.IsEnabled}">
+                                      IsEnabled="{Binding Config.IsEnabled}" Padding="0,3,-10,3">
                                        
                             </ComboBox>
 
