@@ -14,4 +14,4 @@ FreeJoy Configurator is a vusial utility allowing you to setup your [FreeJoy](ht
 * Saving and loading configuration to file
 * Flashing device firmware
 
-Check the [wiki page](https://github.com/vostrenkov/FreeJoyConfigurator/wiki) for detailed instructions.
+Check [our wiki](https://github.com/FreeJoy-Team/FreeJoyWiki) for detailed instructions.
