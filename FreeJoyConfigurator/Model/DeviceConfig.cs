@@ -504,8 +504,8 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _physicalNumber = 0;
-            _shiftModificator = 0;
-            _buttonDelayNumber = 0;
+            _shiftModificator = ShiftType.NoShift;
+            _buttonDelayNumber = DelayType.No;
 
             _type = ButtonType.Button_Normal;
             
@@ -515,8 +515,8 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _physicalNumber = 0;
-            _shiftModificator = 0;
-            _buttonDelayNumber = 0;
+            _shiftModificator = ShiftType.NoShift;
+            _buttonDelayNumber = DelayType.No;
 
             _type = type;
         }

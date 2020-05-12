@@ -32,7 +32,7 @@ namespace FreeJoyConfigurator
                 SetProperty(ref _updatePercent, value);
             }
         }
-        
+
 
         public FirmwareUpdater()
         {
@@ -44,10 +44,10 @@ namespace FreeJoyConfigurator
 
         public void PacketReceivedEventHandler(HidReport report)
         {
-            
+
             HidReport hr = report;
             byte[] fileArray;
-            byte[] buffer = new byte[63];            
+            byte[] buffer = new byte[63];
 
             if (hr.ReportId == (byte)ReportID.FIRMWARE_REPORT)
             {
@@ -99,10 +99,38 @@ namespace FreeJoyConfigurator
 
                     }
 
-                    
+
                 }
             }
         }
+
+        public void SendFlasherCmd()
+        {
+            byte[] buffer = new byte[63];
+
+            UpdatePercent = 0;
+
+            buffer[0] = (byte)'b';
+            buffer[1] = (byte)'o';
+            buffer[2] = (byte)'o';
+            buffer[3] = (byte)'t';
+            buffer[4] = (byte)'l';
+            buffer[5] = (byte)'o';
+            buffer[6] = (byte)'a';
+            buffer[7] = (byte)'d';
+            buffer[8] = (byte)'e';
+            buffer[9] = (byte)'r';
+            buffer[10] = (byte)' ';
+            buffer[11] = (byte)'r';
+            buffer[12] = (byte)'u';
+            buffer[13] = (byte)'n';
+            buffer[14] = 0;
+
+
+            Hid.ReportSend((byte)ReportID.FIRMWARE_REPORT, buffer);
+            Console.WriteLine("Bootloader start requsted");
+        }
+
 
         public void SendFirmware(string filepath)
         {

@@ -24,7 +24,7 @@ using Prism.Mvvm;
 namespace FreeJoyConfigurator
 {
     public class MainVM : BindableBase
-    { 
+    {
         private Joystick _joystick;
         private DeviceConfig _config;
         private DeviceConfigExchangerVM _configExchanger;
@@ -99,11 +99,7 @@ namespace FreeJoyConfigurator
             }
             set
             {
-                _selectedDeviceIndex = value;
-                if (value >= 0 && value < Hid.HidDevicesList.Count)
-                {
-                    Hid.Connect(Hid.HidDevicesList[value]);
-                }
+                SetProperty(ref _selectedDeviceIndex, value);
                 DeviceFirmwareVersionVM = " ";
             }
         }
@@ -141,11 +137,11 @@ namespace FreeJoyConfigurator
         }
         public bool IsConnectedVM
         {
-            get
-            {
-                return Hid.IsConnected;
-            }
+            get { return Hid.IsConnected; }
         }
+
+        public bool IsFlasherVM { get; private set; }
+
 
         #region Commands
         public DelegateCommand UpdateDeviceList { get; }
@@ -161,9 +157,6 @@ namespace FreeJoyConfigurator
 
         public MainVM()
         {
-
-            
-
             // getting current version
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -392,28 +385,49 @@ namespace FreeJoyConfigurator
         {
             RaisePropertyChanged(nameof(HidDevices));
 
-            if (!IsConnectedVM) SelectedDeviceIndex = 0;
-            else
+            SelectedDeviceIndex = Hid.HidDevicesList.Count > 0 ? Hid.HidDevicesList.Count - 1 : 0;
+
+            if (SelectedDeviceIndex >= 0 && SelectedDeviceIndex < Hid.HidDevicesList.Count)
             {
-                _selectedDeviceIndex = 0;
-                RaisePropertyChanged(nameof(SelectedDeviceIndex));
+                Hid.Connect(Hid.HidDevicesList[SelectedDeviceIndex]);
+
+                byte[] tmp = new byte[20];
+                Hid.HidDevicesList[SelectedDeviceIndex].ReadProduct(out tmp);
+                string name = Encoding.Unicode.GetString(tmp).TrimEnd('\0');
+
+                if (name.Contains("FreeJoy Flasher"))
+                {
+                    IsFlasherVM = true;
+                    RaisePropertyChanged(nameof(IsFlasherVM));
+                    WriteLog("Device entered flasher mode", false);
+                }
+                else
+                {
+                    IsFlasherVM = false;
+                    RaisePropertyChanged(nameof(IsFlasherVM));
+                }
             }
+
         }
 
         public void DeviceAddedEventHandler(HidDevice hd)
         {
-            WriteLog("Device added", false);
+            byte[] tmp = new byte[20];
+            Hid.HidDevicesList[SelectedDeviceIndex].ReadProduct(out tmp);
+            string name = Encoding.Unicode.GetString(tmp).TrimEnd('\0');
+
+            WriteLog("Device \"" + name + "\" added", false);
+
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
-            RaisePropertyChanged(nameof(HidDevices));
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)
         {
             WriteLog("Device removed", false);
+            
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
-            RaisePropertyChanged(nameof(HidDevices));
         }
         #endregion
 
