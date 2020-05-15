@@ -85,7 +85,7 @@ namespace FreeJoyConfigurator
 
                 for (int i = 0; i < config.PinConfig.Count; i++)
                 {
-                    config.PinConfig[i] = (PinType)hr.Data[i + 32];
+                    config.PinConfig[i] = (PinType)hr.Data[i + 33];
                 }
 
             }
@@ -310,7 +310,7 @@ namespace FreeJoyConfigurator
                     config.ButtonConfig[i].ButtonDelayNumber = (DelayType)(hr.Data[3 * i + 3]);
                 }
 
-                config.ButtonDelay1Ms = (ushort)(hr.Data[61] << 8 | hr.Data[60]);
+                config.ButtonDelay1Ms = (ushort)(hr.Data[62] << 8 | hr.Data[61]);
             }
             else if (hr.Data[0] == 7)
             {
@@ -323,7 +323,7 @@ namespace FreeJoyConfigurator
                     config.ButtonConfig[i + 20].ButtonDelayNumber = (DelayType)(hr.Data[3 * i + 3]);
                 }
 
-                config.ButtonDelay2Ms = (ushort)(hr.Data[61] << 8 | hr.Data[60]);
+                config.ButtonDelay2Ms = (ushort)(hr.Data[62] << 8 | hr.Data[61]);
             }
             else if (hr.Data[0] == 8)
             {
@@ -336,7 +336,7 @@ namespace FreeJoyConfigurator
                     config.ButtonConfig[i + 40].ButtonDelayNumber = (DelayType)(hr.Data[3 * i + 3]);
                 }
 
-                config.ButtonDelay3Ms = (ushort)(hr.Data[61] << 8 | hr.Data[60]);
+                config.ButtonDelay3Ms = (ushort)(hr.Data[62] << 8 | hr.Data[61]);
             }
             else if (hr.Data[0] == 9)
             {
@@ -379,7 +379,7 @@ namespace FreeJoyConfigurator
                     config.ButtonConfig[i + 120].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
                     config.ButtonConfig[i + 120].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
                     config.ButtonConfig[i + 120].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
-                    config.ButtonConfig[i + 100].ButtonDelayNumber = (DelayType)(hr.Data[3 * i + 3]);
+                    config.ButtonConfig[i + 120].ButtonDelayNumber = (DelayType)(hr.Data[3 * i + 3]);
                 }
 
                 // axes to buttons group 1
@@ -504,7 +504,7 @@ namespace FreeJoyConfigurator
             buffer[31] = (byte)(config.ExchangePeriod >> 8);
             for (int i = 0; i < 30; i++)
             {
-                buffer[i + 33] = (byte)config.PinConfig[i];
+                buffer[i + 34] = (byte)config.PinConfig[i];
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 

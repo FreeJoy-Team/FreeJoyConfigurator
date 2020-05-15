@@ -17,6 +17,7 @@ namespace FreeJoyConfigurator
         public FirmwareUpdater FirmwareUpdater { get; set; }
 
         public DelegateCommand FlashFirmware { get; }
+        public DelegateCommand EnterFlasherMode { get; }
 
         public FirmwareUpdaterVM()
         {
@@ -27,6 +28,7 @@ namespace FreeJoyConfigurator
             FirmwareUpdater.EraseError += FirmwareUpdater_EraseError;
 
             FlashFirmware = new DelegateCommand(() => StartUpdate());
+            EnterFlasherMode = new DelegateCommand(() => RunFlasher());
         }
 
         private void FirmwareUpdater_EraseError()
@@ -57,16 +59,21 @@ namespace FreeJoyConfigurator
         {
             MessageBoxService mbs = new MessageBoxService();
 
-            mbs.ShowMessage("Firmware downloading is done!\r\nNow wait until device disconnect, unplug it and plug again", "Info",
+            mbs.ShowMessage("Firmware downloading is done!", "Info",
                 System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+        }
+
+        private void RunFlasher()
+        {
+            FirmwareUpdater.SendFlasherCmd();
         }
 
         private void StartUpdate ()
         {
             MessageBoxService mbs = new MessageBoxService();
 
-            if (mbs.ShowMessage("This action may damage your device. Are you sure you want to continue?",
-                "Warning", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Warning) == System.Windows.MessageBoxResult.Yes)
+            //if (mbs.ShowMessage("This action may damage your device. Are you sure you want to continue?",
+            //    "Warning", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Warning) == System.Windows.MessageBoxResult.Yes)
             {
                 OpenFileDialog dlg = new OpenFileDialog();
 

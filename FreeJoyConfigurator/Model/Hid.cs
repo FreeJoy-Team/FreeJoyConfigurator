@@ -57,8 +57,10 @@ namespace FreeJoyConfigurator
                         HidDevicesList = HidDevices.Enumerate(vid).ToList();
 
                         if (HidDevicesList.Count != lastDeviceCnt)
+                        {
+                            Console.WriteLine("Device list updated");
                             DeviceListUpdated?.Invoke();
-
+                        }
                         lastDeviceCnt = HidDevicesList.Count;
                         Thread.Sleep(50);
                     } 
@@ -93,12 +95,19 @@ namespace FreeJoyConfigurator
         #region HID Callbacks
         static private void HidDeviceAddedEventHandler()
         {
+            Console.WriteLine("Device added");
             DeviceAdded?.Invoke(hidDevice);
             hidDevice.ReadReport(ReadReportCallback);
         }
 
         static private void HidDeviceRemovedEventHandler()
         {
+            hidDevice.Inserted -= HidDeviceAddedEventHandler;
+            hidDevice.Removed -= HidDeviceRemovedEventHandler;
+            hidDevice.MonitorDeviceEvents = false;
+            hidDevice.CloseDevice();
+
+            Console.WriteLine("Device removed");
             DeviceRemoved?.Invoke(hidDevice);
         }
 
