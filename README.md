@@ -1,6 +1,6 @@
 # FreeJoy Configurator
 
-FreeJoy Configurator is a vusial utility allowing you to setup your [FreeJoy](https://github.com/vostrenkov/FreeJoy) device for your own requirements.
+FreeJoy Configurator is a visual utility allowing you to setup your [FreeJoy](https://github.com/vostrenkov/FreeJoy) device for your own requirements.
 
 ![](https://github.com/FreeJoy-Team/FreeJoyConfigurator/blob/master/images/main.png)
 
@@ -10,7 +10,7 @@ FreeJoy Configurator is a vusial utility allowing you to setup your [FreeJoy](ht
 * Digital inputs configuration (buttons, toggle switches, encoders, etc.)
 * Analog input configuration (calibration, smoothing, curve shapes, etc.)
 * Axes to buttons configuration
-* Shift registers confgiguration
+* Shift registers configuration
 * Saving and loading configuration to file
 * Flashing device firmware
 
