@@ -461,7 +461,10 @@ namespace FreeJoyConfigurator
         private sbyte _physicalNumber;
         private ShiftType _shiftModificator;
         private ButtonType _type;
-        private DelayType _buttonDelayNumber;
+        private TimerType _buttonDelayNumber;
+        private TimerType _buttonToggleNumber;
+        private bool _isInverted;
+        private bool _isOnOff;      // not used
         private bool _isEnabled;
 
 
@@ -469,6 +472,18 @@ namespace FreeJoyConfigurator
         {
             get {return _type;}
             set{SetProperty(ref _type, value);}
+        }
+
+        public bool IsInverted
+        {
+            get { return _isInverted; }
+            set { SetProperty(ref _isInverted, value); }
+        }
+
+        public bool IsOnOff     // not used
+        {
+            get { return _isOnOff; }
+            set { SetProperty(ref _isOnOff, value); }
         }
 
         public bool IsEnabled
@@ -494,18 +509,27 @@ namespace FreeJoyConfigurator
             set {SetProperty(ref _shiftModificator, value);}
         }
 
-        public DelayType ButtonDelayNumber
+        public TimerType ButtonDelayNumber
         {
             get { return _buttonDelayNumber; }
             set { SetProperty(ref _buttonDelayNumber, value); }
         }
 
+        public TimerType ButtonToggleNumber
+        {
+            get { return _buttonToggleNumber; }
+            set { SetProperty(ref _buttonToggleNumber, value); }
+        }
+
         public ButtonConfig()
         {
             _isEnabled = false;
+            _isInverted = false;
+            _isOnOff = false;       // not used
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
-            _buttonDelayNumber = DelayType.No;
+            _buttonDelayNumber = TimerType.No;
+            _buttonToggleNumber = TimerType.No;
 
             _type = ButtonType.Button_Normal;
             
@@ -514,9 +538,12 @@ namespace FreeJoyConfigurator
         public ButtonConfig (ButtonType type)
         {
             _isEnabled = false;
+            _isInverted = false;
+            _isOnOff = false;       // not used
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
-            _buttonDelayNumber = DelayType.No;
+            _buttonDelayNumber = TimerType.No;
+            _buttonToggleNumber = TimerType.No;
 
             _type = type;
         }
@@ -532,12 +559,12 @@ namespace FreeJoyConfigurator
         Shift5,
     }
 
-    public enum DelayType
+    public enum TimerType
     {
         No = 0,
-        Delay1,
-        Delay2,
-        Delay3,
+        Timer1,
+        Timer2,
+        Timer3,
     }
 
     public class ShiftModificatorConfig : BindableBase
@@ -672,16 +699,16 @@ namespace FreeJoyConfigurator
         public string DeviceName { get; set; }
         [XmlElement("Button_Debounce_Time")]
         public UInt16 ButtonDebounceMs { get; set; }
-        [XmlElement("Toggle_Press_Time")]
-        public UInt16 TogglePressMs { get; set; }
+        //[XmlElement("Toggle_Press_Time")]
+        //public UInt16 TogglePressMs { get; set; }
         [XmlElement("Encoder_Press_Time")]
         public UInt16 EncoderPressMs { get; set; }
-        [XmlElement("Button_Delay1_Time")]
-        public UInt16 ButtonDelay1Ms { get; set; }
-        [XmlElement("Button_Delay2_Time")]
-        public UInt16 ButtonDelay2Ms { get; set; }
-        [XmlElement("Button_Delay3_Time")]
-        public UInt16 ButtonDelay3Ms { get; set; }
+        [XmlElement("Button_Timer1_Time")]
+        public UInt16 ButtonTimer1Ms { get; set; }
+        [XmlElement("Button_Timer2_Time")]
+        public UInt16 ButtonTimer2Ms { get; set; }
+        [XmlElement("Button_Timer3_Time")]
+        public UInt16 ButtonTimer3Ms { get; set; }
         [XmlElement("Exchange_Period")]
         public UInt16 ExchangePeriod { get; set; }
         [XmlElement("Pin_Config")]
@@ -712,11 +739,11 @@ namespace FreeJoyConfigurator
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
-            TogglePressMs = 100;
+            //TogglePressMs = 100;
             EncoderPressMs = 10;
-            ButtonDelay1Ms = 100;
-            ButtonDelay2Ms = 200;
-            ButtonDelay3Ms = 300;
+            ButtonTimer1Ms = 50;
+            ButtonTimer2Ms = 200;
+            ButtonTimer3Ms = 300;
             ExchangePeriod = 5;
             IsDynamicConfig = false;
             Vid = 0x0483;

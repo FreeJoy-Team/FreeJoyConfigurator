@@ -11,7 +11,7 @@
         <local:InvertBooleanConverter x:Key="InvertBooleanConverter" />
     </UserControl.Resources>
 
-    <GroupBox d:DataContext="{d:DesignInstance {x:Type local:MainVM}}" IsEnabled="{Binding IsConnectedVM}">
+    <!-- <GroupBox d:DataContext="{d:DesignInstance {x:Type local:MainVM}}" IsEnabled="{Binding IsConnectedVM}"> -->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*" />
@@ -35,5 +35,5 @@
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         </Grid>
-    </GroupBox>
+    <!--  </GroupBox> -->
 </UserControl>

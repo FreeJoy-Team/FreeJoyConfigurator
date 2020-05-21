@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:FreeJoyConfigurator"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="850">
+      d:DesignHeight="576" d:DesignWidth="876">
 
 
     <UserControl.Resources>
@@ -63,7 +63,7 @@
                                 <ColumnDefinition Width="0.8*"/>
                                 <ColumnDefinition Width="0.8*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="2.0*"/>
 
                             </Grid.ColumnDefinitions>
 

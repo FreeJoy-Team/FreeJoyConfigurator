@@ -255,7 +255,11 @@ namespace FreeJoyConfigurator
                 LogicalButtons[i].Config.PhysicalNumber = config.ButtonConfig[i].PhysicalNumber;
                 LogicalButtons[i].Config.ShiftModificator = config.ButtonConfig[i].ShiftModificator;
                 LogicalButtons[i].Config.Type = config.ButtonConfig[i].Type;
+                LogicalButtons[i].Config.IsInverted = config.ButtonConfig[i].IsInverted;
+                LogicalButtons[i].Config.IsOnOff = config.ButtonConfig[i].IsOnOff;      // not used
                 LogicalButtons[i].Config.ButtonDelayNumber = config.ButtonConfig[i].ButtonDelayNumber;          //!!!!!
+                LogicalButtons[i].Config.ButtonToggleNumber = config.ButtonConfig[i].ButtonToggleNumber;
+
                 if (PhysicalButtons.Count > 0)
                 {
                     if (config.ButtonConfig[i].PhysicalNumber > 0 && config.ButtonConfig[i].PhysicalNumber <= TotalBtnCnt)
@@ -607,7 +611,10 @@ namespace FreeJoyConfigurator
                 tmp.ButtonConfig[i].PhysicalNumber = (sbyte)LogicalButtons[i].Config.PhysicalNumber;
                 tmp.ButtonConfig[i].ShiftModificator = LogicalButtons[i].Config.ShiftModificator;
                 tmp.ButtonConfig[i].Type = LogicalButtons[i].Config.Type;
+                tmp.ButtonConfig[i].IsInverted = LogicalButtons[i].Config.IsInverted;
+                tmp.ButtonConfig[i].IsOnOff = LogicalButtons[i].Config.IsOnOff;     // not used
                 tmp.ButtonConfig[i].ButtonDelayNumber = LogicalButtons[i].Config.ButtonDelayNumber;             //!!!!!
+                tmp.ButtonConfig[i].ButtonToggleNumber = LogicalButtons[i].Config.ButtonToggleNumber;
             }
             Config = tmp;
 
