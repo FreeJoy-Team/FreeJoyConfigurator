@@ -153,6 +153,9 @@
       <DependentUpon>LedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LedVM.cs" />
+    <Compile Include="View\AdvancedSettingsView.xaml.cs">
+      <DependentUpon>AdvancedSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LedPwmView.xaml.cs">
       <DependentUpon>LedPwmView.xaml</DependentUpon>
     </Compile>
@@ -212,6 +215,10 @@
     <Page Include="LedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdvancedSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LedPwmView.xaml">
       <SubType>Designer</SubType>

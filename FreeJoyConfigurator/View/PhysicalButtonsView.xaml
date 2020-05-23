@@ -32,7 +32,7 @@
 
     <ScrollViewer d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
         <ItemsControl x:Name="PhysicalBtnItemsControl" ItemsSource="{Binding Path=ButtonsVM.PhysicalButtons}"
-                  AlternationCount="{Binding ButtonsVM.PhysicalButtons.Count}">
+                  AlternationCount="{Binding ButtonsVM.PhysicalButtons.Count}" HorizontalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>

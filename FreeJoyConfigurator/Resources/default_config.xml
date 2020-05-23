@@ -3,11 +3,10 @@
   <Firmware_Version>5632</Firmware_Version>
   <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
-  <Toggle_Press_Time>200</Toggle_Press_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
-  <Button_Delay1_Time>100</Button_Delay1_Time>
-  <Button_Delay2_Time>200</Button_Delay2_Time>
-  <Button_Delay3_Time>2000</Button_Delay3_Time>
+  <Button_Timer1_Time>50</Button_Timer1_Time>
+  <Button_Timer2_Time>200</Button_Timer2_Time>
+  <Button_Timer3_Time>300</Button_Timer3_Time>
   <Exchange_Period>5</Exchange_Period>
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
