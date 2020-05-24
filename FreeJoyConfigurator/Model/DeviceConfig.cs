@@ -410,7 +410,6 @@ namespace FreeJoyConfigurator
     public enum ButtonType
     {
         Button_Normal = 0,
-        Button_Inverted,
         Button_Toggle,
         ToggleSwitch_OnOff,
         ToggleSwitch_On,
@@ -464,7 +463,7 @@ namespace FreeJoyConfigurator
         private TimerType _buttonDelayNumber;
         private TimerType _buttonToggleNumber;
         private bool _isInverted;
-        private bool _isOnOff;      // not used
+        private bool _isOnOff;
         private bool _isEnabled;
 
 
@@ -480,7 +479,7 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _isInverted, value); }
         }
 
-        public bool IsOnOff     // not used
+        public bool IsOnOff
         {
             get { return _isOnOff; }
             set { SetProperty(ref _isOnOff, value); }
@@ -525,7 +524,7 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _isInverted = false;
-            _isOnOff = false;       // not used
+            _isOnOff = false;
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
             _buttonDelayNumber = TimerType.No;
@@ -539,7 +538,7 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _isInverted = false;
-            _isOnOff = false;       // not used
+            _isOnOff = false;
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
             _buttonDelayNumber = TimerType.No;
@@ -699,10 +698,8 @@ namespace FreeJoyConfigurator
         public string DeviceName { get; set; }
         [XmlElement("Button_Debounce_Time")]
         public UInt16 ButtonDebounceMs { get; set; }
-        //[XmlElement("Toggle_Press_Time")]
-        //public UInt16 TogglePressMs { get; set; }
         [XmlElement("Encoder_Press_Time")]
-        public UInt16 EncoderPressMs { get; set; }
+        public byte EncoderPressMs { get; set; }
         [XmlElement("Button_Timer1_Time")]
         public UInt16 ButtonTimer1Ms { get; set; }
         [XmlElement("Button_Timer2_Time")]
@@ -710,7 +707,7 @@ namespace FreeJoyConfigurator
         [XmlElement("Button_Timer3_Time")]
         public UInt16 ButtonTimer3Ms { get; set; }
         [XmlElement("Exchange_Period")]
-        public UInt16 ExchangePeriod { get; set; }
+        public byte ExchangePeriod { get; set; }
         [XmlElement("Pin_Config")]
         public ObservableCollection<PinType> PinConfig { get; set; }
         [XmlElement("Axis_Config")]
@@ -739,7 +736,6 @@ namespace FreeJoyConfigurator
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
-            //TogglePressMs = 100;
             EncoderPressMs = 10;
             ButtonTimer1Ms = 50;
             ButtonTimer2Ms = 200;

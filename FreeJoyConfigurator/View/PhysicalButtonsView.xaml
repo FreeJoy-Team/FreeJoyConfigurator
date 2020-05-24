@@ -14,7 +14,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="30" Background="{TemplateBinding Background}" BorderThickness="1">
+                        <Border CornerRadius="25" Background="{TemplateBinding Background}" BorderThickness="1">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                                 
                             </ContentPresenter>
@@ -50,8 +50,8 @@
                         </Grid.RowDefinitions>
 
                         <Button Style="{StaticResource RoundButtonTemplate}" 
-                                Margin="7,7,7,7"
-                                Width="30" Height="30"
+                                Margin="4,4,4,4"
+                                Width="25" Height="25"
                                 Content="{Binding Number}">
 
                         </Button>

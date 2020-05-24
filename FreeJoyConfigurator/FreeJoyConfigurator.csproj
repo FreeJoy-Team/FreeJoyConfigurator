@@ -66,16 +66,22 @@
     <ManifestKeyFile>FreeJoyConfigurator_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
@@ -149,7 +155,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Led.cs" />
-    <Compile Include="LedView.xaml.cs">
+    <Compile Include="View\TimerSettingsView.xaml.cs">
+      <DependentUpon>TimerSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LedView.xaml.cs">
       <DependentUpon>LedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LedVM.cs" />
@@ -212,7 +221,11 @@
     <Compile Include="View\ShiftRegistersView.xaml.cs">
       <DependentUpon>ShiftRegistersView.xaml</DependentUpon>
     </Compile>
-    <Page Include="LedView.xaml">
+    <Page Include="View\TimerSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,6 +313,7 @@
     </EmbeddedResource>
     <None Include="FreeJoyConfigurator_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -328,7 +342,9 @@
     <Resource Include="Resources\ms-icon-310x310.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\default_config.xml" />
+    <Resource Include="Resources\default_config.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\firmware.bmp" />

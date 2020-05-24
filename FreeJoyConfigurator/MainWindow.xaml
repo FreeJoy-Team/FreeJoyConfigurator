@@ -107,8 +107,9 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="12*"/>
-                        </Grid.RowDefinitions>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="1.5*"/>
+                    </Grid.RowDefinitions>
 
                         <local:ShiftModificatorsView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
 
@@ -116,6 +117,10 @@
                         <GroupBox Header="Physical buttons" Grid.Column="0" Grid.Row="1">
                             <local:PhysicalButtonsView/>
                         </GroupBox>
+
+                    <GroupBox Header="Timer settings" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                        <local:TimerSettingsView/>
+                    </GroupBox>
 
                         <GroupBox Header="Logical buttons" Grid.Column="2" Grid.Row="1">
                             <local:LogicalButtonsView/>

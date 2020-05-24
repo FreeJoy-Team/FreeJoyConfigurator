@@ -20,13 +20,13 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="1" Grid.Column="0" Content="Enter flasher mode" Margin="10,15,10,0"
+            <Button Grid.Row="1" Grid.Column="0" Content="Enter flasher mode" Margin="10,15,10,0" MaxWidth="150"
                                 Command="{Binding FirmwareUpdaterVM.EnterFlasherMode}"
                                 IsEnabled="{Binding IsFlasherVM, Converter={StaticResource InvertBooleanConverter}}"/>
-            <Button Grid.Row="2" Grid.Column="0" Content="Flash firmware" Margin="10,15,10,0"
+        <Button Grid.Row="2" Grid.Column="0" Content="Flash firmware" Margin="10,15,10,0" MaxWidth="150"
                                 Command="{Binding FirmwareUpdaterVM.FlashFirmware}" 
                                 IsEnabled="{Binding IsFlasherVM}"/>
-            <ProgressBar Grid.Row="3" Height="20" Margin="10,10,10,10"
+        <ProgressBar Grid.Row="3" Height="20" Margin="10,10,10,10"
                          Value="{Binding FirmwareUpdaterVM.FirmwareUpdater.UpdatePercent, Mode=OneWay}"
                          Minimum="0" Maximum="100"/>
             <Label Grid.Row="3" Height="30" Margin="10,10,10,10"

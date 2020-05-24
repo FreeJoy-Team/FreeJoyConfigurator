@@ -410,119 +410,115 @@ namespace FreeJoyConfigurator
                     case ButtonSourceType.MatrixButton:
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal)) 
                             LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
-                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Inverted))
-                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Inverted);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Toggle))
-                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.Button_Toggle);
+                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Toggle);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_OnOff))
-                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_OnOff);
+                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.ToggleSwitch_OnOff);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_On))
-                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_On);
+                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_On);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_Off))
-                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.ToggleSwitch_Off);
+                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_Off);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.Pov1_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.Pov1_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.Pov1_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.Pov1_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.Pov1_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.Pov1_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.Pov1_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.Pov1_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Pov2_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.Pov2_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(11, ButtonType.Pov2_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Pov2_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(12, ButtonType.Pov2_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(11, ButtonType.Pov2_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(13, ButtonType.Pov2_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(12, ButtonType.Pov2_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(14, ButtonType.Pov3_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(13, ButtonType.Pov3_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(15, ButtonType.Pov3_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(14, ButtonType.Pov3_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(16, ButtonType.Pov3_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(15, ButtonType.Pov3_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(17, ButtonType.Pov3_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(16, ButtonType.Pov3_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(18, ButtonType.Pov4_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(17, ButtonType.Pov4_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(19, ButtonType.Pov4_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(18, ButtonType.Pov4_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(20, ButtonType.Pov4_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(19, ButtonType.Pov4_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(21, ButtonType.Pov4_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(20, ButtonType.Pov4_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton1))
-                            LogicalButtons[i].AllowedTypes.Insert(22, ButtonType.RadioButton1);
+                            LogicalButtons[i].AllowedTypes.Insert(21, ButtonType.RadioButton1);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton2))
-                            LogicalButtons[i].AllowedTypes.Insert(23, ButtonType.RadioButton2);
+                            LogicalButtons[i].AllowedTypes.Insert(22, ButtonType.RadioButton2);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton3))
-                            LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
+                            LogicalButtons[i].AllowedTypes.Insert(23, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
-                            LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+                            LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton4);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Toggle))
-                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Sequential_Toggle);
+                            LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.Sequential_Toggle);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_A))
-                            LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_A);
+                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Encoder_A);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Encoder_B))
-                            LogicalButtons[i].AllowedTypes.Insert(28, ButtonType.Encoder_B);
+                            LogicalButtons[i].AllowedTypes.Insert(27, ButtonType.Encoder_B);
                         break;
                     
                     case ButtonSourceType.AxisToButtons:
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal))
                             LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
-                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Inverted))
-                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Inverted);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Toggle))
-                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.Button_Toggle);
+                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Toggle);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_OnOff))
-                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_OnOff);
+                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.ToggleSwitch_OnOff);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_On))
-                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_On);
+                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_On);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_Off))
-                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.ToggleSwitch_Off);
+                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_Off);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.Pov1_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.Pov1_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.Pov1_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.Pov1_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.Pov1_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.Pov1_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov1_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.Pov1_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.Pov1_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Pov2_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.Pov2_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(11, ButtonType.Pov2_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Pov2_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(12, ButtonType.Pov2_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(11, ButtonType.Pov2_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov2_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(13, ButtonType.Pov2_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(12, ButtonType.Pov2_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(14, ButtonType.Pov3_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(13, ButtonType.Pov3_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(15, ButtonType.Pov3_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(14, ButtonType.Pov3_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(16, ButtonType.Pov3_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(15, ButtonType.Pov3_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov3_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(17, ButtonType.Pov3_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(16, ButtonType.Pov3_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Down))
-                            LogicalButtons[i].AllowedTypes.Insert(18, ButtonType.Pov4_Down);
+                            LogicalButtons[i].AllowedTypes.Insert(17, ButtonType.Pov4_Down);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Up))
-                            LogicalButtons[i].AllowedTypes.Insert(19, ButtonType.Pov4_Up);
+                            LogicalButtons[i].AllowedTypes.Insert(18, ButtonType.Pov4_Up);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Left))
-                            LogicalButtons[i].AllowedTypes.Insert(20, ButtonType.Pov4_Left);
+                            LogicalButtons[i].AllowedTypes.Insert(19, ButtonType.Pov4_Left);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Pov4_Right))
-                            LogicalButtons[i].AllowedTypes.Insert(21, ButtonType.Pov4_Right);
+                            LogicalButtons[i].AllowedTypes.Insert(20, ButtonType.Pov4_Right);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton1))
-                            LogicalButtons[i].AllowedTypes.Insert(22, ButtonType.RadioButton1);
+                            LogicalButtons[i].AllowedTypes.Insert(21, ButtonType.RadioButton1);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton2))
-                            LogicalButtons[i].AllowedTypes.Insert(23, ButtonType.RadioButton2);
+                            LogicalButtons[i].AllowedTypes.Insert(22, ButtonType.RadioButton2);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton3))
-                            LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton3);
+                            LogicalButtons[i].AllowedTypes.Insert(23, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
-                            LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.RadioButton4);
+                            LogicalButtons[i].AllowedTypes.Insert(24, ButtonType.RadioButton4);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Toggle))
-                            LogicalButtons[i].AllowedTypes.Insert(26, ButtonType.Sequential_Toggle);
+                            LogicalButtons[i].AllowedTypes.Insert(25, ButtonType.Sequential_Toggle);
 
                         if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
                             LogicalButtons[i].Config.Type == ButtonType.Encoder_B)
@@ -537,26 +533,24 @@ namespace FreeJoyConfigurator
                     default:
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Normal))
                             LogicalButtons[i].AllowedTypes.Insert(0, ButtonType.Button_Normal);
-                        if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Inverted))
-                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Inverted);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Button_Toggle))
-                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.Button_Toggle);
+                            LogicalButtons[i].AllowedTypes.Insert(1, ButtonType.Button_Toggle);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_OnOff))
-                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_OnOff);
+                            LogicalButtons[i].AllowedTypes.Insert(2, ButtonType.ToggleSwitch_OnOff);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_On))
-                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_On);
+                            LogicalButtons[i].AllowedTypes.Insert(3, ButtonType.ToggleSwitch_On);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.ToggleSwitch_Off))
-                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.ToggleSwitch_Off);
+                            LogicalButtons[i].AllowedTypes.Insert(4, ButtonType.ToggleSwitch_Off);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton1))
-                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.RadioButton1);
+                            LogicalButtons[i].AllowedTypes.Insert(5, ButtonType.RadioButton1);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton2))
-                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.RadioButton2);
+                            LogicalButtons[i].AllowedTypes.Insert(6, ButtonType.RadioButton2);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton3))
-                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.RadioButton3);
+                            LogicalButtons[i].AllowedTypes.Insert(7, ButtonType.RadioButton3);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.RadioButton4))
-                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.RadioButton4);
+                            LogicalButtons[i].AllowedTypes.Insert(8, ButtonType.RadioButton4);
                         if (!LogicalButtons[i].AllowedTypes.Contains(ButtonType.Sequential_Toggle))
-                            LogicalButtons[i].AllowedTypes.Insert(10, ButtonType.Sequential_Toggle);
+                            LogicalButtons[i].AllowedTypes.Insert(9, ButtonType.Sequential_Toggle);
 
                         if (LogicalButtons[i].Config.Type == ButtonType.Encoder_A ||
                             LogicalButtons[i].Config.Type == ButtonType.Encoder_B ||
