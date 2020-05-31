@@ -57,13 +57,13 @@
                     <GroupBox Header="{Binding Number, Converter={StaticResource AxisTypeConverter}}" BorderThickness="0.5" BorderBrush="LightGray" Height="200">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.2*" />
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.7*" />
                                 <ColumnDefinition Width="0.8*"/>
-                                <ColumnDefinition Width="0.8*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2.0*"/>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="1.8*"/>
 
                             </Grid.ColumnDefinitions>
 
@@ -85,24 +85,25 @@
 
                             <CheckBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
                                   Content="Output enabled" 
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="5,0,0,0"
+                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="35,0,0,0"
                                   IsChecked="{Binding AxisConfig.IsOutEnabled}"/>
 
                             <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
                                   Content="Inverted" 
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,0,0,0"
+                                  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="35,0,0,0"
                                   IsChecked="{Binding AxisConfig.IsInverted}"/>
 
-                            <TextBlock Grid.Column="1"   Grid.Row="2" Text="Channel"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="1"   Grid.Row="2" Text="Channel/Encoder"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"
                                             Width="40" Margin="0,0,0,5"
                                             Value="{Binding AxisConfig.Channel, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="7" Minimum="0"/>
+                                            Maximum="15" Minimum="0"/>
 
                             <TextBlock Grid.Column="0"   Grid.Row="2" Text="I2C address"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <ComboBox Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
                                             HorizontalContentAlignment="Center" MinWidth="80" Margin="0,0,0,5"
                                             SelectedItem="{Binding AxisConfig.I2cAddress}"
+                                            IsEnabled="{Binding AxisConfig.SourceMain, Converter={StaticResource AxisSrcBoolConverter}}"
                                             ItemsSource="{Binding Source={StaticResource AxisAddressTypeFromEnum}}"/>
 
 
@@ -119,32 +120,28 @@
                                       SelectedItem="{Binding AxisConfig.SourceSecondary}"
                                       ItemsSource="{Binding Source={StaticResource AxisTypeFromEnum}}"/>
 
-                            <TextBlock Grid.Column="2" Grid.Row="2" Text="Button ↓"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="2" Grid.Row="2" Text="Button trim ↓"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"
                                             Width="50" Margin="0,0,0,5"
                                             Value="{Binding AxisConfig.DecrementButton, UpdateSourceTrigger=LostFocus}"
-                                            IsEnabled="{Binding AxisConfig.SourceMain, Converter={StaticResource AxisSrcBoolConverter}}"
                                             Maximum="128" Minimum="0"/>
                             
-                            <TextBlock Grid.Column="3" Grid.Row="2" Text="Center"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="3" Grid.Row="2" Text="Reset trimmer"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <xctk:IntegerUpDown Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"
                                             Width="50" Margin="0,0,0,5"
                                             Value="{Binding AxisConfig.CenterButton, UpdateSourceTrigger=LostFocus}"
-                                            IsEnabled="{Binding AxisConfig.SourceMain, Converter={StaticResource AxisSrcBoolConverter}}"
                                             Maximum="128" Minimum="0"/>
 
-                            <TextBlock Grid.Column="4" Grid.Row="2" Text="Button ↑"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="4" Grid.Row="2" Text="Button trim ↑"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <xctk:IntegerUpDown Grid.Column="4" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"
                                             Width="50" Margin="0,0,0,5"
                                             Value="{Binding AxisConfig.IncrementButton, UpdateSourceTrigger=LostFocus}"
-                                            IsEnabled="{Binding AxisConfig.SourceMain, Converter={StaticResource AxisSrcBoolConverter}}"
                                             Maximum="128" Minimum="0"/>
 
-                            <TextBlock Grid.Column="5" Grid.Row="2" Text="Step (1-255)"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="5" Grid.Row="2" Text="Trim step divider"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             <xctk:IntegerUpDown Grid.Column="5" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"
                                             Width="50" Margin="0,0,0,5"
-                                            Value="{Binding AxisConfig.Step, UpdateSourceTrigger=LostFocus}"
-                                            IsEnabled="{Binding AxisConfig.SourceMain, Converter={StaticResource AxisSrcBoolConverter}}"
+                                            Value="{Binding AxisConfig.Divider, UpdateSourceTrigger=LostFocus}"
                                             Maximum="255" Minimum="1"/>
                             
 

@@ -128,7 +128,6 @@ namespace FreeJoyConfigurator
         public Button(int number)
         {
             _allowedTypes = new ObservableCollection<ButtonType>();
-            _allowedTypes.Add(ButtonType.Button_Inverted);
             _allowedTypes.Add(ButtonType.Button_Normal);
 
             _sourceType = ButtonSourceType.NoSource;
@@ -144,7 +143,6 @@ namespace FreeJoyConfigurator
         public Button(int number, int physicalNumber)
         {
             _allowedTypes = new ObservableCollection<ButtonType>();
-            _allowedTypes.Add(ButtonType.Button_Inverted);
             _allowedTypes.Add(ButtonType.Button_Normal);
 
             _sourceType = ButtonSourceType.NoSource;
@@ -226,7 +224,8 @@ namespace FreeJoyConfigurator
             _rawValue = 0;
 
             _allowedSources = new ObservableCollection<AxisSourceType>();
-            _allowedSources.Add(AxisSourceType.Buttons);
+            _allowedSources.Add(AxisSourceType.None);
+            _allowedSources.Add(AxisSourceType.Encoder);
             _maxResolution = 16;
             
 
