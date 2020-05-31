@@ -224,7 +224,7 @@ namespace FreeJoyConfigurator
             _rawValue = 0;
 
             _allowedSources = new ObservableCollection<AxisSourceType>();
-            _allowedSources.Add(AxisSourceType.Buttons);
+            _allowedSources.Add(AxisSourceType.None);
             _maxResolution = 16;
             
 

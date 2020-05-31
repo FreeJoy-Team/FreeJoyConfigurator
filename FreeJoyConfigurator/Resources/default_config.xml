@@ -103,7 +103,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -171,7 +171,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -239,7 +239,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -307,7 +307,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -369,13 +369,13 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>Buttons</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -437,13 +437,13 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>Buttons</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -505,13 +505,13 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>Buttons</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -573,13 +573,13 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>Buttons</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Step>1</Step>
+    <Divider>1</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <ShiftModificator_Config>

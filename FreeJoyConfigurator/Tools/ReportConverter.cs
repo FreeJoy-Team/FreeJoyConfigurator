@@ -112,7 +112,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].DecrementButton = (sbyte)(hr.Data[23] + 1);
                 config.AxisConfig[0].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[0].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[0].Step = hr.Data[26];
+                config.AxisConfig[0].Divider = hr.Data[26];
                 config.AxisConfig[0].I2cAddress = (AxisAddressType) hr.Data[27];
 
                 config.AxisConfig[1] = new AxisConfig();
@@ -137,7 +137,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].DecrementButton = (sbyte)(hr.Data[53] + 1);
                 config.AxisConfig[1].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[1].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[1].Step = hr.Data[56];
+                config.AxisConfig[1].Divider = hr.Data[56];
                 config.AxisConfig[1].I2cAddress = (AxisAddressType) hr.Data[57];
 
             }
@@ -165,7 +165,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].DecrementButton = (sbyte)(hr.Data[23] + 1);
                 config.AxisConfig[2].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[2].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[2].Step = hr.Data[26];
+                config.AxisConfig[2].Divider = hr.Data[26];
                 config.AxisConfig[2].I2cAddress = (AxisAddressType)hr.Data[27];
 
                 config.AxisConfig[3] = new AxisConfig();
@@ -190,7 +190,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].DecrementButton = (sbyte)(hr.Data[53] + 1);
                 config.AxisConfig[3].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[3].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[3].Step = hr.Data[56];
+                config.AxisConfig[3].Divider = hr.Data[56];
                 config.AxisConfig[3].I2cAddress = (AxisAddressType)hr.Data[57];
             }
             else if (hr.Data[0] == 4)
@@ -217,7 +217,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].DecrementButton = (sbyte)(hr.Data[23] + 1);
                 config.AxisConfig[4].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[4].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[4].Step = hr.Data[26];
+                config.AxisConfig[4].Divider = hr.Data[26];
                 config.AxisConfig[4].I2cAddress = (AxisAddressType)hr.Data[27];
 
                 config.AxisConfig[5] = new AxisConfig();
@@ -242,7 +242,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].DecrementButton = (sbyte)(hr.Data[53] + 1);
                 config.AxisConfig[5].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[5].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[5].Step = hr.Data[56];
+                config.AxisConfig[5].Divider = hr.Data[56];
                 config.AxisConfig[5].I2cAddress = (AxisAddressType)hr.Data[57];
             }
             else if (hr.Data[0] == 5)
@@ -269,7 +269,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].DecrementButton = (sbyte)(hr.Data[23] + 1);
                 config.AxisConfig[6].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[6].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[6].Step = hr.Data[26];
+                config.AxisConfig[6].Divider = hr.Data[26];
                 config.AxisConfig[6].I2cAddress = (AxisAddressType)hr.Data[27];
 
                 config.AxisConfig[7] = new AxisConfig();
@@ -294,7 +294,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].DecrementButton = (sbyte)(hr.Data[53] + 1);
                 config.AxisConfig[7].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[7].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[7].Step = hr.Data[56];
+                config.AxisConfig[7].Divider = hr.Data[56];
                 config.AxisConfig[7].I2cAddress = (AxisAddressType)hr.Data[57];
 
             }
@@ -559,7 +559,7 @@ namespace FreeJoyConfigurator
             buffer[24] = (byte)(config.AxisConfig[0].DecrementButton - 1);
             buffer[25] = (byte)(config.AxisConfig[0].CenterButton - 1);
             buffer[26] = (byte)(config.AxisConfig[0].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[0].Step);
+            buffer[27] = (byte)(config.AxisConfig[0].Divider);
             buffer[28] = (byte)(config.AxisConfig[0].I2cAddress);
 
             buffer[32] = (byte)(config.AxisConfig[1].CalibMin & 0xFF);
@@ -586,7 +586,7 @@ namespace FreeJoyConfigurator
             buffer[54] = (byte)(config.AxisConfig[1].DecrementButton - 1);
             buffer[55] = (byte)(config.AxisConfig[1].CenterButton - 1);
             buffer[56] = (byte)(config.AxisConfig[1].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[1].Step);
+            buffer[57] = (byte)(config.AxisConfig[1].Divider);
             buffer[58] = (byte)(config.AxisConfig[1].I2cAddress);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
@@ -618,7 +618,7 @@ namespace FreeJoyConfigurator
             buffer[24] = (byte)(config.AxisConfig[2].DecrementButton - 1);
             buffer[25] = (byte)(config.AxisConfig[2].CenterButton - 1);
             buffer[26] = (byte)(config.AxisConfig[2].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[2].Step);
+            buffer[27] = (byte)(config.AxisConfig[2].Divider);
             buffer[28] = (byte)(config.AxisConfig[2].I2cAddress);
 
             buffer[32] = (byte)(config.AxisConfig[3].CalibMin & 0xFF);
@@ -645,7 +645,7 @@ namespace FreeJoyConfigurator
             buffer[54] = (byte)(config.AxisConfig[3].DecrementButton - 1);
             buffer[55] = (byte)(config.AxisConfig[3].CenterButton - 1);
             buffer[56] = (byte)(config.AxisConfig[3].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[3].Step);
+            buffer[57] = (byte)(config.AxisConfig[3].Divider);
             buffer[58] = (byte)(config.AxisConfig[3].I2cAddress);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
@@ -677,7 +677,7 @@ namespace FreeJoyConfigurator
             buffer[24] = (byte)(config.AxisConfig[4].DecrementButton - 1);
             buffer[25] = (byte)(config.AxisConfig[4].CenterButton - 1);
             buffer[26] = (byte)(config.AxisConfig[4].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[4].Step);
+            buffer[27] = (byte)(config.AxisConfig[4].Divider);
             buffer[28] = (byte)(config.AxisConfig[4].I2cAddress);
 
             buffer[32] = (byte)(config.AxisConfig[5].CalibMin & 0xFF);
@@ -704,7 +704,7 @@ namespace FreeJoyConfigurator
             buffer[54] = (byte)(config.AxisConfig[5].DecrementButton - 1);
             buffer[55] = (byte)(config.AxisConfig[5].CenterButton - 1);
             buffer[56] = (byte)(config.AxisConfig[5].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[5].Step);
+            buffer[57] = (byte)(config.AxisConfig[5].Divider);
             buffer[58] = (byte)(config.AxisConfig[5].I2cAddress);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
@@ -736,7 +736,7 @@ namespace FreeJoyConfigurator
             buffer[24] = (byte)(config.AxisConfig[6].DecrementButton - 1);
             buffer[25] = (byte)(config.AxisConfig[6].CenterButton - 1);
             buffer[26] = (byte)(config.AxisConfig[6].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[6].Step);
+            buffer[27] = (byte)(config.AxisConfig[6].Divider);
             buffer[28] = (byte)(config.AxisConfig[6].I2cAddress);
 
             buffer[32] = (byte)(config.AxisConfig[7].CalibMin & 0xFF);
@@ -763,7 +763,7 @@ namespace FreeJoyConfigurator
             buffer[54] = (byte)(config.AxisConfig[7].DecrementButton - 1);
             buffer[55] = (byte)(config.AxisConfig[7].CenterButton - 1);
             buffer[56] = (byte)(config.AxisConfig[7].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[7].Step);
+            buffer[57] = (byte)(config.AxisConfig[7].Divider);
             buffer[58] = (byte)(config.AxisConfig[7].I2cAddress);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 

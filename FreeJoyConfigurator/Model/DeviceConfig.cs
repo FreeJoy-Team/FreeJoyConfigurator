@@ -18,7 +18,7 @@ namespace FreeJoyConfigurator
     public enum AxisSourceType : sbyte
     {
         I2C = -2,
-        Buttons = -1,
+        None = -1,
         A0 = 0,
         A1,
         A2,
@@ -143,7 +143,7 @@ namespace FreeJoyConfigurator
         private sbyte _incrementButton;
         private sbyte _decrementButton;
         private sbyte _centerButton;
-        private byte _step;
+        private byte _divider;
 
         private bool _isCalibCenterUnlocked;
 
@@ -288,10 +288,10 @@ namespace FreeJoyConfigurator
             get { return _centerButton; }
             set { SetProperty(ref _centerButton, value); }
         }
-        public byte Step
+        public byte Divider
         {
-            get { return _step; }
-            set { SetProperty(ref _step, value); }
+            get { return _divider; }
+            set { SetProperty(ref _divider, value); }
         }
 
 
@@ -318,14 +318,14 @@ namespace FreeJoyConfigurator
             _offsetAngle = 0;
             _isOutEnabled = true;
 
-            _sourceMain = AxisSourceType.Buttons;
+            _sourceMain = AxisSourceType.None;
             _sourceSecondary = AxisType.X;
             _function = AxisFunction.None;
 
             _decrementButton = 0;
             _incrementButton = 0;
             _centerButton = 0;
-            _step = 0;
+            _divider = 255;
 
             _resolution = 16;
             _deadband = 0;

@@ -96,7 +96,7 @@ namespace FreeJoyConfigurator
                 {
                     foreach (var axis in Axes)
                     {
-                        if (axis.AxisConfig.SourceMain == (AxisSourceType)i) axis.AxisConfig.SourceMain = AxisSourceType.Buttons;
+                        if (axis.AxisConfig.SourceMain == (AxisSourceType)i) axis.AxisConfig.SourceMain = AxisSourceType.None;
                         axis.AllowedSources.Remove((AxisSourceType)i);
                         //
                     }
@@ -118,7 +118,7 @@ namespace FreeJoyConfigurator
             {
                 foreach (var axis in Axes)
                 {
-                    if (axis.AxisConfig.SourceMain == AxisSourceType.I2C) axis.AxisConfig.SourceMain = AxisSourceType.Buttons;
+                    if (axis.AxisConfig.SourceMain == AxisSourceType.I2C) axis.AxisConfig.SourceMain = AxisSourceType.None;
                     if (axis.AllowedSources.Contains(AxisSourceType.I2C)) axis.AllowedSources.Remove(AxisSourceType.I2C);
                 }
             }
