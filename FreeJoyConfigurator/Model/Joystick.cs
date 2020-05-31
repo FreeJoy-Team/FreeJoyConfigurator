@@ -225,6 +225,7 @@ namespace FreeJoyConfigurator
 
             _allowedSources = new ObservableCollection<AxisSourceType>();
             _allowedSources.Add(AxisSourceType.None);
+            _allowedSources.Add(AxisSourceType.Encoder);
             _maxResolution = 16;
             
 

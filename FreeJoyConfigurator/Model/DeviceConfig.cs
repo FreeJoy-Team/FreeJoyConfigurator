@@ -17,6 +17,7 @@ namespace FreeJoyConfigurator
 
     public enum AxisSourceType : sbyte
     {
+        Encoder = -3,
         I2C = -2,
         None = -1,
         A0 = 0,
@@ -143,7 +144,7 @@ namespace FreeJoyConfigurator
         private sbyte _incrementButton;
         private sbyte _decrementButton;
         private sbyte _centerButton;
-        private byte _divider;
+        private ushort _divider;
 
         private bool _isCalibCenterUnlocked;
 
@@ -288,7 +289,7 @@ namespace FreeJoyConfigurator
             get { return _centerButton; }
             set { SetProperty(ref _centerButton, value); }
         }
-        public byte Divider
+        public ushort Divider
         {
             get { return _divider; }
             set { SetProperty(ref _divider, value); }
