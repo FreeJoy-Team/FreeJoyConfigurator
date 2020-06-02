@@ -113,7 +113,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CenterButton = (sbyte)(hr.Data[24] + 1);
                 config.AxisConfig[0].IncrementButton = (sbyte)(hr.Data[25] + 1);
                 config.AxisConfig[0].Divider = hr.Data[26];
-                config.AxisConfig[0].I2cAddress = (AxisAddressType) hr.Data[27];
+                config.AxisConfig[0].I2cAddress = (AxisAddressType)hr.Data[27];
 
                 config.AxisConfig[1] = new AxisConfig();
                 config.AxisConfig[1].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -138,7 +138,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].CenterButton = (sbyte)(hr.Data[54] + 1);
                 config.AxisConfig[1].IncrementButton = (sbyte)(hr.Data[55] + 1);
                 config.AxisConfig[1].Divider = hr.Data[56];
-                config.AxisConfig[1].I2cAddress = (AxisAddressType) hr.Data[57];
+                config.AxisConfig[1].I2cAddress = (AxisAddressType)hr.Data[57];
 
             }
             else if (hr.Data[0] == 3)
@@ -484,7 +484,6 @@ namespace FreeJoyConfigurator
                 for (int i = 0; i < 5; i++)
                 {
                     config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[47 + i] + 1);
-                    //config.ShiftModificatorConfig[i].Mode = (ShiftMode)hr.Data[33 + i * 2];
                 }
 
                 config.Vid = (ushort)((ushort)(hr.Data[53] << 8) | (ushort)hr.Data[52]);
@@ -503,6 +502,15 @@ namespace FreeJoyConfigurator
                 {
                     config.LedConfig[i].InputNumber = (sbyte)(hr.Data[2 * i + 11] + 1);
                     config.LedConfig[i].Type = (LedType)(hr.Data[2 * i + 12] & 0x07);
+                }
+
+                
+            }
+            else if (hr.Data[0] == 16)
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    config.EncodersConfig[i].Type = (EncoderType)(hr.Data[i+1]);
                 }
             }
         }
@@ -992,6 +1000,18 @@ namespace FreeJoyConfigurator
             {
                 buffer[2 * i + 12] = (byte)(config.LedConfig[i].InputNumber - 1);
                 buffer[2 * i + 13] = (byte)config.LedConfig[i].Type;
+            }
+
+            hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
+
+            // Report 16
+            buffer.Initialize();
+            buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
+            buffer[1] = 0x10;
+
+            for (int i = 0; i < 16; i++)
+            {
+                buffer[2 + i] = (byte)config.EncodersConfig[i].Type;
             }
 
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));

@@ -68,6 +68,7 @@ namespace FreeJoyConfigurator
         public ButtonsVM ButtonsVM { get; private set; }
         public AxesToButtonsVM AxesToButtonsVM { get; private set; }
         public ShiftRegistersVM ShiftRegistersVM { get; private set; }
+        public EncodersVM EncodersVM { get; private set; }
         public LedVM LedVM { get; private set; }
         public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
@@ -176,8 +177,10 @@ namespace FreeJoyConfigurator
             ButtonsVM.ConfigChanged += ButtonsVM_ConfigChanged;
             AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
             AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
-            ShiftRegistersVM = new ShiftRegistersVM(_joystick, Config);
+            ShiftRegistersVM = new ShiftRegistersVM(Config);
             ShiftRegistersVM.ConfigChanged += ShiftRegistersVM_ConfigChanged;
+            EncodersVM = new EncodersVM(Config);
+            EncodersVM.ConfigChanged += EncodersVM_ConfigChanged;
             LedVM = new LedVM(_joystick, Config);
             LedVM.ConfigChanged += LedVM_ConfigChanged;
 
@@ -285,6 +288,7 @@ namespace FreeJoyConfigurator
                 AxesVM.Update(Config);
                 AxesToButtonsVM.Update(Config);
                 ShiftRegistersVM.Update(Config);
+                EncodersVM.Update(Config);
             }
         }
 
@@ -325,6 +329,7 @@ namespace FreeJoyConfigurator
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
             ShiftRegistersVM.Update(Config);
+            EncodersVM.Update(Config);
         }
 
         private void PinConfigChanged()
@@ -333,12 +338,13 @@ namespace FreeJoyConfigurator
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
             ShiftRegistersVM.Update(Config);
+            EncodersVM.Update(Config);
             LedVM.Update(Config);
         }
 
         private void ButtonsVM_ConfigChanged()
         {
-
+            EncodersVM.Update(Config);
         }
 
         private void AxesToButtonsVM_ConfigChanged()
@@ -352,6 +358,10 @@ namespace FreeJoyConfigurator
             ButtonsVM.Update(Config);
         }
 
+        private void EncodersVM_ConfigChanged()
+        {
+            
+        }
 
         private void LedVM_ConfigChanged()
         {

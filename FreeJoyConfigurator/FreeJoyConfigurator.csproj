@@ -154,6 +154,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Tools\EncoderInputConverter.cs" />
+    <Compile Include="EncodersVM.cs" />
+    <Compile Include="Model\Encoders.cs" />
+    <Compile Include="View\EncodersView.xaml.cs">
+      <DependentUpon>EncodersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Led.cs" />
     <Compile Include="View\TimerSettingsView.xaml.cs">
       <DependentUpon>TimerSettingsView.xaml</DependentUpon>
@@ -221,6 +227,10 @@
     <Compile Include="View\ShiftRegistersView.xaml.cs">
       <DependentUpon>ShiftRegistersView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\EncodersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\TimerSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

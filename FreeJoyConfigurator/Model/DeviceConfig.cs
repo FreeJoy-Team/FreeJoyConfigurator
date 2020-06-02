@@ -85,7 +85,6 @@ namespace FreeJoyConfigurator
         C13,
         C14,
         C15,
-
     };
 
     public enum AxisType : byte
@@ -379,9 +378,9 @@ namespace FreeJoyConfigurator
         Button_Column,
 
         Axis_Analog,
-//        AxisToButtons,
+        Fast_Encoder,
 
-        SPI_SCK = 7,
+        SPI_SCK,
         SPI_MOSI,
         SPI_MISO,
 
@@ -405,6 +404,7 @@ namespace FreeJoyConfigurator
 
         I2C_SCL,
         I2C_SDA,
+       
     };
 
 
@@ -578,6 +578,24 @@ namespace FreeJoyConfigurator
         }
     }
 
+    public enum EncoderType
+    {
+        Encoder_1x = 0,
+        Encoder_2x,
+        Encoder_4x,
+    }
+
+    public class EncoderConfig : BindableBase
+    {
+        private EncoderType _type;
+
+        public EncoderType Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
+    }
+
     public class AxisToButtonsConfig : BindableBase
     {
         private ObservableCollection<byte> _points;
@@ -721,6 +739,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
         [XmlElement("ShitRegisters_Config")]
         public ObservableCollection<ShiftRegisterConfig> ShiftRegistersConfig { get; set; }
+        [XmlElement("EncodersConfig")]
+        public ObservableCollection<EncoderConfig> EncodersConfig { get; set; }
         [XmlElement("DynamicConfig")]
         public bool IsDynamicConfig { get; set; }
         [XmlElement("Vid")]
@@ -763,6 +783,9 @@ namespace FreeJoyConfigurator
 
             ShiftRegistersConfig = new ObservableCollection<ShiftRegisterConfig>();
             for (int i = 0; i < 4; i++) ShiftRegistersConfig.Add(new ShiftRegisterConfig());
+
+            EncodersConfig = new ObservableCollection<EncoderConfig>();
+            for (int i = 0; i < 16; i++) EncodersConfig.Add(new EncoderConfig());
 
             LedPwmConfig = new LedPwmConfig();
 

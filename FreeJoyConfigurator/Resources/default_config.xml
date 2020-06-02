@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>5632</Firmware_Version>
-  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
+  <Firmware_Version>5634</Firmware_Version>
+  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
   <Button_Timer1_Time>50</Button_Timer1_Time>
@@ -103,7 +103,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -171,7 +171,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -239,7 +239,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -307,7 +307,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -375,7 +375,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -443,7 +443,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -511,7 +511,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -579,7 +579,7 @@
     <IncrementButton>0</IncrementButton>
     <DecrementButton>0</DecrementButton>
     <CenterButton>0</CenterButton>
-    <Divider>1</Divider>
+    <Divider>255</Divider>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <ShiftModificator_Config>
@@ -599,899 +599,1283 @@
   </ShiftModificator_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <Button_Config>
     <Type>Button_Normal</Type>
+    <IsInverted>false</IsInverted>
+    <IsOnOff>false</IsOnOff>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
+    <ButtonToggleNumber>No</ButtonToggleNumber>
   </Button_Config>
   <AxisToButtons_Config>
     <Points>
