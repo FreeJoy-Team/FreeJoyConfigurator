@@ -106,6 +106,7 @@ namespace FreeJoyConfigurator
         Plus_Relative,
         Minus_Absolute,
         Minus_Relative,
+        Trimmer,
     };
 
     public enum AxisAddressType : byte
@@ -464,7 +465,8 @@ namespace FreeJoyConfigurator
         private TimerType _buttonDelayNumber;
         private TimerType _buttonToggleNumber;
         private bool _isInverted;
-        private bool _isOnOff;
+        private bool _isDisabled;
+
         private bool _isEnabled;
 
 
@@ -480,10 +482,10 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _isInverted, value); }
         }
 
-        public bool IsOnOff
+        public bool IsDisabled
         {
-            get { return _isOnOff; }
-            set { SetProperty(ref _isOnOff, value); }
+            get { return _isDisabled; }
+            set { SetProperty(ref _isDisabled, value); }
         }
 
         public bool IsEnabled
@@ -525,7 +527,7 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _isInverted = false;
-            _isOnOff = false;
+            _isDisabled = false;
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
             _buttonDelayNumber = TimerType.No;
@@ -539,7 +541,7 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _isInverted = false;
-            _isOnOff = false;
+            _isDisabled = false;
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
             _buttonDelayNumber = TimerType.No;

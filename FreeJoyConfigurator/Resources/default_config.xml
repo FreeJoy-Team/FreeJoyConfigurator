@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Firmware_Version>5634</Firmware_Version>
-  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
+  <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
   <Button_Timer1_Time>50</Button_Timer1_Time>
   <Button_Timer2_Time>200</Button_Timer2_Time>
   <Button_Timer3_Time>300</Button_Timer3_Time>
-  <Exchange_Period>5</Exchange_Period>
+  <Exchange_Period>2</Exchange_Period>
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
   <Pin_Config>Axis_Analog</Pin_Config>
@@ -31,10 +31,10 @@
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
+  <Pin_Config>Button_Gnd</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -314,7 +314,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -382,7 +382,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -450,7 +450,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -518,7 +518,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -600,9 +600,9 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsDisabled>false</IsDisabled>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>1</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -610,9 +610,9 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsDisabled>false</IsDisabled>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>2</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -620,9 +620,9 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsDisabled>false</IsDisabled>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>3</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -630,9 +630,9 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsDisabled>false</IsDisabled>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>4</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -640,7 +640,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -650,7 +650,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -660,7 +660,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -670,7 +670,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -680,7 +680,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -690,7 +690,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -700,7 +700,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -710,7 +710,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -720,7 +720,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -730,7 +730,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -740,7 +740,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -750,7 +750,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -760,7 +760,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -770,7 +770,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -780,7 +780,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -790,7 +790,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -800,7 +800,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -810,7 +810,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -820,7 +820,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -830,7 +830,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -840,7 +840,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -850,7 +850,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -860,7 +860,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -870,7 +870,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -880,7 +880,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -890,7 +890,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -900,7 +900,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -910,7 +910,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -920,7 +920,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -930,7 +930,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -940,7 +940,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -950,7 +950,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -960,7 +960,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -970,7 +970,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -980,7 +980,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -990,7 +990,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1000,7 +1000,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1010,7 +1010,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1020,7 +1020,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1030,7 +1030,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1040,7 +1040,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1050,7 +1050,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1060,7 +1060,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1070,7 +1070,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1080,7 +1080,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1090,7 +1090,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1100,7 +1100,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1110,7 +1110,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1120,7 +1120,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1130,7 +1130,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1140,7 +1140,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1150,7 +1150,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1160,7 +1160,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1170,7 +1170,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1180,7 +1180,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1190,7 +1190,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1200,7 +1200,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1210,7 +1210,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1220,7 +1220,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1230,7 +1230,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1240,7 +1240,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1250,7 +1250,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1260,7 +1260,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1270,7 +1270,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1280,7 +1280,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1290,7 +1290,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1300,7 +1300,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1310,7 +1310,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1320,7 +1320,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1330,7 +1330,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1340,7 +1340,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1350,7 +1350,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1360,7 +1360,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1370,7 +1370,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1380,7 +1380,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1390,7 +1390,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1400,7 +1400,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1410,7 +1410,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1420,7 +1420,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1430,7 +1430,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1440,7 +1440,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1450,7 +1450,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1460,7 +1460,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1470,7 +1470,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1480,7 +1480,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1490,7 +1490,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1500,7 +1500,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1510,7 +1510,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1520,7 +1520,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1530,7 +1530,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1540,7 +1540,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1550,7 +1550,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1560,7 +1560,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1570,7 +1570,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1580,7 +1580,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1590,7 +1590,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1600,7 +1600,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1610,7 +1610,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1620,7 +1620,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1630,7 +1630,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1640,7 +1640,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1650,7 +1650,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1660,7 +1660,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1670,7 +1670,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1680,7 +1680,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1690,7 +1690,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1700,7 +1700,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1710,7 +1710,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1720,7 +1720,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1730,7 +1730,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1740,7 +1740,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1750,7 +1750,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1760,7 +1760,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1770,7 +1770,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1780,7 +1780,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1790,7 +1790,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1800,7 +1800,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1810,7 +1810,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1820,7 +1820,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1830,7 +1830,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1840,7 +1840,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1850,7 +1850,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1860,7 +1860,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -1870,7 +1870,7 @@
   <Button_Config>
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
-    <IsOnOff>false</IsOnOff>
+    <IsDisabled>false</IsDisabled>
     <IsEnabled>false</IsEnabled>
     <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
@@ -2045,11 +2045,62 @@
     <Type>HC165_PullDown</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
+  <EncodersConfig>
+    <Type>Encoder_2x</Type>
+  </EncodersConfig>
   <DynamicConfig>false</DynamicConfig>
   <Vid>1155</Vid>
   <Pid>22352</Pid>
   <LedPwmConfig>
     <DutyCycle>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>

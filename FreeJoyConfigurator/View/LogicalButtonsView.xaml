@@ -10,7 +10,7 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="510" d:DesignWidth="562">
+             d:DesignHeight="510" d:DesignWidth="560" MinWidth="560">
 
     <UserControl.Resources>
         <ObjectDataProvider x:Key="ButtonTypeFromEnum" MethodName="GetValues"
@@ -41,25 +41,27 @@
         <StackPanel Orientation="Vertical">
         <Grid>
             <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
                     <ColumnDefinition Width="0.4*"/>
-                    <ColumnDefinition Width="0.45*"/>
+                    <ColumnDefinition Width="0.3*"/>
                     <ColumnDefinition Width="0.3*"/>
                     <ColumnDefinition Width="1.4*"/>
-                    <ColumnDefinition Width="0.73*"/>
-                    <ColumnDefinition Width="0.73*"/>
-                    <ColumnDefinition Width="0.73*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.6*"/>
                 </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Logical" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="0" Text="№" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             <TextBlock Grid.Column="1" Text="Physical" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <TextBlock Grid.Column="2" Text="Invert" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <TextBlock Grid.Column="3" Text="Function" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <TextBlock Grid.Column="4" Text="Shift" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <TextBlock Grid.Column="5" Text="Delay timer" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <TextBlock Grid.Column="6" Text="Press timer" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="2" Text="Disable" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="3" Text="Invert" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="4" Text="Function" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="5" Text="Shift" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="6" Text="Delay timer" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="7" Text="Press timer" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             </Grid>
 
             <ItemsControl ItemsSource="{Binding Path=ButtonsVM.LogicalButtons}"
@@ -74,13 +76,14 @@
                     <Border BorderBrush="LightGray" BorderThickness="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition Width="0.45*"/>
-                                <ColumnDefinition Width="0.3*"/>
-                                <ColumnDefinition Width="1.4*"/>
-                                <ColumnDefinition Width="0.73*"/>
-                                <ColumnDefinition Width="0.73*"/>
-                                    <ColumnDefinition Width="0.73*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="1.2*"/>
+                                    <ColumnDefinition Width="0.6*"/>
+                                    <ColumnDefinition Width="0.6*"/>
+                                    <ColumnDefinition Width="0.6*"/>
                                 </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0"/>
@@ -109,30 +112,35 @@
 
                                 <CheckBox Grid.Column="2" Grid.Row="1" HorizontalContentAlignment="Center" 
                                           VerticalAlignment="Center" MaxWidth="16"
+                                          IsChecked="{Binding Config.IsDisabled}"
+                                          IsEnabled="{Binding Config.IsEnabled}"/>
+
+                                <CheckBox Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center" 
+                                          VerticalAlignment="Center" MaxWidth="16"
                                           IsChecked="{Binding Config.IsInverted}"
                                           IsEnabled="{Binding Config.IsEnabled}"/>
 
-                                <ComboBox Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                <ComboBox Grid.Column="4" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                       ItemsSource="{Binding Path=AllowedTypes, IsAsync=True}"
                                       SelectedItem="{Binding Path=Config.Type, IsAsync=True}"
                                       IsEnabled="{Binding Config.IsEnabled, IsAsync=True}" Padding="0,0,-12,0">
                                 </ComboBox>
 
-                                <ComboBox Grid.Column="4" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                <ComboBox Grid.Column="5" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                       ItemsSource="{Binding Source={StaticResource ShiftTypeFromEnum},IsAsync=True}"
                                       SelectedItem="{Binding Path=Config.ShiftModificator}"
                                       IsEnabled="{Binding Config.IsEnabled}" Padding="0,0,-12,0">
                                        
                                 </ComboBox>
 
-                                <ComboBox Grid.Column="5" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                <ComboBox Grid.Column="6" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                       ItemsSource="{Binding Source={StaticResource TimerTypeFromEnum},IsAsync=True}"
                                       SelectedItem="{Binding Path=Config.ButtonDelayNumber}"
                                       IsEnabled="{Binding Config.IsEnabled}" Padding="0,0,-12,0">
 
                                 </ComboBox>
 
-                                <ComboBox Grid.Column="6" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                <ComboBox Grid.Column="7" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                       ItemsSource="{Binding Source={StaticResource TimerTypeFromEnum},IsAsync=True}"
                                       SelectedItem="{Binding Path=Config.ButtonToggleNumber}"
                                       IsEnabled="{Binding Config.IsEnabled}" Padding="0,0,-12,0">
