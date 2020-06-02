@@ -106,7 +106,6 @@ namespace FreeJoyConfigurator
         Plus_Relative,
         Minus_Absolute,
         Minus_Relative,
-        Trimmer,
     };
 
     public enum AxisAddressType : byte
