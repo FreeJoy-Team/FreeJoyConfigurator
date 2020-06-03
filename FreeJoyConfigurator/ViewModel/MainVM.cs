@@ -25,6 +25,8 @@ namespace FreeJoyConfigurator
 {
     public class MainVM : BindableBase
     {
+        const string version = "1.6.0b0";
+
         private Joystick _joystick;
         private DeviceConfig _config;
         private DeviceConfigExchangerVM _configExchanger;
@@ -113,19 +115,10 @@ namespace FreeJoyConfigurator
         }
 
         public string Version
-        {
+        {            
             get
-            {
-                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
-                {
-                    Version ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                    return string.Format("FreeJoy Configurator v{0}.{1}.{2}b{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
-                }
-                else
-                {
-                    var ver = Assembly.GetExecutingAssembly().GetName().Version;
-                    return string.Format("FreeJoy Configurator v{0}.{1}.{2}b{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
-                }
+            {          
+                return "FreeJoy Configurator v" + version;
             }
         }
         public string ActivityLogVM { get; private set; }

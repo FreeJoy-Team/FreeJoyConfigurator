@@ -106,7 +106,25 @@ namespace FreeJoyConfigurator
         Plus_Relative,
         Minus_Absolute,
         Minus_Relative,
+        Equal,
     };
+
+    public enum AxisButtonFullType : byte
+    {
+        Function_Enable = 0,
+        //Calibration,
+        Center,
+        Reset,
+        Down,
+        Up,
+    }
+    public enum AxisButtonCutType : byte
+    {
+        Function_Enable = 0,
+        //Calibration,
+        Center,
+        Reset,
+    }
 
     public enum AxisAddressType : byte
     {
@@ -140,10 +158,16 @@ namespace FreeJoyConfigurator
         private AxisType _sourceSecondary;
         private AxisFunction _function;
 
-        private sbyte _incrementButton;
-        private sbyte _decrementButton;
-        private sbyte _centerButton;
+        private sbyte _button1;
+        private sbyte _button2;
+        private sbyte _button3;
         private ushort _divider;
+
+        private AxisButtonFullType _button1_type;
+        private AxisButtonCutType _button2_type;
+        private AxisButtonFullType _button3_type;
+
+        private byte _prescaler;
 
         private bool _isCalibCenterUnlocked;
 
@@ -273,25 +297,47 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _function, value); }
         }
 
-        public sbyte IncrementButton
+
+        public sbyte Button1
         {
-            get { return _incrementButton; }
-            set { SetProperty(ref _incrementButton, value); }
+            get { return _button1; }
+            set { SetProperty(ref _button1, value); }
         }
-        public sbyte DecrementButton
+        public sbyte Button2
         {
-            get { return _decrementButton; }
-            set { SetProperty(ref _decrementButton, value); }
+            get { return _button2; }
+            set { SetProperty(ref _button2, value); }
         }
-        public sbyte CenterButton
+        public sbyte Button3
         {
-            get { return _centerButton; }
-            set { SetProperty(ref _centerButton, value); }
+            get { return _button3; }
+            set { SetProperty(ref _button3, value); }
         }
         public ushort Divider
         {
             get { return _divider; }
             set { SetProperty(ref _divider, value); }
+        }
+        public AxisButtonFullType Button1_Type
+        {
+            get { return _button1_type; }
+            set { SetProperty(ref _button1_type, value); }
+        }
+        public AxisButtonCutType Button2_Type
+        {
+            get { return _button2_type; }
+            set { SetProperty(ref _button2_type, value); }
+        }
+        public AxisButtonFullType Button3_Type
+        {
+            get { return _button3_type; }
+            set { SetProperty(ref _button3_type, value); }
+        }
+
+        public byte Prescaler
+        {
+            get { return _prescaler; }
+            set { SetProperty(ref _prescaler, value); }
         }
 
 
@@ -322,10 +368,16 @@ namespace FreeJoyConfigurator
             _sourceSecondary = AxisType.X;
             _function = AxisFunction.None;
 
-            _decrementButton = 0;
-            _incrementButton = 0;
-            _centerButton = 0;
+            _button1 = 0;
+            _button2 = 0;
+            _button3 = 0;
             _divider = 255;
+
+            _button1_type = AxisButtonFullType.Down;
+            _button2_type = AxisButtonCutType.Reset;
+            _button3_type = AxisButtonFullType.Up;
+
+            _prescaler = 100;
 
             _resolution = 16;
             _deadband = 0;
