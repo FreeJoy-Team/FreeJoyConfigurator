@@ -112,7 +112,7 @@ namespace FreeJoyConfigurator
     public enum AxisButtonFullType : byte
     {
         Function_Enable = 0,
-        //Calibration,
+        Prescaler_Enable,
         Center,
         Reset,
         Down,
@@ -121,7 +121,7 @@ namespace FreeJoyConfigurator
     public enum AxisButtonCutType : byte
     {
         Function_Enable = 0,
-        //Calibration,
+        Prescaler_Enable,
         Center,
         Reset,
     }

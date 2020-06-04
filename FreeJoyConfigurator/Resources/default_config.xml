@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Firmware_Version>5634</Firmware_Version>
-  <Device_Name>FreeJoy</Device_Name>
+  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
   <Button_Timer1_Time>50</Button_Timer1_Time>
@@ -100,10 +100,14 @@
     <SourceMain>A0</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -168,10 +172,14 @@
     <SourceMain>A1</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -236,10 +244,14 @@
     <SourceMain>A2</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
@@ -304,17 +316,21 @@
     <SourceMain>A3</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>false</IsOutEnabled>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -372,17 +388,21 @@
     <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>false</IsOutEnabled>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -440,17 +460,21 @@
     <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>false</IsOutEnabled>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -508,17 +532,21 @@
     <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>false</IsOutEnabled>
+    <IsOutEnabled>true</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -576,10 +604,14 @@
     <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
-    <IncrementButton>0</IncrementButton>
-    <DecrementButton>0</DecrementButton>
-    <CenterButton>0</CenterButton>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
     <Divider>255</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
     <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
   </Axis_Config>
   <ShiftModificator_Config>
@@ -601,8 +633,8 @@
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
     <IsDisabled>false</IsDisabled>
-    <IsEnabled>true</IsEnabled>
-    <PhysicalNumber>1</PhysicalNumber>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -611,8 +643,8 @@
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
     <IsDisabled>false</IsDisabled>
-    <IsEnabled>true</IsEnabled>
-    <PhysicalNumber>2</PhysicalNumber>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -621,8 +653,8 @@
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
     <IsDisabled>false</IsDisabled>
-    <IsEnabled>true</IsEnabled>
-    <PhysicalNumber>3</PhysicalNumber>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -631,8 +663,8 @@
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
     <IsDisabled>false</IsDisabled>
-    <IsEnabled>true</IsEnabled>
-    <PhysicalNumber>4</PhysicalNumber>
+    <IsEnabled>false</IsEnabled>
+    <PhysicalNumber>0</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -2098,9 +2130,6 @@
   <Pid>22352</Pid>
   <LedPwmConfig>
     <DutyCycle>
-      <unsignedByte>0</unsignedByte>
-      <unsignedByte>0</unsignedByte>
-      <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
