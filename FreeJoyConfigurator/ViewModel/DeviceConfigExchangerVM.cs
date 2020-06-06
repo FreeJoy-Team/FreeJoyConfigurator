@@ -86,6 +86,12 @@ namespace FreeJoyConfigurator
         {
             byte[] buffer = new byte[1];
 
+            buffer[0] = 255;
+            Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
+            Console.WriteLine("Setting device into config mode");
+
+            Task.Delay(250);
+
             buffer[0] = 1;
             Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
             Console.WriteLine("Requesting config packet..: 1");
@@ -93,6 +99,14 @@ namespace FreeJoyConfigurator
 
         public void SendConfig(DeviceConfig config)
         {
+            byte[] buffer = new byte[1];
+
+            buffer[0] = 255;
+            Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
+            Console.WriteLine("Setting device into config mode");
+
+            Task.Delay(250);
+
             List<HidReport> hr;
             _config = config;
 
