@@ -7,7 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              
              mc:Ignorable="d" 
-             d:DesignHeight="270" d:DesignWidth="271">
+             d:DesignHeight="178" d:DesignWidth="197">
 
     <UserControl.Resources>
         <local:InvertBooleanConverter  x:Key="boolConvert"/>
@@ -19,7 +19,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MaxWidth="80"/>
-                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1.25*"/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
@@ -37,18 +37,18 @@
 
             <TextBlock Grid.Column="0" Grid.Row="0"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                            Width="50"
+                                            Width="50" 
                                             Value="{Binding AxisConfig.Resolution, UpdateSourceTrigger=LostFocus}"
                                             Maximum="{Binding MaxResolution, Mode=OneWay}" Minimum="1"/>
             <TextBlock Grid.Column="1" Grid.Row="0"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                   Margin="75,0,0,0"/>
+                                   Margin="71,0,0,0"/>
 
             <TextBlock Grid.Column="0" Grid.Row="1"  Text="Offset"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                                         Width="50" Minimum="0" Maximum="360" Increment="15"
                                                         Value="{Binding AxisConfig.OffsetAngle}"/>
             <TextBlock Grid.Column="1" Grid.Row="1"  Text="°"  VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                   Margin="70,0,0,0"/>
+                                   Margin="60,0,0,0"/>
 
             <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
                                               Content="Dynamic deadband" 
