@@ -30,7 +30,7 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,4,0,3"/>
         <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="65535" Minimum="1"
                                                 Grid.Row="1" Grid.Column="0" Text="{Binding Config.ButtonTimer1Ms}"
-                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,1,19,2"/>
+                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,0,19,0"/>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="ms " Margin="53,4,0,3"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -38,7 +38,7 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,4,0,3"/>
         <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="65535" Minimum="1"
                                                 Grid.Row="1" Grid.Column="1" Text="{Binding Config.ButtonTimer2Ms}"
-                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,2,19,1"/>
+                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,0,19,0"/>
         <TextBlock Grid.Row="1" Grid.Column="1" Text="ms " Margin="53,4,0,3"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -46,7 +46,7 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,4,0,3"/>
         <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="65535" Minimum="1"
                                                 Grid.Row="1" Grid.Column="2" Text="{Binding Config.ButtonTimer3Ms}"
-                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,1,19,2"/>
+                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,0,19,0"/>
         <TextBlock Grid.Row="1" Grid.Column="2" Text="ms " Margin="53,4,0,3"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -56,7 +56,7 @@
         <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="0" 
                                                 Grid.Row="1" Grid.Column="3" Text="{Binding Config.ButtonDebounceMs}"
                                                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                HorizontalContentAlignment="Center" MinWidth="50" Margin="3,1,19,2"/>
+                                                HorizontalContentAlignment="Center" MinWidth="50" Margin="3,0,19,0"/>
         <TextBlock Grid.Row="1" Grid.Column="3" Text="ms " Margin="53,4,0,3"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
@@ -64,7 +64,7 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,4,0,3"/>
         <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="255" Minimum="1"
                                                 Grid.Row="1" Grid.Column="4" Text="{Binding Config.EncoderPressMs}"
-                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,2,19,1"/>
+                                                HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,0,19,0"/>
         <TextBlock Grid.Row="1" Grid.Column="4" Text="ms " Margin="53,4,0,3"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 

@@ -108,7 +108,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="7*"/>
-                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="1.2*"/>
                     </Grid.RowDefinitions>
 
                         <local:ShiftModificatorsView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
@@ -188,7 +188,7 @@
 
         <GroupBox Header="Log" Name ="Log_GroupBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10">
             <ScrollViewer Name="ActivityLogScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <TextBox Name="ActivityLogging_TextBox" TextChanged="ActivityLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="10,10,10,10" 
+                <TextBox Name="ActivityLogging_TextBox" TextChanged="ActivityLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="7,7,7,7" 
                 Text="{Binding ActivityLogVM, Mode=OneWay}"/>
             </ScrollViewer>
         </GroupBox>
