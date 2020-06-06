@@ -147,7 +147,11 @@
                     <local:ShiftRegistersView/>
                 </TabItem>
 
-                <TabItem Header="LED">
+            <TabItem Header="Encoders">
+                <local:EncodersView/>
+            </TabItem>
+
+            <TabItem Header="LED">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>

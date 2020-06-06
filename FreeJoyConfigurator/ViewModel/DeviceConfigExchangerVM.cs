@@ -44,7 +44,7 @@ namespace FreeJoyConfigurator
                         ReportConverter.ReportToConfig(ref _config, hr);
                     }));
 
-                    if (configPacketNumber < 15)
+                    if (configPacketNumber < 16)
                     {
                         buffer[0] = ++configPacketNumber;
                         Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
@@ -68,7 +68,7 @@ namespace FreeJoyConfigurator
                     Hid.ReportSend(hrs[configPacketNumber - 1]);
                     Console.WriteLine("Sending config packet..: {0}", configPacketNumber);
 
-                    if (configPacketNumber >= 15)
+                    if (configPacketNumber >= 16)
                     {
                         App.Current.Dispatcher.BeginInvoke((Action)(() =>
                         {
@@ -86,6 +86,12 @@ namespace FreeJoyConfigurator
         {
             byte[] buffer = new byte[1];
 
+            buffer[0] = 255;
+            Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
+            Console.WriteLine("Setting device into config mode");
+
+            Task.Delay(250);
+
             buffer[0] = 1;
             Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
             Console.WriteLine("Requesting config packet..: 1");
@@ -93,6 +99,14 @@ namespace FreeJoyConfigurator
 
         public void SendConfig(DeviceConfig config)
         {
+            byte[] buffer = new byte[1];
+
+            buffer[0] = 255;
+            Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
+            Console.WriteLine("Setting device into config mode");
+
+            Task.Delay(250);
+
             List<HidReport> hr;
             _config = config;
 

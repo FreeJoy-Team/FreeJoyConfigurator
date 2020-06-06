@@ -85,7 +85,6 @@ namespace FreeJoyConfigurator
         C13,
         C14,
         C15,
-
     };
 
     public enum AxisType : byte
@@ -107,7 +106,25 @@ namespace FreeJoyConfigurator
         Plus_Relative,
         Minus_Absolute,
         Minus_Relative,
+        Equal,
     };
+
+    public enum AxisButtonFullType : byte
+    {
+        Function_Enable = 0,
+        Prescaler_Enable,
+        Center,
+        Reset,
+        Down,
+        Up,
+    }
+    public enum AxisButtonCutType : byte
+    {
+        Function_Enable = 0,
+        Prescaler_Enable,
+        Center,
+        Reset,
+    }
 
     public enum AxisAddressType : byte
     {
@@ -141,10 +158,16 @@ namespace FreeJoyConfigurator
         private AxisType _sourceSecondary;
         private AxisFunction _function;
 
-        private sbyte _incrementButton;
-        private sbyte _decrementButton;
-        private sbyte _centerButton;
+        private sbyte _button1;
+        private sbyte _button2;
+        private sbyte _button3;
         private ushort _divider;
+
+        private AxisButtonFullType _button1_type;
+        private AxisButtonCutType _button2_type;
+        private AxisButtonFullType _button3_type;
+
+        private byte _prescaler;
 
         private bool _isCalibCenterUnlocked;
 
@@ -274,25 +297,47 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _function, value); }
         }
 
-        public sbyte IncrementButton
+
+        public sbyte Button1
         {
-            get { return _incrementButton; }
-            set { SetProperty(ref _incrementButton, value); }
+            get { return _button1; }
+            set { SetProperty(ref _button1, value); }
         }
-        public sbyte DecrementButton
+        public sbyte Button2
         {
-            get { return _decrementButton; }
-            set { SetProperty(ref _decrementButton, value); }
+            get { return _button2; }
+            set { SetProperty(ref _button2, value); }
         }
-        public sbyte CenterButton
+        public sbyte Button3
         {
-            get { return _centerButton; }
-            set { SetProperty(ref _centerButton, value); }
+            get { return _button3; }
+            set { SetProperty(ref _button3, value); }
         }
         public ushort Divider
         {
             get { return _divider; }
             set { SetProperty(ref _divider, value); }
+        }
+        public AxisButtonFullType Button1_Type
+        {
+            get { return _button1_type; }
+            set { SetProperty(ref _button1_type, value); }
+        }
+        public AxisButtonCutType Button2_Type
+        {
+            get { return _button2_type; }
+            set { SetProperty(ref _button2_type, value); }
+        }
+        public AxisButtonFullType Button3_Type
+        {
+            get { return _button3_type; }
+            set { SetProperty(ref _button3_type, value); }
+        }
+
+        public byte Prescaler
+        {
+            get { return _prescaler; }
+            set { SetProperty(ref _prescaler, value); }
         }
 
 
@@ -323,10 +368,16 @@ namespace FreeJoyConfigurator
             _sourceSecondary = AxisType.X;
             _function = AxisFunction.None;
 
-            _decrementButton = 0;
-            _incrementButton = 0;
-            _centerButton = 0;
+            _button1 = 0;
+            _button2 = 0;
+            _button3 = 0;
             _divider = 255;
+
+            _button1_type = AxisButtonFullType.Down;
+            _button2_type = AxisButtonCutType.Reset;
+            _button3_type = AxisButtonFullType.Up;
+
+            _prescaler = 100;
 
             _resolution = 16;
             _deadband = 0;
@@ -379,9 +430,9 @@ namespace FreeJoyConfigurator
         Button_Column,
 
         Axis_Analog,
-//        AxisToButtons,
+        Fast_Encoder,
 
-        SPI_SCK = 7,
+        SPI_SCK,
         SPI_MOSI,
         SPI_MISO,
 
@@ -405,6 +456,7 @@ namespace FreeJoyConfigurator
 
         I2C_SCL,
         I2C_SDA,
+       
     };
 
 
@@ -464,7 +516,8 @@ namespace FreeJoyConfigurator
         private TimerType _buttonDelayNumber;
         private TimerType _buttonToggleNumber;
         private bool _isInverted;
-        private bool _isOnOff;
+        private bool _isDisabled;
+
         private bool _isEnabled;
 
 
@@ -480,10 +533,10 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _isInverted, value); }
         }
 
-        public bool IsOnOff
+        public bool IsDisabled
         {
-            get { return _isOnOff; }
-            set { SetProperty(ref _isOnOff, value); }
+            get { return _isDisabled; }
+            set { SetProperty(ref _isDisabled, value); }
         }
 
         public bool IsEnabled
@@ -525,7 +578,7 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _isInverted = false;
-            _isOnOff = false;
+            _isDisabled = false;
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
             _buttonDelayNumber = TimerType.No;
@@ -539,7 +592,7 @@ namespace FreeJoyConfigurator
         {
             _isEnabled = false;
             _isInverted = false;
-            _isOnOff = false;
+            _isDisabled = false;
             _physicalNumber = 0;
             _shiftModificator = ShiftType.NoShift;
             _buttonDelayNumber = TimerType.No;
@@ -575,6 +628,24 @@ namespace FreeJoyConfigurator
         {
             get { return _button; }
             set { SetProperty(ref _button, value); }
+        }
+    }
+
+    public enum EncoderType
+    {
+        Encoder_1x = 0,
+        Encoder_2x,
+        Encoder_4x,
+    }
+
+    public class EncoderConfig : BindableBase
+    {
+        private EncoderType _type;
+
+        public EncoderType Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
         }
     }
 
@@ -721,6 +792,8 @@ namespace FreeJoyConfigurator
         public ObservableCollection<AxisToButtonsConfig> AxisToButtonsConfig { get; set; }
         [XmlElement("ShitRegisters_Config")]
         public ObservableCollection<ShiftRegisterConfig> ShiftRegistersConfig { get; set; }
+        [XmlElement("EncodersConfig")]
+        public ObservableCollection<EncoderConfig> EncodersConfig { get; set; }
         [XmlElement("DynamicConfig")]
         public bool IsDynamicConfig { get; set; }
         [XmlElement("Vid")]
@@ -763,6 +836,9 @@ namespace FreeJoyConfigurator
 
             ShiftRegistersConfig = new ObservableCollection<ShiftRegisterConfig>();
             for (int i = 0; i < 4; i++) ShiftRegistersConfig.Add(new ShiftRegisterConfig());
+
+            EncodersConfig = new ObservableCollection<EncoderConfig>();
+            for (int i = 0; i < 16; i++) EncodersConfig.Add(new EncoderConfig());
 
             LedPwmConfig = new LedPwmConfig();
 

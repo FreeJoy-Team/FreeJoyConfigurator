@@ -15,7 +15,7 @@
     </UserControl.Resources>
 
 
-    <Border BorderThickness="0.5" BorderBrush="LightGray">
+    <Border BorderThickness="0.5" BorderBrush="DarkGray">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MaxWidth="80"/>

@@ -10,7 +10,6 @@ namespace FreeJoyConfigurator
 {
     public class ShiftRegistersVM : BindableBase
     {
-        private Joystick _joystick;
         private DeviceConfig _config;
         private ObservableCollection<ShiftRegister> _shiftRegisters;
 
@@ -29,9 +28,8 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _shiftRegisters, value); }
         }
 
-        public ShiftRegistersVM(Joystick joystick, DeviceConfig deviceConfig)
+        public ShiftRegistersVM(DeviceConfig deviceConfig)
         {
-            _joystick = joystick;
             _config = deviceConfig;
 
             _shiftRegisters = new ObservableCollection<ShiftRegister>();
