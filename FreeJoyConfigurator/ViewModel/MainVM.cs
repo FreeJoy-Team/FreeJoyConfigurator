@@ -78,13 +78,10 @@ namespace FreeJoyConfigurator
             get
             {
                 _hidDevices = new ObservableCollection<string>() ;
-                
-                foreach(var device in Hid.HidDevicesList)
-                {
-                    byte[] tmp = new byte[20];
-                    device.ReadProduct(out tmp);
 
-                    _hidDevices.Add(Encoding.Unicode.GetString(tmp).TrimEnd('\0'));
+                foreach (var device in Hid.HidDevicesList)
+                { 
+                    _hidDevices.Add(device.ReadProduct());
                 }
 
                 return _hidDevices;
@@ -138,7 +135,11 @@ namespace FreeJoyConfigurator
         }
         public bool IsConnectedVM
         {
-            get { return Hid.IsConnected; }
+            get { return (Hid.IsConnected); }
+        }
+        public bool IsConfigEnabledVM
+        {
+            get { return (Hid.IsConnected && !IsFlasherVM); }
         }
 
         public bool IsFlasherVM { get; private set; }
@@ -404,10 +405,8 @@ namespace FreeJoyConfigurator
             if (SelectedDeviceIndex >= 0 && SelectedDeviceIndex < Hid.HidDevicesList.Count)
             {
                 Hid.Connect(Hid.HidDevicesList[SelectedDeviceIndex]);
-
-                byte[] tmp = new byte[20];
-                Hid.HidDevicesList[SelectedDeviceIndex].ReadProduct(out tmp);
-                string name = Encoding.Unicode.GetString(tmp).TrimEnd('\0');
+              
+                string name = Hid.HidDevicesList[SelectedDeviceIndex].ReadProduct();
 
                 if (name.Contains("FreeJoy Flasher"))
                 {
@@ -426,11 +425,10 @@ namespace FreeJoyConfigurator
 
         public void DeviceAddedEventHandler(HidDevice hd)
         {
-            byte[] tmp = new byte[20];
-            Hid.HidDevicesList[SelectedDeviceIndex].ReadProduct(out tmp);
-            string name = Encoding.Unicode.GetString(tmp).TrimEnd('\0');
+            string name = hd.ReadProduct();
 
             WriteLog("Device \"" + name + "\" added", false);
+            //WriteLog("Device added", false);
 
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
@@ -537,7 +535,7 @@ namespace FreeJoyConfigurator
             }
             catch (Exception ex)
             {
-                //Log exception here
+                throw new Exception("Error parsing XML file", ex);
             }
 
             return objectOut;

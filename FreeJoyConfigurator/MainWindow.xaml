@@ -9,7 +9,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="{Binding Version}" MinHeight="650" Height="800" MinWidth="1100" Width="1100">
+        Title="{Binding Version}" MinHeight="650" Height="800" MinWidth="1200" Width="1200">
 
     <Window.DataContext>
         <local:MainVM/>
@@ -94,7 +94,7 @@
             </Grid>
         </GroupBox>
 
-        <TabControl Grid.Column="1" Margin="10,10,10,1" Loaded="Tab_AllTabOnStartup">
+        <TabControl Grid.Column="1" Margin="10,20,10,1" Loaded="Tab_AllTabOnStartup" HorizontalAlignment="Stretch">
                 <TabItem Header="Pin Config">
                     <local:PinsView/>
                 </TabItem>
@@ -130,7 +130,7 @@
                 </TabItem>
 
                 <TabItem Header="Axes Config">
-                    <local:AxesView Grid.Column="0"/>
+                <local:AxesView/>
                 </TabItem>
 
                 <TabItem Header="Axes Curves">
@@ -186,7 +186,7 @@
 
         <!--Row 1-->
 
-        <GroupBox Header="Log" Name ="Log_GroupBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10">
+        <GroupBox Header="Log" Name ="Log_GroupBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10" HorizontalAlignment="Stretch">
             <ScrollViewer Name="ActivityLogScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <TextBox Name="ActivityLogging_TextBox" TextChanged="ActivityLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="7,7,7,7" 
                 Text="{Binding ActivityLogVM, Mode=OneWay}"/>

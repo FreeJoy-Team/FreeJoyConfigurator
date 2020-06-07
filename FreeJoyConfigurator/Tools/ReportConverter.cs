@@ -26,39 +26,46 @@ namespace FreeJoyConfigurator
 
         public static void ReportToJoystick(ref Joystick joystick, HidReport hr)
         {
-            if (hr != null)
+            try
             {
-                for (int i = 0; i < joystick.Axes.Count; i++)
+                if (hr != null)
                 {
-                    joystick.Axes[i].RawValue = (short)(hr.Data[1 + 2 * i] << 8 | hr.Data[0 + 2 * i]);
+                    for (int i = 0; i < joystick.Axes.Count; i++)
+                    {
+                        joystick.Axes[i].RawValue = (short)(hr.Data[1 + 2 * i] << 8 | hr.Data[0 + 2 * i]);
+                    }
+
+                    for (int i = 0; i < 64; i++)
+                    {
+                        joystick.PhysicalButtons[hr.Data[16] + i].State = (hr.Data[17 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
+                    }
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        joystick.ShiftButtons[i].State = (hr.Data[25] & (1 << i)) > 0 ? true : false;
+                    }
+
+                    for (int i = 0; i < joystick.Axes.Count; i++)
+                    {
+                        joystick.Axes[i].Value = (short)(hr.Data[27 + 2 * i] << 8 | hr.Data[26 + 2 * i]);
+                    }
+
+                    for (int i = 0; i < joystick.Povs.Count; i++)
+                    {
+                        joystick.Povs[i].State = hr.Data[42 + i];
+                    }
+
+                    for (int i = 0; i < joystick.LogicalButtons.Count; i++)
+                    {
+                        joystick.LogicalButtons[i].State = (hr.Data[46 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
+                    }
+
+
                 }
-
-                for (int i = 0; i < 64; i++)
-                {
-                    joystick.PhysicalButtons[hr.Data[16] + i].State = (hr.Data[17 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
-                }
-
-                for (int i = 0; i < 5; i++)
-                {
-                    joystick.ShiftButtons[i].State = (hr.Data[25] & (1 << i)) > 0 ? true : false;
-                }
-
-                for (int i = 0; i < joystick.Axes.Count; i++)
-                {
-                    joystick.Axes[i].Value = (short)(hr.Data[27 + 2 * i] << 8 | hr.Data[26 + 2 * i]);
-                }
-
-                for (int i = 0; i < joystick.Povs.Count; i++)
-                {
-                    joystick.Povs[i].State = hr.Data[42 + i];
-                }
-
-                for (int i = 0; i < joystick.LogicalButtons.Count; i++)
-                {
-                    joystick.LogicalButtons[i].State = (hr.Data[46 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
-                }
-
-
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(string.Format("Error parsing joystick report"), exception);
             }
         }
 

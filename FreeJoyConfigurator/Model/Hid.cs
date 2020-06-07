@@ -93,22 +93,22 @@ namespace FreeJoyConfigurator
         }
 
         #region HID Callbacks
-        static private void HidDeviceAddedEventHandler()
+        static private void HidDeviceAddedEventHandler(HidDevice hd)
         {
             Console.WriteLine("Device added");
-            DeviceAdded?.Invoke(hidDevice);
-            hidDevice.ReadReport(ReadReportCallback);
+            DeviceAdded?.Invoke(hd);
+            hd.ReadReport(ReadReportCallback);
         }
 
-        static private void HidDeviceRemovedEventHandler()
+        static private void HidDeviceRemovedEventHandler(HidDevice hd)
         {
-            hidDevice.Inserted -= HidDeviceAddedEventHandler;
-            hidDevice.Removed -= HidDeviceRemovedEventHandler;
-            hidDevice.MonitorDeviceEvents = false;
-            hidDevice.CloseDevice();
+            hd.Inserted -= HidDeviceAddedEventHandler;
+            hd.Removed -= HidDeviceRemovedEventHandler;
+            hd.MonitorDeviceEvents = false;
+            hd.CloseDevice();
 
             Console.WriteLine("Device removed");
-            DeviceRemoved?.Invoke(hidDevice);
+            DeviceRemoved?.Invoke(hd);
         }
 
         static private void ReadReportCallback(HidReport report)

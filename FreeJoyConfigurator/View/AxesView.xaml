@@ -69,7 +69,8 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:AxesView}">
-                    <GroupBox Header="{Binding Number, Converter={StaticResource AxisTypeConverter}}" BorderThickness="0.5" BorderBrush="Black" Height="200">
+                    <GroupBox Header="{Binding Number, Converter={StaticResource AxisTypeConverter}}" 
+                              BorderThickness="0.5" BorderBrush="Black" Height="200" Margin="0,0,5,0">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*" />
@@ -120,7 +121,8 @@
                                                  IsEnabled="{Binding AxisConfig.IsOutEnabled}"
                                                  HorizontalAlignment="Stretch"  
                                                  VerticalAlignment="Bottom" 
-                                                 Foreground="DarkRed" Margin="0,0,10,0" >
+                                                 Foreground="DarkRed" 
+                                                 Margin="0,0,10,0" >
                                 <ProgressBar.Style>
                                     <Style TargetType="ProgressBar">
                                         <Style.Triggers>
@@ -144,7 +146,8 @@
                                                  IsEnabled="{Binding AxisConfig.IsOutEnabled}"
                                                  HorizontalAlignment="Stretch"
                                                  VerticalAlignment="Top"
-                                                 Foreground="DarkOliveGreen" Margin="0,0,10,0" >
+                                                 Foreground="DarkOliveGreen" 
+                                                 Margin="0,0,10,0" >
                                 <ProgressBar.Style>
                                     <Style TargetType="ProgressBar">
                                         <Style.Triggers>
@@ -236,14 +239,14 @@
                                       ItemsSource="{Binding Source={StaticResource AxisButtonFullTypeFromEnum}}"/>
 
                             <TextBlock Grid.Column="7" Grid.Row="4" Text="Step div"  HorizontalAlignment="Right" VerticalAlignment="Center"
-                                       Margin="5,0,5,0"/>
+                                       Margin="0,0,1,0"/>
                             <xctk:IntegerUpDown Grid.Column="8" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"
                                             Width="50" Margin="5,0,5,0"
                                             Value="{Binding AxisConfig.Divider, UpdateSourceTrigger=LostFocus}"
                                             Maximum="255" Minimum="1"/>
 
                             <TextBlock Grid.Column="7" Grid.Row="5" Text="Prescaler %"  HorizontalAlignment="Right" VerticalAlignment="Center"
-                                       Margin="5,0,5,0"/>
+                                       Margin="0,0,1,0"/>
                             <xctk:IntegerUpDown Grid.Column="8" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"
                                             Width="50" Margin="5,0,5,0"
                                             Value="{Binding AxisConfig.Prescaler, UpdateSourceTrigger=LostFocus}"
@@ -251,7 +254,7 @@
 
 
 
-                            <Border Grid.Column="9" Grid.Row="0" Grid.RowSpan="6">
+                            <Border Grid.Column="9" Grid.Row="0" Grid.RowSpan="6" HorizontalAlignment="Stretch">
                                 <local:AxesConfigView/>
                             </Border>
 

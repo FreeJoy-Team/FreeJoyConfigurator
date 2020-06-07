@@ -7,7 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              
              mc:Ignorable="d" 
-             d:DesignHeight="178" d:DesignWidth="197">
+             d:DesignHeight="178" d:DesignWidth="200" MaxWidth="200" MinWidth="200">
 
     <UserControl.Resources>
         <local:InvertBooleanConverter  x:Key="boolConvert"/>

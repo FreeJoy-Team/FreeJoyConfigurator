@@ -64,7 +64,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Device USB name" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Config.DeviceName, UpdateSourceTrigger=LostFocus}"
-                                       MinWidth="80" TextAlignment="Center" MaxLength="20"
+                                       MinWidth="80" TextAlignment="Center" MaxLength="25"
                                        HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="USB exchange period" 
@@ -88,7 +88,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <local:FirmwareUpdaterView Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+                    <local:FirmwareUpdaterView Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"
+                                               IsEnabled="{Binding IsConnectedVM}"/>
                 </Grid>
             </GroupBox>
         </Grid>
