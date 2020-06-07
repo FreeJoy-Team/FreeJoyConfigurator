@@ -60,13 +60,13 @@
 
                 <!--Row 3-->
                 <Button Name="Button_ReadConfig" Grid.Row="3"  Content="Read Config from Device"
-                        IsEnabled="{Binding IsConnectedVM}"
+                        IsEnabled="{Binding IsConfigEnabledVM}"
                         Command="{Binding GetDeviceConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 
                 <!--Row 4-->
                 <Button Name="Button_WriteConfig" Grid.Row="4"  Content="Write Config to Device"
-                        IsEnabled="{Binding IsConnectedVM}"
+                        IsEnabled="{Binding IsConfigEnabledVM}"
                         Command="{Binding SendDeviceConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 

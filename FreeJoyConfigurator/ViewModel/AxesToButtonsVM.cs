@@ -182,14 +182,14 @@ namespace FreeJoyConfigurator
             }
 
 
-            for (int i = 0; i < AxesToButtons.Count; i++)
+            for (int i = 0; i < tmp.Count; i++)
             {
                 AxesToButtons[i].PropertyChanged -= AxesToButtonsVM_PropertyChanged;
                 AxesToButtons[i].IsEnabled = tmp[i].IsEnabled;
                 AxesToButtons[i].ButtonCnt = tmp[i].ButtonCnt;
 
                 AxesToButtons[i].PropertyChanged += AxesToButtonsVM_PropertyChanged;
-                for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
+                for (int j = 0; j < tmp[i].RangeItems.Count; j++)
                 {
                     AxesToButtons[i].RangeItems[j].PropertyChanged -= AxesToButtonsVM_Range_PropertyChanged;
                     AxesToButtons[i].RangeItems[j] = tmp[i].RangeItems[j];

@@ -432,6 +432,7 @@ namespace FreeJoyConfigurator
 
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
+            RaisePropertyChanged(nameof(IsConfigEnabledVM));
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)
@@ -440,6 +441,7 @@ namespace FreeJoyConfigurator
             
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
+            RaisePropertyChanged(nameof(IsConfigEnabledVM));
         }
         #endregion
 
