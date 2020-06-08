@@ -1,17 +1,13 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>5635</Firmware_Version>
-  <Device_Name>FreeJoy&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
+  <Firmware_Version>5632</Firmware_Version>
+  <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
   <Button_Timer1_Time>50</Button_Timer1_Time>
   <Button_Timer2_Time>200</Button_Timer2_Time>
   <Button_Timer3_Time>300</Button_Timer3_Time>
-  <Exchange_Period>2</Exchange_Period>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
+  <Exchange_Period>5</Exchange_Period>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -31,10 +27,14 @@
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -97,7 +97,7 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A0</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <Button1>0</Button1>
@@ -169,7 +169,7 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A1</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <Button1>0</Button1>
@@ -241,7 +241,7 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A2</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <Button1>0</Button1>
@@ -313,7 +313,7 @@
     <I2cAddress>ADS1115_00</I2cAddress>
     <Deadband>0</Deadband>
     <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A3</SourceMain>
+    <SourceMain>None</SourceMain>
     <SourceSecondary>X</SourceSecondary>
     <Function>None</Function>
     <Button1>0</Button1>
@@ -1912,8 +1912,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -1931,8 +1931,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -1950,8 +1950,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -1969,8 +1969,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -1988,8 +1988,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -2007,8 +2007,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -2026,8 +2026,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -2045,8 +2045,8 @@
   <AxisToButtons_Config>
     <Points>
       <unsignedByte>0</unsignedByte>
-      <unsignedByte>50</unsignedByte>
-      <unsignedByte>100</unsignedByte>
+      <unsignedByte>127</unsignedByte>
+      <unsignedByte>255</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -2062,68 +2062,68 @@
     <IsEnabled>false</IsEnabled>
   </AxisToButtons_Config>
   <ShitRegisters_Config>
-    <Type>HC165_PullDown</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
   <ShitRegisters_Config>
-    <Type>HC165_PullDown</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
   <ShitRegisters_Config>
-    <Type>HC165_PullDown</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
   <ShitRegisters_Config>
-    <Type>HC165_PullDown</Type>
+    <Type>HC165_PullUp</Type>
     <ButtonCnt>0</ButtonCnt>
   </ShitRegisters_Config>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <EncodersConfig>
-    <Type>Encoder_2x</Type>
+    <Type>Encoder_1x</Type>
   </EncodersConfig>
   <DynamicConfig>false</DynamicConfig>
   <Vid>1155</Vid>

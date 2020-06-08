@@ -282,16 +282,8 @@ namespace FreeJoyConfigurator
 
                     Config = tmp;
                 }
-                PinsVM.Config = Config;
-                AxesVM.Config = Config;
-                ButtonsVM.Config = Config;
 
                 PinsVM.Update(Config);
-                ButtonsVM.Update(Config);
-                AxesVM.Update(Config);
-                AxesToButtonsVM.Update(Config);
-                ShiftRegistersVM.Update(Config);
-                EncodersVM.Update(Config);
             }
         }
 
@@ -325,24 +317,15 @@ namespace FreeJoyConfigurator
                 Config = tmp;
             }
 
-            PinsVM.Config = Config;
-            AxesVM.Config = Config;
-            ButtonsVM.Config = Config;
-
             PinsVM.Update(Config);
-            ButtonsVM.Update(Config);
-            AxesVM.Update(Config);
-            AxesToButtonsVM.Update(Config);
-            ShiftRegistersVM.Update(Config);
-            EncodersVM.Update(Config);
         }
 
         private void PinConfigChanged()
-        {
-            ButtonsVM.Update(Config);
+        {           
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
             ShiftRegistersVM.Update(Config);
+            ButtonsVM.Update(Config);
             EncodersVM.Update(Config);
             LedVM.Update(Config);
         }

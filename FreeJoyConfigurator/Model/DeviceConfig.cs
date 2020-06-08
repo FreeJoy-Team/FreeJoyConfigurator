@@ -386,7 +386,7 @@ namespace FreeJoyConfigurator
             _i2cAddress = AxisAddressType.ADS1115_00;
 
             _curveShape = new ObservableCollection<Point>();
-            for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, 0));
+            for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, -100+20*i));
             _filterLevel = 0;
 
             _isCalibCenterUnlocked = false;

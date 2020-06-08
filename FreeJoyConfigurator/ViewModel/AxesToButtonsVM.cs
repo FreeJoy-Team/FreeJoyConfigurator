@@ -31,6 +31,18 @@ namespace FreeJoyConfigurator
             }
             set
             {
+                //for (int i = 0; i < AxesToButtons.Count; i++)
+                //{
+                //    axesToButtons[i].IsEnabled = AxesToButtons[i].IsEnabled;
+                //    axesToButtons[i].ButtonCnt = AxesToButtons[i].ButtonCnt;
+
+                //    for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
+                //    {
+                //        axesToButtons[i].RangeItems[j] = AxesToButtons[i].RangeItems[j];
+                //    }
+                //}
+                //RaisePropertyChanged(nameof(AxesToButtons));
+
                 SetProperty(ref axesToButtons, value);
             }
         }
@@ -50,11 +62,8 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
-                AxesToButtons[i].IsEnabled = true;
-
-
                 AxesToButtons[i].PropertyChanged += AxesToButtonsVM_PropertyChanged;
-                for (int k =0; k<AxesToButtons[i].RangeItems.Count; k++)
+                for (int k = 0; k < AxesToButtons[i].RangeItems.Count; k++)
                 {
                     AxesToButtons[i].RangeItems[k].PropertyChanged += AxesToButtonsVM_Range_PropertyChanged;
                 }
@@ -65,8 +74,8 @@ namespace FreeJoyConfigurator
         {
             for (int i = 0; i < AxesToButtons.Count; i++)
             {
-                // disable range changed notification
-                for (int k = 0; k < AxesToButtons[i].RangeItems.Count; k++)
+                //// disable range changed notification
+                for (int k = 0; k < axesToButtons[i].RangeItems.Count; k++)
                 {
                     AxesToButtons[i].RangeItems[k].PropertyChanged -= AxesToButtonsVM_Range_PropertyChanged;
                 }
@@ -92,8 +101,8 @@ namespace FreeJoyConfigurator
                 }
 
 
-                // enable range changed notification
-                for (int k = 0; k < AxesToButtons[i].RangeItems.Count; k++)
+                //// enable range changed notification
+                for (int k = 0; k < axesToButtons[i].RangeItems.Count; k++)
                 {
                     AxesToButtons[i].RangeItems[k].PropertyChanged += AxesToButtonsVM_Range_PropertyChanged;
                 }
@@ -128,74 +137,73 @@ namespace FreeJoyConfigurator
         {
             Config = config;
 
-            ObservableCollection<AxisToButtons> tmp = new ObservableCollection<AxisToButtons>();
+            // disabling events
+            for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
+            {
+                AxesToButtons[i].PropertyChanged -= AxesToButtonsVM_PropertyChanged;
+                for (int k = 0; k < AxesToButtons[i].RangeItems.Count; k++)
+                {
+                    AxesToButtons[i].RangeItems[k].PropertyChanged -= AxesToButtonsVM_Range_PropertyChanged;
+                }
+            }
 
             for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
-                tmp.Add(new AxisToButtons());
 
                 if (Config.AxisToButtonsConfig[i].IsEnabled)
                 {
-                    tmp[i].IsEnabled = true;
-
-                    // change button count
-                    tmp[i].ButtonCnt = Config.AxisToButtonsConfig[i].ButtonsCnt;
-
-                    // change range count
-                    while (tmp[i].ButtonCnt > tmp[i].RangeItems.Count)
-                    {
-                        for (int j = 0; j < tmp[i].RangeItems.Count; j++)
-                        {
-                            tmp[i].RangeItems[j].From = (int)(j * (255.0 / (tmp[i].RangeItems.Count + 1)));
-                            tmp[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (tmp[i].RangeItems.Count + 1)));
-                        }
-                        tmp[i].RangeItems.Add(new RangeItem { From = tmp[i].RangeItems.Last().To, To = 255 });
-                        if (AxesToButtons[i].RangeItems.Count < Config.AxisToButtonsConfig[i].ButtonsCnt)
-                        {
-                            AxesToButtons[i].RangeItems.Add(new RangeItem { From = tmp[i].RangeItems.Last().To, To = 255 });
-                        }
-                    }
-                    while (tmp[i].ButtonCnt < tmp[i].RangeItems.Count)
-                    {
-                        for (int j = tmp[i].RangeItems.Count - 2; j >= 0; j--)
-                        {
-                            tmp[i].RangeItems[j].From = (int)(j * (255.0 / (tmp[i].RangeItems.Count - 1)));
-                            tmp[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (tmp[i].RangeItems.Count - 1)));
-                        }
-                        tmp[i].RangeItems[tmp[i].RangeItems.Count - 1].To = 255;
-                        tmp[i].RangeItems.Remove(tmp[i].RangeItems.Last());
-                    }
-
-                    // change ranges
-                    for (int j=0; j < tmp[i].RangeItems.Count; j++)
-                    {
-                        tmp[i].RangeItems[j].From = Config.AxisToButtonsConfig[i].Points[j];
-                        tmp[i].RangeItems[j].To = Config.AxisToButtonsConfig[i].Points[j+1];
-                    }  
+                    AxesToButtons[i].IsEnabled = true;
                 }
                 else
                 {
-                    tmp[i].IsEnabled = false;
-                    tmp[i].ButtonCnt = 2;
+                    AxesToButtons[i].IsEnabled = false;
+                    AxesToButtons[i].ButtonCnt = 2;
                 }
-                
+                // change button count
+                AxesToButtons[i].ButtonCnt = Config.AxisToButtonsConfig[i].ButtonsCnt;
+
+                // change range count
+                while (AxesToButtons[i].ButtonCnt > AxesToButtons[i].RangeItems.Count)
+                {
+                    for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
+                    {
+                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
+                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
+                    }
+                    AxesToButtons[i].RangeItems.Add(new RangeItem { From = AxesToButtons[i].RangeItems.Last().To, To = 255 });
+                }
+                while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count)
+                {
+                    for (int j = AxesToButtons[i].RangeItems.Count - 2; j >= 0; j--)
+                    {
+                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
+                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
+                    }
+                    AxesToButtons[i].RangeItems[AxesToButtons[i].RangeItems.Count - 1].To = 255;
+                    AxesToButtons[i].RangeItems.Remove(AxesToButtons[i].RangeItems.Last());
+                }
+
+                // change ranges
+                for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
+                {
+                    AxesToButtons[i].RangeItems[j].From = Config.AxisToButtonsConfig[i].Points[j];
+                    AxesToButtons[i].RangeItems[j].To = Config.AxisToButtonsConfig[i].Points[j + 1];
+                }
+
+
             }
 
-
-            for (int i = 0; i < tmp.Count; i++)
+            // enabling events
+            for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
-                AxesToButtons[i].PropertyChanged -= AxesToButtonsVM_PropertyChanged;
-                AxesToButtons[i].IsEnabled = tmp[i].IsEnabled;
-                AxesToButtons[i].ButtonCnt = tmp[i].ButtonCnt;
-
                 AxesToButtons[i].PropertyChanged += AxesToButtonsVM_PropertyChanged;
-                for (int j = 0; j < tmp[i].RangeItems.Count; j++)
+                for (int k = 0; k < AxesToButtons[i].RangeItems.Count; k++)
                 {
-                    AxesToButtons[i].RangeItems[j].PropertyChanged -= AxesToButtonsVM_Range_PropertyChanged;
-                    AxesToButtons[i].RangeItems[j] = tmp[i].RangeItems[j];
-                    AxesToButtons[i].RangeItems[j].PropertyChanged += AxesToButtonsVM_Range_PropertyChanged;                    
+                    AxesToButtons[i].RangeItems[k].PropertyChanged += AxesToButtonsVM_Range_PropertyChanged;
                 }
-            }     
+            }
+
+            RaisePropertyChanged(nameof(AxesToButtons));
         }
     }
 }
