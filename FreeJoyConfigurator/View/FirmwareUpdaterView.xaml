@@ -7,7 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <GroupBox d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
+    <UserControl.Resources>
+        <local:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+    </UserControl.Resources>
+
+    <!-- <GroupBox d:DataContext="{d:DesignInstance {x:Type local:MainVM}}" IsEnabled="{Binding IsConnectedVM}"> -->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*" />
@@ -16,18 +20,20 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-
-            <Button Grid.Row="1" Grid.Column="0" Content="Flash firmware" Margin="10,15,10,0"
+            <Button Grid.Row="1" Grid.Column="0" Content="Enter flasher mode" Margin="10,15,10,0" MaxWidth="150"
+                                Command="{Binding FirmwareUpdaterVM.EnterFlasherMode}"
+                                IsEnabled="{Binding IsFlasherVM, Converter={StaticResource InvertBooleanConverter}}"/>
+        <Button Grid.Row="2" Grid.Column="0" Content="Flash firmware" Margin="10,15,10,0" MaxWidth="150"
                                 Command="{Binding FirmwareUpdaterVM.FlashFirmware}" 
-                                IsEnabled="{Binding IsConnectedVM}"/>
-            <ProgressBar Grid.Row="2" Height="20" Margin="10,10,10,10"
+                                IsEnabled="{Binding IsFlasherVM}"/>
+        <ProgressBar Grid.Row="3" Height="20" Margin="10,10,10,10"
                          Value="{Binding FirmwareUpdaterVM.FirmwareUpdater.UpdatePercent, Mode=OneWay}"
                          Minimum="0" Maximum="100"/>
-            <Label Grid.Row="2" Height="30" Margin="10,10,10,10"
+            <Label Grid.Row="3" Height="30" Margin="10,10,10,10"
                    Content="{Binding FirmwareUpdaterVM.FirmwareUpdater.UpdatePercent, Mode=OneWay}"
                    VerticalAlignment="Center" HorizontalAlignment="Center" 
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         </Grid>
-    </GroupBox>
+    <!--  </GroupBox> -->
 </UserControl>

@@ -9,22 +9,18 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="{Binding Version}" MinHeight="650" Height="800" MinWidth="1100" Width="1100">
+        Title="{Binding Version}" MinHeight="650" Height="800" MinWidth="1200" Width="1200">
 
     <Window.DataContext>
         <local:MainVM/>
     </Window.DataContext>
 
-    <Window.Resources>
-        <local:StringToHexConverter x:Key="StringToHexConverter" />
-    </Window.Resources>
-    
+
 
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="190"/>
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="*" MinWidth="170"/>
+            <ColumnDefinition Width="5*" /> <!--4-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -32,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <!--Row 0-->
-        <GroupBox Header="Device" Name ="Status_GroupBox" Grid.Column="0" Grid.Row="0" Margin="10,10,10,10" Grid.ColumnSpan="1">
+        <GroupBox Header="Device" Name ="Status_GroupBox" Grid.Column="0" Grid.Row="0" Margin="10,10,0,0" Grid.ColumnSpan="1">
             <Grid Width="Auto" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -64,13 +60,13 @@
 
                 <!--Row 3-->
                 <Button Name="Button_ReadConfig" Grid.Row="3"  Content="Read Config from Device"
-                        IsEnabled="{Binding IsConnectedVM}"
+                        IsEnabled="{Binding IsConfigEnabledVM}"
                         Command="{Binding GetDeviceConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 
                 <!--Row 4-->
                 <Button Name="Button_WriteConfig" Grid.Row="4"  Content="Write Config to Device"
-                        IsEnabled="{Binding IsConnectedVM}"
+                        IsEnabled="{Binding IsConfigEnabledVM}"
                         Command="{Binding SendDeviceConfig}" Background="White" Margin="10,6,10,5">
                 </Button>
 
@@ -98,70 +94,82 @@
             </Grid>
         </GroupBox>
 
-        <TabControl Grid.Column="1" Margin="10">
-            <TabItem Header="Pin Config">
-                <local:PinsView/>
-            </TabItem>
-            
-            <TabItem Header="Button Config">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="3*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="12*"/>
+        <TabControl Grid.Column="1" Margin="10,20,10,1" Loaded="Tab_AllTabOnStartup" HorizontalAlignment="Stretch">
+                <TabItem Header="Pin Config">
+                    <local:PinsView/>
+                </TabItem>
+
+                <TabItem Header="Button Config">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.56*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="1.2*"/>
                     </Grid.RowDefinitions>
 
-                    <local:ShiftModificatorsView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                        <local:ShiftModificatorsView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
 
 
-                    <GroupBox Header="Physical buttons" Grid.Column="0" Grid.Row="1">
-                        <local:PhysicalButtonsView/>
+                        <GroupBox Header="Physical buttons" Grid.Column="0" Grid.Row="1">
+                            <local:PhysicalButtonsView/>
+                        </GroupBox>
+
+                    <GroupBox Header="Timer settings" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                        <local:TimerSettingsView/>
                     </GroupBox>
 
-                    <GroupBox Header="Logical buttons" Grid.Column="2" Grid.Row="1">
-                        <local:LogicalButtonsView/>
-                    </GroupBox>
-                </Grid>
+                        <GroupBox Header="Logical buttons" Grid.Column="2" Grid.Row="1">
+                            <local:LogicalButtonsView/>
+                        </GroupBox>
+                    </Grid>
 
-            </TabItem>
-            
-            <TabItem Header="Axes Config">
-                <local:AxesView Grid.Column="0"/>
-            </TabItem>
+                </TabItem>
 
-            <TabItem Header="Axes Curves">
-                <ScrollViewer>
-                    <local:AxesCurvesView/>
-                </ScrollViewer>
-            </TabItem>
+                <TabItem Header="Axes Config">
+                <local:AxesView/>
+                </TabItem>
 
-            <TabItem Header="Axes to buttons">
-                <local:AxesToButtonsView/>
-            </TabItem>
+                <TabItem Header="Axes Curves">
+                    <ScrollViewer>
+                        <local:AxesCurvesView/>
+                    </ScrollViewer>
+                </TabItem>
 
-            <TabItem Header="Shift Registers">
-                <local:ShiftRegistersView/>
+                <TabItem Header="Axes to buttons">
+                    <local:AxesToButtonsView/>
+                </TabItem>
+
+                <TabItem Header="Shift Registers">
+                    <local:ShiftRegistersView/>
+                </TabItem>
+
+            <TabItem Header="Encoders">
+                <local:EncodersView/>
             </TabItem>
 
             <TabItem Header="LED">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="3*"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <local:LedPwmView Grid.Row="0" Grid.Column="0"/>
-                    <local:LedView Grid.Row="0" Grid.Column="1"/>
-                </Grid>
-                
-            </TabItem>
+                        <local:LedPwmView Grid.Row="0" Grid.Column="0"/>
+                        <local:LedView Grid.Row="0" Grid.Column="1"/>
+                    </Grid>
 
-        </TabControl>
+                </TabItem>
 
-        <Grid Grid.Column="2" Margin="0,20,0,0">
+                <TabItem Header="Advanced Settings">
+                    <local:AdvancedSettingsView/>
+                </TabItem>
+            </TabControl>
+
+            <Grid Grid.Column="2" Margin="0,20,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*" />
                 <RowDefinition Height="3*" />
@@ -172,236 +180,15 @@
                     Text="Language" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="43,10,41,27" Width="155" Height="25" IsEnabled="False">
             </ComboBox>-->
 
-            <GroupBox Header="Current Config" Name ="Info_GroupBox" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.3*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Axis sources:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
-                                        <Setter Property="Background" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PinsVM.AxesCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
-                                                <Setter Property="Background" Value="Red"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Buttons from axes:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ButtonsVM.ButtonsFromAxesCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Single buttons:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ButtonsVM.SingleBtnCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Rows of buttons:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ButtonsVM.RowCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Columns of buttons:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ButtonsVM.ColCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Total buttons:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ButtonsVM.ButtonsError}" Value="True">
-                                        <Setter Property="Background" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ButtonsVM.TotalBtnCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ButtonsVM.ButtonsError}" Value="True">
-                                        <Setter Property="Background" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Total LEDs:" 
-                               HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding PinsVM.LedsError}" Value="True">
-                                        <Setter Property="Background" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding PinsVM.TotalLedCnt}"
-                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding PinsVM.LedsError}" Value="True">
-                                        <Setter Property="Background" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </Grid>
-            </GroupBox>
-
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
-
-                <Expander Header="Advanced Settings"  Margin="10,10,10,10">
-                    <GroupBox>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="0.3*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="5*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="Device USB name" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Config.DeviceName, UpdateSourceTrigger=LostFocus}"
-                                       MinWidth="80" TextAlignment="Center" MaxLength="20"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-
-                            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="Button debounce time" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="0" 
-                                                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ButtonDebounceMs}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center"
-                                                HorizontalContentAlignment="Center" MinWidth="50"/>
-                            <TextBlock Grid.Row="4" Grid.Column="2" Text="ms" 
-                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                            <TextBlock Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" Text="Toggle press time" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="1"
-                                                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.TogglePressMs}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
-                            <TextBlock Grid.Row="6" Grid.Column="2" Text="ms" 
-                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                            <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Text="Encoder press time" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="1000" Minimum="1"
-                                                Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.EncoderPressMs}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
-                            <TextBlock Grid.Row="8" Grid.Column="2" Text="ms" 
-                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                            <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Text="USB exchange period" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="50" Minimum="1"
-                                                Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Config.ExchangePeriod}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="50"/>
-                            <TextBlock Grid.Row="10" Grid.Column="2" Text="ms" 
-                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                        </Grid>
-                    </GroupBox>
-                </Expander>
-
-                <Expander Header="HID Settings"  Margin="10,10,10,10">
-                    <GroupBox>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" MinHeight="5"/>
-                                <RowDefinition Height="*" MinHeight="5" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <CheckBox Grid.Row="1" Grid.ColumnSpan="3" Content="Dynamic HID config" 
-                                      IsChecked="{Binding Config.IsDynamicConfig}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="VID" 
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox TextAlignment="Center" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
-                                     Text="{Binding Config.Vid, Converter={StaticResource StringToHexConverter}}" MaxLength="4" IsEnabled="False"
-                                     HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"/>
-                            <TextBlock Grid.Row="3" Grid.Column="0" Text="0x" 
-                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
-
-                            <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="PID" 
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox TextAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
-                                     Text="{Binding Config.Pid, Converter={StaticResource StringToHexConverter}}" MaxLength="4"
-                                     
-                                     HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"/>
-                            <TextBlock Grid.Row="5" Grid.Column="0" Text="0x" 
-                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        </Grid>
-                    </GroupBox>
-                </Expander>
-
-                <Expander Header="Firmware Programmer"  Margin="10,10,10,10">
-                    <local:FirmwareUpdaterView/>
-                </Expander>
-            </StackPanel>
         </Grid>
 
 
 
         <!--Row 1-->
 
-        <GroupBox Header="Log" Name ="Log_GroupBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10">
+        <GroupBox Header="Log" Name ="Log_GroupBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10" HorizontalAlignment="Stretch">
             <ScrollViewer Name="ActivityLogScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <TextBox Name="ActivityLogging_TextBox" TextChanged="ActivityLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="10,10,10,10" 
+                <TextBox Name="ActivityLogging_TextBox" TextChanged="ActivityLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="7,7,7,7" 
                 Text="{Binding ActivityLogVM, Mode=OneWay}"/>
             </ScrollViewer>
         </GroupBox>

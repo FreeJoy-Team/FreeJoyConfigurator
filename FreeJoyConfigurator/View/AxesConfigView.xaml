@@ -7,7 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              
              mc:Ignorable="d" 
-             d:DesignHeight="270" d:DesignWidth="200">
+             d:DesignHeight="178" d:DesignWidth="200" MaxWidth="200" MinWidth="200">
 
     <UserControl.Resources>
         <local:InvertBooleanConverter  x:Key="boolConvert"/>
@@ -15,84 +15,86 @@
     </UserControl.Resources>
 
 
-                <Border BorderThickness="0.5" BorderBrush="LightGray">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" MaxWidth="80"/>
-                            <ColumnDefinition Width="1.2*"/>
-                            <ColumnDefinition Width="0.7*"/>
-                            <ColumnDefinition Width="0.5*"/>
+    <Border BorderThickness="0.5" BorderBrush="DarkGray">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MaxWidth="80"/>
+                <ColumnDefinition Width="1.25*"/>
+                <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-           
-                        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="0"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                            Width="50"
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                            Width="50" 
                                             Value="{Binding AxisConfig.Resolution, UpdateSourceTrigger=LostFocus}"
                                             Maximum="{Binding MaxResolution, Mode=OneWay}" Minimum="1"/>
-                        <TextBlock Grid.Column="2" Grid.Row="0"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="1" Grid.Row="0"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Margin="71,0,0,0"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="1"  Text="Offset"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            <TextBlock Grid.Column="0" Grid.Row="1"  Text="Offset"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                                         Width="50" Minimum="0" Maximum="360" Increment="15"
                                                         Value="{Binding AxisConfig.OffsetAngle}"/>
-                        <TextBlock Grid.Column="2" Grid.Row="1"  Text="°"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="1" Grid.Row="1"  Text="°"  VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Margin="60,0,0,0"/>
 
-                        <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
+            <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
                                               Content="Dynamic deadband" 
                                               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"
                                               IsChecked="{Binding AxisConfig.IsDynamicDeadband}"/>
-                        <TextBlock Grid.Column="0" Grid.Row="3"  Text="Deadband"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            <TextBlock Grid.Column="0" Grid.Row="3"  Text="Deadband"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                             Width="50" Minimum="0" Maximum="127"
                                             Value="{Binding AxisConfig.Deadband}"/>
-                        <!--<TextBlock Grid.Column="2" Grid.Row="3"  Text="x0.01%"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>-->
+            <!--<TextBlock Grid.Column="2" Grid.Row="3"  Text="x0.01%"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0"/>-->
 
-                        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
                                                 Margin="10,2,10,1"
                                                 Content="{Binding CalibrationString}"
                                                 Command="{Binding CalibrateCommand }"/>
-                        
 
-                        <TextBlock Grid.Column="0" Grid.Row="5" Text="Minimum" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="Minimum" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                                            Width="70"
                                             Value="{Binding AxisConfig.CalibMin, UpdateSourceTrigger=LostFocus}"/>
 
-                        <CheckBox Grid.Column="0" Grid.Row="6"
+            <CheckBox Grid.Column="0" Grid.Row="6"
                                   Content="Center" 
                                   HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right"
                                   IsChecked="{Binding AxisConfig.IsCalibCenterUnlocked}"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="70"
                                             IsReadOnly="{Binding AxisConfig.IsCalibCenterUnlocked, Mode=TwoWay, Converter={StaticResource boolConvert}}"
                                             Value="{Binding AxisConfig.CalibCenter, UpdateSourceTrigger=LostFocus}"/>
 
-                        <TextBlock Grid.Column="0" Grid.Row="7"  Text="Maximum"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0"
+            <TextBlock Grid.Column="0" Grid.Row="7"  Text="Maximum"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <xctk:IntegerUpDown Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="70"
                                             Value="{Binding AxisConfig.CalibMax, UpdateSourceTrigger=LostFocus}"/>
 
-                        <TextBlock Grid.Column="3" Grid.Row="0" Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Slider Grid.Column="3" Grid.Row="1" Grid.RowSpan="6" Orientation="Vertical"
+            <TextBlock Grid.Column="2" Grid.Row="0" Text="Filter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Slider Grid.Column="2" Grid.Row="1" Grid.RowSpan="6" Orientation="Vertical"
                                 HorizontalAlignment="Center" Minimum="0" Maximum="7" IsSnapToTickEnabled="True" TickFrequency="1"
                                 Value="{Binding AxisConfig.FilterLevel}"/>
-            <TextBlock Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,0"
+            <TextBlock Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                Text="{Binding AxisConfig.FilterLevel, Converter={StaticResource filterConverter}}"/>
 
-                        
-                        
-                        
 
-                    </Grid>
-                </Border>
+
+
+
+        </Grid>
+    </Border>
 
 </UserControl>

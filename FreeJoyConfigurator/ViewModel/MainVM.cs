@@ -24,7 +24,7 @@ using Prism.Mvvm;
 namespace FreeJoyConfigurator
 {
     public class MainVM : BindableBase
-    { 
+    {
         private Joystick _joystick;
         private DeviceConfig _config;
         private DeviceConfigExchangerVM _configExchanger;
@@ -46,6 +46,7 @@ namespace FreeJoyConfigurator
         public ButtonsVM ButtonsVM { get; private set; }
         public AxesToButtonsVM AxesToButtonsVM { get; private set; }
         public ShiftRegistersVM ShiftRegistersVM { get; private set; }
+        public EncodersVM EncodersVM { get; private set; }
         public LedVM LedVM { get; private set; }
         public FirmwareUpdaterVM FirmwareUpdaterVM { get; }
 
@@ -55,13 +56,10 @@ namespace FreeJoyConfigurator
             get
             {
                 _hidDevices = new ObservableCollection<string>() ;
-                
-                foreach(var device in Hid.HidDevicesList)
-                {
-                    byte[] tmp = new byte[20];
-                    device.ReadProduct(out tmp);
 
-                    _hidDevices.Add(Encoding.Unicode.GetString(tmp).TrimEnd('\0'));
+                foreach (var device in Hid.HidDevicesList)
+                { 
+                    _hidDevices.Add(device.ReadProduct());
                 }
 
                 return _hidDevices;
@@ -77,11 +75,7 @@ namespace FreeJoyConfigurator
             }
             set
             {
-                _selectedDeviceIndex = value;
-                if (value >= 0 && value < Hid.HidDevicesList.Count)
-                {
-                    Hid.Connect(Hid.HidDevicesList[value]);
-                }
+                SetProperty(ref _selectedDeviceIndex, value);
                 DeviceFirmwareVersionVM = " ";
             }
         }
@@ -94,7 +88,7 @@ namespace FreeJoyConfigurator
         }
 
         public string Version
-        {
+        {            
             get
             {
                 if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
@@ -119,11 +113,15 @@ namespace FreeJoyConfigurator
         }
         public bool IsConnectedVM
         {
-            get
-            {
-                return Hid.IsConnected;
-            }
+            get { return (Hid.IsConnected); }
         }
+        public bool IsConfigEnabledVM
+        {
+            get { return (Hid.IsConnected && !IsFlasherVM); }
+        }
+
+        public bool IsFlasherVM { get; private set; }
+
 
         #region Commands
         public DelegateCommand UpdateDeviceList { get; }
@@ -139,9 +137,6 @@ namespace FreeJoyConfigurator
 
         public MainVM()
         {
-
-            
-
             // getting current version
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -161,8 +156,10 @@ namespace FreeJoyConfigurator
             ButtonsVM.ConfigChanged += ButtonsVM_ConfigChanged;
             AxesToButtonsVM = new AxesToButtonsVM(_joystick, Config);
             AxesToButtonsVM.ConfigChanged += AxesToButtonsVM_ConfigChanged;
-            ShiftRegistersVM = new ShiftRegistersVM(_joystick, Config);
+            ShiftRegistersVM = new ShiftRegistersVM(Config);
             ShiftRegistersVM.ConfigChanged += ShiftRegistersVM_ConfigChanged;
+            EncodersVM = new EncodersVM(Config);
+            EncodersVM.ConfigChanged += EncodersVM_ConfigChanged;
             LedVM = new LedVM(_joystick, Config);
             LedVM.ConfigChanged += LedVM_ConfigChanged;
 
@@ -257,19 +254,14 @@ namespace FreeJoyConfigurator
                         while (tmp.AxisToButtonsConfig[i].Points.Count > 13) tmp.AxisToButtonsConfig[i].Points.RemoveAt(0);
                     }
                     while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
+                    while (tmp.LedConfig.Count > 24) tmp.LedConfig.RemoveAt(0);
+                    while (tmp.EncodersConfig.Count > 16) tmp.EncodersConfig.RemoveAt(0);
                     tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                     Config = tmp;
                 }
-                PinsVM.Config = Config;
-                AxesVM.Config = Config;
-                ButtonsVM.Config = Config;
 
                 PinsVM.Update(Config);
-                ButtonsVM.Update(Config);
-                AxesVM.Update(Config);
-                AxesToButtonsVM.Update(Config);
-                ShiftRegistersVM.Update(Config);
             }
         }
 
@@ -296,34 +288,29 @@ namespace FreeJoyConfigurator
                     while (tmp.AxisToButtonsConfig[i].Points.Count > 13) tmp.AxisToButtonsConfig[i].Points.RemoveAt(0);
                 }
                 while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
+                while (tmp.LedConfig.Count > 24) tmp.LedConfig.RemoveAt(0);
+                while(tmp.EncodersConfig.Count > 16) tmp.EncodersConfig.RemoveAt(0);
                 tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                 Config = tmp;
             }
 
-            PinsVM.Config = Config;
-            AxesVM.Config = Config;
-            ButtonsVM.Config = Config;
-
             PinsVM.Update(Config);
-            ButtonsVM.Update(Config);
-            AxesVM.Update(Config);
-            AxesToButtonsVM.Update(Config);
-            ShiftRegistersVM.Update(Config);
         }
 
         private void PinConfigChanged()
-        {
-            ButtonsVM.Update(Config);
+        {           
             AxesVM.Update(Config);
             AxesToButtonsVM.Update(Config);
             ShiftRegistersVM.Update(Config);
+            ButtonsVM.Update(Config);
+            EncodersVM.Update(Config);
             LedVM.Update(Config);
         }
 
         private void ButtonsVM_ConfigChanged()
         {
-
+            EncodersVM.Update(Config);
         }
 
         private void AxesToButtonsVM_ConfigChanged()
@@ -337,6 +324,10 @@ namespace FreeJoyConfigurator
             ButtonsVM.Update(Config);
         }
 
+        private void EncodersVM_ConfigChanged()
+        {
+            
+        }
 
         private void LedVM_ConfigChanged()
         {
@@ -370,28 +361,48 @@ namespace FreeJoyConfigurator
         {
             RaisePropertyChanged(nameof(HidDevices));
 
-            if (!IsConnectedVM) SelectedDeviceIndex = 0;
-            else
+            SelectedDeviceIndex = Hid.HidDevicesList.Count > 0 ? Hid.HidDevicesList.Count - 1 : 0;
+
+            if (SelectedDeviceIndex >= 0 && SelectedDeviceIndex < Hid.HidDevicesList.Count)
             {
-                _selectedDeviceIndex = 0;
-                RaisePropertyChanged(nameof(SelectedDeviceIndex));
+                Hid.Connect(Hid.HidDevicesList[SelectedDeviceIndex]);
+              
+                string name = Hid.HidDevicesList[SelectedDeviceIndex].ReadProduct();
+
+                if (name.Contains("FreeJoy Flasher"))
+                {
+                    IsFlasherVM = true;
+                    RaisePropertyChanged(nameof(IsFlasherVM));
+                    WriteLog("Device entered flasher mode", false);
+                }
+                else
+                {
+                    IsFlasherVM = false;
+                    RaisePropertyChanged(nameof(IsFlasherVM));
+                }
             }
+
         }
 
         public void DeviceAddedEventHandler(HidDevice hd)
         {
-            WriteLog("Device added", false);
+            string name = hd.ReadProduct();
+
+            WriteLog("Device \"" + name + "\" added", false);
+            //WriteLog("Device added", false);
+
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
-            RaisePropertyChanged(nameof(HidDevices));
+            RaisePropertyChanged(nameof(IsConfigEnabledVM));
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)
         {
             WriteLog("Device removed", false);
+            
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
-            RaisePropertyChanged(nameof(HidDevices));
+            RaisePropertyChanged(nameof(IsConfigEnabledVM));
         }
         #endregion
 
@@ -487,7 +498,7 @@ namespace FreeJoyConfigurator
             }
             catch (Exception ex)
             {
-                //Log exception here
+                throw new Exception("Error parsing XML file", ex);
             }
 
             return objectOut;

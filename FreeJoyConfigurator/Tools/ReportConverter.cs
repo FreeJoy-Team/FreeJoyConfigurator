@@ -9,7 +9,7 @@ using System.Windows.Threading;
 
 namespace FreeJoyConfigurator
 {
-    
+
 
     public enum ReportID : byte
     {
@@ -26,51 +26,58 @@ namespace FreeJoyConfigurator
 
         public static void ReportToJoystick(ref Joystick joystick, HidReport hr)
         {
-            if (hr != null)
+            try
             {
-                for (int i = 0; i < joystick.Axes.Count; i++)
+                if (hr != null)
                 {
-                    joystick.Axes[i].RawValue = (short)(hr.Data[1 + 2 * i] << 8 | hr.Data[0 + 2 * i]);
-                }
+                    for (int i = 0; i < joystick.Axes.Count; i++)
+                    {
+                        joystick.Axes[i].RawValue = (short)(hr.Data[1 + 2 * i] << 8 | hr.Data[0 + 2 * i]);
+                    }
 
-                for (int i = 0; i < 64; i++)
-                {
-                    joystick.PhysicalButtons[hr.Data[16] + i].State = (hr.Data[17 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
-                }
+                    for (int i = 0; i < 64; i++)
+                    {
+                        joystick.PhysicalButtons[hr.Data[16] + i].State = (hr.Data[17 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
+                    }
 
-                for (int i = 0; i < 5; i++)
-                {
-                    joystick.ShiftButtons[i].State = (hr.Data[25] & (1 << i)) > 0 ? true : false;
-                }
+                    for (int i = 0; i < 5; i++)
+                    {
+                        joystick.ShiftButtons[i].State = (hr.Data[25] & (1 << i)) > 0 ? true : false;
+                    }
 
-                for (int i = 0; i < joystick.Axes.Count; i++)
-                {
-                    joystick.Axes[i].Value =  (short) (hr.Data[27 + 2 * i] << 8 |  hr.Data[26 + 2 * i]);
-                }
+                    for (int i = 0; i < joystick.Axes.Count; i++)
+                    {
+                        joystick.Axes[i].Value = (short)(hr.Data[27 + 2 * i] << 8 | hr.Data[26 + 2 * i]);
+                    }
 
-                for (int i = 0; i < joystick.Povs.Count; i++)
-                {
-                    joystick.Povs[i].State =  hr.Data[42 + i];
-                }
+                    for (int i = 0; i < joystick.Povs.Count; i++)
+                    {
+                        joystick.Povs[i].State = hr.Data[42 + i];
+                    }
 
-                for (int i = 0; i < joystick.LogicalButtons.Count; i++)
-                {
-                    joystick.LogicalButtons[i].State = (hr.Data[46 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
-                }
+                    for (int i = 0; i < joystick.LogicalButtons.Count; i++)
+                    {
+                        joystick.LogicalButtons[i].State = (hr.Data[46 + ((i & 0xF8) >> 3)] & (1 << (i & 0x07))) > 0 ? true : false;
+                    }
 
-                
+
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(string.Format("Error parsing joystick report"), exception);
             }
         }
-    
 
-        public static void ReportToConfig (ref DeviceConfig config, HidReport hr)
+
+        public static void ReportToConfig(ref DeviceConfig config, HidReport hr)
         {
             if (hr.Data[0] == 1)
             {
-                char[] chars = new char[20];
+                char[] chars = new char[26];
 
                 config.FirmwareVersion = (ushort)(hr.Data[2] << 8 | hr.Data[1]);
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < chars.Length; i++)
                 {
 
                     chars[i] = (char)hr.Data[i + 3];
@@ -78,14 +85,13 @@ namespace FreeJoyConfigurator
                 }
                 config.DeviceName = new string(chars);
                 config.DeviceName.TrimEnd('\0');
-                config.ButtonDebounceMs = (ushort)(hr.Data[24] << 8 | hr.Data[23]);
-                config.TogglePressMs = (ushort)(hr.Data[26] << 8 | hr.Data[25]);
-                config.EncoderPressMs = (ushort)(hr.Data[28] << 8 | hr.Data[27]);
-                config.ExchangePeriod = (ushort)(hr.Data[30] << 8 | hr.Data[29]);
+                config.ButtonDebounceMs = (ushort)(hr.Data[30] << 8 | hr.Data[29]);
+                config.EncoderPressMs = (byte)hr.Data[31];
+                config.ExchangePeriod = (byte)hr.Data[32];
 
                 for (int i = 0; i < config.PinConfig.Count; i++)
                 {
-                    config.PinConfig[i] = (PinType)hr.Data[i + 32];
+                    config.PinConfig[i] = (PinType)hr.Data[i + 33];
                 }
 
             }
@@ -97,7 +103,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[0].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[0].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[0].Function = (AxisFunction)((hr.Data[7] & 0x0C) >> 2);
+                config.AxisConfig[0].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
                 config.AxisConfig[0].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -110,11 +116,15 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].SourceMain = (AxisSourceType)(hr.Data[21]);
                 config.AxisConfig[0].SourceSecondary = (AxisType)(hr.Data[22] & 0x07);
                 config.AxisConfig[0].OffsetAngle = (hr.Data[22] >> 3) * 15;
-                config.AxisConfig[0].DecrementButton = (sbyte)(hr.Data[23] + 1);
-                config.AxisConfig[0].CenterButton = (sbyte)(hr.Data[24] + 1);
-                config.AxisConfig[0].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[0].Step = hr.Data[26];
-                config.AxisConfig[0].I2cAddress = (AxisAddressType) hr.Data[27];
+                config.AxisConfig[0].Button1 = (sbyte)(hr.Data[23] + 1);
+                config.AxisConfig[0].Button2 = (sbyte)(hr.Data[24] + 1);
+                config.AxisConfig[0].Button3 = (sbyte)(hr.Data[25] + 1);
+                config.AxisConfig[0].Divider = hr.Data[26];
+                config.AxisConfig[0].I2cAddress = (AxisAddressType)hr.Data[27];
+                config.AxisConfig[0].Button1_Type = (AxisButtonFullType)(hr.Data[28] & 0x07 );
+                config.AxisConfig[0].Button2_Type = (AxisButtonCutType)((hr.Data[28]>>3) & 0x03);
+                config.AxisConfig[0].Button3_Type = (AxisButtonFullType)(hr.Data[28]>>5);
+                config.AxisConfig[0].Prescaler = (byte)(hr.Data[29]);
 
                 config.AxisConfig[1] = new AxisConfig();
                 config.AxisConfig[1].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -122,7 +132,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[1].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[1].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[1].Function = (AxisFunction)((hr.Data[37] & 0x0C) >> 2);
+                config.AxisConfig[1].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
                 config.AxisConfig[1].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -135,11 +145,15 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[1].SourceSecondary = (AxisType)(hr.Data[52] & 0x07);
                 config.AxisConfig[1].OffsetAngle = (hr.Data[52] >> 3) * 15;
-                config.AxisConfig[1].DecrementButton = (sbyte)(hr.Data[53] + 1);
-                config.AxisConfig[1].CenterButton = (sbyte)(hr.Data[54] + 1);
-                config.AxisConfig[1].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[1].Step = hr.Data[56];
-                config.AxisConfig[1].I2cAddress = (AxisAddressType) hr.Data[57];
+                config.AxisConfig[1].Button1 = (sbyte)(hr.Data[53] + 1);
+                config.AxisConfig[1].Button2 = (sbyte)(hr.Data[54] + 1);
+                config.AxisConfig[1].Button3 = (sbyte)(hr.Data[55] + 1);
+                config.AxisConfig[1].Divider = hr.Data[56];
+                config.AxisConfig[1].I2cAddress = (AxisAddressType)hr.Data[57];
+                config.AxisConfig[1].Button1_Type = (AxisButtonFullType)(hr.Data[58] & 0x07);
+                config.AxisConfig[1].Button2_Type = (AxisButtonCutType)((hr.Data[58] >> 3) & 0x03);
+                config.AxisConfig[1].Button3_Type = (AxisButtonFullType)(hr.Data[58] >> 5);
+                config.AxisConfig[1].Prescaler = (byte)(hr.Data[59]);
 
             }
             else if (hr.Data[0] == 3)
@@ -150,7 +164,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[2].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[2].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[2].Function = (AxisFunction)((hr.Data[7] & 0x0C) >> 2);
+                config.AxisConfig[2].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
                 config.AxisConfig[2].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -163,11 +177,15 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].SourceMain = (AxisSourceType)(hr.Data[21]);
                 config.AxisConfig[2].SourceSecondary = (AxisType)(hr.Data[22] & 0x07);
                 config.AxisConfig[2].OffsetAngle = (hr.Data[22] >> 3) * 15;
-                config.AxisConfig[2].DecrementButton = (sbyte)(hr.Data[23] + 1);
-                config.AxisConfig[2].CenterButton = (sbyte)(hr.Data[24] + 1);
-                config.AxisConfig[2].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[2].Step = hr.Data[26];
+                config.AxisConfig[2].Button1 = (sbyte)(hr.Data[23] + 1);
+                config.AxisConfig[2].Button2 = (sbyte)(hr.Data[24] + 1);
+                config.AxisConfig[2].Button3 = (sbyte)(hr.Data[25] + 1);
+                config.AxisConfig[2].Divider = hr.Data[26];
                 config.AxisConfig[2].I2cAddress = (AxisAddressType)hr.Data[27];
+                config.AxisConfig[2].Button1_Type = (AxisButtonFullType)(hr.Data[28] & 0x07);
+                config.AxisConfig[2].Button2_Type = (AxisButtonCutType)((hr.Data[28] >> 3) & 0x03);
+                config.AxisConfig[2].Button3_Type = (AxisButtonFullType)(hr.Data[28] >> 5);
+                config.AxisConfig[2].Prescaler = (byte)(hr.Data[29]);
 
                 config.AxisConfig[3] = new AxisConfig();
                 config.AxisConfig[3].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -175,7 +193,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[3].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[3].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[3].Function = (AxisFunction)((hr.Data[37] & 0x0C) >> 2);
+                config.AxisConfig[3].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
                 config.AxisConfig[3].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -188,11 +206,15 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[3].SourceSecondary = (AxisType)(hr.Data[52] & 0x07);
                 config.AxisConfig[3].OffsetAngle = (hr.Data[52] >> 3) * 15;
-                config.AxisConfig[3].DecrementButton = (sbyte)(hr.Data[53] + 1);
-                config.AxisConfig[3].CenterButton = (sbyte)(hr.Data[54] + 1);
-                config.AxisConfig[3].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[3].Step = hr.Data[56];
+                config.AxisConfig[3].Button1 = (sbyte)(hr.Data[53] + 1);
+                config.AxisConfig[3].Button2 = (sbyte)(hr.Data[54] + 1);
+                config.AxisConfig[3].Button3 = (sbyte)(hr.Data[55] + 1);
+                config.AxisConfig[3].Divider = hr.Data[56];
                 config.AxisConfig[3].I2cAddress = (AxisAddressType)hr.Data[57];
+                config.AxisConfig[3].Button1_Type = (AxisButtonFullType)(hr.Data[58] & 0x07);
+                config.AxisConfig[3].Button2_Type = (AxisButtonCutType)((hr.Data[58] >> 3) & 0x03);
+                config.AxisConfig[3].Button3_Type = (AxisButtonFullType)(hr.Data[58] >> 5);
+                config.AxisConfig[3].Prescaler = (byte)(hr.Data[59]);
             }
             else if (hr.Data[0] == 4)
             {
@@ -202,7 +224,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[4].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[4].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[4].Function = (AxisFunction)((hr.Data[7] & 0x0C) >> 2);
+                config.AxisConfig[4].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
                 config.AxisConfig[4].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -215,11 +237,15 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].SourceMain = (AxisSourceType)(hr.Data[21]);
                 config.AxisConfig[4].SourceSecondary = (AxisType)(hr.Data[22] & 0x07);
                 config.AxisConfig[4].OffsetAngle = (hr.Data[22] >> 3) * 15;
-                config.AxisConfig[4].DecrementButton = (sbyte)(hr.Data[23] + 1);
-                config.AxisConfig[4].CenterButton = (sbyte)(hr.Data[24] + 1);
-                config.AxisConfig[4].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[4].Step = hr.Data[26];
+                config.AxisConfig[4].Button1 = (sbyte)(hr.Data[23] + 1);
+                config.AxisConfig[4].Button2 = (sbyte)(hr.Data[24] + 1);
+                config.AxisConfig[4].Button3 = (sbyte)(hr.Data[25] + 1);
+                config.AxisConfig[4].Divider = hr.Data[26];
                 config.AxisConfig[4].I2cAddress = (AxisAddressType)hr.Data[27];
+                config.AxisConfig[4].Button1_Type = (AxisButtonFullType)(hr.Data[28] & 0x07);
+                config.AxisConfig[4].Button2_Type = (AxisButtonCutType)((hr.Data[28] >> 3) & 0x03);
+                config.AxisConfig[4].Button3_Type = (AxisButtonFullType)(hr.Data[28] >> 5);
+                config.AxisConfig[4].Prescaler = (byte)(hr.Data[29]);
 
                 config.AxisConfig[5] = new AxisConfig();
                 config.AxisConfig[5].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -227,7 +253,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[5].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[5].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[5].Function = (AxisFunction)((hr.Data[37] & 0x0C) >> 2);
+                config.AxisConfig[5].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
                 config.AxisConfig[5].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -240,11 +266,15 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[5].SourceSecondary = (AxisType)(hr.Data[52] & 0x07);
                 config.AxisConfig[5].OffsetAngle = (hr.Data[52] >> 3) * 15;
-                config.AxisConfig[5].DecrementButton = (sbyte)(hr.Data[53] + 1);
-                config.AxisConfig[5].CenterButton = (sbyte)(hr.Data[54] + 1);
-                config.AxisConfig[5].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[5].Step = hr.Data[56];
+                config.AxisConfig[5].Button1 = (sbyte)(hr.Data[53] + 1);
+                config.AxisConfig[5].Button2 = (sbyte)(hr.Data[54] + 1);
+                config.AxisConfig[5].Button3 = (sbyte)(hr.Data[55] + 1);
+                config.AxisConfig[5].Divider = hr.Data[56];
                 config.AxisConfig[5].I2cAddress = (AxisAddressType)hr.Data[57];
+                config.AxisConfig[5].Button1_Type = (AxisButtonFullType)(hr.Data[58] & 0x07);
+                config.AxisConfig[5].Button2_Type = (AxisButtonCutType)((hr.Data[58] >> 3) & 0x03);
+                config.AxisConfig[5].Button3_Type = (AxisButtonFullType)(hr.Data[58] >> 5);
+                config.AxisConfig[5].Prescaler = (byte)(hr.Data[59]);
             }
             else if (hr.Data[0] == 5)
             {
@@ -254,7 +284,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[6].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[6].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[6].Function = (AxisFunction)((hr.Data[7] & 0x0C) >> 2);
+                config.AxisConfig[6].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
                 config.AxisConfig[6].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -267,11 +297,15 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].SourceMain = (AxisSourceType)(hr.Data[21]);
                 config.AxisConfig[6].SourceSecondary = (AxisType)(hr.Data[22] & 0x07);
                 config.AxisConfig[6].OffsetAngle = (hr.Data[22] >> 3) * 15;
-                config.AxisConfig[6].DecrementButton = (sbyte)(hr.Data[23] + 1);
-                config.AxisConfig[6].CenterButton = (sbyte)(hr.Data[24] + 1);
-                config.AxisConfig[6].IncrementButton = (sbyte)(hr.Data[25] + 1);
-                config.AxisConfig[6].Step = hr.Data[26];
+                config.AxisConfig[6].Button1 = (sbyte)(hr.Data[23] + 1);
+                config.AxisConfig[6].Button2 = (sbyte)(hr.Data[24] + 1);
+                config.AxisConfig[6].Button3 = (sbyte)(hr.Data[25] + 1);
+                config.AxisConfig[6].Divider = hr.Data[26];
                 config.AxisConfig[6].I2cAddress = (AxisAddressType)hr.Data[27];
+                config.AxisConfig[6].Button1_Type = (AxisButtonFullType)(hr.Data[28] & 0x07);
+                config.AxisConfig[6].Button2_Type = (AxisButtonCutType)((hr.Data[28] >> 3) & 0x03);
+                config.AxisConfig[6].Button3_Type = (AxisButtonFullType)(hr.Data[28] >> 5);
+                config.AxisConfig[6].Prescaler = (byte)(hr.Data[29]);
 
                 config.AxisConfig[7] = new AxisConfig();
                 config.AxisConfig[7].CalibMin = (short)(hr.Data[32] << 8 | hr.Data[31]);
@@ -279,7 +313,7 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[7].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[7].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[7].Function = (AxisFunction)((hr.Data[37] & 0x0C) >> 2);
+                config.AxisConfig[7].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
                 config.AxisConfig[7].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -292,159 +326,235 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].SourceMain = (AxisSourceType)hr.Data[51];
                 config.AxisConfig[7].SourceSecondary = (AxisType)(hr.Data[52] & 0x07);
                 config.AxisConfig[7].OffsetAngle = (hr.Data[52] >> 3) * 15;
-                config.AxisConfig[7].DecrementButton = (sbyte)(hr.Data[53] + 1);
-                config.AxisConfig[7].CenterButton = (sbyte)(hr.Data[54] + 1);
-                config.AxisConfig[7].IncrementButton = (sbyte)(hr.Data[55] + 1);
-                config.AxisConfig[7].Step = hr.Data[56];
+                config.AxisConfig[7].Button1 = (sbyte)(hr.Data[53] + 1);
+                config.AxisConfig[7].Button2 = (sbyte)(hr.Data[54] + 1);
+                config.AxisConfig[7].Button3 = (sbyte)(hr.Data[55] + 1);
+                config.AxisConfig[7].Divider = hr.Data[56];
                 config.AxisConfig[7].I2cAddress = (AxisAddressType)hr.Data[57];
+                config.AxisConfig[7].Button1_Type = (AxisButtonFullType)(hr.Data[58] & 0x07);
+                config.AxisConfig[7].Button2_Type = (AxisButtonCutType)((hr.Data[58] >> 3) & 0x03);
+                config.AxisConfig[7].Button3_Type = (AxisButtonFullType)(hr.Data[58] >> 5);
+                config.AxisConfig[7].Prescaler = (byte)(hr.Data[59]);
 
             }
             else if (hr.Data[0] == 6)
             {
                 // buttons group 1
-                for (int i = 0; i < 31; i++)
+                for (int i = 0; i < 20; i++)
                 {
-                    config.ButtonConfig[i].PhysicalNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
-                    config.ButtonConfig[i].ShiftModificator = (ShiftType)((hr.Data[2 * i + 2] & SHIFT_MASK) >> 5);
-                    config.ButtonConfig[i].Type = (ButtonType)(hr.Data[2 * i + 2] & BUTTON_TYPE_MASK);
+                    config.ButtonConfig[i].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
+                    config.ButtonConfig[i].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
+                    config.ButtonConfig[i].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
+
+                    config.ButtonConfig[i].IsInverted = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x01);
+                    config.ButtonConfig[i].IsDisabled = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x02);
+                    config.ButtonConfig[i].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
+                    config.ButtonConfig[i].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
                 }
+
+                config.ButtonTimer1Ms = (ushort)(hr.Data[62] << 8 | hr.Data[61]);
             }
             else if (hr.Data[0] == 7)
             {
                 // buttons group 2
-                for (int i = 0; i < 31; i++)
+                for (int i = 0; i < 20; i++)
                 {
-                    config.ButtonConfig[i + 31].PhysicalNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
-                    config.ButtonConfig[i + 31].ShiftModificator = (ShiftType)((hr.Data[2 * i + 2] & SHIFT_MASK) >> 5);
-                    config.ButtonConfig[i + 31].Type = (ButtonType)(hr.Data[2 * i + 2] & BUTTON_TYPE_MASK);
+                    config.ButtonConfig[i + 20].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
+                    config.ButtonConfig[i + 20].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
+                    config.ButtonConfig[i + 20].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
+
+                    config.ButtonConfig[i + 20].IsInverted = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x01);
+                    config.ButtonConfig[i + 20].IsDisabled = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x02);
+                    config.ButtonConfig[i + 20].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
+                    config.ButtonConfig[i + 20].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
                 }
+
+                config.ButtonTimer2Ms = (ushort)(hr.Data[62] << 8 | hr.Data[61]);
             }
             else if (hr.Data[0] == 8)
             {
                 // buttons group 3
-                for (int i = 0; i < 31; i++)
+                for (int i = 0; i < 20; i++)
                 {
-                    config.ButtonConfig[i + 62].PhysicalNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
-                    config.ButtonConfig[i + 62].ShiftModificator = (ShiftType)((hr.Data[2 * i + 2] & SHIFT_MASK) >> 5);
-                    config.ButtonConfig[i + 62].Type = (ButtonType)(hr.Data[2 * i + 2] & BUTTON_TYPE_MASK);
+                    config.ButtonConfig[i + 40].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
+                    config.ButtonConfig[i + 40].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
+                    config.ButtonConfig[i + 40].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
+
+                    config.ButtonConfig[i + 40].IsInverted = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x01);
+                    config.ButtonConfig[i + 40].IsDisabled = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x02);
+                    config.ButtonConfig[i + 40].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
+                    config.ButtonConfig[i + 40].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
                 }
+
+                config.ButtonTimer3Ms = (ushort)(hr.Data[62] << 8 | hr.Data[61]);
             }
             else if (hr.Data[0] == 9)
             {
                 // buttons group 4
-                for (int i = 0; i < 31; i++)
+                for (int i = 0; i < 20; i++)
                 {
-                    config.ButtonConfig[i + 93].PhysicalNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
-                    config.ButtonConfig[i + 93].ShiftModificator = (ShiftType)((hr.Data[2 * i + 2] & SHIFT_MASK) >> 5);
-                    config.ButtonConfig[i + 93].Type = (ButtonType)(hr.Data[2 * i + 2] & BUTTON_TYPE_MASK);
+                    config.ButtonConfig[i + 60].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
+                    config.ButtonConfig[i + 60].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
+                    config.ButtonConfig[i + 60].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
+
+                    config.ButtonConfig[i + 60].IsInverted = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x01);
+                    config.ButtonConfig[i + 60].IsDisabled = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x02);
+                    config.ButtonConfig[i + 60].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
+                    config.ButtonConfig[i + 60].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
                 }
             }
             else if (hr.Data[0] == 10)
             {
                 // buttons group 5
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 20; i++)
                 {
-                    config.ButtonConfig[i + 124].PhysicalNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
-                    config.ButtonConfig[i + 124].ShiftModificator = (ShiftType)((hr.Data[2 * i + 2] & SHIFT_MASK) >> 5);
-                    config.ButtonConfig[i + 124].Type = (ButtonType)(hr.Data[2 * i + 2] & BUTTON_TYPE_MASK);
+                    config.ButtonConfig[i + 80].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
+                    config.ButtonConfig[i + 80].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
+                    config.ButtonConfig[i + 80].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
+
+                    config.ButtonConfig[i + 80].IsInverted = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x01);
+                    config.ButtonConfig[i + 80].IsDisabled = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x02);
+                    config.ButtonConfig[i + 80].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
+                    config.ButtonConfig[i + 80].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
+                }
+            }
+            else if (hr.Data[0] == 11)
+            {
+                // buttons group 6
+                for (int i = 0; i < 20; i++)
+                {
+                    config.ButtonConfig[i + 100].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
+                    config.ButtonConfig[i + 100].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
+                    config.ButtonConfig[i + 100].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
+
+                    config.ButtonConfig[i + 100].IsInverted = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x01);
+                    config.ButtonConfig[i + 100].IsDisabled = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x02);
+                    config.ButtonConfig[i + 100].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
+                    config.ButtonConfig[i + 100].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
+                }
+            }
+            else if (hr.Data[0] == 12)
+            {
+                // buttons group 7
+                for (int i = 0; i < 8; i++)
+                {
+                    config.ButtonConfig[i + 120].PhysicalNumber = (sbyte)(hr.Data[3 * i + 1] + 1);
+                    config.ButtonConfig[i + 120].ShiftModificator = (ShiftType)((hr.Data[3 * i + 2] & SHIFT_MASK) >> 5);
+                    config.ButtonConfig[i + 120].Type = (ButtonType)(hr.Data[3 * i + 2] & BUTTON_TYPE_MASK);
+
+                    config.ButtonConfig[i + 120].IsInverted = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x01);
+                    config.ButtonConfig[i + 120].IsDisabled = Convert.ToBoolean(hr.Data[3 * i + 3] & 0x02);
+                    config.ButtonConfig[i + 120].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
+                    config.ButtonConfig[i + 120].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
                 }
 
                 // axes to buttons group 1
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[0].Points[i] = (byte)hr.Data[9 + i];
+                    config.AxisToButtonsConfig[0].Points[i] = (byte)hr.Data[25 + i];
                 }
-                config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[22];
-                config.AxisToButtonsConfig[0].IsEnabled = (hr.Data[23] > 0) ? true : false;
+                config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[38];
+                config.AxisToButtonsConfig[0].IsEnabled = (hr.Data[39] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[1].Points[i] = (byte)hr.Data[24 + i];
+                    config.AxisToButtonsConfig[1].Points[i] = (byte)hr.Data[40 + i];
                 }
-                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[37];
-                config.AxisToButtonsConfig[1].IsEnabled = (hr.Data[38] > 0) ? true : false;
-
-                for (int i = 0; i < 13; i++)
-                {
-                    config.AxisToButtonsConfig[2].Points[i] = (byte)hr.Data[39 + i];
-                }
-                config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[52];
-                config.AxisToButtonsConfig[2].IsEnabled = (hr.Data[53] > 0) ? true : false;
+                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[53];
+                config.AxisToButtonsConfig[1].IsEnabled = (hr.Data[54] > 0) ? true : false;
 
             }
-            else if (hr.Data[0] == 11)
+            else if (hr.Data[0] == 13)
             {
                 // axes to buttons group 2
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[3].Points[i] = (byte)hr.Data[1 + i];
+                    config.AxisToButtonsConfig[2].Points[i] = (byte)hr.Data[1 + i];
                 }
-                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[14];
-                config.AxisToButtonsConfig[3].IsEnabled = (hr.Data[15] > 0) ? true : false;
+                config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[14];
+                config.AxisToButtonsConfig[2].IsEnabled = (hr.Data[15] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[4].Points[i] = (byte)hr.Data[16 + i];
+                    config.AxisToButtonsConfig[3].Points[i] = (byte)hr.Data[16 + i];
                 }
-                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[29];
-                config.AxisToButtonsConfig[4].IsEnabled = (hr.Data[30] > 0) ? true : false;
+                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[29];
+                config.AxisToButtonsConfig[3].IsEnabled = (hr.Data[30] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[5].Points[i] = (byte)hr.Data[31 + i];
+                    config.AxisToButtonsConfig[4].Points[i] = (byte)hr.Data[31 + i];
                 }
-                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[44];
-                config.AxisToButtonsConfig[5].IsEnabled = (hr.Data[45] > 0) ? true : false;
+                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[44];
+                config.AxisToButtonsConfig[4].IsEnabled = (hr.Data[45] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[6].Points[i] = (byte)hr.Data[46 + i];
+                    config.AxisToButtonsConfig[5].Points[i] = (byte)hr.Data[46 + i];
                 }
-                config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[59];
-                config.AxisToButtonsConfig[6].IsEnabled = (hr.Data[60] > 0) ? true : false;
+                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[59];
+                config.AxisToButtonsConfig[5].IsEnabled = (hr.Data[60] > 0) ? true : false;
 
             }
-            else if (hr.Data[0] == 12)
+            else if (hr.Data[0] == 14)
             {
+                // axes to buttons group 3
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[7].Points[i] = (byte)hr.Data[1 + i];
+                    config.AxisToButtonsConfig[6].Points[i] = (byte)hr.Data[1 + i];
                 }
-                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[14];
-                config.AxisToButtonsConfig[7].IsEnabled = (hr.Data[15] > 0) ? true : false;
+                config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[14];
+                config.AxisToButtonsConfig[6].IsEnabled = (hr.Data[15] > 0) ? true : false;
+
+                for (int i = 0; i < 13; i++)
+                {
+                    config.AxisToButtonsConfig[7].Points[i] = (byte)hr.Data[16 + i];
+                }
+                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[29];
+                config.AxisToButtonsConfig[7].IsEnabled = (hr.Data[30] > 0) ? true : false;
+
 
                 for (int i = 0; i < 4; i++)
                 {
-                    config.ShiftRegistersConfig[i].Type = (ShiftRegisterType)hr.Data[4 * i + 16];
-                    config.ShiftRegistersConfig[i].ButtonCnt = (byte)hr.Data[4 * i + 17];
+                    config.ShiftRegistersConfig[i].Type = (ShiftRegisterType)hr.Data[4 * i + 31];
+                    config.ShiftRegistersConfig[i].ButtonCnt = (byte)hr.Data[4 * i + 32];
                 }
 
                 for (int i = 0; i < 5; i++)
                 {
-                    config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[32 + i] + 1);
-                    //config.ShiftModificatorConfig[i].Mode = (ShiftMode)hr.Data[33 + i * 2];
+                    config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[47 + i] + 1);
                 }
 
-                config.Vid = (ushort)((ushort)(hr.Data[38] << 8) | (ushort)hr.Data[37]);
-                config.Pid = (ushort)((ushort)(hr.Data[40] << 8) | (ushort)hr.Data[39]);
-                config.IsDynamicConfig = (hr.Data[41] > 0) ? true : false;
+                config.Vid = (ushort)((ushort)(hr.Data[53] << 8) | (ushort)hr.Data[52]);
+                config.Pid = (ushort)((ushort)(hr.Data[55] << 8) | (ushort)hr.Data[54]);
+                config.IsDynamicConfig = (hr.Data[56] > 0) ? true : false;
 
+            }
+            else if (hr.Data[0] == 15)
+            {
                 for (int i = 0; i < 3; i++)
                 {
-                    config.LedPwmConfig.DutyCycle[i] = hr.Data[42 + i];
+                    config.LedPwmConfig.DutyCycle[i] = hr.Data[1 + i];
                 }
-            }
-            else if (hr.Data[0] == 13)
-            {
+
                 for (int i = 0; i < 24; i++)
                 {
-                    config.LedConfig[i].InputNumber = (sbyte)(hr.Data[2 * i + 1] + 1);
-                    config.LedConfig[i].Type = (LedType)(hr.Data[2 * i + 2] & 0x07);
+                    config.LedConfig[i].InputNumber = (sbyte)(hr.Data[2 * i + 11] + 1);
+                    config.LedConfig[i].Type = (LedType)(hr.Data[2 * i + 12] & 0x07);
+                }
+
+                
+            }
+            else if (hr.Data[0] == 16)
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    config.EncodersConfig[i].Type = (EncoderType)(hr.Data[i+1]);
                 }
             }
         }
 
-        public static List<HidReport> ConfigToReports (DeviceConfig config)
+        public static List<HidReport> ConfigToReports(DeviceConfig config)
         {
             List<HidReport> hidReports = new List<HidReport>();
             byte[] buffer = new byte[64];
@@ -453,22 +563,18 @@ namespace FreeJoyConfigurator
 
             // Report 1
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
-            buffer[1] = (byte) 0x01;
+            buffer[1] = (byte)0x01;
             buffer[2] = (byte)(config.FirmwareVersion & 0xFF);
-            buffer[3] = (byte) (config.FirmwareVersion >> 8);            
+            buffer[3] = (byte)(config.FirmwareVersion >> 8);
             chars = Encoding.ASCII.GetBytes(config.DeviceName);
-            Array.ConstrainedCopy(chars, 0, buffer, 4, (chars.Length > 20) ? 20 : chars.Length);
-            buffer[24] = (byte)(config.ButtonDebounceMs & 0xFF);
-            buffer[25] = (byte)(config.ButtonDebounceMs >> 8);
-            buffer[26] = (byte)(config.TogglePressMs & 0xFF);
-            buffer[27] = (byte)(config.TogglePressMs >> 8);
-            buffer[28] = (byte)(config.EncoderPressMs & 0xFF);
-            buffer[29] = (byte)(config.EncoderPressMs >> 8);
-            buffer[30] = (byte)(config.ExchangePeriod & 0xFF);
-            buffer[31] = (byte)(config.ExchangePeriod >> 8);           
+            Array.ConstrainedCopy(chars, 0, buffer, 4, (chars.Length > 26) ? 26 : chars.Length);
+            buffer[30] = (byte)(config.ButtonDebounceMs & 0xFF);
+            buffer[31] = (byte)(config.ButtonDebounceMs >> 8);
+            buffer[32] = (byte)(config.EncoderPressMs);
+            buffer[33] = (byte)(config.ExchangePeriod);
             for (int i = 0; i < 30; i++)
             {
-                buffer[i + 33] = (byte)config.PinConfig[i];
+                buffer[i + 34] = (byte)config.PinConfig[i];
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
@@ -485,8 +591,8 @@ namespace FreeJoyConfigurator
             buffer[8] = (byte)(config.AxisConfig[0].IsOutEnabled ? 0x01 : 0x00);
             buffer[8] |= (byte)(config.AxisConfig[0].IsInverted ? 0x02 : 0x00);
             buffer[8] |= (byte)((byte)config.AxisConfig[0].Function << 2);
-            buffer[8] |= (byte)(config.AxisConfig[0].FilterLevel<<5);
-            for (int i=0; i<11; i++)
+            buffer[8] |= (byte)(config.AxisConfig[0].FilterLevel << 5);
+            for (int i = 0; i < 11; i++)
             {
                 buffer[i + 9] = (byte)config.AxisConfig[0].CurveShape[i].Y;
             }
@@ -497,11 +603,15 @@ namespace FreeJoyConfigurator
             buffer[22] = (byte)(config.AxisConfig[0].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[0].SourceSecondary);
             buffer[23] |= (byte)((config.AxisConfig[0].OffsetAngle / 15) << 3);
-            buffer[24] = (byte)(config.AxisConfig[0].DecrementButton - 1);
-            buffer[25] = (byte)(config.AxisConfig[0].CenterButton - 1);
-            buffer[26] = (byte)(config.AxisConfig[0].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[0].Step);
+            buffer[24] = (byte)(config.AxisConfig[0].Button1 - 1);
+            buffer[25] = (byte)(config.AxisConfig[0].Button2 - 1);
+            buffer[26] = (byte)(config.AxisConfig[0].Button3 - 1);
+            buffer[27] = (byte)(config.AxisConfig[0].Divider);
             buffer[28] = (byte)(config.AxisConfig[0].I2cAddress);
+            buffer[29] = (byte)(config.AxisConfig[0].Button1_Type);
+            buffer[29] |= (byte)((byte)config.AxisConfig[0].Button2_Type<<3);
+            buffer[29] |= (byte)((byte)config.AxisConfig[0].Button3_Type<<5);
+            buffer[30] = (byte)(config.AxisConfig[0].Prescaler);
 
             buffer[32] = (byte)(config.AxisConfig[1].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[1].CalibMin >> 8);
@@ -523,12 +633,16 @@ namespace FreeJoyConfigurator
             buffer[51] |= (byte)(config.AxisConfig[1].IsDynamicDeadband ? 0x80 : 0x00);
             buffer[52] = (byte)(config.AxisConfig[1].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[1].SourceSecondary);
-            buffer[53] |= (byte)((config.AxisConfig[1].OffsetAngle/15) << 3);
-            buffer[54] = (byte)(config.AxisConfig[1].DecrementButton - 1);
-            buffer[55] = (byte)(config.AxisConfig[1].CenterButton - 1);
-            buffer[56] = (byte)(config.AxisConfig[1].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[1].Step);
+            buffer[53] |= (byte)((config.AxisConfig[1].OffsetAngle / 15) << 3);
+            buffer[54] = (byte)(config.AxisConfig[1].Button1 - 1);
+            buffer[55] = (byte)(config.AxisConfig[1].Button2 - 1);
+            buffer[56] = (byte)(config.AxisConfig[1].Button3 - 1);
+            buffer[57] = (byte)(config.AxisConfig[1].Divider);
             buffer[58] = (byte)(config.AxisConfig[1].I2cAddress);
+            buffer[59] = (byte)(config.AxisConfig[1].Button1_Type);
+            buffer[59] |= (byte)((byte)config.AxisConfig[1].Button2_Type << 3);
+            buffer[59] |= (byte)((byte)config.AxisConfig[1].Button3_Type << 5);
+            buffer[60] = (byte)(config.AxisConfig[1].Prescaler);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 3
@@ -556,11 +670,15 @@ namespace FreeJoyConfigurator
             buffer[22] = (byte)(config.AxisConfig[2].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[2].SourceSecondary);
             buffer[23] |= (byte)((config.AxisConfig[2].OffsetAngle / 15) << 3);
-            buffer[24] = (byte)(config.AxisConfig[2].DecrementButton - 1);
-            buffer[25] = (byte)(config.AxisConfig[2].CenterButton - 1);
-            buffer[26] = (byte)(config.AxisConfig[2].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[2].Step);
+            buffer[24] = (byte)(config.AxisConfig[2].Button1 - 1);
+            buffer[25] = (byte)(config.AxisConfig[2].Button2 - 1);
+            buffer[26] = (byte)(config.AxisConfig[2].Button3 - 1);
+            buffer[27] = (byte)(config.AxisConfig[2].Divider);
             buffer[28] = (byte)(config.AxisConfig[2].I2cAddress);
+            buffer[29] = (byte)(config.AxisConfig[2].Button1_Type);
+            buffer[29] |= (byte)((byte)config.AxisConfig[2].Button2_Type << 3);
+            buffer[29] |= (byte)((byte)config.AxisConfig[2].Button3_Type << 5);
+            buffer[30] = (byte)(config.AxisConfig[2].Prescaler);
 
             buffer[32] = (byte)(config.AxisConfig[3].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[3].CalibMin >> 8);
@@ -583,11 +701,15 @@ namespace FreeJoyConfigurator
             buffer[52] = (byte)(config.AxisConfig[3].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[3].SourceSecondary);
             buffer[53] |= (byte)((config.AxisConfig[3].OffsetAngle / 15) << 3);
-            buffer[54] = (byte)(config.AxisConfig[3].DecrementButton - 1);
-            buffer[55] = (byte)(config.AxisConfig[3].CenterButton - 1);
-            buffer[56] = (byte)(config.AxisConfig[3].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[3].Step);
+            buffer[54] = (byte)(config.AxisConfig[3].Button1 - 1);
+            buffer[55] = (byte)(config.AxisConfig[3].Button2 - 1);
+            buffer[56] = (byte)(config.AxisConfig[3].Button3 - 1);
+            buffer[57] = (byte)(config.AxisConfig[3].Divider);
             buffer[58] = (byte)(config.AxisConfig[3].I2cAddress);
+            buffer[59] = (byte)(config.AxisConfig[3].Button1_Type);
+            buffer[59] |= (byte)((byte)config.AxisConfig[3].Button2_Type << 3);
+            buffer[59] |= (byte)((byte)config.AxisConfig[3].Button3_Type << 5);
+            buffer[60] = (byte)(config.AxisConfig[3].Prescaler);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 4
@@ -615,11 +737,15 @@ namespace FreeJoyConfigurator
             buffer[22] = (byte)(config.AxisConfig[4].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[4].SourceSecondary);
             buffer[23] |= (byte)((config.AxisConfig[4].OffsetAngle / 15) << 3);
-            buffer[24] = (byte)(config.AxisConfig[4].DecrementButton - 1);
-            buffer[25] = (byte)(config.AxisConfig[4].CenterButton - 1);
-            buffer[26] = (byte)(config.AxisConfig[4].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[4].Step);
+            buffer[24] = (byte)(config.AxisConfig[4].Button1 - 1);
+            buffer[25] = (byte)(config.AxisConfig[4].Button2 - 1);
+            buffer[26] = (byte)(config.AxisConfig[4].Button3 - 1);
+            buffer[27] = (byte)(config.AxisConfig[4].Divider);
             buffer[28] = (byte)(config.AxisConfig[4].I2cAddress);
+            buffer[29] = (byte)(config.AxisConfig[4].Button1_Type);
+            buffer[29] |= (byte)((byte)config.AxisConfig[4].Button2_Type << 3);
+            buffer[29] |= (byte)((byte)config.AxisConfig[4].Button3_Type << 5);
+            buffer[30] = (byte)(config.AxisConfig[4].Prescaler);
 
             buffer[32] = (byte)(config.AxisConfig[5].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[5].CalibMin >> 8);
@@ -642,11 +768,15 @@ namespace FreeJoyConfigurator
             buffer[52] = (byte)(config.AxisConfig[5].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[5].SourceSecondary);
             buffer[53] |= (byte)((config.AxisConfig[5].OffsetAngle / 15) << 3);
-            buffer[54] = (byte)(config.AxisConfig[5].DecrementButton - 1);
-            buffer[55] = (byte)(config.AxisConfig[5].CenterButton - 1);
-            buffer[56] = (byte)(config.AxisConfig[5].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[5].Step);
+            buffer[54] = (byte)(config.AxisConfig[5].Button1 - 1);
+            buffer[55] = (byte)(config.AxisConfig[5].Button2 - 1);
+            buffer[56] = (byte)(config.AxisConfig[5].Button3 - 1);
+            buffer[57] = (byte)(config.AxisConfig[5].Divider);
             buffer[58] = (byte)(config.AxisConfig[5].I2cAddress);
+            buffer[59] = (byte)(config.AxisConfig[5].Button1_Type);
+            buffer[59] |= (byte)((byte)config.AxisConfig[5].Button2_Type << 3);
+            buffer[59] |= (byte)((byte)config.AxisConfig[5].Button3_Type << 5);
+            buffer[60] = (byte)(config.AxisConfig[5].Prescaler);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 5
@@ -674,11 +804,15 @@ namespace FreeJoyConfigurator
             buffer[22] = (byte)(config.AxisConfig[6].SourceMain);
             buffer[23] = (byte)(config.AxisConfig[6].SourceSecondary);
             buffer[23] |= (byte)((config.AxisConfig[6].OffsetAngle / 15) << 3);
-            buffer[24] = (byte)(config.AxisConfig[6].DecrementButton - 1);
-            buffer[25] = (byte)(config.AxisConfig[6].CenterButton - 1);
-            buffer[26] = (byte)(config.AxisConfig[6].IncrementButton - 1);
-            buffer[27] = (byte)(config.AxisConfig[6].Step);
+            buffer[24] = (byte)(config.AxisConfig[6].Button1 - 1);
+            buffer[25] = (byte)(config.AxisConfig[6].Button2 - 1);
+            buffer[26] = (byte)(config.AxisConfig[6].Button3 - 1);
+            buffer[27] = (byte)(config.AxisConfig[6].Divider);
             buffer[28] = (byte)(config.AxisConfig[6].I2cAddress);
+            buffer[29] = (byte)(config.AxisConfig[6].Button1_Type);
+            buffer[29] |= (byte)((byte)config.AxisConfig[6].Button2_Type << 3);
+            buffer[29] |= (byte)((byte)config.AxisConfig[6].Button3_Type << 5);
+            buffer[30] = (byte)(config.AxisConfig[6].Prescaler);
 
             buffer[32] = (byte)(config.AxisConfig[7].CalibMin & 0xFF);
             buffer[33] = (byte)(config.AxisConfig[7].CalibMin >> 8);
@@ -701,58 +835,88 @@ namespace FreeJoyConfigurator
             buffer[52] = (byte)(config.AxisConfig[7].SourceMain);
             buffer[53] = (byte)(config.AxisConfig[7].SourceSecondary);
             buffer[53] |= (byte)((config.AxisConfig[7].OffsetAngle / 15) << 3);
-            buffer[54] = (byte)(config.AxisConfig[7].DecrementButton - 1);
-            buffer[55] = (byte)(config.AxisConfig[7].CenterButton - 1);
-            buffer[56] = (byte)(config.AxisConfig[7].IncrementButton - 1);
-            buffer[57] = (byte)(config.AxisConfig[7].Step);
+            buffer[54] = (byte)(config.AxisConfig[7].Button1 - 1);
+            buffer[55] = (byte)(config.AxisConfig[7].Button2 - 1);
+            buffer[56] = (byte)(config.AxisConfig[7].Button3 - 1);
+            buffer[57] = (byte)(config.AxisConfig[7].Divider);
             buffer[58] = (byte)(config.AxisConfig[7].I2cAddress);
+            buffer[59] = (byte)(config.AxisConfig[7].Button1_Type);
+            buffer[59] |= (byte)((byte)config.AxisConfig[7].Button2_Type << 3);
+            buffer[59] |= (byte)((byte)config.AxisConfig[7].Button3_Type << 5);
+            buffer[60] = (byte)(config.AxisConfig[7].Prescaler);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 6
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x06;
-            for (int i=0; i<31; i++)
+            for (int i = 0; i < 20; i++)
             {
-                buffer[2*i + 2] = (byte) (config.ButtonConfig[i].PhysicalNumber - 1);
-                buffer[2*i + 3] = (byte)config.ButtonConfig[i].Type;
-                buffer[2*i + 3] |= (byte)((byte)config.ButtonConfig[i].ShiftModificator << 5);
+                buffer[3 * i + 2] = (byte)(config.ButtonConfig[i].PhysicalNumber - 1);
+                buffer[3 * i + 3] = (byte)config.ButtonConfig[i].Type;
+                buffer[3 * i + 3] |= (byte)((byte)config.ButtonConfig[i].ShiftModificator << 5);
+                //buffer[3 * i + 4] = (byte)(config.ButtonConfig[i].ButtonTimerNumber);
+                buffer[3 * i + 4] = (byte)(config.ButtonConfig[i].IsInverted ? 0x01 : 0x00);
+                buffer[3 * i + 4] |= (byte)(config.ButtonConfig[i].IsDisabled ? 0x02 : 0x00);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i].ButtonDelayNumber << 2);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i].ButtonToggleNumber << 5);
             }
+            buffer[62] = (byte)(config.ButtonTimer1Ms & 0xFF);
+            buffer[63] = (byte)(config.ButtonTimer1Ms >> 8);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 7
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x07;
-            for (int i = 0; i < 31; i++)
+            for (int i = 0; i < 20; i++)
             {
-                buffer[2 * i + 2] = (byte)(config.ButtonConfig[i + 31].PhysicalNumber-1);
-                buffer[2 * i + 3] = (byte)config.ButtonConfig[i + 31].Type;
-                buffer[2 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 31].ShiftModificator << 5);
+                buffer[3 * i + 2] = (byte)(config.ButtonConfig[i + 20].PhysicalNumber - 1);
+                buffer[3 * i + 3] = (byte)config.ButtonConfig[i + 20].Type;
+                buffer[3 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 20].ShiftModificator << 5);
+
+                buffer[3 * i + 4] = (byte)(config.ButtonConfig[i + 20].IsInverted ? 0x01 : 0x00);
+                buffer[3 * i + 4] |= (byte)(config.ButtonConfig[i + 20].IsDisabled ? 0x02 : 0x00);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 20].ButtonDelayNumber << 2);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 20].ButtonToggleNumber << 5);
             }
+            buffer[62] = (byte)(config.ButtonTimer2Ms & 0xFF);
+            buffer[63] = (byte)(config.ButtonTimer2Ms >> 8);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 8
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x08;
-            for (int i = 0; i < 31; i++)
+            for (int i = 0; i < 20; i++)
             {
-                buffer[2 * i + 2] = (byte)(config.ButtonConfig[i + 62].PhysicalNumber - 1);
-                buffer[2 * i + 3] = (byte)config.ButtonConfig[i + 62].Type;
-                buffer[2 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 62].ShiftModificator << 5);
+                buffer[3 * i + 2] = (byte)(config.ButtonConfig[i + 40].PhysicalNumber - 1);
+                buffer[3 * i + 3] = (byte)config.ButtonConfig[i + 40].Type;
+                buffer[3 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 40].ShiftModificator << 5);
+
+                buffer[3 * i + 4] = (byte)(config.ButtonConfig[i + 40].IsInverted ? 0x01 : 0x00);
+                buffer[3 * i + 4] |= (byte)(config.ButtonConfig[i + 40].IsDisabled ? 0x02 : 0x00);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 40].ButtonDelayNumber << 2);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 40].ButtonToggleNumber << 5);
             }
+            buffer[62] = (byte)(config.ButtonTimer3Ms & 0xFF);
+            buffer[63] = (byte)(config.ButtonTimer3Ms >> 8);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 9
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x09;
-            for (int i = 0; i < 31; i++)
+            for (int i = 0; i < 20; i++)
             {
-                buffer[2 * i + 2] = (byte)(config.ButtonConfig[i + 93].PhysicalNumber - 1);
-                buffer[2 * i + 3] = (byte)config.ButtonConfig[i + 93].Type;
-                buffer[2 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 93].ShiftModificator << 5);
+                buffer[3 * i + 2] = (byte)(config.ButtonConfig[i + 60].PhysicalNumber - 1);
+                buffer[3 * i + 3] = (byte)config.ButtonConfig[i + 60].Type;
+                buffer[3 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 60].ShiftModificator << 5);
+
+                buffer[3 * i + 4] = (byte)(config.ButtonConfig[i + 60].IsInverted ? 0x01 : 0x00);
+                buffer[3 * i + 4] |= (byte)(config.ButtonConfig[i + 60].IsDisabled ? 0x02 : 0x00);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 60].ButtonDelayNumber << 2);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 60].ButtonToggleNumber << 5);
             }
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
@@ -760,103 +924,64 @@ namespace FreeJoyConfigurator
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x0A;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 20; i++)
             {
-                buffer[2 * i + 2] = (byte)(config.ButtonConfig[i + 124].PhysicalNumber - 1);
-                buffer[2 * i + 3] = (byte)config.ButtonConfig[i + 124].Type;
-                buffer[2 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 124].ShiftModificator << 5);
+                buffer[3 * i + 2] = (byte)(config.ButtonConfig[i + 80].PhysicalNumber - 1);
+                buffer[3 * i + 3] = (byte)config.ButtonConfig[i + 80].Type;
+                buffer[3 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 80].ShiftModificator << 5);
+
+                buffer[3 * i + 4] = (byte)(config.ButtonConfig[i + 80].IsInverted ? 0x01 : 0x00);
+                buffer[3 * i + 4] |= (byte)(config.ButtonConfig[i + 80].IsDisabled ? 0x02 : 0x00);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 80].ButtonDelayNumber << 2);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 80].ButtonToggleNumber << 5);
             }
-            // axes to buttons 1
-            for (int i = 0; i < 13; i++)
-            {
-                buffer[i + 10] = (byte)config.AxisToButtonsConfig[0].Points[i];
-            }
-            buffer[23] = (byte)config.AxisToButtonsConfig[0].ButtonsCnt;
-            buffer[24] = (byte)(config.AxisToButtonsConfig[0].IsEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 13; i++)
-            {
-                buffer[i + 25] = (byte)config.AxisToButtonsConfig[1].Points[i];
-            }
-            buffer[38] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
-            buffer[39] = (byte)(config.AxisToButtonsConfig[1].IsEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 13; i++)
-            {
-                buffer[i + 40] = (byte)config.AxisToButtonsConfig[2].Points[i];
-            }
-            buffer[53] = (byte)config.AxisToButtonsConfig[2].ButtonsCnt;
-            buffer[54] = (byte)(config.AxisToButtonsConfig[2].IsEnabled ? 0x01 : 0x00);
-            
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 11
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x0B;
+            for (int i = 0; i < 20; i++)
+            {
+                buffer[3 * i + 2] = (byte)(config.ButtonConfig[i + 100].PhysicalNumber - 1);
+                buffer[3 * i + 3] = (byte)config.ButtonConfig[i + 100].Type;
+                buffer[3 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 100].ShiftModificator << 5);
 
-            // axes to buttons
-            for (int i = 0; i < 13; i++)
-            {
-                buffer[i + 2] = (byte)config.AxisToButtonsConfig[3].Points[i];
+                buffer[3 * i + 4] = (byte)(config.ButtonConfig[i + 100].IsInverted ? 0x01 : 0x00);
+                buffer[3 * i + 4] |= (byte)(config.ButtonConfig[i + 100].IsDisabled ? 0x02 : 0x00);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 100].ButtonDelayNumber << 2);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 100].ButtonToggleNumber << 5);
             }
-            buffer[15] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
-            buffer[16] = (byte)(config.AxisToButtonsConfig[3].IsEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 13; i++)
-            {
-                buffer[i + 17] = (byte)config.AxisToButtonsConfig[4].Points[i];
-            }
-            buffer[30] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
-            buffer[31] = (byte)(config.AxisToButtonsConfig[4].IsEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 13; i++)
-            {
-                buffer[i + 32] = (byte)config.AxisToButtonsConfig[5].Points[i];
-            }
-            buffer[45] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
-            buffer[46] = (byte)(config.AxisToButtonsConfig[5].IsEnabled ? 0x01 : 0x00);
-            for (int i = 0; i < 13; i++)
-            {
-                buffer[i + 47] = (byte)config.AxisToButtonsConfig[6].Points[i];
-            }
-            buffer[60] = (byte)config.AxisToButtonsConfig[6].ButtonsCnt;
-            buffer[61] = (byte)(config.AxisToButtonsConfig[6].IsEnabled ? 0x01 : 0x00);            
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 12
             buffer.Initialize();
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x0C;
+            for (int i = 0; i < 8; i++)
+            {
+                buffer[3 * i + 2] = (byte)(config.ButtonConfig[i + 120].PhysicalNumber - 1);
+                buffer[3 * i + 3] = (byte)config.ButtonConfig[i + 120].Type;
+                buffer[3 * i + 3] |= (byte)((byte)config.ButtonConfig[i + 120].ShiftModificator << 5);
 
+                buffer[3 * i + 4] = (byte)(config.ButtonConfig[i + 120].IsInverted ? 0x01 : 0x00);
+                buffer[3 * i + 4] |= (byte)(config.ButtonConfig[i + 120].IsDisabled ? 0x02 : 0x00);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 120].ButtonDelayNumber << 2);
+                buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 120].ButtonToggleNumber << 5);
+            }
+            // axes to buttons 1
             for (int i = 0; i < 13; i++)
             {
-                buffer[i + 2] = (byte)config.AxisToButtonsConfig[7].Points[i];
+                buffer[i + 26] = (byte)config.AxisToButtonsConfig[0].Points[i];
             }
-            buffer[15] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
-            buffer[16] = (byte)(config.AxisToButtonsConfig[7].IsEnabled ? 0x01 : 0x00);
-
-            for (int i = 0; i < 4; i++)
+            buffer[39] = (byte)config.AxisToButtonsConfig[0].ButtonsCnt;
+            buffer[40] = (byte)(config.AxisToButtonsConfig[0].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
             {
-                buffer[i * 4 + 17] = (byte) config.ShiftRegistersConfig[i].Type;
-                buffer[i * 4 + 18] = (byte) config.ShiftRegistersConfig[i].ButtonCnt;
-                buffer[i * 4 + 19] = 0;
-                buffer[i * 4 + 20] = 0;
+                buffer[i + 41] = (byte)config.AxisToButtonsConfig[1].Points[i];
             }
-
-
-            for (int i = 0; i < 5; i++)
-            {
-                buffer[i + 33] = (byte)(config.ShiftModificatorConfig[i].Button-1);
-                //buffer[2 * i + 34] = (byte)config.ShiftModificatorConfig[i].Mode;
-            }
-
-            buffer[38] = (byte)(config.Vid & 0xFF);
-            buffer[39] = (byte)(config.Vid >> 8);
-            buffer[40] = (byte)(config.Pid & 0xFF);
-            buffer[41] = (byte)(config.Pid >> 8);
-            buffer[42] = (byte)(config.IsDynamicConfig ? 0x01 : 0x00);
-
-            for (int i = 0; i < 3; i++)
-            {
-                buffer[43 + i] =  config.LedPwmConfig.DutyCycle[i];
-            }
+            buffer[54] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
+            buffer[55] = (byte)(config.AxisToButtonsConfig[1].IsEnabled ? 0x01 : 0x00);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 13
@@ -864,10 +989,100 @@ namespace FreeJoyConfigurator
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x0D;
 
+            // axes to buttons
+            for (int i = 0; i < 13; i++)
+            {
+                buffer[i + 2] = (byte)config.AxisToButtonsConfig[2].Points[i];
+            }
+            buffer[15] = (byte)config.AxisToButtonsConfig[2].ButtonsCnt;
+            buffer[16] = (byte)(config.AxisToButtonsConfig[2].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
+            {
+                buffer[i + 17] = (byte)config.AxisToButtonsConfig[3].Points[i];
+            }
+            buffer[30] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
+            buffer[31] = (byte)(config.AxisToButtonsConfig[3].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
+            {
+                buffer[i + 32] = (byte)config.AxisToButtonsConfig[4].Points[i];
+            }
+            buffer[45] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
+            buffer[46] = (byte)(config.AxisToButtonsConfig[4].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
+            {
+                buffer[i + 47] = (byte)config.AxisToButtonsConfig[5].Points[i];
+            }
+            buffer[60] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
+            buffer[61] = (byte)(config.AxisToButtonsConfig[5].IsEnabled ? 0x01 : 0x00);
+            hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
+
+            // Report 14
+            buffer.Initialize();
+            buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
+            buffer[1] = 0x0E;
+
+            for (int i = 0; i < 13; i++)
+            {
+                buffer[i + 2] = (byte)config.AxisToButtonsConfig[6].Points[i];
+            }
+            buffer[15] = (byte)config.AxisToButtonsConfig[6].ButtonsCnt;
+            buffer[16] = (byte)(config.AxisToButtonsConfig[6].IsEnabled ? 0x01 : 0x00);
+            for (int i = 0; i < 13; i++)
+            {
+                buffer[i + 17] = (byte)config.AxisToButtonsConfig[7].Points[i];
+            }
+            buffer[30] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
+            buffer[31] = (byte)(config.AxisToButtonsConfig[7].IsEnabled ? 0x01 : 0x00);
+
+
+            for (int i = 0; i < 4; i++)
+            {
+                buffer[i * 4 + 32] = (byte)config.ShiftRegistersConfig[i].Type;
+                buffer[i * 4 + 33] = (byte)config.ShiftRegistersConfig[i].ButtonCnt;
+                buffer[i * 4 + 34] = 0;
+                buffer[i * 4 + 35] = 0;
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                buffer[i + 48] = (byte)(config.ShiftModificatorConfig[i].Button - 1);
+                //buffer[2 * i + 34] = (byte)config.ShiftModificatorConfig[i].Mode;
+            }
+
+            buffer[53] = (byte)(config.Vid & 0xFF);
+            buffer[54] = (byte)(config.Vid >> 8);
+            buffer[55] = (byte)(config.Pid & 0xFF);
+            buffer[56] = (byte)(config.Pid >> 8);
+            buffer[57] = (byte)(config.IsDynamicConfig ? 0x01 : 0x00);
+
+            hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
+      
+            // Report 15
+            buffer.Initialize();
+            buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
+            buffer[1] = 0x0F;
+
+            for (int i = 0; i < 3; i++)
+            {
+                buffer[2 + i] = config.LedPwmConfig.DutyCycle[i];
+            }
+
             for (int i = 0; i < 24; i++)
             {
-                buffer[2 * i + 2] = (byte)(config.LedConfig[i].InputNumber - 1);
-                buffer[2 * i + 3] = (byte)config.LedConfig[i].Type;
+                buffer[2 * i + 12] = (byte)(config.LedConfig[i].InputNumber - 1);
+                buffer[2 * i + 13] = (byte)config.LedConfig[i].Type;
+            }
+
+            hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
+
+            // Report 16
+            buffer.Initialize();
+            buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
+            buffer[1] = 0x10;
+
+            for (int i = 0; i < 16; i++)
+            {
+                buffer[2 + i] = (byte)config.EncodersConfig[i].Type;
             }
 
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));

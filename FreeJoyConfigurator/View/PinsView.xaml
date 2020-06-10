@@ -7,9 +7,9 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500"
-             MinHeight="400" MaxHeight="500" MinWidth="600" MaxWidth="600">
-    
+             d:DesignHeight="576" d:DesignWidth="876"
+             MinHeight="550" MaxHeight="5000" MinWidth="860" MaxWidth="6000">
+
     <!--<UserControl.DataContext>
         <local:MainVM/>
     </UserControl.DataContext>-->
@@ -24,11 +24,17 @@
     </UserControl.Resources>
 
 
-    <Grid d:DataContext="{d:DesignInstance {x:Type local:MainVM}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.35*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid d:DataContext="{d:DesignInstance {x:Type local:MainVM}}" Margin="50,35,0,35">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="1.45*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -56,7 +62,7 @@
 
         </Grid.RowDefinitions>
 
-        <Image Source="../Resources/bluepill.png" Grid.Column="2" Grid.Row="0" Grid.RowSpan="20" Stretch="UniformToFill"/>
+        <Image Source="../Resources/bluepill.png" Grid.Column="2" Grid.Row="0" Grid.RowSpan="20"/>
 
         <Label Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Right" Content="B12" Background="LightBlue"/>
         <Label Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Right" Content="B13" Background="LightBlue"/>
@@ -101,54 +107,54 @@
         <Label Grid.Column="3" Grid.Row="19" HorizontalContentAlignment="Left" Content="VB" Background="DarkOrange"/>
 
 
-        
-        <ComboBox Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center"
+
+        <ComboBox Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[23].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[23].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[23].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[24].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[24].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[24].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[25].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[25].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[25].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[26].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[26].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[26].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[8].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[8].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[8].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[9].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[9].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[9].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[10].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[10].SelectedType, Mode=TwoWay}"/>
-        <Button Grid.Column="0" Grid.Row="7" Content="USB_D-" IsEnabled="False"/>
+                  SelectedItem="{Binding PinsVM.Pins[10].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+            <Button Grid.Column="0" Grid.Row="7" Content="USB_D-" IsEnabled="False"/>
         <Button Grid.Column="0" Grid.Row="8" Content="USB_D+" IsEnabled="False"/>
-        <ComboBox Grid.Column="0" Grid.Row="9" HorizontalContentAlignment="Center"
+        <ComboBox Grid.Column="0" Grid.Row="9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[11].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[11].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="10" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[11].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[14].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[14].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="11" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[14].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[15].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[15].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="12" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[15].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[16].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[16].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="13" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[16].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[17].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[17].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="14" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[17].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[18].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[18].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="15" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[18].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[19].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[19].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="0" Grid.Row="16" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[19].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="0" Grid.Row="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[20].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[20].SelectedType, Mode=TwoWay}"/>
+                  SelectedItem="{Binding PinsVM.Pins[20].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
         <Button Grid.Column="0" Grid.Row="17"  Content="5V" IsEnabled="False"/>
         <Button Grid.Column="0" Grid.Row="18" Content="GND" IsEnabled="False"/>
         <Button Grid.Column="0" Grid.Row="19" Content="3.3V" IsEnabled="False"/>
@@ -157,52 +163,174 @@
         <Button Grid.Column="4" Grid.Row="1" Content="GND" IsEnabled="False"/>
         <Button Grid.Column="4" Grid.Row="2" Content="3.3V" IsEnabled="False"/>
         <Button Grid.Column="4" Grid.Row="3" Content="RESET" IsEnabled="False"/>
-        <ComboBox Grid.Column="4" Grid.Row="4" HorizontalContentAlignment="Center"
+        <ComboBox Grid.Column="4" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[22].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[22].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="5" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[22].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[21].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[21].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="6" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[21].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[13].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[13].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="7" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[13].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[12].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[12].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="8" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[12].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[7].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[7].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="9" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[7].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[6].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[6].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="10" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[6].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[5].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[5].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="11" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[5].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[4].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[4].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="12" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[4].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[3].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[3].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="13" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[3].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[2].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[2].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="14" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[2].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[1].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[1].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="15" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[1].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[0].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[0].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="16" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[0].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[29].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[29].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="17" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[29].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[28].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[28].SelectedType, Mode=TwoWay}"/>
-        <ComboBox Grid.Column="4" Grid.Row="18" HorizontalContentAlignment="Center"
+                  SelectedItem="{Binding PinsVM.Pins[28].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+        <ComboBox Grid.Column="4" Grid.Row="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                   ItemsSource="{Binding PinsVM.Pins[27].AllowedTypes, Mode=OneWay}" 
-                  SelectedItem="{Binding PinsVM.Pins[27].SelectedType, Mode=TwoWay}"/>
-        <Button Grid.Column="4" Grid.Row="19" Content="VBUS" IsEnabled="False"/>
+                  SelectedItem="{Binding PinsVM.Pins[27].SelectedType, Mode=TwoWay}" Padding="0,0,-12,0"/>
+            <Button Grid.Column="4" Grid.Row="19" Content="VBUS" IsEnabled="False"/>
 
+        </Grid>
+        <GroupBox Header="Current Config" Name ="Info_GroupBox" Grid.Column="1" MinWidth="150" Margin="50,35,7,35">
+            <!-- MinHeight="210" VerticalAlignment="Top"> -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Axis sources:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding PinsVM.AxesCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PinsVM.AxesError}" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Buttons from axes:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ButtonsVM.ButtonsFromAxesCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Single buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ButtonsVM.SingleBtnCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Rows of buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ButtonsVM.RowCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Columns of buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ButtonsVM.ColCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Total buttons:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ButtonsVM.ButtonsError}" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ButtonsVM.TotalBtnCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ButtonsVM.ButtonsError}" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="Total LEDs:" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PinsVM.LedsError}" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding PinsVM.TotalLedCnt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PinsVM.LedsError}" Value="True">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </GroupBox>
     </Grid>
+
 </UserControl>

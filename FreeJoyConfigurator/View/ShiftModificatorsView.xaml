@@ -7,7 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:FreeJoyConfigurator"
              mc:Ignorable="d" 
-             d:DesignHeight="45" d:DesignWidth="800" MinHeight="45">
+             d:DesignHeight="45" d:DesignWidth="800" MinHeight="45" MaxHeight="45">
 
 
 

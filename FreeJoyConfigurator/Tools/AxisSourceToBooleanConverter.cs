@@ -13,7 +13,7 @@ namespace FreeJoyConfigurator
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             AxisSourceType original = (AxisSourceType) value;
-            bool ret = ((sbyte)original < 0);
+            bool ret = ((sbyte)original == -2);
             return ret;
         }
 
