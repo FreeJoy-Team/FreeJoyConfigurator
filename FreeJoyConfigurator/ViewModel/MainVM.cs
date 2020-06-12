@@ -41,6 +41,18 @@ namespace FreeJoyConfigurator
             }
         }
 
+        public string VidVM
+        {
+            get { return Config.Vid.ToString("X4"); }
+            set { Config.Vid = Convert.ToUInt16(value, 16); }
+        }
+
+        public string PidVM
+        {
+            get { return Config.Pid.ToString("X4"); }
+            set { Config.Pid = Convert.ToUInt16(value, 16); }
+        }
+
         public PinsVM PinsVM {get; set; }
         public AxesVM AxesVM { get; private set; }
         public ButtonsVM ButtonsVM { get; private set; }
