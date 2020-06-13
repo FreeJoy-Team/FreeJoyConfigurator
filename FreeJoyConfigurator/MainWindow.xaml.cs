@@ -32,9 +32,9 @@ namespace FreeJoyConfigurator
             ActivityLogScrollViewer.ScrollToBottom();
         }
 
-        private void AxesCurvesView_Loaded(object sender, RoutedEventArgs e)
+        public void ButtonsLogTextChangedHandler(object sender, EventArgs e)
         {
-
+            ButtonsLogScrollViewer.ScrollToBottom();
         }
 
         void Tab_AllTabOnStartup(object sender, RoutedEventArgs e)      //!!!!! КОСТЫЛЬ !!!!!!!!!!111111111111111111

@@ -24,12 +24,15 @@ namespace FreeJoyConfigurator
         private bool _buttonsError;
 
         private DeviceConfig _config;
+        private ObservableCollection<Button> _prevLogicalButtons;
         private ObservableCollection<Button> _logicalButtons;
         private ObservableCollection<Button> _physicalButtons;
         private ObservableCollection<Button> _shiftButtons;
 
         public delegate void ButtonsChangedEvent();
         public event ButtonsChangedEvent ConfigChanged;
+
+        public string ButtonsLog { get; private set; }
 
         public int RowCnt
         {
@@ -138,6 +141,12 @@ namespace FreeJoyConfigurator
             Joystick = joystick;
             Joystick.PropertyChanged += Joystick_PropertyChanged;
             _config = deviceConfig;
+
+            _prevLogicalButtons = new ObservableCollection<Button>();
+            for (int i = 0; i < 128; i++)
+            {
+                _prevLogicalButtons.Add(new Button(i + 1, 0));
+            }
 
             _logicalButtons = new ObservableCollection<Button>();
             for (int i = 0; i < 128; i++)
@@ -379,6 +388,14 @@ namespace FreeJoyConfigurator
                 {
                     LogicalButtons[i].State = Joystick.LogicalButtons[i].State;
                 }
+
+                if (LogicalButtons[i].State != _prevLogicalButtons[i].State)
+                {
+                    if (LogicalButtons[i].State) WriteLog("Logical button №" + (i + 1).ToString() + " pressed", false);
+                    else WriteLog("Logical button №" + (i + 1).ToString() + " unpressed", false);
+                    
+                }
+                _prevLogicalButtons[i].State = LogicalButtons[i].State;
             }
         }
 
@@ -620,6 +637,31 @@ namespace FreeJoyConfigurator
 
             RaisePropertyChanged(nameof(LogicalButtons));
             ConfigChanged();
+        }
+
+        // Add a line to the activity log text box
+        private void WriteLog(string message, bool clear)
+        {
+            // Replace content
+            if (clear)
+            {
+                ButtonsLog = string.Format("{0}: {1}", DateTime.Now.ToString("HH:mm:ss"), message);
+            }
+            // Add new line
+            else
+            {
+                ButtonsLog += Environment.NewLine + string.Format("{0}: {1}", DateTime.Now.ToString("HH:mm:ss"), message);
+            }
+            while (ButtonsLog.Length > 5000)
+            {
+                int i;
+                for (i = 0; i < 100; i++)
+                {
+                    if (ButtonsLog.ElementAt(i) == '\n') break;
+                }
+              ButtonsLog = ButtonsLog.Remove(0, i+1);
+            }
+            RaisePropertyChanged("ButtonsLog");
         }
     }
 

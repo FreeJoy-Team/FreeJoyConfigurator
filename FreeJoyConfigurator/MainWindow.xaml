@@ -20,7 +20,9 @@
     <Grid Width="Auto" Height="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="190"/>
-            <ColumnDefinition Width="5*" /> <!--4-->
+            <ColumnDefinition Width="2*" /> <!--4-->
+            <ColumnDefinition Width="3*" />
+            <!--4-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -94,7 +96,7 @@
             </Grid>
         </GroupBox>
 
-        <TabControl Grid.Column="1" Margin="10,20,10,1" Loaded="Tab_AllTabOnStartup" HorizontalAlignment="Stretch">
+        <TabControl Grid.Column="1" Grid.ColumnSpan="2" Margin="10,20,10,1" Loaded="Tab_AllTabOnStartup" HorizontalAlignment="Stretch">
                 <TabItem Header="Pin Config">
                     <local:PinsView/>
                 </TabItem>
@@ -186,10 +188,17 @@
 
         <!--Row 1-->
 
-        <GroupBox Header="Log" Name ="Log_GroupBox" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="10,10,10,10" HorizontalAlignment="Stretch">
-            <ScrollViewer Name="ActivityLogScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <TextBox Name="ActivityLogging_TextBox" TextChanged="ActivityLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="7,7,7,7" 
+        <GroupBox Header="System Log" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,10,10,10" HorizontalAlignment="Stretch">
+            <ScrollViewer Name="ActivityLogScrollViewer"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <TextBox TextChanged="ActivityLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="7,7,7,7" 
                 Text="{Binding ActivityLogVM, Mode=OneWay}"/>
+            </ScrollViewer>
+        </GroupBox>
+
+        <GroupBox Header="Buttons Log" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Margin="10,10,10,10" HorizontalAlignment="Stretch">
+            <ScrollViewer  Name="ButtonsLogScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <TextBox TextChanged="ButtonsLogTextChangedHandler" IsEnabled="True" Background="WhiteSmoke" Margin="7,7,7,7" 
+                Text="{Binding ButtonsVM.ButtonsLog, Mode=OneWay}"/>
             </ScrollViewer>
         </GroupBox>
     </Grid>

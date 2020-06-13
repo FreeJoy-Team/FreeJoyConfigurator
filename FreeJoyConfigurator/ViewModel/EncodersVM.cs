@@ -89,7 +89,7 @@ namespace FreeJoyConfigurator
                 Encoders[0].IsEnabled = true;
             }
 
-            // check pins and enable polling registers
+            // check pins
             int prevA = -1;
             int prevB = -1;
             for (int k = 1; k < Config.EncodersConfig.Count; k++)
@@ -99,7 +99,7 @@ namespace FreeJoyConfigurator
                 {
                     if (Config.ButtonConfig[j].Type == ButtonType.Encoder_A)
                     {
-                        Encoders[k].InputA = j;
+                        Encoders[k].InputA = j+1;
                         prevA = j;
                         break;
                     }
@@ -108,7 +108,7 @@ namespace FreeJoyConfigurator
                 {
                     if (Config.ButtonConfig[j].Type == ButtonType.Encoder_B)
                     {
-                        Encoders[k].InputB = j;
+                        Encoders[k].InputB = j+1;
                         prevB = j;
                         break;
                     }
