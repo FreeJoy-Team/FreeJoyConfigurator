@@ -34,7 +34,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.6.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -159,7 +159,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Tools\EncoderInputConverter.cs" />
-    <Compile Include="EncodersVM.cs" />
+    <Compile Include="ViewModel\EncodersVM.cs" />
     <Compile Include="Model\Encoders.cs" />
     <Compile Include="View\EncodersView.xaml.cs">
       <DependentUpon>EncodersView.xaml</DependentUpon>
