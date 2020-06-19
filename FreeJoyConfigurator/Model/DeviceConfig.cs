@@ -830,7 +830,7 @@ namespace FreeJoyConfigurator
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
-            A2bDebounceMs = 150;
+            A2bDebounceMs = 50;
             EncoderPressMs = 10;
             ButtonTimer1Ms = 50;
             ButtonTimer2Ms = 200;
