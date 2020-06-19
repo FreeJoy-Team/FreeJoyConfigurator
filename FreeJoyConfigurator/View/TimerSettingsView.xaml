@@ -10,7 +10,7 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="800" MinHeight="50" MinWidth="600">
+             d:DesignHeight="74" d:DesignWidth="967" MinHeight="50" MinWidth="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -19,6 +19,7 @@
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -60,12 +61,21 @@
         <TextBlock Grid.Row="1" Grid.Column="3" Text="ms " Margin="53,4,0,3"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <TextBlock Grid.Row="0" Grid.Column="4" Text="Encoder press time" 
+        <TextBlock Grid.Row="0" Grid.Column="4" Text="Axes to buttons debounce" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,4,0,3"/>
+        <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="5000" Minimum="0" 
+                                                Grid.Row="1" Grid.Column="4" Text="{Binding Config.A2bDebounceMs}"
+                                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                HorizontalContentAlignment="Center" MinWidth="50" Margin="3,0,19,0"/>
+        <TextBlock Grid.Row="1" Grid.Column="4" Text="ms " Margin="53,4,0,3"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="Encoder press time" 
                                        HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,4,0,3"/>
         <xctk:IntegerUpDown ShowButtonSpinner="True" TextAlignment="Center" Maximum="255" Minimum="1"
-                                                Grid.Row="1" Grid.Column="4" Text="{Binding Config.EncoderPressMs}"
+                                                Grid.Row="1" Grid.Column="5" Text="{Binding Config.EncoderPressMs}"
                                                 HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="50" Margin="3,0,19,0"/>
-        <TextBlock Grid.Row="1" Grid.Column="4" Text="ms " Margin="53,4,0,3"
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="ms " Margin="53,4,0,3"
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
     </Grid>

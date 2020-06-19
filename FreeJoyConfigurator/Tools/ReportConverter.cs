@@ -402,6 +402,8 @@ namespace FreeJoyConfigurator
                     config.ButtonConfig[i + 60].ButtonDelayNumber = (TimerType)((hr.Data[3 * i + 3] & 0x1C) >> 2);
                     config.ButtonConfig[i + 60].ButtonToggleNumber = (TimerType)((hr.Data[3 * i + 3] & 0xE0) >> 5);
                 }
+
+                config.A2bDebounceMs = (ushort)(hr.Data[62] << 8 | hr.Data[61]);
             }
             else if (hr.Data[0] == 10)
             {
@@ -918,6 +920,8 @@ namespace FreeJoyConfigurator
                 buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 60].ButtonDelayNumber << 2);
                 buffer[3 * i + 4] |= (byte)((byte)config.ButtonConfig[i + 60].ButtonToggleNumber << 5);
             }
+            buffer[62] = (byte)(config.A2bDebounceMs & 0xFF);
+            buffer[63] = (byte)(config.A2bDebounceMs >> 8);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 10
