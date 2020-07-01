@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows.Threading;
 using System.Xml;
 using System.Xml.Serialization;
 using HidLibrary;
@@ -39,18 +30,6 @@ namespace FreeJoyConfigurator
             {
                 SetProperty(ref _config, value);
             }
-        }
-
-        public string VidVM
-        {
-            get { return Config.Vid.ToString("X4"); }
-            set { Config.Vid = Convert.ToUInt16(value, 16); }
-        }
-
-        public string PidVM
-        {
-            get { return Config.Pid.ToString("X4"); }
-            set { Config.Pid = Convert.ToUInt16(value, 16); }
         }
 
         public PinsVM PinsVM {get; set; }

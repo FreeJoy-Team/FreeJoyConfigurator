@@ -7,6 +7,11 @@
              xmlns:local="clr-namespace:FreeJoyConfigurator"
              mc:Ignorable="d" 
              d:DesignHeight="576" d:DesignWidth="876">
+
+    <UserControl.Resources>
+        <local:HexToStringConverter x:Key="HexToStringConverter"/>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -48,7 +53,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="VID" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBox TextAlignment="Center" Grid.Row="2" Grid.Column="1"
-                                     Text="{Binding VidVM}" MaxLength="4" IsEnabled="False"
+                                     Text="{Binding Config.Vid, Converter={StaticResource HexToStringConverter}}" MaxLength="4" IsEnabled="False"
                                      HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="50"/>
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="0x" Margin="0,0,65,0" 
                                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -56,7 +61,7 @@
                     <TextBlock Grid.Row="3" Grid.Column="1" Text="PID" 
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBox TextAlignment="Center" Grid.Row="4" Grid.Column="1"
-                                     Text="{Binding PidVM}" MaxLength="4"
+                                     Text="{Binding Config.Pid, Converter={StaticResource HexToStringConverter}}" MaxLength="4"
                                      HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="50"/>
                     <TextBlock Grid.Row="4" Grid.Column="1" Text="0x" Margin="0,0,65,0"
                                            HorizontalAlignment="Center" VerticalAlignment="Top"/>
