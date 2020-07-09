@@ -304,7 +304,14 @@ namespace FreeJoyConfigurator
         {
             for (int i = 0; i < Sliders.Count; i++)
             {
-                Sliders[i] = new Point(i, Math.Exp(i * Math.Log(MaxY + 1) / (Sliders.Count - 1)) - 1);
+                if (i == 0)
+                {
+                    Sliders[i] = new Point(i, 0);
+                }
+                else
+                {
+                    Sliders[i] = new Point(i, Math.Exp(i * Math.Log(MaxY + 1) / (Sliders.Count - 1)));
+                }
             }
         }
 
@@ -312,7 +319,14 @@ namespace FreeJoyConfigurator
         {
             for (int i = 0; i < Sliders.Count; i++)
             {
-                Sliders[(Sliders.Count - 1) -i] = new Point((Sliders.Count - 1)-i, MaxY - Math.Exp(i * Math.Log(MaxY + 1) / (Sliders.Count - 1)) - 1);
+                if (i == 0)
+                {
+                    Sliders[i] = new Point(i, 0);
+                }
+                else
+                {
+                    Sliders[(Sliders.Count - 1) - i] = new Point((Sliders.Count - 1) - i, MaxY - Math.Exp(i * Math.Log(MaxY + 1) / (Sliders.Count - 1)));
+                }
             }
         }
 
@@ -327,7 +341,7 @@ namespace FreeJoyConfigurator
             Sliders[6] = new Point(6, 0.51 * MaxY);
             Sliders[7] = new Point(7, 0.53 * MaxY);
             Sliders[8] = new Point(8, 0.60 * MaxY);
-            Sliders[9] = new Point(9, 0.75 * MaxY);
+            Sliders[9] = new Point(9, 0.80 * MaxY);
             Sliders[10] = new Point(10, MaxY);
         }
     }
