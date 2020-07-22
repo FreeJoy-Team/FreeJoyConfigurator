@@ -788,6 +788,8 @@ namespace FreeJoyConfigurator
         public string DeviceName { get; set; }
         [XmlElement("Button_Debounce_Time")]
         public UInt16 ButtonDebounceMs { get; set; }
+        [XmlElement("A2b_Debounce_Time")]
+        public UInt16 A2bDebounceMs { get; set; }
         [XmlElement("Encoder_Press_Time")]
         public byte EncoderPressMs { get; set; }
         [XmlElement("Button_Timer1_Time")]
@@ -828,6 +830,7 @@ namespace FreeJoyConfigurator
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
+            A2bDebounceMs = 50;
             EncoderPressMs = 10;
             ButtonTimer1Ms = 50;
             ButtonTimer2Ms = 200;
