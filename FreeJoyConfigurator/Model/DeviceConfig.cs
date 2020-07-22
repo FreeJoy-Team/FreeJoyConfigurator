@@ -490,14 +490,19 @@ namespace FreeJoyConfigurator
         Pov1_Right,
         Pov1_Down,
         Pov1_Left,
+        Pov1_Center,
+
         Pov2_Up,
         Pov2_Right,
         Pov2_Down,
         Pov2_Left,
+        Pov2_Center,
+
         Pov3_Up,
         Pov3_Right,
         Pov3_Down,
         Pov3_Left,
+
         Pov4_Up,
         Pov4_Right,
         Pov4_Down,
