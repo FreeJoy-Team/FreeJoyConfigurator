@@ -490,14 +490,19 @@ namespace FreeJoyConfigurator
         Pov1_Right,
         Pov1_Down,
         Pov1_Left,
+        Pov1_Center,
+
         Pov2_Up,
         Pov2_Right,
         Pov2_Down,
         Pov2_Left,
+        Pov2_Center,
+
         Pov3_Up,
         Pov3_Right,
         Pov3_Down,
         Pov3_Left,
+
         Pov4_Up,
         Pov4_Right,
         Pov4_Down,
@@ -788,6 +793,8 @@ namespace FreeJoyConfigurator
         public string DeviceName { get; set; }
         [XmlElement("Button_Debounce_Time")]
         public UInt16 ButtonDebounceMs { get; set; }
+        [XmlElement("A2b_Debounce_Time")]
+        public UInt16 A2bDebounceMs { get; set; }
         [XmlElement("Encoder_Press_Time")]
         public byte EncoderPressMs { get; set; }
         [XmlElement("Button_Timer1_Time")]
@@ -828,6 +835,7 @@ namespace FreeJoyConfigurator
         {
             DeviceName = "FreeJoy";
             ButtonDebounceMs = 50;
+            A2bDebounceMs = 50;
             EncoderPressMs = 10;
             ButtonTimer1Ms = 50;
             ButtonTimer2Ms = 200;

@@ -67,6 +67,10 @@ namespace FreeJoyConfigurator
             set
             {
                 SetProperty(ref _selectedDeviceIndex, value);
+                if (Hid.HidDevicesList.Count > 0)
+                {
+                    Hid.Connect(Hid.HidDevicesList[_selectedDeviceIndex]);
+                }
                 DeviceFirmwareVersionVM = " ";
             }
         }
