@@ -104,7 +104,7 @@ namespace FreeJoyConfigurator
                         break;
                     }
                 }
-                for (int j = prevB + 1; j < Config.PinConfig.Count; j++)
+                for (int j = prevB + 1; j < Config.ButtonConfig.Count; j++)
                 {
                     if (Config.ButtonConfig[j].Type == ButtonType.Encoder_B)
                     {
