@@ -74,7 +74,7 @@
             <CheckBox Grid.Column="0" Grid.Row="6"
                                   Content="Center" 
                                   HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right"
-                                  IsChecked="{Binding AxisConfig.IsCalibCenterUnlocked}"/>
+                                  IsChecked="{Binding AxisConfig.IsCentered}"/>
             <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="70"
                                             IsReadOnly="{Binding AxisConfig.IsCalibCenterUnlocked, Mode=TwoWay, Converter={StaticResource boolConvert}}"
                                             Value="{Binding AxisConfig.CalibCenter, UpdateSourceTrigger=LostFocus}"/>

@@ -102,10 +102,8 @@ namespace FreeJoyConfigurator
     public enum AxisFunction :byte
     {
         None = 0,
-        Plus_Absolute,
-        Plus_Relative,
-        Minus_Absolute,
-        Minus_Relative,
+        Plus,
+        Minus,
         Equal,
     };
 
@@ -169,7 +167,7 @@ namespace FreeJoyConfigurator
 
         private byte _prescaler;
 
-        private bool _isCalibCenterUnlocked;
+        private bool _isCentered;
         private bool _isAddressEnabled;
 
         public short CalibMin
@@ -178,11 +176,11 @@ namespace FreeJoyConfigurator
             set
             {
                 if (value < -32767) SetProperty(ref _calibMin, (short)-32767);
-                else if (value >= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMin, (short)(CalibCenter - 1));
+                else if (value >= CalibCenter && IsCentered) SetProperty(ref _calibMin, (short)(CalibCenter - 1));
                 else if (value >= CalibMax) SetProperty(ref _calibMin, (short)(CalibMax - 2));
                 else SetProperty(ref _calibMin, value);
 
-                if (!IsCalibCenterUnlocked)
+                if (!IsCentered)
                 {
                     CalibCenter = (short)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
@@ -193,7 +191,7 @@ namespace FreeJoyConfigurator
             get{return _calibCenter;}
             set
             {
-                if (IsCalibCenterUnlocked)
+                if (IsCentered)
                 {
                     if (value <= CalibMin)
                     {
@@ -217,11 +215,11 @@ namespace FreeJoyConfigurator
             set
             {
                 if (value <= CalibMin) SetProperty(ref _calibMax, (short)(CalibMin + 2));
-                else if (value <= CalibCenter && IsCalibCenterUnlocked) SetProperty(ref _calibMax, (short)(CalibCenter + 1));
+                else if (value <= CalibCenter && IsCentered) SetProperty(ref _calibMax, (short)(CalibCenter + 1));
                 else if (value > 32767) SetProperty(ref _calibMax, (short) 32767);
                 else SetProperty(ref _calibMax, value);
 
-                if (!IsCalibCenterUnlocked)
+                if (!IsCentered)
                 {
                     CalibCenter = (short)((CalibMax - CalibMin) / 2 + CalibMin);
                 }
@@ -347,13 +345,13 @@ namespace FreeJoyConfigurator
         }
 
 
-        public bool IsCalibCenterUnlocked
+        public bool IsCentered
         {
-            get{return _isCalibCenterUnlocked;}
+            get{return _isCentered; }
             set
             {
-                SetProperty(ref _isCalibCenterUnlocked, value);
-                if (!_isCalibCenterUnlocked)
+                SetProperty(ref _isCentered, value);
+                if (!_isCentered)
                 {
                     CalibCenter = (short)((CalibMax - CalibMin) / 2);
                 }
@@ -407,7 +405,7 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 11; i++) _curveShape.Add(new Point(i, -100+20*i));
             _filterLevel = 0;
 
-            _isCalibCenterUnlocked = false;
+            _isCentered = false;
         }
 
     }

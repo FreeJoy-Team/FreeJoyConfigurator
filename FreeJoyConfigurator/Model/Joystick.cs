@@ -251,7 +251,7 @@ namespace FreeJoyConfigurator
                     {
                         if (ct.IsCancellationRequested)
                         {
-                            AxisConfig.IsCalibCenterUnlocked = true;
+                            AxisConfig.IsCentered = true;
                             AxisConfig.CalibCenter = RawValue;
                             break;
                         }

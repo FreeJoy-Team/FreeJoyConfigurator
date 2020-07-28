@@ -103,7 +103,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[0].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[0].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[0].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[0].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
+                config.AxisConfig[0].IsCentered = Convert.ToBoolean((hr.Data[7] & 0x04)>>2);
+                config.AxisConfig[0].Function = (AxisFunction)((hr.Data[7] & 0x18) >> 3);
                 config.AxisConfig[0].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -132,7 +133,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[1].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[1].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[1].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[1].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
+                config.AxisConfig[1].IsCentered = Convert.ToBoolean((hr.Data[37] & 0x04) >> 2);
+                config.AxisConfig[1].Function = (AxisFunction)((hr.Data[37] & 0x18) >> 3);
                 config.AxisConfig[1].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -164,7 +166,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[2].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[2].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[2].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[2].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
+                config.AxisConfig[2].IsCentered = Convert.ToBoolean((hr.Data[7] & 0x04) >> 2);
+                config.AxisConfig[2].Function = (AxisFunction)((hr.Data[7] & 0x18) >> 3);
                 config.AxisConfig[2].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -193,7 +196,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[3].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[3].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[3].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[3].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
+                config.AxisConfig[3].IsCentered = Convert.ToBoolean((hr.Data[37] & 0x04) >> 2);
+                config.AxisConfig[3].Function = (AxisFunction)((hr.Data[37] & 0x18) >> 3);
                 config.AxisConfig[3].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -224,7 +228,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[4].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[4].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[4].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[4].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
+                config.AxisConfig[4].IsCentered = Convert.ToBoolean((hr.Data[7] & 0x04) >> 2);
+                config.AxisConfig[4].Function = (AxisFunction)((hr.Data[7] & 0x18) >> 3);
                 config.AxisConfig[4].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -253,7 +258,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[5].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[5].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[5].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[5].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
+                config.AxisConfig[5].IsCentered = Convert.ToBoolean((hr.Data[37] & 0x04) >> 2);
+                config.AxisConfig[5].Function = (AxisFunction)((hr.Data[37] & 0x18) >> 3);
                 config.AxisConfig[5].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -284,7 +290,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[6].CalibMax = (short)(hr.Data[6] << 8 | hr.Data[5]);
                 config.AxisConfig[6].IsOutEnabled = Convert.ToBoolean(hr.Data[7] & 0x01);
                 config.AxisConfig[6].IsInverted = Convert.ToBoolean(hr.Data[7] & 0x02);
-                config.AxisConfig[6].Function = (AxisFunction)((hr.Data[7] & 0x1C) >> 2);
+                config.AxisConfig[6].IsCentered = Convert.ToBoolean((hr.Data[7] & 0x04) >> 2);
+                config.AxisConfig[6].Function = (AxisFunction)((hr.Data[7] & 0x18) >> 3);
                 config.AxisConfig[6].FilterLevel = (byte)((hr.Data[7] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -313,7 +320,8 @@ namespace FreeJoyConfigurator
                 config.AxisConfig[7].CalibMax = (short)(hr.Data[36] << 8 | hr.Data[35]);
                 config.AxisConfig[7].IsOutEnabled = Convert.ToBoolean(hr.Data[37] & 0x01);
                 config.AxisConfig[7].IsInverted = Convert.ToBoolean(hr.Data[37] & 0x02);
-                config.AxisConfig[7].Function = (AxisFunction)((hr.Data[37] & 0x1C) >> 2);
+                config.AxisConfig[7].IsCentered = Convert.ToBoolean((hr.Data[37] & 0x04) >> 2);
+                config.AxisConfig[7].Function = (AxisFunction)((hr.Data[37] & 0x18) >> 3);
                 config.AxisConfig[7].FilterLevel = (byte)((hr.Data[37] & 0xE0) >> 5);
                 for (int i = 0; i < 11; i++)
                 {
@@ -592,7 +600,8 @@ namespace FreeJoyConfigurator
             buffer[7] = (byte)(config.AxisConfig[0].CalibMax >> 8);
             buffer[8] = (byte)(config.AxisConfig[0].IsOutEnabled ? 0x01 : 0x00);
             buffer[8] |= (byte)(config.AxisConfig[0].IsInverted ? 0x02 : 0x00);
-            buffer[8] |= (byte)((byte)config.AxisConfig[0].Function << 2);
+            buffer[8] |= (byte)(config.AxisConfig[0].IsCentered ? 0x04 : 0x00);
+            buffer[8] |= (byte)((byte)config.AxisConfig[0].Function << 3);
             buffer[8] |= (byte)(config.AxisConfig[0].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {
@@ -623,7 +632,8 @@ namespace FreeJoyConfigurator
             buffer[37] = (byte)(config.AxisConfig[1].CalibMax >> 8);
             buffer[38] = (byte)(config.AxisConfig[1].IsOutEnabled ? 0x01 : 0x00);
             buffer[38] |= (byte)(config.AxisConfig[1].IsInverted ? 0x02 : 0x00);
-            buffer[38] |= (byte)((byte)config.AxisConfig[1].Function << 2);
+            buffer[38] |= (byte)(config.AxisConfig[1].IsCentered ? 0x04 : 0x00);
+            buffer[38] |= (byte)((byte)config.AxisConfig[1].Function << 3);
             buffer[38] |= (byte)(config.AxisConfig[1].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {
@@ -659,7 +669,8 @@ namespace FreeJoyConfigurator
             buffer[7] = (byte)(config.AxisConfig[2].CalibMax >> 8);
             buffer[8] = (byte)(config.AxisConfig[2].IsOutEnabled ? 0x01 : 0x00);
             buffer[8] |= (byte)(config.AxisConfig[2].IsInverted ? 0x02 : 0x00);
-            buffer[8] |= (byte)((byte)config.AxisConfig[2].Function << 2);
+            buffer[8] |= (byte)(config.AxisConfig[2].IsCentered ? 0x04 : 0x00);
+            buffer[8] |= (byte)((byte)config.AxisConfig[2].Function << 3);
             buffer[8] |= (byte)(config.AxisConfig[2].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {
@@ -690,7 +701,8 @@ namespace FreeJoyConfigurator
             buffer[37] = (byte)(config.AxisConfig[3].CalibMax >> 8);
             buffer[38] = (byte)(config.AxisConfig[3].IsOutEnabled ? 0x01 : 0x00);
             buffer[38] |= (byte)(config.AxisConfig[3].IsInverted ? 0x02 : 0x00);
-            buffer[38] |= (byte)((byte)config.AxisConfig[3].Function << 2);
+            buffer[38] |= (byte)(config.AxisConfig[3].IsCentered ? 0x04 : 0x00);
+            buffer[38] |= (byte)((byte)config.AxisConfig[3].Function << 3);
             buffer[38] |= (byte)(config.AxisConfig[3].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {
@@ -726,7 +738,8 @@ namespace FreeJoyConfigurator
             buffer[7] = (byte)(config.AxisConfig[4].CalibMax >> 8);
             buffer[8] = (byte)(config.AxisConfig[4].IsOutEnabled ? 0x01 : 0x00);
             buffer[8] |= (byte)(config.AxisConfig[4].IsInverted ? 0x02 : 0x00);
-            buffer[8] |= (byte)((byte)config.AxisConfig[4].Function << 2);
+            buffer[8] |= (byte)(config.AxisConfig[4].IsCentered ? 0x04 : 0x00);
+            buffer[8] |= (byte)((byte)config.AxisConfig[4].Function << 3);
             buffer[8] |= (byte)(config.AxisConfig[4].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {
@@ -757,7 +770,8 @@ namespace FreeJoyConfigurator
             buffer[37] = (byte)(config.AxisConfig[5].CalibMax >> 8);
             buffer[38] = (byte)(config.AxisConfig[5].IsOutEnabled ? 0x01 : 0x00);
             buffer[38] |= (byte)(config.AxisConfig[5].IsInverted ? 0x02 : 0x00);
-            buffer[38] |= (byte)((byte)config.AxisConfig[5].Function << 2);
+            buffer[38] |= (byte)(config.AxisConfig[5].IsCentered ? 0x04 : 0x00);
+            buffer[38] |= (byte)((byte)config.AxisConfig[5].Function << 3);
             buffer[38] |= (byte)(config.AxisConfig[5].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {
@@ -793,7 +807,8 @@ namespace FreeJoyConfigurator
             buffer[7] = (byte)(config.AxisConfig[6].CalibMax >> 8);
             buffer[8] = (byte)(config.AxisConfig[6].IsOutEnabled ? 0x01 : 0x00);
             buffer[8] |= (byte)(config.AxisConfig[6].IsInverted ? 0x02 : 0x00);
-            buffer[8] |= (byte)((byte)config.AxisConfig[6].Function << 2);
+            buffer[8] |= (byte)(config.AxisConfig[6].IsCentered ? 0x04 : 0x00);
+            buffer[8] |= (byte)((byte)config.AxisConfig[6].Function << 3);
             buffer[8] |= (byte)(config.AxisConfig[6].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {
@@ -824,7 +839,8 @@ namespace FreeJoyConfigurator
             buffer[37] = (byte)(config.AxisConfig[7].CalibMax >> 8);
             buffer[38] = (byte)(config.AxisConfig[7].IsOutEnabled ? 0x01 : 0x00);
             buffer[38] |= (byte)(config.AxisConfig[7].IsInverted ? 0x02 : 0x00);
-            buffer[38] |= (byte)((byte)config.AxisConfig[7].Function << 2);
+            buffer[38] |= (byte)(config.AxisConfig[7].IsCentered ? 0x04 : 0x00);
+            buffer[38] |= (byte)((byte)config.AxisConfig[7].Function << 3);
             buffer[38] |= (byte)(config.AxisConfig[7].FilterLevel << 5);
             for (int i = 0; i < 11; i++)
             {

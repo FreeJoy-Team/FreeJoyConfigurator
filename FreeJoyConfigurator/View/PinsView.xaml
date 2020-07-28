@@ -32,11 +32,11 @@
 
         <Grid d:DataContext="{d:DesignInstance {x:Type local:MainVM}}" Margin="50,35,0,35">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
+                <ColumnDefinition Width="0.25*" MinWidth="30"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="0.25*"/>
-            <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.25*" MinWidth="30"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>

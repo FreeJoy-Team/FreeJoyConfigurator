@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Firmware_Version>5648</Firmware_Version>
+  <Firmware_Version>5664</Firmware_Version>
   <Device_Name>FreeJoy</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <A2b_Debounce_Time>50</A2b_Debounce_Time>
@@ -109,7 +109,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -181,7 +182,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -253,7 +255,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -325,7 +328,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -397,7 +401,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -469,7 +474,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -541,7 +547,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <Axis_Config>
     <CalibMin>-32767</CalibMin>
@@ -613,7 +620,8 @@
     <Button2_Type>Reset</Button2_Type>
     <Button3_Type>Up</Button3_Type>
     <Prescaler>100</Prescaler>
-    <IsCalibCenterUnlocked>false</IsCalibCenterUnlocked>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
   </Axis_Config>
   <ShiftModificator_Config>
     <Button>0</Button>
@@ -2131,6 +2139,9 @@
   <Pid>22352</Pid>
   <LedPwmConfig>
     <DutyCycle>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>

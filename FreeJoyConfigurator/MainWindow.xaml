@@ -9,7 +9,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="{Binding Version}" MinHeight="650" Height="800" MinWidth="1200" Width="1200">
+        Title="{Binding Version}" MinHeight="750" Height="800" MinWidth="1200" Width="1200">
 
     <Window.DataContext>
         <local:MainVM/>
