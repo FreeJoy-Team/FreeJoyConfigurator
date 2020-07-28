@@ -175,12 +175,14 @@ namespace FreeJoyConfigurator
         {
             get
             {
-                if (_isCalibrating) return "Stop calibration";
-                else return "Start calibration";
+                if (_isCalibrating) return "Stop&Save";
+                else return "Calibrate";
             }
         }
 
         public DelegateCommand CalibrateCommand { get; }
+        public DelegateCommand SetCenterCommand { get; }
+        public DelegateCommand ResetCalibrationCommand { get; }
 
         public int Number { get; private set; }
 
@@ -230,6 +232,8 @@ namespace FreeJoyConfigurator
             
 
             CalibrateCommand = new DelegateCommand(() => Calibrate());
+            SetCenterCommand = new DelegateCommand(() => SetCenter());
+            ResetCalibrationCommand = new DelegateCommand(() => ResetCalibration());
         }
 
 
@@ -251,8 +255,8 @@ namespace FreeJoyConfigurator
                     {
                         if (ct.IsCancellationRequested)
                         {
-                            AxisConfig.IsCentered = true;
-                            AxisConfig.CalibCenter = RawValue;
+                            //AxisConfig.IsCentered = true;
+                            //AxisConfig.CalibCenter = RawValue;
                             break;
                         }
                         CalibrationTask();
@@ -266,6 +270,20 @@ namespace FreeJoyConfigurator
                 // stop task
                 ts.Cancel();
             }
+        }
+
+        public void SetCenter()
+        {
+            AxisConfig.IsCentered = true;
+            AxisConfig.CalibCenter = RawValue;
+        }
+
+        public void ResetCalibration()
+        {
+            AxisConfig.IsCentered = false;
+            AxisConfig.CalibCenter = 0;
+            AxisConfig.CalibMin = -32767;
+            AxisConfig.CalibMax = 32767;
         }
 
         private void CalibrationTask()

@@ -70,7 +70,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:AxesView}">
                     <GroupBox Header="{Binding Number, Converter={StaticResource AxisTypeConverter}}" 
-                              BorderThickness="0.5" BorderBrush="Black" Height="200" Margin="0,0,5,0">
+                              BorderThickness="0.5" BorderBrush="Black" Height="220" Margin="0,0,5,0">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*" />
