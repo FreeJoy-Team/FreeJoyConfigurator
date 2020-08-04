@@ -753,7 +753,7 @@ namespace FreeJoyConfigurator
         public LedPwmConfig()
         {
             _dutyCycle = new ObservableCollection<byte>();
-            for (int i = 0; i < 3; i++) _dutyCycle.Add(0);
+            for (int i = 0; i < 3; i++) _dutyCycle.Add(50);
         }
     }
 
