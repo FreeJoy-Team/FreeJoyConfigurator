@@ -83,19 +83,12 @@ namespace FreeJoyConfigurator
         }
 
         public string Version
-        {            
+        {
+            //get; set;
             get
             {
-                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
-                {
-                    Version ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                    return string.Format("FreeJoy Configurator v{0}.{1}.{2}b{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
-                }
-                else
-                {
-                    var ver = Assembly.GetExecutingAssembly().GetName().Version;
-                    return string.Format("FreeJoy Configurator v{0}.{1}.{2}b{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
-                }
+                Version ver = Assembly.GetEntryAssembly().GetName().Version;
+                return string.Format("FreeJoy Configurator v{0}.{1}.{2}b{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
             }
         }
         public string ActivityLogVM { get; private set; }
@@ -288,6 +281,8 @@ namespace FreeJoyConfigurator
                 tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                 Config = tmp;
+
+                //Version = "FreeJoy Configurator v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".").Insert(3, ".").Insert(5, "b");
             }
 
             PinsVM.Update(Config);
