@@ -369,6 +369,7 @@ namespace FreeJoyConfigurator
                 {
                     IsFlasherVM = false;
                     RaisePropertyChanged(nameof(IsFlasherVM));
+
                 }
             }
 
@@ -378,8 +379,11 @@ namespace FreeJoyConfigurator
         {
             string name = hd.ReadProduct();
 
-            WriteLog("Device \"" + name + "\" added", false);
+            WriteLog("Device \"" + name + "\" connected", false);
             //WriteLog("Device added", false);
+
+            // get config of connected device
+            GetDeviceConfig.Execute();
 
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
