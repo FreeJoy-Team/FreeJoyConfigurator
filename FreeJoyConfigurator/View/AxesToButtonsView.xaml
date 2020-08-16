@@ -31,13 +31,19 @@
         <CheckBox  Grid.Column="0" Grid.Row="0" Content="X" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[0].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[0].RangeItems}"
-                                            
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
-                                            Minimum="0" Maximum="255"/>
+                                            Minimum="0" Maximum="255">
+        </InWit:WitMultiRangeSlider>
+
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[0].ButtonCnt, Mode=TwoWay}"
                                             IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
@@ -46,6 +52,11 @@
         <CheckBox  Grid.Column="0" Grid.Row="1" Content="Y" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[1].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[1].RangeItems}"  
@@ -60,6 +71,11 @@
         <CheckBox  Grid.Column="0" Grid.Row="2" Content="Z" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[2].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[2].RangeItems}"  
@@ -74,6 +90,11 @@
         <CheckBox  Grid.Column="0" Grid.Row="3" Content="Rx"
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[3].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[3].RangeItems}"  
@@ -88,6 +109,11 @@
         <CheckBox  Grid.Column="0" Grid.Row="4" Content="Ry" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[4].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[4].RangeItems}"  
@@ -102,6 +128,11 @@
         <CheckBox  Grid.Column="0" Grid.Row="5" Content="Rz" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[5].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[5].RangeItems}"  
@@ -116,6 +147,11 @@
         <CheckBox  Grid.Column="0" Grid.Row="6" Content="Slider1" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[6].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[6].RangeItems}"  
@@ -130,6 +166,11 @@
         <CheckBox  Grid.Column="0" Grid.Row="7" Content="Slider2" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <ProgressBar Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Margin="10,0,0,0"
+                                            Value="{Binding AxesVM.Axes[7].Value}"
+                                            Minimum="-32767"  
+                                            Maximum="32767" 
+                                            Height="15" Opacity="0.25"/>
         <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="7" VerticalAlignment="Center"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[7].RangeItems}"  

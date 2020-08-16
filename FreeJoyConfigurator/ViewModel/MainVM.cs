@@ -382,12 +382,12 @@ namespace FreeJoyConfigurator
             WriteLog("Device \"" + name + "\" connected", false);
             //WriteLog("Device added", false);
 
-            // get config of connected device
-            GetDeviceConfig.Execute();
-
             RaisePropertyChanged(nameof(ConnectionStatusVM));
             RaisePropertyChanged(nameof(IsConnectedVM));
             RaisePropertyChanged(nameof(IsConfigEnabledVM));
+
+            // get config of connected device
+            GetDeviceConfig.Execute();
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)
