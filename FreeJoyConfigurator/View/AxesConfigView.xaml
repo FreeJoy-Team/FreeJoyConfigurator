@@ -98,7 +98,7 @@
                                   IsChecked="{Binding AxisConfig.IsCentered}"/>
                     <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="70"
                                             Margin="2,2,2,2"
-                                            IsReadOnly="{Binding AxisConfig.IsCalibCenterUnlocked, Mode=TwoWay, Converter={StaticResource boolConvert}}"
+                                            IsReadOnly="{Binding AxisConfig.IsCentered, Mode=TwoWay, Converter={StaticResource boolConvert}}"
                                             Value="{Binding AxisConfig.CalibCenter, UpdateSourceTrigger=LostFocus}"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="3"  Text="Maximum"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
