@@ -689,15 +689,15 @@ namespace FreeJoyConfigurator
                     {
                         Pins[i].AllowedTypes.Add(PinType.MCP3201_CS);
                     }
-                    if (!Pins[i].AllowedTypes.Contains(PinType.MCP3202_CS) && i != 14 && i != 16 && i != 17)
+                    if (!Pins[i].AllowedTypes.Contains(PinType.MCP3202_CS) && i != 14 && i != 15 && i != 16 && i != 17)
                     {
                         Pins[i].AllowedTypes.Add(PinType.MCP3202_CS);
                     }
-                    if (!Pins[i].AllowedTypes.Contains(PinType.MCP3204_CS) && i != 14 && i != 16 && i != 17)
+                    if (!Pins[i].AllowedTypes.Contains(PinType.MCP3204_CS) && i != 14 && i != 15 && i != 16 && i != 17)
                     {
                         Pins[i].AllowedTypes.Add(PinType.MCP3204_CS);
                     }
-                    if (!Pins[i].AllowedTypes.Contains(PinType.MCP3208_CS) && i != 14 && i != 16 && i != 17)
+                    if (!Pins[i].AllowedTypes.Contains(PinType.MCP3208_CS) && i != 14 && i != 15 && i != 16 && i != 17)
                     {
                         Pins[i].AllowedTypes.Add(PinType.MCP3208_CS);
                     }

@@ -761,8 +761,6 @@ namespace FreeJoyConfigurator
     {
         Normal = 0,
         Inverted,
-        //Blink_Slow,
-        //Blink_Fast,
     }
 
     public class LedConfig : BindableBase
