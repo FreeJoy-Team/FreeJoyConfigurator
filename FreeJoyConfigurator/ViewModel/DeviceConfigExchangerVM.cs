@@ -11,13 +11,16 @@ namespace FreeJoyConfigurator
     public class DeviceConfigExchangerVM
     {
         static private byte configPacketNumber = 0;
-        static private DeviceConfig _config; 
+        static private DeviceConfig _config;
+        static private byte _requestedNumber = 1;
 
         public delegate void ConfigReceivedEventHandler(DeviceConfig deviceConfig);
         public delegate void ConfigSentEventHandler(DeviceConfig deviceConfig);
 
         public event ConfigReceivedEventHandler Received;
         public event ConfigSentEventHandler Sent;
+
+        
 
 
         public DeviceConfigExchangerVM()
@@ -39,6 +42,13 @@ namespace FreeJoyConfigurator
                     configPacketNumber = hr.Data[0];
                     Console.WriteLine("Config packet received: {0}", configPacketNumber);
 
+                    // exit if received packet wrong type
+                    if (configPacketNumber != _requestedNumber)
+                    {
+                        Console.WriteLine("Unexpected packet received!");
+                        return;
+                    }
+
                     App.Current.Dispatcher.BeginInvoke((Action)(() =>
                     {
                         ReportConverter.ReportToConfig(ref _config, hr);
@@ -46,7 +56,8 @@ namespace FreeJoyConfigurator
 
                     if (configPacketNumber < 16)
                     {
-                        buffer[0] = ++configPacketNumber;
+                        _requestedNumber = ++configPacketNumber;
+                        buffer[0] = _requestedNumber;
                         Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
                         Console.WriteLine("Requesting config packet..: {0}", configPacketNumber);
                     }
@@ -92,7 +103,9 @@ namespace FreeJoyConfigurator
 
             Task.Delay(250);
 
-            buffer[0] = 1;
+            _requestedNumber = 1;
+            buffer[0] = _requestedNumber;
+
             Hid.ReportSend((byte)ReportID.CONFIG_IN_REPORT, buffer);
             Console.WriteLine("Requesting config packet..: 1");
         }

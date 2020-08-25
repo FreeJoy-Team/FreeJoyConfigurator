@@ -163,7 +163,7 @@ namespace FreeJoyConfigurator
 
         private ObservableCollection<AxisSourceType> _allowedSources;
         private byte _maxResolution;
-        
+        private bool _isShowAdvanced;
 
         private bool _isCalibrating;
         private Task _calibrationTask;
@@ -215,7 +215,11 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _maxResolution, value); }
         }
 
-        
+        public bool IsShowAdvanced
+        {
+            get { return _isShowAdvanced; }
+            set { SetProperty(ref _isShowAdvanced, value); }
+        }
 
         public Axis(int number, AxisConfig axisConfig)
         {

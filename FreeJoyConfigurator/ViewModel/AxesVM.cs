@@ -18,9 +18,7 @@ namespace FreeJoyConfigurator
         private DeviceConfig _config;
         private AxesCurvesVM _axesCurvesVM;
         private Joystick _joystick;
-        private ObservableCollection<Axis> _axes;
-
-        
+        private ObservableCollection<Axis> _axes;        
 
         public DeviceConfig Config
         {
@@ -104,7 +102,7 @@ namespace FreeJoyConfigurator
                 }
             }
 
-            if (Config.PinConfig[19] == PinType.I2C_SCL && Config.PinConfig[20] == PinType.I2C_SDA)    // PB8 and PB9
+            if (Config.PinConfig[21] == PinType.I2C_SCL && Config.PinConfig[22] == PinType.I2C_SDA)    // PB8 and PB9
             {
                 foreach (var axis in Axes)
                 {

@@ -243,6 +243,7 @@ namespace FreeJoyConfigurator
                     }
                     while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
                     while (tmp.LedConfig.Count > 24) tmp.LedConfig.RemoveAt(0);
+                    while (tmp.LedPwmConfig.Count > 4) tmp.LedPwmConfig.RemoveAt(0);
                     while (tmp.EncodersConfig.Count > 16) tmp.EncodersConfig.RemoveAt(0);
                     tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
@@ -255,8 +256,8 @@ namespace FreeJoyConfigurator
 
         private void LoadDefaultConfig()
         {
+            //TODO: fix serialization
             {
-                //TODO: fix serialization
                 var xmlStr = Properties.Resources.default_config;
 
 
@@ -277,12 +278,11 @@ namespace FreeJoyConfigurator
                 }
                 while (tmp.ShiftRegistersConfig.Count > 4) tmp.ShiftRegistersConfig.RemoveAt(0);
                 while (tmp.LedConfig.Count > 24) tmp.LedConfig.RemoveAt(0);
-                while(tmp.EncodersConfig.Count > 16) tmp.EncodersConfig.RemoveAt(0);
+                while (tmp.LedPwmConfig.Count > 4) tmp.LedPwmConfig.RemoveAt(0);
+                while (tmp.EncodersConfig.Count > 16) tmp.EncodersConfig.RemoveAt(0);
                 tmp.DeviceName = tmp.DeviceName.TrimEnd('\0');
 
                 Config = tmp;
-
-                //Version = "FreeJoy Configurator v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".").Insert(3, ".").Insert(5, "b");
             }
 
             PinsVM.Update(Config);
@@ -332,6 +332,7 @@ namespace FreeJoyConfigurator
         private void ConfigReceived(DeviceConfig deviceConfig)
         {
             Config = deviceConfig;
+            Config.DeviceName = Config.DeviceName.TrimEnd('\0');
 
             DeviceFirmwareVersionVM = "Device firmware v" + Config.FirmwareVersion.ToString("X3").Insert(1, ".").Insert(3,".").Insert(5, "b");
 
@@ -387,7 +388,7 @@ namespace FreeJoyConfigurator
             RaisePropertyChanged(nameof(IsConfigEnabledVM));
 
             // get config of connected device
-            GetDeviceConfig.Execute();
+            //GetDeviceConfig.Execute();
         }
 
         public void DeviceRemovedEventHandler(HidDevice hd)

@@ -46,8 +46,7 @@
 
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[0].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
 
         <CheckBox  Grid.Column="0" Grid.Row="1" Content="Y" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}" 
@@ -65,8 +64,7 @@
                                             Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[1].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
 
         <CheckBox  Grid.Column="0" Grid.Row="2" Content="Z" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}" 
@@ -84,8 +82,7 @@
                                             Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[2].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
 
         <CheckBox  Grid.Column="0" Grid.Row="3" Content="Rx"
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}" 
@@ -103,8 +100,7 @@
                                             Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[3].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
 
         <CheckBox  Grid.Column="0" Grid.Row="4" Content="Ry" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}" 
@@ -122,8 +118,7 @@
                                             Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[4].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
 
         <CheckBox  Grid.Column="0" Grid.Row="5" Content="Rz" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
@@ -141,8 +136,7 @@
                                             Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[5].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
 
         <CheckBox  Grid.Column="0" Grid.Row="6" Content="Slider1" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}" 
@@ -160,8 +154,7 @@
                                             Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[6].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
 
         <CheckBox  Grid.Column="0" Grid.Row="7" Content="Slider2" 
                    IsChecked="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}" 
@@ -179,8 +172,7 @@
                                             Minimum="0" Maximum="255"/>
         <xctk:IntegerUpDown Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[7].ButtonCnt, Mode=TwoWay}"
-                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"
-                                            Minimum="2" Maximum="12"/>
+                                            Minimum="0" Maximum="12"/>
     </Grid>
 
 

@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:InWit="clr-namespace:InWit.WPF.MultiRangeSlider;assembly=InWit.WPF.MultiRangeSlider"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:FreeJoyConfigurator"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
@@ -57,6 +58,9 @@
         <local:NumericToBooleanConverter x:Key="NumToBoolConverter" />
         <local:AxisSourceBooleanConverter x:Key="AxisSrcBoolConverter"/>
         <local:AxisTypeConverter x:Key="AxisTypeConverter" />
+        <local:InvertBooleanConverter  x:Key="boolConvert"/>
+        <local:FilterLevelConverter x:Key="filterConverter"/>
+
     </UserControl.Resources>
 
     <ScrollViewer BorderBrush="LightGray" BorderThickness="0.5"
@@ -70,50 +74,57 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:AxesView}">
                     <GroupBox Header="{Binding Number, Converter={StaticResource AxisTypeConverter}}" 
-                              BorderThickness="0.5" BorderBrush="Black" Height="220" Margin="0,0,5,0">
+                              BorderThickness="0.5" BorderBrush="Black" MinHeight="140" Height="Auto"  Margin="0,0,5,0">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*" />
-                                <ColumnDefinition Width="0.35*"/>
-                                <ColumnDefinition Width="0.35*"/>
-                                <ColumnDefinition Width="0.35*"/>
-                                <ColumnDefinition Width="0.35*"/>
-                                <ColumnDefinition Width="0.35*" />
-                                <ColumnDefinition Width="0.35*"/>
-                                <ColumnDefinition Width="0.35*"/>
-                                <ColumnDefinition Width="0.35*"/>
-
-                                <ColumnDefinition Width="1*"/>
-
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MaxHeight="25"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <CheckBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" 
+                            <!--<Border Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="3" BorderThickness="0.5" BorderBrush="DarkGray"/>-->
+
+                            <!-- Input config-->
+
+                            <CheckBox Grid.Column="0" Grid.Row="0"
                                   Content="Output" 
-                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,0,0,0"
+                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5,5,5,5"
                                   IsChecked="{Binding AxisConfig.IsOutEnabled}"/>
 
-                            <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" 
+                            <CheckBox Grid.Column="0" Grid.Row="1"
                                   Content="Inverted" 
-                                  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"
+                                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,5"
                                   IsChecked="{Binding AxisConfig.IsInverted}"/>
 
-                            <!--<TextBlock Grid.Column="0" Grid.Row="0"  Text="{Binding Number}" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
-                            <Label Grid.Column="1" Grid.Row="0"  Content="Out" VerticalAlignment="Bottom" HorizontalContentAlignment="Stretch"/>
-                            <Label Grid.Column="1" Grid.Row="1"  Content="Raw" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Axis source"  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                       Margin="5,0,5,0"/>
+                            <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                      HorizontalContentAlignment="Center" Margin="5,0,5,0" MinWidth="100"
+                                      SelectedItem="{Binding AxisConfig.SourceMain}" 
+                                      ItemsSource="{Binding AllowedSources}"/>
+
+                            
+
+                            <!-- Axis values indication -->
+
+                            <Label Grid.Column="1" Grid.Row="0"  Content="Out" HorizontalAlignment="Right"
+                                   VerticalAlignment="Bottom" Margin="5,0,5,0"/>
+                            <Label Grid.Column="1" Grid.Row="1"  Content="Raw" HorizontalAlignment="Right"
+                                   VerticalAlignment="Top" Margin="5,0,5,0"/>
 
 
-                            <ProgressBar Grid.Column="1" Grid.ColumnSpan="8"
+                            <ProgressBar Grid.Column="2" Grid.ColumnSpan="2"
                                                  Grid.Row="0" 
-                                                 Grid.RowSpan="1"
                                                  Minimum="-32767"  
                                                  Maximum="32767" 
                                                  Height="30"  
@@ -122,7 +133,7 @@
                                                  HorizontalAlignment="Stretch"  
                                                  VerticalAlignment="Bottom" 
                                                  Foreground="DarkRed" 
-                                                 Margin="0,0,10,0" >
+                                                 Margin="5,1,5,1">
                                 <ProgressBar.Style>
                                     <Style TargetType="ProgressBar">
                                         <Style.Triggers>
@@ -133,11 +144,11 @@
                                     </Style>
                                 </ProgressBar.Style>
                             </ProgressBar>
-                            <Label Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="0" Height="30" Content="{Binding Value}"
+                            <Label Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Content="{Binding Value}"
                                    HorizontalAlignment="Center" VerticalAlignment="Bottom" VerticalContentAlignment="Center">
                             </Label>
 
-                            <ProgressBar Grid.Column="1" Grid.ColumnSpan="8"
+                            <ProgressBar Grid.Column="2" Grid.ColumnSpan="2"
                                                  Grid.Row="1" 
                                                  Minimum="-32767" 
                                                  Maximum="32767" 
@@ -147,7 +158,7 @@
                                                  HorizontalAlignment="Stretch"
                                                  VerticalAlignment="Top"
                                                  Foreground="DarkOliveGreen" 
-                                                 Margin="0,0,10,0" >
+                                                 Margin="5,1,5,1">
                                 <ProgressBar.Style>
                                     <Style TargetType="ProgressBar">
                                         <Style.Triggers>
@@ -158,105 +169,259 @@
                                     </Style>
                                 </ProgressBar.Style>
                             </ProgressBar>
-                            <TextBlock Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="1" Height="20" 
+                            <TextBlock Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" 
                                        Text="{Binding RawValue}"
                                        HorizontalAlignment="Center" VerticalAlignment="Top" >
                             </TextBlock>
+                            
+                            <!--Axes2Buttons-->
 
-                            <!-- Input config-->
+                            <!--Calibration-->
 
-                            <TextBlock Grid.Column="0"   Grid.Row="4" Text="Channel/Encoder"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                            <xctk:IntegerUpDown Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"
-                                            Width="50" Margin="0,5,0,5"
-                                            Value="{Binding AxisConfig.Channel, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="15" Minimum="0"/>
+                            <Border Grid.Column="4" Grid.Row="0" Grid.RowSpan="3" BorderThickness="0.5" BorderBrush="DarkGray">
 
-                            <TextBlock Grid.Column="0"   Grid.Row="2" Text="I2C address"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                            <ComboBox Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" 
-                                            HorizontalContentAlignment="Center" MinWidth="80" Margin="0,0,0,5"
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1"
+                                                Margin="5,2,5,1" 
+                                                Content="{Binding CalibrationString}"
+                                                Command="{Binding CalibrateCommand }"/>
+
+                                    <Button Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1"
+                                                Margin="5,2,5,1" Width="70"
+                                                Content="Set Center"
+                                                Command="{Binding SetCenterCommand }"/>
+
+
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Minimum" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                                            Width="70" Margin="2,2,2,2"
+                                            Value="{Binding AxisConfig.CalibMin, UpdateSourceTrigger=LostFocus}"/>
+
+                                    <CheckBox Grid.Column="0" Grid.Row="2"
+                                  Content="Center" 
+                                  HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Right"
+                                  IsChecked="{Binding AxisConfig.IsCentered}"/>
+                                    <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="70"
+                                            Margin="2,2,2,2"
+                                            IsReadOnly="{Binding AxisConfig.IsCentered, Mode=TwoWay, Converter={StaticResource boolConvert}}"
+                                            Value="{Binding AxisConfig.CalibCenter, UpdateSourceTrigger=LostFocus}"/>
+
+                                    <TextBlock Grid.Column="0" Grid.Row="3"  Text="Maximum"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="70"
+                                            Margin="2,2,2,2"
+                                            Value="{Binding AxisConfig.CalibMax, UpdateSourceTrigger=LostFocus}"/>
+
+
+
+                                    <Button Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2"
+                                                Margin="10,2,12,2" Width="100"
+                                                Content="Reset Calibration"
+                                                Command="{Binding ResetCalibrationCommand }"/>
+
+                                </Grid>
+
+                            </Border>
+
+                            <!--Axis advanced functions-->
+
+                            <CheckBox Grid.Column="5" Grid.Row="3" Content="Show advanced settings"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      IsChecked="{Binding IsShowAdvanced, Mode=OneWayToSource}"/>
+
+                            <GroupBox Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="1"
+                                      FlowDirection="RightToLeft"
+                                      Header="Advanced Settings" Margin="5,5,5,5">
+                                <GroupBox.Resources>
+                                    <Style TargetType="GroupBox">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsShowAdvanced}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsShowAdvanced}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </GroupBox.Resources>
+                                <Grid FlowDirection="LeftToRight">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" BorderThickness="0.5" BorderBrush="DarkGray" Margin="2,2,2,2"/>
+
+                                    <TextBlock Grid.Column="0"   Grid.Row="0" Text="I2C address"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                                    <ComboBox Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                            HorizontalContentAlignment="Center" MinWidth="100" Margin="5,5,5,5"
                                             SelectedItem="{Binding AxisConfig.I2cAddress}"
                                             IsEnabled="{Binding AxisConfig.SourceMain, Converter={StaticResource AxisSrcBoolConverter}}"
                                             ItemsSource="{Binding Source={StaticResource AxisAddressTypeFromEnum}}"/>
 
-                            <!--Axis functions-->
+                                    <TextBlock Grid.Column="0"   Grid.Row="2" Text="Channel/Encoder"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                                    <xctk:IntegerUpDown Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                                            MinWidth="60" MaxHeight="23" Margin="5,5,5,5"
+                                            Value="{Binding AxisConfig.Channel, UpdateSourceTrigger=LostFocus}"
+                                            Maximum="15" Minimum="0"/>
 
-                            <TextBlock Grid.Column="1" Grid.ColumnSpan="2"  Grid.Row="2" Text="Axis source 1"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                            <ComboBox Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
-                                      HorizontalContentAlignment="Center" Margin="5,0,5,0" Padding="12,3,0,3" 
-                                      SelectedItem="{Binding AxisConfig.SourceMain}" 
-                                      ItemsSource="{Binding AllowedSources}"/>
+                                    <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" BorderThickness="0.5" BorderBrush="DarkGray" Margin="2,2,2,2"/>
 
-                            <TextBlock Grid.Column="3" Grid.ColumnSpan="4"  Grid.Row="2" Text="Function"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                            <ComboBox Grid.Column="3" Grid.ColumnSpan="4"  Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
-                                      HorizontalContentAlignment="Center" Margin="5,0,5,0" Padding="16,3,0,3"
+                                    <TextBlock Grid.Column="1"   Grid.Row="0" Text="Function"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                                    <ComboBox Grid.Column="1"   Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                      HorizontalContentAlignment="Center" Margin="5,5,5,5"
                                       SelectedItem="{Binding AxisConfig.Function}"
                                       ItemsSource="{Binding Source={StaticResource AxisFunctionTypeFromEnum}}"/>
 
-                            <TextBlock Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="2" Text="Axis source 2"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                            <ComboBox Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
-                                      HorizontalContentAlignment="Center" Margin="5,0,10,0" Padding="12,3,0,3"
+                                    <TextBlock Grid.Column="1" Grid.Row="2" Text="Function axis"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                                    <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                      HorizontalContentAlignment="Center" Margin="5,5,5,5"
                                       IsEnabled="{Binding AxisConfig.Function, Converter={StaticResource NumToBoolConverter}}"
                                       SelectedItem="{Binding AxisConfig.SourceSecondary}"
                                       ItemsSource="{Binding Source={StaticResource AxisTypeFromEnum}}"/>
 
-                            <!--Buttons functions-->
 
-                            <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderThickness="0.5" BorderBrush="DarkGray"/>
-                            <Border Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderThickness="0.5" BorderBrush="DarkGray"/>
-                            <Border Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" BorderThickness="0.5" BorderBrush="DarkGray"/>
 
-                            <TextBlock Grid.Column="1" Grid.Row="4" Text="Button 1"  HorizontalAlignment="Right" VerticalAlignment="Center"
-                                       Margin="5,0,5,0"/>
-                            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                            Width="50" Margin="5,0,5,0"
-                                            Value="{Binding AxisConfig.Button1, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="128" Minimum="0"/>
-                            <ComboBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
-                                      HorizontalContentAlignment="Center" Margin="5,0,5,0" Padding="12,3,0,3"
-                                      SelectedItem="{Binding AxisConfig.Button1_Type}"
-                                      ItemsSource="{Binding Source={StaticResource AxisButtonFullTypeFromEnum}}"/>
+                                    <!--Buttons functions-->
 
-                            <TextBlock Grid.Column="3" Grid.Row="4" Text="Button 2"  HorizontalAlignment="Right" VerticalAlignment="Center"
-                                       Margin="5,0,5,0"/>
-                            <xctk:IntegerUpDown Grid.Column="4" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                            Width="50" Margin="5,0,5,0"
-                                            Value="{Binding AxisConfig.Button2, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="128" Minimum="0"/>
-                            <ComboBox Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
-                                      HorizontalContentAlignment="Center" Margin="5,0,5,0" Padding="12,3,0,3"
-                                      SelectedItem="{Binding AxisConfig.Button2_Type}"
-                                      ItemsSource="{Binding Source={StaticResource AxisButtonCutTypeFromEnum}}"/>
+                                    <Border Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" BorderThickness="0.5" BorderBrush="DarkGray" 
+                                            Margin="2,2,2,2">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="5" Grid.Row="4" Text="Button 3"  HorizontalAlignment="Right" VerticalAlignment="Center"
-                                       Margin="5,0,5,0"/>
-                            <xctk:IntegerUpDown Grid.Column="6" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                            Width="50" Margin="5,0,5,0"
-                                            Value="{Binding AxisConfig.Button3, UpdateSourceTrigger=LostFocus}"
-                                            Maximum="128" Minimum="0"/>
-                            <ComboBox Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
-                                      HorizontalContentAlignment="Center" Margin="5,0,5,0" Padding="12,3,0,3"
-                                      SelectedItem="{Binding AxisConfig.Button3_Type}"
-                                      ItemsSource="{Binding Source={StaticResource AxisButtonFullTypeFromEnum}}"/>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Column="7" Grid.Row="4" Text="Step div"  HorizontalAlignment="Right" VerticalAlignment="Center"
-                                       Margin="0,0,1,0"/>
-                            <xctk:IntegerUpDown Grid.Column="8" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                            Width="50" Margin="5,0,5,0"
+                                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Button 1"  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                               Margin="5,5,5,5"/>
+                                                    <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                    Width="50" Margin="5,5,5,5"
+                                                    Value="{Binding AxisConfig.Button1, UpdateSourceTrigger=LostFocus}"
+                                                    Maximum="128" Minimum="0"/>
+                                                    <ComboBox Grid.Column="2"  Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                              HorizontalContentAlignment="Center" Margin="5,5,5,5"
+                                              SelectedItem="{Binding AxisConfig.Button1_Type}"
+                                              ItemsSource="{Binding Source={StaticResource AxisButtonFullTypeFromEnum}}"/>
+
+                                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Button 2"  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                               Margin="5,5,5,5"/>
+                                                    <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                    Width="50" Margin="5,5,5,5"
+                                                    Value="{Binding AxisConfig.Button2, UpdateSourceTrigger=LostFocus}"
+                                                    Maximum="128" Minimum="0"/>
+                                                    <ComboBox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                              HorizontalContentAlignment="Center" Margin="5,0,5,0" Padding="12,3,0,3"
+                                              SelectedItem="{Binding AxisConfig.Button2_Type}"
+                                              ItemsSource="{Binding Source={StaticResource AxisButtonCutTypeFromEnum}}"/>
+
+                                                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Button 3"  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                               Margin="5,5,5,5"/>
+                                                    <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                    Width="50" Margin="5,5,5,5"
+                                                    Value="{Binding AxisConfig.Button3, UpdateSourceTrigger=LostFocus}"
+                                                    Maximum="128" Minimum="0"/>
+                                                    <ComboBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                              HorizontalContentAlignment="Center" Margin="5,5,5,5"
+                                              SelectedItem="{Binding AxisConfig.Button3_Type}"
+                                              ItemsSource="{Binding Source={StaticResource AxisButtonFullTypeFromEnum}}"/>
+                                        </Grid>
+                                        
+                                        
+                                    </Border>
+
+
+                                    <Border Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="4" 
+                                            BorderThickness="0.5" BorderBrush="DarkGray" Margin="2,2,2,2"/>
+
+                                    <TextBlock Grid.Column="5" Grid.Row="0" Text="Step div"  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                       Margin="5,5,5,5"/>
+                                    <xctk:IntegerUpDown Grid.Column="6" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                            Width="50" Margin="5,5,5,5"
                                             Value="{Binding AxisConfig.Divider, UpdateSourceTrigger=LostFocus}"
                                             Maximum="255" Minimum="1"/>
 
-                            <TextBlock Grid.Column="7" Grid.Row="5" Text="Prescaler %"  HorizontalAlignment="Right" VerticalAlignment="Center"
-                                       Margin="0,0,1,0"/>
-                            <xctk:IntegerUpDown Grid.Column="8" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                            Width="50" Margin="5,0,5,0"
+                                    <TextBlock Grid.Column="5" Grid.Row="1" Text="Prescaler %"  HorizontalAlignment="Right" VerticalAlignment="Center"
+                                       Margin="5,5,5,5"/>
+                                    <xctk:IntegerUpDown Grid.Column="6" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                            Width="50" Margin="5,5,5,5"
                                             Value="{Binding AxisConfig.Prescaler, UpdateSourceTrigger=LostFocus}"
                                             Maximum="255" Minimum="1"/>
 
+                                    <TextBlock Grid.Column="7" Grid.Row="0"  Text="Resolution"  VerticalAlignment="Center" HorizontalAlignment="Right"
+                                               Margin="5,5,5,5"/>
+                                    <xctk:IntegerUpDown Grid.Column="8" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                            Width="50"  Margin="5,5,5,5"
+                                            Value="{Binding AxisConfig.Resolution, UpdateSourceTrigger=LostFocus}"
+                                            Maximum="{Binding MaxResolution, Mode=OneWay}" Minimum="1"/>
+                                    <TextBlock Grid.Column="9" Grid.Row="0"  Text="bits"  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                Margin="5,5,5,5"/>
+
+                                    <TextBlock Grid.Column="7" Grid.Row="1"  Text="Offset"  VerticalAlignment="Center" HorizontalAlignment="Right"
+                                               Margin="5,5,5,5"/>
+                                    <xctk:IntegerUpDown Grid.Column="8" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                        Width="50" Minimum="0" Maximum="360" Increment="15" Margin="5,5,5,5"
+                                                        Value="{Binding AxisConfig.OffsetAngle}"/>
+                                    <TextBlock Grid.Column="9" Grid.Row="1"  Text="°"  VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                Margin="5,5,5,5"/>
 
 
-                            <Border Grid.Column="9" Grid.Row="0" Grid.RowSpan="6" HorizontalAlignment="Stretch">
+                                    <TextBlock Grid.Column="5" Grid.Row="2"  Text="Deadband"  VerticalAlignment="Center" HorizontalAlignment="Right"
+                                               Margin="5,5,5,5"/>
+                                    <xctk:IntegerUpDown Grid.Column="6" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                            Width="50" Minimum="0" Maximum="127" Margin="5,5,5,5"
+                                            Value="{Binding AxisConfig.Deadband}"/>
+                                    <CheckBox Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="3" 
+                                              Content="Dynamic deadband" 
+                                              HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5,5,5"
+                                              IsChecked="{Binding AxisConfig.IsDynamicDeadband}"/>
+
+
+                                    <TextBlock Grid.Column="5" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,5,5,5"
+                                            Text="{Binding AxisConfig.FilterLevel, Converter={StaticResource filterConverter}}"/>
+                                    <Slider Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="5,5,5,5"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Center" Minimum="0" Maximum="7" IsSnapToTickEnabled="True" TickFrequency="1"
+                                            Value="{Binding AxisConfig.FilterLevel}"/>
+
+
+                                </Grid>
+                            </GroupBox>
+                            <!--<Border Grid.Column="9" Grid.Row="0" Grid.RowSpan="6" HorizontalAlignment="Stretch">
                                 <local:AxesConfigView/>
-                            </Border>
+                            </Border>-->
 
                         </Grid>
                     </GroupBox>

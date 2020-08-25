@@ -140,19 +140,6 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
                 Pins.Add(new PinVMConverter());
-                //if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisAnalog);
-                //if (i < 8) Pins[i].AllowedTypes.Add(PinType.AxisToButtons);
-                //if (i == 14)
-                //{
-                //    Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                //    Pins[i].AllowedTypes.Remove(PinType.ShiftReg_CS);
-                //    Pins[i].AllowedTypes.Remove(PinType.ShiftReg_Data);
-                //    Pins[i].AllowedTypes.Add(PinType.SPI_SCK);
-                //}
-                //if (i == 16 || i == 17)
-                //{
-                //    Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                //}
                 Pins[i].PropertyChanged += PinsVM_PropertyChanged;
             }
         }
@@ -172,7 +159,7 @@ namespace FreeJoyConfigurator
                 tmp.Add(new PinVMConverter());
                 if (i < 8) tmp[i].AllowedTypes.Add(PinType.Axis_Analog);
                 if (i == 8 || i== 9) tmp[i].AllowedTypes.Add(PinType.Fast_Encoder);
-                if (i == 12 || i == 13 || i == 15)
+                if (i == 10 || i == 12 || i == 13 || i == 15)
                 {
                     if (!tmp[i].AllowedTypes.Contains(PinType.LED_PWM)) tmp[i].AllowedTypes.Add(PinType.LED_PWM);
                 }
@@ -213,11 +200,11 @@ namespace FreeJoyConfigurator
                     tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
                     if (!tmp[i].AllowedTypes.Contains(PinType.TLE5011_GEN)) tmp[i].AllowedTypes.Add(PinType.TLE5011_GEN);
                 }
-                if (i == 19)
+                if (i == 21)
                 {
                     if (!tmp[i].AllowedTypes.Contains(PinType.I2C_SCL)) tmp[i].AllowedTypes.Add(PinType.I2C_SCL);
                 }
-                if (i == 20)
+                if (i == 22)
                 {
                     if (!tmp[i].AllowedTypes.Contains(PinType.I2C_SDA)) tmp[i].AllowedTypes.Add(PinType.I2C_SDA);
                 }
@@ -238,7 +225,7 @@ namespace FreeJoyConfigurator
                 _pins[i] = new PinVMConverter();
                 if (i < 8) Pins[i].AllowedTypes.Add(PinType.Axis_Analog);
                 if (i == 8 || i == 9) Pins[i].AllowedTypes.Add(PinType.Fast_Encoder);
-                if (i == 12 || i == 13 || i == 15)
+                if (i == 10 || i == 12 || i == 13 || i == 15)
                 {
                     if (!Pins[i].AllowedTypes.Contains(PinType.LED_PWM)) Pins[i].AllowedTypes.Add(PinType.LED_PWM);
                 }
@@ -279,11 +266,11 @@ namespace FreeJoyConfigurator
                     Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
                     if (!Pins[i].AllowedTypes.Contains(PinType.TLE5011_GEN)) Pins[i].AllowedTypes.Add(PinType.TLE5011_GEN);
                 }
-                if (i == 19)
+                if (i == 21)
                 {
                     if (!Pins[i].AllowedTypes.Contains(PinType.I2C_SCL)) Pins[i].AllowedTypes.Add(PinType.I2C_SCL);
                 }
-                if (i == 20)
+                if (i == 22)
                 {
                     if (!Pins[i].AllowedTypes.Contains(PinType.I2C_SDA)) Pins[i].AllowedTypes.Add(PinType.I2C_SDA);
                 }
@@ -464,19 +451,19 @@ namespace FreeJoyConfigurator
             }
             if (!_isI2cEnabled)
             {
-                if (!Pins[19].AllowedTypes.Contains(PinType.Not_Used)) Pins[19].AllowedTypes.Insert(0, PinType.Not_Used);
-                if (!Pins[19].AllowedTypes.Contains(PinType.Button_Gnd)) Pins[19].AllowedTypes.Insert(1, PinType.Button_Gnd);
-                if (!Pins[19].AllowedTypes.Contains(PinType.Button_Vcc)) Pins[19].AllowedTypes.Insert(2, PinType.Button_Vcc);
-                if (!Pins[19].AllowedTypes.Contains(PinType.Button_Row)) Pins[19].AllowedTypes.Insert(3, PinType.Button_Row);
-                if (!Pins[19].AllowedTypes.Contains(PinType.Button_Column)) Pins[19].AllowedTypes.Insert(4, PinType.Button_Column);
-                if (!Pins[19].AllowedTypes.Contains(PinType.I2C_SCL)) Pins[19].AllowedTypes.Insert(5, PinType.I2C_SCL);
+                if (!Pins[21].AllowedTypes.Contains(PinType.Not_Used)) Pins[21].AllowedTypes.Insert(0, PinType.Not_Used);
+                if (!Pins[21].AllowedTypes.Contains(PinType.Button_Gnd)) Pins[21].AllowedTypes.Insert(1, PinType.Button_Gnd);
+                if (!Pins[21].AllowedTypes.Contains(PinType.Button_Vcc)) Pins[21].AllowedTypes.Insert(2, PinType.Button_Vcc);
+                if (!Pins[21].AllowedTypes.Contains(PinType.Button_Row)) Pins[21].AllowedTypes.Insert(3, PinType.Button_Row);
+                if (!Pins[21].AllowedTypes.Contains(PinType.Button_Column)) Pins[21].AllowedTypes.Insert(4, PinType.Button_Column);
+                if (!Pins[21].AllowedTypes.Contains(PinType.I2C_SCL)) Pins[21].AllowedTypes.Insert(5, PinType.I2C_SCL);
 
-                if (!Pins[20].AllowedTypes.Contains(PinType.Not_Used)) Pins[20].AllowedTypes.Insert(0, PinType.Not_Used);
-                if (!Pins[20].AllowedTypes.Contains(PinType.Button_Gnd)) Pins[20].AllowedTypes.Insert(1, PinType.Button_Gnd);
-                if (!Pins[20].AllowedTypes.Contains(PinType.Button_Vcc)) Pins[20].AllowedTypes.Insert(2, PinType.Button_Vcc);
-                if (!Pins[20].AllowedTypes.Contains(PinType.Button_Row)) Pins[20].AllowedTypes.Insert(3, PinType.Button_Row);
-                if (!Pins[20].AllowedTypes.Contains(PinType.Button_Column)) Pins[20].AllowedTypes.Insert(4, PinType.Button_Column);
-                if (!Pins[20].AllowedTypes.Contains(PinType.I2C_SDA)) Pins[20].AllowedTypes.Insert(5, PinType.I2C_SDA);
+                if (!Pins[22].AllowedTypes.Contains(PinType.Not_Used)) Pins[22].AllowedTypes.Insert(0, PinType.Not_Used);
+                if (!Pins[22].AllowedTypes.Contains(PinType.Button_Gnd)) Pins[22].AllowedTypes.Insert(1, PinType.Button_Gnd);
+                if (!Pins[22].AllowedTypes.Contains(PinType.Button_Vcc)) Pins[22].AllowedTypes.Insert(2, PinType.Button_Vcc);
+                if (!Pins[22].AllowedTypes.Contains(PinType.Button_Row)) Pins[22].AllowedTypes.Insert(3, PinType.Button_Row);
+                if (!Pins[22].AllowedTypes.Contains(PinType.Button_Column)) Pins[22].AllowedTypes.Insert(4, PinType.Button_Column);
+                if (!Pins[22].AllowedTypes.Contains(PinType.I2C_SDA)) Pins[22].AllowedTypes.Insert(5, PinType.I2C_SDA);
             }
 
 
@@ -735,11 +722,19 @@ namespace FreeJoyConfigurator
             }
             if (_isI2cEnabled)
             {
-                Pins[20].AllowedTypes.Clear();
-                Pins[20].AllowedTypes.Add(PinType.I2C_SDA);
-                Pins[20].SelectedType = PinType.I2C_SDA;
+                Pins[22].AllowedTypes.Clear();
+                Pins[22].AllowedTypes.Add(PinType.I2C_SDA);
+                Pins[22].SelectedType = PinType.I2C_SDA;
             }
-            
+
+            // PWM conflicting pin
+            if (Pins[16].SelectedType == PinType.SPI_MOSI)
+            {
+                if (Pins[15].SelectedType == PinType.LED_PWM) Pins[15].SelectedType = PinType.Not_Used;
+                Pins[15].AllowedTypes.Remove(PinType.LED_PWM);
+            }
+            else if (!Pins[15].AllowedTypes.Contains(PinType.LED_PWM)) Pins[15].AllowedTypes.Add(PinType.LED_PWM);
+
 
             // update config
             DeviceConfig tmp = Config;

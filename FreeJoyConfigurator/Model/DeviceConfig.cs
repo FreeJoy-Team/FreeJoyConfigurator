@@ -418,14 +418,14 @@ namespace FreeJoyConfigurator
 
             Byte original = (Byte) value;
 
-            if (original == 0) converted = "Off";
-            else if (original == 1) converted = "Level 1";
-            else if (original == 2) converted = "Level 2";
-            else if (original == 3) converted = "Level 3";
-            else if (original == 4) converted = "Level 4";
-            else if (original == 5) converted = "Level 5";
-            else if (original == 6) converted = "Level 6";
-            else if (original == 7) converted = "Level 7";
+            if (original == 0) converted = "Filter Off";
+            else if (original == 1) converted = "Filter level 1";
+            else if (original == 2) converted = "Filter level 2";
+            else if (original == 3) converted = "Filter level 3";
+            else if (original == 4) converted = "Filter level 4";
+            else if (original == 5) converted = "Filter level 5";
+            else if (original == 6) converted = "Filter level 6";
+            else if (original == 7) converted = "Filter level 7";
             else converted = "Off";
 
             return converted;
@@ -685,13 +685,17 @@ namespace FreeJoyConfigurator
         public byte ButtonsCnt
         {
             get { return _buttonsCnt; }
-            set { SetProperty(ref _buttonsCnt, value); }
+            set
+            {
+                SetProperty(ref _buttonsCnt, value);
+                if (value > 0) SetProperty(ref _isEnabled, true);
+                else SetProperty(ref _isEnabled, false);
+            }
         }
 
         public bool IsEnabled
         {
             get { return _isEnabled; }
-            set { SetProperty(ref _isEnabled, value); }
         }
 
         public AxisToButtonsConfig()
@@ -700,10 +704,9 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < 13; i++) _points.Add(new byte());
 
             _points[0] = 0;
-            _points[1] = 127;
-            _points[2] = 255;
+            _points[1] = 255;
 
-            _buttonsCnt = 2;
+            _buttonsCnt = 0;
             _isEnabled = false;
         }
     }
@@ -740,20 +743,42 @@ namespace FreeJoyConfigurator
         }
     }
 
-    public class LedPwmConfig : BindableBase
+    public class LedPwm : BindableBase
     {
-        private ObservableCollection<byte> _dutyCycle;
+        private byte _dutyCycle;
+        private bool _isAxis;
+        private byte _axisNumber;
 
-        public ObservableCollection<byte> DutyCycle
+        public byte DutyCycle
         {
             get { return _dutyCycle; }
             set { SetProperty(ref _dutyCycle, value); }
         }
 
-        public LedPwmConfig()
+        public bool IsAxis
         {
-            _dutyCycle = new ObservableCollection<byte>();
-            for (int i = 0; i < 3; i++) _dutyCycle.Add(50);
+            get { return _isAxis; }
+            set { SetProperty(ref _isAxis, value); }
+        }
+
+        public byte AxisNumber
+        {
+            get { return _axisNumber; }
+            set { SetProperty(ref _axisNumber, value); }
+        }
+
+        public LedPwm()
+        {
+            _dutyCycle = 50;
+            _isAxis = false;
+            _axisNumber = 0;
+        }
+
+        public LedPwm(byte dutyCycle, bool isAxis, byte axisNumber)
+        {
+            _dutyCycle = dutyCycle;
+            _isAxis = isAxis;
+            _axisNumber = axisNumber;
         }
     }
 
@@ -822,7 +847,7 @@ namespace FreeJoyConfigurator
         [XmlElement("Pid")]
         public UInt16 Pid { get; set; }
         [XmlElement("LedPwmConfig")]
-        public LedPwmConfig LedPwmConfig { get; set; }
+        public ObservableCollection<LedPwm> LedPwmConfig { get; set; }
         [XmlElement("LedConfig")]
         public ObservableCollection<LedConfig> LedConfig { get; set; }
 
@@ -839,7 +864,7 @@ namespace FreeJoyConfigurator
             ExchangePeriod = 5;
             IsDynamicConfig = false;
             Vid = 0x0483;
-            Pid = 0x5750;
+            Pid = 0x5757;
 
             AxisConfig = new ObservableCollection<AxisConfig>();
             for (int i = 0; i < 8; i++) AxisConfig.Add(new AxisConfig());
@@ -862,9 +887,10 @@ namespace FreeJoyConfigurator
             EncodersConfig = new ObservableCollection<EncoderConfig>();
             for (int i = 0; i < 16; i++) EncodersConfig.Add(new EncoderConfig());
 
-            LedPwmConfig = new LedPwmConfig();
+            LedPwmConfig = new ObservableCollection<LedPwm>();
+            for (int i = 0; i < 4; i++) LedPwmConfig.Add(new LedPwm());
 
-            LedConfig = new ObservableCollection<LedConfig>();
+                LedConfig = new ObservableCollection<LedConfig>();
             for (int i = 0; i < 24; i++) LedConfig.Add(new LedConfig());
         }
     }

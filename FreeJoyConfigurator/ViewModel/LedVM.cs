@@ -14,6 +14,7 @@ namespace FreeJoyConfigurator
 
         private DeviceConfig _config;
         private ObservableCollection<Led> _leds;
+        private ObservableCollection<LedPwm> _ledsPwm;
         private Joystick _joystick;
 
         public delegate void ButtonsChangedEvent();
@@ -31,6 +32,12 @@ namespace FreeJoyConfigurator
             set { SetProperty(ref _leds, value); }
         }
 
+        public ObservableCollection<LedPwm> LedsPwm
+        {
+            get { return _ledsPwm; }
+            set { SetProperty(ref _ledsPwm, value); }
+        }
+
         public LedVM(Joystick joystick, DeviceConfig deviceConfig)
         {
             _joystick = joystick;
@@ -38,13 +45,17 @@ namespace FreeJoyConfigurator
 
             _leds = new ObservableCollection<Led>();
             foreach (var led in _leds) led.PropertyChanged += Led_PropertyChanged;
+
+            _ledsPwm = new ObservableCollection<LedPwm>();
+            foreach (var ledPwm in _ledsPwm) ledPwm.PropertyChanged += LedPwm_PropertyChanged;
         }
 
         public void Update(DeviceConfig config)
         {
             Config = config;
 
-            ObservableCollection<Led> tmp = new ObservableCollection<Led>();
+            ObservableCollection<Led> tmpLed = new ObservableCollection<Led>();
+            ObservableCollection<LedPwm> tmpPwm = new ObservableCollection<LedPwm>();
 
             _totalLedCnt = 0;
             for (int i=0; i<config.PinConfig.Count;i++)
@@ -56,21 +67,26 @@ namespace FreeJoyConfigurator
                     {
                         if (config.PinConfig[k] == PinType.LED_Column)
                         {
-                            tmp.Add(new Led(_totalLedCnt + 1, config.LedConfig[_totalLedCnt].InputNumber, config.LedConfig[_totalLedCnt].Type));
+                            tmpLed.Add(new Led(_totalLedCnt + 1, config.LedConfig[_totalLedCnt].InputNumber, config.LedConfig[_totalLedCnt].Type));
                             _totalLedCnt++;
                         }
                     }
                 }
                 else if (config.PinConfig[i] == PinType.LED_Single)
                 {
-                    tmp.Add(new Led(_totalLedCnt + 1, config.LedConfig[_totalLedCnt].InputNumber, config.LedConfig[_totalLedCnt].Type));
+                    tmpLed.Add(new Led(_totalLedCnt + 1, config.LedConfig[_totalLedCnt].InputNumber, config.LedConfig[_totalLedCnt].Type));
                     _totalLedCnt++;
                 }
             }
+            Leds = tmpLed;
 
-            Leds = tmp;
+            for (int i = 0; i < config.LedPwmConfig.Count; i++)
+            {
+                tmpPwm.Add(new LedPwm(config.LedPwmConfig[i].DutyCycle, config.LedPwmConfig[i].IsAxis, config.LedPwmConfig[i].AxisNumber));
+            }
+            LedsPwm = tmpPwm;
 
-            for (int i = 0; i < Leds.Count; i++)
+                for (int i = 0; i < Leds.Count; i++)
             {
                 Leds[i].PropertyChanged += Led_PropertyChanged;
             }
@@ -89,6 +105,21 @@ namespace FreeJoyConfigurator
             Config = tmp;
 
             RaisePropertyChanged(nameof(Leds));
+            ConfigChanged();
+        }
+
+        private void LedPwm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            DeviceConfig tmp = Config;
+            for (int i = 0; i < LedsPwm.Count; i++)
+            {
+                tmp.LedPwmConfig[i].DutyCycle = LedsPwm[i].DutyCycle;
+                tmp.LedPwmConfig[i].IsAxis = LedsPwm[i].IsAxis;
+                tmp.LedPwmConfig[i].AxisNumber = LedsPwm[i].AxisNumber;
+            }
+            Config = tmp;
+
+            RaisePropertyChanged(nameof(LedsPwm));
             ConfigChanged();
         }
     }  

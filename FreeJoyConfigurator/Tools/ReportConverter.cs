@@ -464,14 +464,12 @@ namespace FreeJoyConfigurator
                     config.AxisToButtonsConfig[0].Points[i] = (byte)hr.Data[25 + i];
                 }
                 config.AxisToButtonsConfig[0].ButtonsCnt = (byte)hr.Data[38];
-                config.AxisToButtonsConfig[0].IsEnabled = (hr.Data[39] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[1].Points[i] = (byte)hr.Data[40 + i];
+                    config.AxisToButtonsConfig[1].Points[i] = (byte)hr.Data[39 + i];
                 }
-                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[53];
-                config.AxisToButtonsConfig[1].IsEnabled = (hr.Data[54] > 0) ? true : false;
+                config.AxisToButtonsConfig[1].ButtonsCnt = (byte)hr.Data[52];
 
             }
             else if (hr.Data[0] == 13)
@@ -482,28 +480,24 @@ namespace FreeJoyConfigurator
                     config.AxisToButtonsConfig[2].Points[i] = (byte)hr.Data[1 + i];
                 }
                 config.AxisToButtonsConfig[2].ButtonsCnt = (byte)hr.Data[14];
-                config.AxisToButtonsConfig[2].IsEnabled = (hr.Data[15] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[3].Points[i] = (byte)hr.Data[16 + i];
+                    config.AxisToButtonsConfig[3].Points[i] = (byte)hr.Data[15 + i];
                 }
-                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[29];
-                config.AxisToButtonsConfig[3].IsEnabled = (hr.Data[30] > 0) ? true : false;
+                config.AxisToButtonsConfig[3].ButtonsCnt = (byte)hr.Data[28];
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[4].Points[i] = (byte)hr.Data[31 + i];
+                    config.AxisToButtonsConfig[4].Points[i] = (byte)hr.Data[29 + i];
                 }
-                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[44];
-                config.AxisToButtonsConfig[4].IsEnabled = (hr.Data[45] > 0) ? true : false;
+                config.AxisToButtonsConfig[4].ButtonsCnt = (byte)hr.Data[42];
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[5].Points[i] = (byte)hr.Data[46 + i];
+                    config.AxisToButtonsConfig[5].Points[i] = (byte)hr.Data[43 + i];
                 }
-                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[59];
-                config.AxisToButtonsConfig[5].IsEnabled = (hr.Data[60] > 0) ? true : false;
+                config.AxisToButtonsConfig[5].ButtonsCnt = (byte)hr.Data[56];
 
             }
             else if (hr.Data[0] == 14)
@@ -514,43 +508,43 @@ namespace FreeJoyConfigurator
                     config.AxisToButtonsConfig[6].Points[i] = (byte)hr.Data[1 + i];
                 }
                 config.AxisToButtonsConfig[6].ButtonsCnt = (byte)hr.Data[14];
-                config.AxisToButtonsConfig[6].IsEnabled = (hr.Data[15] > 0) ? true : false;
 
                 for (int i = 0; i < 13; i++)
                 {
-                    config.AxisToButtonsConfig[7].Points[i] = (byte)hr.Data[16 + i];
+                    config.AxisToButtonsConfig[7].Points[i] = (byte)hr.Data[15 + i];
                 }
-                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[29];
-                config.AxisToButtonsConfig[7].IsEnabled = (hr.Data[30] > 0) ? true : false;
+                config.AxisToButtonsConfig[7].ButtonsCnt = (byte)hr.Data[28];
 
 
                 for (int i = 0; i < 4; i++)
                 {
-                    config.ShiftRegistersConfig[i].Type = (ShiftRegisterType)hr.Data[4 * i + 31];
-                    config.ShiftRegistersConfig[i].ButtonCnt = (byte)hr.Data[4 * i + 32];
+                    config.ShiftRegistersConfig[i].Type = (ShiftRegisterType)hr.Data[4 * i + 29];
+                    config.ShiftRegistersConfig[i].ButtonCnt = (byte)hr.Data[4 * i + 30];
                 }
 
                 for (int i = 0; i < 5; i++)
                 {
-                    config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[47 + i] + 1);
+                    config.ShiftModificatorConfig[i].Button = (sbyte)(hr.Data[45 + i] + 1);
                 }
 
-                config.Vid = (ushort)((ushort)(hr.Data[53] << 8) | (ushort)hr.Data[52]);
-                config.Pid = (ushort)((ushort)(hr.Data[55] << 8) | (ushort)hr.Data[54]);
-                config.IsDynamicConfig = (hr.Data[56] > 0) ? true : false;
+                config.Vid = (ushort)((ushort)(hr.Data[51] << 8) | (ushort)hr.Data[50]);
+                config.Pid = (ushort)((ushort)(hr.Data[53] << 8) | (ushort)hr.Data[52]);
+                config.IsDynamicConfig = (hr.Data[54] > 0) ? true : false;
 
             }
             else if (hr.Data[0] == 15)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < config.LedPwmConfig.Count; i++)
                 {
-                    config.LedPwmConfig.DutyCycle[i] = hr.Data[1 + i];
+                    config.LedPwmConfig[i].DutyCycle = hr.Data[1 + i * 2];
+                    config.LedPwmConfig[i].IsAxis = ((hr.Data[2 + i * 2] & 0x08) > 0) ? true : false ;
+                    config.LedPwmConfig[i].AxisNumber = (byte)(hr.Data[2 + i * 2] & 0x07);
                 }
 
                 for (int i = 0; i < 24; i++)
                 {
-                    config.LedConfig[i].InputNumber = (sbyte)(hr.Data[2 * i + 11] + 1);
-                    config.LedConfig[i].Type = (LedType)(hr.Data[2 * i + 12] & 0x07);
+                    config.LedConfig[i].InputNumber = (sbyte)(hr.Data[2 * i + 9] + 1);
+                    config.LedConfig[i].Type = (LedType)(hr.Data[2 * i + 10] & 0x07);
                 }
 
                 
@@ -995,13 +989,12 @@ namespace FreeJoyConfigurator
                 buffer[i + 26] = (byte)config.AxisToButtonsConfig[0].Points[i];
             }
             buffer[39] = (byte)config.AxisToButtonsConfig[0].ButtonsCnt;
-            buffer[40] = (byte)(config.AxisToButtonsConfig[0].IsEnabled ? 0x01 : 0x00);
             for (int i = 0; i < 13; i++)
             {
-                buffer[i + 41] = (byte)config.AxisToButtonsConfig[1].Points[i];
+                buffer[i + 40] = (byte)config.AxisToButtonsConfig[1].Points[i];
             }
-            buffer[54] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
-            buffer[55] = (byte)(config.AxisToButtonsConfig[1].IsEnabled ? 0x01 : 0x00);
+            buffer[53] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
+            buffer[54] = (byte)(config.AxisToButtonsConfig[1].IsEnabled ? 0x01 : 0x00);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 13
@@ -1015,25 +1008,21 @@ namespace FreeJoyConfigurator
                 buffer[i + 2] = (byte)config.AxisToButtonsConfig[2].Points[i];
             }
             buffer[15] = (byte)config.AxisToButtonsConfig[2].ButtonsCnt;
-            buffer[16] = (byte)(config.AxisToButtonsConfig[2].IsEnabled ? 0x01 : 0x00);
             for (int i = 0; i < 13; i++)
             {
-                buffer[i + 17] = (byte)config.AxisToButtonsConfig[3].Points[i];
+                buffer[i + 16] = (byte)config.AxisToButtonsConfig[3].Points[i];
             }
-            buffer[30] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
-            buffer[31] = (byte)(config.AxisToButtonsConfig[3].IsEnabled ? 0x01 : 0x00);
+            buffer[29] = (byte)config.AxisToButtonsConfig[3].ButtonsCnt;
             for (int i = 0; i < 13; i++)
             {
-                buffer[i + 32] = (byte)config.AxisToButtonsConfig[4].Points[i];
+                buffer[i + 30] = (byte)config.AxisToButtonsConfig[4].Points[i];
             }
-            buffer[45] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
-            buffer[46] = (byte)(config.AxisToButtonsConfig[4].IsEnabled ? 0x01 : 0x00);
+            buffer[43] = (byte)config.AxisToButtonsConfig[4].ButtonsCnt;
             for (int i = 0; i < 13; i++)
             {
-                buffer[i + 47] = (byte)config.AxisToButtonsConfig[5].Points[i];
+                buffer[i + 44] = (byte)config.AxisToButtonsConfig[5].Points[i];
             }
-            buffer[60] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
-            buffer[61] = (byte)(config.AxisToButtonsConfig[5].IsEnabled ? 0x01 : 0x00);
+            buffer[57] = (byte)config.AxisToButtonsConfig[5].ButtonsCnt;
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 14
@@ -1046,34 +1035,31 @@ namespace FreeJoyConfigurator
                 buffer[i + 2] = (byte)config.AxisToButtonsConfig[6].Points[i];
             }
             buffer[15] = (byte)config.AxisToButtonsConfig[6].ButtonsCnt;
-            buffer[16] = (byte)(config.AxisToButtonsConfig[6].IsEnabled ? 0x01 : 0x00);
             for (int i = 0; i < 13; i++)
             {
-                buffer[i + 17] = (byte)config.AxisToButtonsConfig[7].Points[i];
+                buffer[i + 16] = (byte)config.AxisToButtonsConfig[7].Points[i];
             }
-            buffer[30] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
-            buffer[31] = (byte)(config.AxisToButtonsConfig[7].IsEnabled ? 0x01 : 0x00);
+            buffer[29] = (byte)config.AxisToButtonsConfig[7].ButtonsCnt;
 
 
             for (int i = 0; i < 4; i++)
             {
-                buffer[i * 4 + 32] = (byte)config.ShiftRegistersConfig[i].Type;
-                buffer[i * 4 + 33] = (byte)config.ShiftRegistersConfig[i].ButtonCnt;
-                buffer[i * 4 + 34] = 0;
-                buffer[i * 4 + 35] = 0;
+                buffer[i * 4 + 30] = (byte)config.ShiftRegistersConfig[i].Type;
+                buffer[i * 4 + 31] = (byte)config.ShiftRegistersConfig[i].ButtonCnt;
+                buffer[i * 4 + 32] = 0;
+                buffer[i * 4 + 33] = 0;
             }
 
             for (int i = 0; i < 5; i++)
             {
-                buffer[i + 48] = (byte)(config.ShiftModificatorConfig[i].Button - 1);
-                //buffer[2 * i + 34] = (byte)config.ShiftModificatorConfig[i].Mode;
+                buffer[i + 46] = (byte)(config.ShiftModificatorConfig[i].Button - 1);
             }
 
-            buffer[53] = (byte)(config.Vid & 0xFF);
-            buffer[54] = (byte)(config.Vid >> 8);
-            buffer[55] = (byte)(config.Pid & 0xFF);
-            buffer[56] = (byte)(config.Pid >> 8);
-            buffer[57] = (byte)(config.IsDynamicConfig ? 0x01 : 0x00);
+            buffer[51] = (byte)(config.Vid & 0xFF);
+            buffer[52] = (byte)(config.Vid >> 8);
+            buffer[53] = (byte)(config.Pid & 0xFF);
+            buffer[54] = (byte)(config.Pid >> 8);
+            buffer[55] = (byte)(config.IsDynamicConfig ? 0x01 : 0x00);
 
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
       
@@ -1082,15 +1068,17 @@ namespace FreeJoyConfigurator
             buffer[0] = (byte)ReportID.CONFIG_OUT_REPORT;
             buffer[1] = 0x0F;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < config.LedPwmConfig.Count; i++)
             {
-                buffer[2 + i] = config.LedPwmConfig.DutyCycle[i];
+                buffer[2 + i * 2] = (byte)config.LedPwmConfig[i].DutyCycle;
+                buffer[3 + i * 2] = (byte)(config.LedPwmConfig[i].IsAxis ? 0x08 : 0x00);
+                buffer[3 + i * 2] |= (byte)(config.LedPwmConfig[i].AxisNumber & 0x07);
             }
 
             for (int i = 0; i < 24; i++)
             {
-                buffer[2 * i + 12] = (byte)(config.LedConfig[i].InputNumber - 1);
-                buffer[2 * i + 13] = (byte)config.LedConfig[i].Type;
+                buffer[2 * i + 10] = (byte)(config.LedConfig[i].InputNumber - 1);
+                buffer[2 * i + 11] = (byte)config.LedConfig[i].Type;
             }
 
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));

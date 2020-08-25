@@ -125,8 +125,6 @@ namespace FreeJoyConfigurator
                 }
                 conf.AxisToButtonsConfig[i].Points[AxesToButtons[i].ButtonCnt] =
                     (byte)AxesToButtons[i].RangeItems.Last().To;
-
-                conf.AxisToButtonsConfig[i].IsEnabled = AxesToButtons[i].IsEnabled;
             }
             Config = conf;
 
@@ -172,7 +170,7 @@ namespace FreeJoyConfigurator
                     }
                     AxesToButtons[i].RangeItems.Add(new RangeItem { From = AxesToButtons[i].RangeItems.Last().To, To = 255 });
                 }
-                while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count)
+                while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count && AxesToButtons[i].ButtonCnt > 0)
                 {
                     for (int j = AxesToButtons[i].RangeItems.Count - 2; j >= 0; j--)
                     {
