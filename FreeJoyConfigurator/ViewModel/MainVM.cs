@@ -70,6 +70,21 @@ namespace FreeJoyConfigurator
                 if (Hid.HidDevicesList.Count > 0)
                 {
                     Hid.Connect(Hid.HidDevicesList[_selectedDeviceIndex]);
+
+                    string name = Hid.HidDevicesList[SelectedDeviceIndex].ReadProduct();
+
+                    if (name.Contains("FreeJoy Flasher"))
+                    {
+                        IsFlasherVM = true;
+                        RaisePropertyChanged(nameof(IsFlasherVM));
+                        WriteLog("Device entered flasher mode", false);
+                    }
+                    else
+                    {
+                        IsFlasherVM = false;
+                        RaisePropertyChanged(nameof(IsFlasherVM));
+
+                    }
                 }
                 DeviceFirmwareVersionVM = " ";
             }

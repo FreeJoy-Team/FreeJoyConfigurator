@@ -40,7 +40,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text=" Pin PA10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text=" Pin PA8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <xctk:IntegerUpDown Grid.Column="1" Width="50"  HorizontalAlignment="Right" VerticalAlignment="Center"
                                             Value="{Binding Config.LedPwmConfig[0].DutyCycle, Mode=TwoWay}"
                                             Minimum="0" Maximum="100"/>

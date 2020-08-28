@@ -153,7 +153,7 @@
                 <local:EncodersView/>
             </TabItem>
 
-            <TabItem Header="LED">
+            <TabItem Header="LED/PWM">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
