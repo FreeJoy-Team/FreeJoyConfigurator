@@ -221,9 +221,6 @@ namespace FreeJoyConfigurator
             // axes to buttons
             for (int i = 0; i < config.AxisToButtonsConfig.Count; i++)
             {
-                if (config.AxisToButtonsConfig[i].IsEnabled)
-                {
-
                     for (int j = 0; j < config.AxisToButtonsConfig[i].ButtonsCnt; j++)
                     {
                         if (TotalBtnCnt < maxBtnCnt)
@@ -235,7 +232,6 @@ namespace FreeJoyConfigurator
                         }
                         TotalBtnCnt++;
                     }
-                }
             }
             // single buttons
             for (int i = 0; i < config.PinConfig.Count; i++)

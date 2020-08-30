@@ -23,20 +23,20 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="*"/>
+            
         </Grid.ColumnDefinitions>
 
-        <CheckBox  Grid.Column="0" Grid.Row="0" Content="X" 
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="0" Content="X" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[0].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[0].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[0].RangeItems}"
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
@@ -44,135 +44,128 @@
                                             Minimum="0" Maximum="255">
         </InWit:WitMultiRangeSlider>
 
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[0].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
 
-        <CheckBox  Grid.Column="0" Grid.Row="1" Content="Y" 
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="1" Content="Y" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[1].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[1].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[1].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             Minimum="0" Maximum="255"/>
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[1].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
 
-        <CheckBox  Grid.Column="0" Grid.Row="2" Content="Z" 
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="2" Content="Z"  
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[2].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[2].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[2].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             Minimum="0" Maximum="255"/>
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[2].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
 
-        <CheckBox  Grid.Column="0" Grid.Row="3" Content="Rx"
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="3" Content="Rx"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[3].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[3].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[3].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             Minimum="0" Maximum="255"/>
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[3].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
 
-        <CheckBox  Grid.Column="0" Grid.Row="4" Content="Ry" 
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="4" Content="Ry" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[4].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[4].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[4].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             Minimum="0" Maximum="255"/>
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[4].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
 
-        <CheckBox  Grid.Column="0" Grid.Row="5" Content="Rz" 
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="5" Content="Rz" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[5].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[5].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[5].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             Minimum="0" Maximum="255"/>
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[5].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
 
-        <CheckBox  Grid.Column="0" Grid.Row="6" Content="Slider1" 
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="6" Content="Slider1" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[6].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[6].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[6].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             Minimum="0" Maximum="255"/>
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[6].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
 
-        <CheckBox  Grid.Column="0" Grid.Row="7" Content="Slider2" 
-                   IsChecked="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ProgressBar Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Margin="10,0,0,0"
+        <Label  Grid.Column="0" Grid.Row="7" Content="Slider2" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <ProgressBar Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" Margin="5,0,5,0"
                                             Value="{Binding AxesVM.Axes[7].Value}"
                                             Minimum="-32767"  
                                             Maximum="32767" 
                                             Height="15" Opacity="0.25"/>
-        <InWit:WitMultiRangeSlider Grid.Column="1" Grid.Row="7" VerticalAlignment="Center"
+        <InWit:WitMultiRangeSlider Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" Margin="5,0,5,0"
                                            IsEnabled="{Binding AxesToButtonsVM.AxesToButtons[7].IsEnabled}"
                                             ItemsSource="{Binding AxesToButtonsVM.AxesToButtons[7].RangeItems}"  
                                             LeftValueBinding="{Binding From, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             RightValueBinding="{Binding To, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                             Minimum="0" Maximum="255"/>
-        <xctk:IntegerUpDown Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <xctk:IntegerUpDown Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center"
                                             Value="{Binding AxesToButtonsVM.AxesToButtons[7].ButtonCnt, Mode=TwoWay}"
-                                            Minimum="0" Maximum="12"/>
+                                            Minimum="0" Maximum="12" Margin="5,0,5,0"/>
     </Grid>
 
 

@@ -392,7 +392,7 @@ namespace FreeJoyConfigurator
             }
             for (int i=0; i<Config.AxisToButtonsConfig.Count;i++)
             {
-                if (Config.AxisToButtonsConfig[i].IsEnabled)
+                if (Config.AxisToButtonsConfig[i].ButtonsCnt > 0)
                 {
                     AxesToButtonsCnt++;
                 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using HidLibrary;
+using MessageBoxServicing;
 using Prism.Mvvm;
 
 namespace FreeJoyConfigurator
@@ -34,6 +36,7 @@ namespace FreeJoyConfigurator
         {
             List<HidReport> hrs;
             HidReport hr = report;
+            DeviceConfig tmpConfig = new DeviceConfig();
             byte[] buffer = new byte[1];
 
             switch ((ReportID)hr.ReportId)
@@ -47,6 +50,27 @@ namespace FreeJoyConfigurator
                     {
                         Console.WriteLine("Unexpected packet received!");
                         return;
+                    }
+
+                    if (configPacketNumber == 1)
+                    {
+                        ReportConverter.ReportToConfig(ref tmpConfig, hr);
+                        Version ver = Assembly.GetEntryAssembly().GetName().Version;
+
+                        if ((tmpConfig.FirmwareVersion & 0xFFF0) != (ushort)((ver.Major<<12)|(ver.Minor<<8)|(ver.Build<<4)))
+                        {
+                            MessageBoxService mbs = new MessageBoxService();
+
+                            mbs.ShowMessage("Device firmware is not compatible with this version of the Configurator\r\n\n" +
+                                "Device firmware: v" + 
+                                tmpConfig.FirmwareVersion.ToString("X3").Insert(1, ".").Insert(3, ".").Insert(5, "b") + 
+                                "\r\nCofigurator version: " +
+                                string.Format("v{0}.{1}.{2}", ver.Major, ver.Minor, ver.Build, Assembly.GetEntryAssembly().GetName().Name), 
+                                "Error",
+                                System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+
+                            return;
+                        }
                     }
 
                     App.Current.Dispatcher.BeginInvoke((Action)(() =>
@@ -74,10 +98,24 @@ namespace FreeJoyConfigurator
                     configPacketNumber = hr.Data[0];
                     hrs = ReportConverter.ConfigToReports(_config);
 
+                    // Error reported
+                    if (configPacketNumber == 0xFE)
+                    {
+                        MessageBoxService mbs = new MessageBoxService();
+                        Version ver = Assembly.GetEntryAssembly().GetName().Version;
+
+                        mbs.ShowMessage("Device firmware is not compatible with this version of the Configurator",
+                            "Error",
+                            System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                        return;
+                    }
+
                     Console.WriteLine("Config packet requested: {0}", configPacketNumber);
 
                     Hid.ReportSend(hrs[configPacketNumber - 1]);
                     Console.WriteLine("Sending config packet..: {0}", configPacketNumber);
+
+                    
 
                     if (configPacketNumber >= 16)
                     {

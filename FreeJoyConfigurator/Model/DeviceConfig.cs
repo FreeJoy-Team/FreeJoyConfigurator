@@ -674,7 +674,6 @@ namespace FreeJoyConfigurator
     {
         private ObservableCollection<byte> _points;
         private byte _buttonsCnt;
-        private bool _isEnabled;
 
         public ObservableCollection<byte> Points
         {
@@ -688,14 +687,8 @@ namespace FreeJoyConfigurator
             set
             {
                 SetProperty(ref _buttonsCnt, value);
-                if (value > 0) SetProperty(ref _isEnabled, true);
-                else SetProperty(ref _isEnabled, false);
-            }
-        }
 
-        public bool IsEnabled
-        {
-            get { return _isEnabled; }
+            }
         }
 
         public AxisToButtonsConfig()
@@ -707,7 +700,6 @@ namespace FreeJoyConfigurator
             _points[1] = 255;
 
             _buttonsCnt = 0;
-            _isEnabled = false;
         }
     }
 

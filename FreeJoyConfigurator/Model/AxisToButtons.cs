@@ -34,13 +34,9 @@ namespace FreeJoyConfigurator
 
         public AxisToButtons ()
         {
-            m_rangeItems = new ObservableContentCollection<RangeItem>
-                            {
-                                new RangeItem {From = 0, To = 127},
-                                new RangeItem {From = 127, To = 255},
-                            };
+            m_rangeItems = new ObservableContentCollection<RangeItem> { new RangeItem() };
 
-            _buttonCnt = m_rangeItems.Count;
+            _buttonCnt = 0;
             _isEnabled = false;
         }
 

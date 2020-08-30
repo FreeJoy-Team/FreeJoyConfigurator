@@ -74,32 +74,41 @@ namespace FreeJoyConfigurator
         {
             for (int i = 0; i < AxesToButtons.Count; i++)
             {
+                bool isCntChanged = false;
+
                 //// disable range changed notification
                 for (int k = 0; k < axesToButtons[i].RangeItems.Count; k++)
                 {
                     AxesToButtons[i].RangeItems[k].PropertyChanged -= AxesToButtonsVM_Range_PropertyChanged;
                 }
 
-                while (AxesToButtons[i].ButtonCnt > AxesToButtons[i].RangeItems.Count)
+                // Enbale slider if buttons cnt > 0
+                if (AxesToButtons[i].ButtonCnt > 0) AxesToButtons[i].IsEnabled = true;
+                else
                 {
-                    for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
-                    {
-                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
-                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
-                    }
-                    AxesToButtons[i].RangeItems.Add(new RangeItem { From = AxesToButtons[i].RangeItems.Last().To, To = 255 });
-                }
-                while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count)
-                {
-                    for (int j = AxesToButtons[i].RangeItems.Count - 2; j >= 0; j--)
-                    {
-                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
-                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
-                    }
-                    AxesToButtons[i].RangeItems.Remove(AxesToButtons[i].RangeItems.Last());
-                    AxesToButtons[i].RangeItems[AxesToButtons[i].RangeItems.Count - 1].To = 255;
+                    AxesToButtons[i].IsEnabled = false;
                 }
 
+                // Add or delete button ranges
+                while (AxesToButtons[i].ButtonCnt > AxesToButtons[i].RangeItems.Count)
+                {
+                    isCntChanged = true;
+                    AxesToButtons[i].RangeItems.Add(new RangeItem { From = AxesToButtons[i].RangeItems.Last().To, To = 255 });
+                }
+                while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count && AxesToButtons[i].RangeItems.Count > 1)
+                {
+                    isCntChanged = true;
+                    AxesToButtons[i].RangeItems.Remove(AxesToButtons[i].RangeItems.Last());
+                }
+                // Set equal range width
+                if (isCntChanged || AxesToButtons[i].ButtonCnt == 0)
+                {
+                    for (int cnt = 0; cnt < AxesToButtons[i].RangeItems.Count; cnt++)
+                    {
+                        AxesToButtons[i].RangeItems[cnt].From = (int)(cnt * (255.0 / AxesToButtons[i].RangeItems.Count));
+                        AxesToButtons[i].RangeItems[cnt].To = (int)((cnt + 1) * (255.0 / AxesToButtons[i].RangeItems.Count));
+                    }
+                }
 
                 //// enable range changed notification
                 for (int k = 0; k < axesToButtons[i].RangeItems.Count; k++)
@@ -115,15 +124,16 @@ namespace FreeJoyConfigurator
         {
             DeviceConfig conf = Config;
 
+            // Copy range edges to config
             for (int i = 0; i < conf.AxisToButtonsConfig.Count; i++)
             {
                 conf.AxisToButtonsConfig[i].ButtonsCnt = (byte)AxesToButtons[i].ButtonCnt;
 
-                for (int j = 0; j < AxesToButtons[i].ButtonCnt; j++)
+                for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
                 {
                     conf.AxisToButtonsConfig[i].Points[j] = (byte)AxesToButtons[i].RangeItems[j].From;
                 }
-                conf.AxisToButtonsConfig[i].Points[AxesToButtons[i].ButtonCnt] =
+                conf.AxisToButtonsConfig[i].Points[AxesToButtons[i].RangeItems.Count] =
                     (byte)AxesToButtons[i].RangeItems.Last().To;
             }
             Config = conf;
@@ -147,37 +157,19 @@ namespace FreeJoyConfigurator
 
             for (int i = 0; i < Config.AxisToButtonsConfig.Count; i++)
             {
-
-                if (Config.AxisToButtonsConfig[i].IsEnabled)
-                {
-                    AxesToButtons[i].IsEnabled = true;
-                }
-                else
-                {
-                    AxesToButtons[i].IsEnabled = false;
-                    AxesToButtons[i].ButtonCnt = 2;
-                }
                 // change button count
                 AxesToButtons[i].ButtonCnt = Config.AxisToButtonsConfig[i].ButtonsCnt;
 
-                // change range count
+                if (AxesToButtons[i].ButtonCnt > 0) AxesToButtons[i].IsEnabled = true;
+                else AxesToButtons[i].IsEnabled = false;
+
+                // Add or delete button ranges
                 while (AxesToButtons[i].ButtonCnt > AxesToButtons[i].RangeItems.Count)
                 {
-                    for (int j = 0; j < AxesToButtons[i].RangeItems.Count; j++)
-                    {
-                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
-                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count + 1)));
-                    }
                     AxesToButtons[i].RangeItems.Add(new RangeItem { From = AxesToButtons[i].RangeItems.Last().To, To = 255 });
                 }
-                while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count && AxesToButtons[i].ButtonCnt > 0)
+                while (AxesToButtons[i].ButtonCnt < AxesToButtons[i].RangeItems.Count && AxesToButtons[i].RangeItems.Count > 1)
                 {
-                    for (int j = AxesToButtons[i].RangeItems.Count - 2; j >= 0; j--)
-                    {
-                        AxesToButtons[i].RangeItems[j].From = (int)(j * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
-                        AxesToButtons[i].RangeItems[j].To = (int)((j + 1) * (255.0 / (AxesToButtons[i].RangeItems.Count - 1)));
-                    }
-                    AxesToButtons[i].RangeItems[AxesToButtons[i].RangeItems.Count - 1].To = 255;
                     AxesToButtons[i].RangeItems.Remove(AxesToButtons[i].RangeItems.Last());
                 }
 
@@ -186,6 +178,12 @@ namespace FreeJoyConfigurator
                 {
                     AxesToButtons[i].RangeItems[j].From = Config.AxisToButtonsConfig[i].Points[j];
                     AxesToButtons[i].RangeItems[j].To = Config.AxisToButtonsConfig[i].Points[j + 1];
+                }
+
+                if (AxesToButtons[i].ButtonCnt == 0)
+                {
+                    AxesToButtons[i].RangeItems.First().From = 0;
+                    AxesToButtons[i].RangeItems.First().To = 255;
                 }
 
 

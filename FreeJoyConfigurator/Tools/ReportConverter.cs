@@ -994,7 +994,6 @@ namespace FreeJoyConfigurator
                 buffer[i + 40] = (byte)config.AxisToButtonsConfig[1].Points[i];
             }
             buffer[53] = (byte)config.AxisToButtonsConfig[1].ButtonsCnt;
-            buffer[54] = (byte)(config.AxisToButtonsConfig[1].IsEnabled ? 0x01 : 0x00);
             hidReports.Add(new HidReport(64, new HidDeviceData(buffer, HidDeviceData.ReadStatus.Success)));
 
             // Report 13
