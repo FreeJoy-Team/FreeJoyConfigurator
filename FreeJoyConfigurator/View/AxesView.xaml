@@ -106,9 +106,9 @@
                                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,5"
                                   IsChecked="{Binding AxisConfig.IsInverted}"/>
 
-                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Axis source"  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Axis source"  HorizontalAlignment="Center" VerticalAlignment="Center" 
                                        Margin="5,0,5,0"/>
-                            <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                            <ComboBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" 
                                       HorizontalContentAlignment="Center" Margin="5,0,5,0" MinWidth="100"
                                       SelectedItem="{Binding AxisConfig.SourceMain}" 
                                       ItemsSource="{Binding AllowedSources}"/>
@@ -173,8 +173,6 @@
                                        Text="{Binding RawValue}"
                                        HorizontalAlignment="Center" VerticalAlignment="Top" >
                             </TextBlock>
-                            
-                            <!--Axes2Buttons-->
 
                             <!--Calibration-->
 
@@ -238,7 +236,7 @@
                             <!--Axis advanced functions-->
 
                             <CheckBox Grid.Column="5" Grid.Row="3" Content="Show advanced settings"
-                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5"
                                       IsChecked="{Binding IsShowAdvanced, Mode=OneWayToSource}"/>
 
                             <GroupBox Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="1"
