@@ -783,10 +783,26 @@ namespace FreeJoyConfigurator
 
     public class DeviceConfig : BindableBase
     {
+        private string _deviceName;
+
+
         [XmlElement("Firmware_Version")]
         public UInt16 FirmwareVersion { get; set; }
         [XmlElement("Device_Name")]
-        public string DeviceName { get; set; }
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                string tmp;
+                if (value.Length > 25) tmp = value.Substring(0, 25);
+                else tmp = value;
+                SetProperty(ref _deviceName, tmp);
+            }
+        }
         [XmlElement("Button_Debounce_Time")]
         public UInt16 ButtonDebounceMs { get; set; }
         [XmlElement("A2b_Debounce_Time")]
