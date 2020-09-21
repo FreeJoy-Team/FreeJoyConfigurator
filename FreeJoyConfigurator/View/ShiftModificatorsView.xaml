@@ -62,7 +62,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Logical button"/>
-                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
+                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="128"
                                                     Value="{Binding Config.ShiftModificatorConfig[1].Button}"/>
             </Grid>
 
@@ -88,7 +88,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Logical button"/>
-                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
+                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="128"
                                                     Value="{Binding Config.ShiftModificatorConfig[2].Button}"/>
             </Grid>
 
@@ -114,7 +114,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Logical button"/>
-                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
+                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="128"
                                                     Value="{Binding Config.ShiftModificatorConfig[3].Button}"/>
             </Grid>
 
@@ -140,7 +140,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Logical button"/>
-                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="{Binding ButtonsVM.PhysicalButtons.Count}"
+                <xctk:IntegerUpDown Grid.Column="2" Grid.Row="0" Minimum="0" Maximum="128"
                                                     Value="{Binding Config.ShiftModificatorConfig[4].Button}"/>
             </Grid>
 
