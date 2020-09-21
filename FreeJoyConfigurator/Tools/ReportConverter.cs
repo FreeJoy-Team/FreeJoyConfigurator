@@ -84,7 +84,7 @@ namespace FreeJoyConfigurator
                     if (chars[i] == 0) break;   // end of string
                 }
                 config.DeviceName = new string(chars);
-                config.DeviceName.TrimEnd('\0');
+                config.DeviceName.Trim();
                 config.ButtonDebounceMs = (ushort)(hr.Data[30] << 8 | hr.Data[29]);
                 config.EncoderPressMs = (byte)hr.Data[31];
                 config.ExchangePeriod = (byte)hr.Data[32];
