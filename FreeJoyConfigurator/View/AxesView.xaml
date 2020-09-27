@@ -107,8 +107,7 @@
                                   IsChecked="{Binding AxisConfig.IsInverted}"/>
 
                             <!--<TextBlock Grid.Column="0" Grid.Row="0"  Text="{Binding Number}" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
-                            <Label Grid.Column="1" Grid.Row="0"  Content="Out" VerticalAlignment="Bottom" HorizontalContentAlignment="Stretch"/>
-                            <Label Grid.Column="1" Grid.Row="1"  Content="Raw" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch"/>
+                            
 
 
                             <ProgressBar Grid.Column="1" Grid.ColumnSpan="8"
@@ -133,9 +132,11 @@
                                     </Style>
                                 </ProgressBar.Style>
                             </ProgressBar>
-                            <Label Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="0" Height="30" Content="{Binding Value}"
-                                   HorizontalAlignment="Center" VerticalAlignment="Bottom" VerticalContentAlignment="Center">
-                            </Label>
+                            <TextBlock Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="0" Height="30" Text="{Binding Value}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="0"  Text="Out" Height="30"
+                                   VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
 
                             <ProgressBar Grid.Column="1" Grid.ColumnSpan="8"
                                                  Grid.Row="1" 
@@ -162,6 +163,8 @@
                                        Text="{Binding RawValue}"
                                        HorizontalAlignment="Center" VerticalAlignment="Top" >
                             </TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="1"  Text="Raw" Height="20"
+                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
 
                             <!-- Input config-->
 
