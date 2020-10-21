@@ -184,6 +184,7 @@ namespace FreeJoyConfigurator
                     tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3208_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.AS5048A_CS);
                     tmp[i].AllowedTypes.Remove(PinType.ShiftReg_LATCH);
                     tmp[i].AllowedTypes.Remove(PinType.ShiftReg_DATA);
                     if (!tmp[i].AllowedTypes.Contains(PinType.SPI_SCK)) tmp[i].AllowedTypes.Add(PinType.SPI_SCK);
@@ -196,6 +197,7 @@ namespace FreeJoyConfigurator
                     tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3208_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.AS5048A_CS);
                     if (!tmp[i].AllowedTypes.Contains(PinType.SPI_MISO)) tmp[i].AllowedTypes.Add(PinType.SPI_MISO);
                 }
                 if (i == 16)
@@ -206,6 +208,7 @@ namespace FreeJoyConfigurator
                     tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3208_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.AS5048A_CS);
                     if (!tmp[i].AllowedTypes.Contains(PinType.SPI_MOSI)) tmp[i].AllowedTypes.Add(PinType.SPI_MOSI);
                 }
                 if (i == 17)
@@ -250,6 +253,7 @@ namespace FreeJoyConfigurator
                     Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3208_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.AS5048A_CS);
                     Pins[i].AllowedTypes.Remove(PinType.ShiftReg_LATCH);
                     Pins[i].AllowedTypes.Remove(PinType.ShiftReg_DATA);
                     if (!Pins[i].AllowedTypes.Contains(PinType.SPI_SCK)) Pins[i].AllowedTypes.Add(PinType.SPI_SCK);
@@ -262,6 +266,7 @@ namespace FreeJoyConfigurator
                     Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3208_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.AS5048A_CS);
                     if (!Pins[i].AllowedTypes.Contains(PinType.SPI_MISO)) Pins[i].AllowedTypes.Add(PinType.SPI_MISO);
                 }
                 if (i == 16)
@@ -272,6 +277,7 @@ namespace FreeJoyConfigurator
                     Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3208_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MLX90393_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.AS5048A_CS);
                     if (!Pins[i].AllowedTypes.Contains(PinType.SPI_MOSI)) Pins[i].AllowedTypes.Add(PinType.SPI_MOSI);
                 }
                 if (i == 17)
@@ -381,6 +387,12 @@ namespace FreeJoyConfigurator
                     _spiFullDuplexCnt++;
                 }
                 else if (Pins[i].SelectedType == PinType.MLX90393_CS)
+                {
+                    AxesCnt++;
+                    _spiDevicesCnt++;
+                    _spiFullDuplexCnt++;
+                }
+                else if (Pins[i].SelectedType == PinType.AS5048A_CS)
                 {
                     AxesCnt++;
                     _spiDevicesCnt++;
@@ -704,6 +716,10 @@ namespace FreeJoyConfigurator
                     if (!Pins[i].AllowedTypes.Contains(PinType.MLX90393_CS) && i != 14 && i != 15 && i != 16 && i != 17)
                     {
                         Pins[i].AllowedTypes.Add(PinType.MLX90393_CS);
+                    }
+                    if (!Pins[i].AllowedTypes.Contains(PinType.AS5048A_CS) && i != 14 && i != 15 && i != 16 && i != 17)
+                    {
+                        Pins[i].AllowedTypes.Add(PinType.AS5048A_CS);
                     }
                 }
             }

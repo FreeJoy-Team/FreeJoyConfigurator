@@ -69,6 +69,7 @@ namespace FreeJoyConfigurator
                     PinType.LED_Single,
                     PinType.LED_Row,
                     PinType.LED_Column,
+                    PinType.AS5048A_CS,
             };
 
             _selectedType = PinType.Not_Used;
