@@ -234,26 +234,9 @@
                             </Border>
 
                             <!--Axis advanced functions-->
-
-                            <CheckBox Grid.Column="5" Grid.Row="3" Content="Show advanced settings"
-                                      HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5"
-                                      IsChecked="{Binding IsShowAdvanced, Mode=OneWayToSource}"/>
-
-                            <GroupBox Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="1"
-                                      FlowDirection="RightToLeft"
-                                      Header="Advanced Settings" Margin="5,5,5,5">
-                                <GroupBox.Resources>
-                                    <Style TargetType="GroupBox">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsShowAdvanced}" Value="True">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsShowAdvanced}" Value="False">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </GroupBox.Resources>
+                            <Expander Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="1"
+                                      
+                                      Header="Advanced axis settings" Margin="5,5,5,5">
                                 <Grid FlowDirection="LeftToRight">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -416,7 +399,7 @@
 
 
                                 </Grid>
-                            </GroupBox>
+                            </Expander>
                             <!--<Border Grid.Column="9" Grid.Row="0" Grid.RowSpan="6" HorizontalAlignment="Stretch">
                                 <local:AxesConfigView/>
                             </Border>-->
