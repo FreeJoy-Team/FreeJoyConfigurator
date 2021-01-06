@@ -472,7 +472,9 @@ namespace FreeJoyConfigurator
 
         I2C_SCL,
         I2C_SDA,
-       
+
+        AS5048A_CS,
+
     };
 
 
