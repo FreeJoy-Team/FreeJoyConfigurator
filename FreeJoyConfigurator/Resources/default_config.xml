@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <DeviceConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Firmware_Version>5680</Firmware_Version>
-  <Device_Name>FreeJoy v1.6.3&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;&#x0;</Device_Name>
+  <Device_Name>FreeJoy v1.6.3</Device_Name>
   <Button_Debounce_Time>50</Button_Debounce_Time>
   <A2b_Debounce_Time>50</A2b_Debounce_Time>
   <Encoder_Press_Time>10</Encoder_Press_Time>
@@ -10,9 +10,9 @@
   <Button_Timer3_Time>300</Button_Timer3_Time>
   <Exchange_Period>5</Exchange_Period>
   <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
-  <Pin_Config>Axis_Analog</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
@@ -33,10 +33,10 @@
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
-  <Pin_Config>Button_Gnd</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>Not_Used</Pin_Config>
+  <Pin_Config>LED_Single</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Pin_Config>Not_Used</Pin_Config>
   <Axis_Config>
@@ -116,226 +116,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
-    <IsInverted>false</IsInverted>
-    <OffsetAngle>0</OffsetAngle>
-    <FilterLevel>0</FilterLevel>
-    <CurveShape>
-      <Point>
-        <X>0</X>
-        <Y>-100</Y>
-      </Point>
-      <Point>
-        <X>1</X>
-        <Y>-80</Y>
-      </Point>
-      <Point>
-        <X>2</X>
-        <Y>-60</Y>
-      </Point>
-      <Point>
-        <X>3</X>
-        <Y>-40</Y>
-      </Point>
-      <Point>
-        <X>4</X>
-        <Y>-20</Y>
-      </Point>
-      <Point>
-        <X>5</X>
-        <Y>0</Y>
-      </Point>
-      <Point>
-        <X>6</X>
-        <Y>20</Y>
-      </Point>
-      <Point>
-        <X>7</X>
-        <Y>40</Y>
-      </Point>
-      <Point>
-        <X>8</X>
-        <Y>60</Y>
-      </Point>
-      <Point>
-        <X>9</X>
-        <Y>80</Y>
-      </Point>
-      <Point>
-        <X>10</X>
-        <Y>100</Y>
-      </Point>
-    </CurveShape>
-    <Resolution>16</Resolution>
-    <Channel>0</Channel>
-    <I2cAddress>ADS1115_00</I2cAddress>
-    <Deadband>0</Deadband>
-    <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A1</SourceMain>
-    <SourceSecondary>X</SourceSecondary>
-    <Function>None</Function>
-    <Button1>0</Button1>
-    <Button2>0</Button2>
-    <Button3>0</Button3>
-    <Divider>50</Divider>
-    <Button1_Type>Down</Button1_Type>
-    <Button2_Type>Reset</Button2_Type>
-    <Button3_Type>Up</Button3_Type>
-    <Prescaler>100</Prescaler>
-    <IsCentered>false</IsCentered>
-    <IsAddressEnabled>false</IsAddressEnabled>
-  </Axis_Config>
-  <Axis_Config>
-    <CalibMin>-32767</CalibMin>
-    <CalibCenter>0</CalibCenter>
-    <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
-    <IsInverted>false</IsInverted>
-    <OffsetAngle>0</OffsetAngle>
-    <FilterLevel>0</FilterLevel>
-    <CurveShape>
-      <Point>
-        <X>0</X>
-        <Y>-100</Y>
-      </Point>
-      <Point>
-        <X>1</X>
-        <Y>-80</Y>
-      </Point>
-      <Point>
-        <X>2</X>
-        <Y>-60</Y>
-      </Point>
-      <Point>
-        <X>3</X>
-        <Y>-40</Y>
-      </Point>
-      <Point>
-        <X>4</X>
-        <Y>-20</Y>
-      </Point>
-      <Point>
-        <X>5</X>
-        <Y>0</Y>
-      </Point>
-      <Point>
-        <X>6</X>
-        <Y>20</Y>
-      </Point>
-      <Point>
-        <X>7</X>
-        <Y>40</Y>
-      </Point>
-      <Point>
-        <X>8</X>
-        <Y>60</Y>
-      </Point>
-      <Point>
-        <X>9</X>
-        <Y>80</Y>
-      </Point>
-      <Point>
-        <X>10</X>
-        <Y>100</Y>
-      </Point>
-    </CurveShape>
-    <Resolution>16</Resolution>
-    <Channel>0</Channel>
-    <I2cAddress>ADS1115_00</I2cAddress>
-    <Deadband>0</Deadband>
-    <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A2</SourceMain>
-    <SourceSecondary>X</SourceSecondary>
-    <Function>None</Function>
-    <Button1>0</Button1>
-    <Button2>0</Button2>
-    <Button3>0</Button3>
-    <Divider>50</Divider>
-    <Button1_Type>Down</Button1_Type>
-    <Button2_Type>Reset</Button2_Type>
-    <Button3_Type>Up</Button3_Type>
-    <Prescaler>100</Prescaler>
-    <IsCentered>false</IsCentered>
-    <IsAddressEnabled>false</IsAddressEnabled>
-  </Axis_Config>
-  <Axis_Config>
-    <CalibMin>-32767</CalibMin>
-    <CalibCenter>0</CalibCenter>
-    <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
-    <IsInverted>false</IsInverted>
-    <OffsetAngle>0</OffsetAngle>
-    <FilterLevel>0</FilterLevel>
-    <CurveShape>
-      <Point>
-        <X>0</X>
-        <Y>-100</Y>
-      </Point>
-      <Point>
-        <X>1</X>
-        <Y>-80</Y>
-      </Point>
-      <Point>
-        <X>2</X>
-        <Y>-60</Y>
-      </Point>
-      <Point>
-        <X>3</X>
-        <Y>-40</Y>
-      </Point>
-      <Point>
-        <X>4</X>
-        <Y>-20</Y>
-      </Point>
-      <Point>
-        <X>5</X>
-        <Y>0</Y>
-      </Point>
-      <Point>
-        <X>6</X>
-        <Y>20</Y>
-      </Point>
-      <Point>
-        <X>7</X>
-        <Y>40</Y>
-      </Point>
-      <Point>
-        <X>8</X>
-        <Y>60</Y>
-      </Point>
-      <Point>
-        <X>9</X>
-        <Y>80</Y>
-      </Point>
-      <Point>
-        <X>10</X>
-        <Y>100</Y>
-      </Point>
-    </CurveShape>
-    <Resolution>16</Resolution>
-    <Channel>0</Channel>
-    <I2cAddress>ADS1115_00</I2cAddress>
-    <Deadband>0</Deadband>
-    <IsDynamicDeadband>false</IsDynamicDeadband>
-    <SourceMain>A3</SourceMain>
-    <SourceSecondary>X</SourceSecondary>
-    <Function>None</Function>
-    <Button1>0</Button1>
-    <Button2>0</Button2>
-    <Button3>0</Button3>
-    <Divider>50</Divider>
-    <Button1_Type>Down</Button1_Type>
-    <Button2_Type>Reset</Button2_Type>
-    <Button3_Type>Up</Button3_Type>
-    <Prescaler>100</Prescaler>
-    <IsCentered>false</IsCentered>
-    <IsAddressEnabled>false</IsAddressEnabled>
-  </Axis_Config>
-  <Axis_Config>
-    <CalibMin>-32767</CalibMin>
-    <CalibCenter>0</CalibCenter>
-    <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -408,7 +189,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -481,7 +262,7 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -554,7 +335,226 @@
     <CalibMin>-32767</CalibMin>
     <CalibCenter>0</CalibCenter>
     <CalibMax>32767</CalibMax>
-    <IsOutEnabled>true</IsOutEnabled>
+    <IsOutEnabled>false</IsOutEnabled>
+    <IsInverted>false</IsInverted>
+    <OffsetAngle>0</OffsetAngle>
+    <FilterLevel>0</FilterLevel>
+    <CurveShape>
+      <Point>
+        <X>0</X>
+        <Y>-100</Y>
+      </Point>
+      <Point>
+        <X>1</X>
+        <Y>-80</Y>
+      </Point>
+      <Point>
+        <X>2</X>
+        <Y>-60</Y>
+      </Point>
+      <Point>
+        <X>3</X>
+        <Y>-40</Y>
+      </Point>
+      <Point>
+        <X>4</X>
+        <Y>-20</Y>
+      </Point>
+      <Point>
+        <X>5</X>
+        <Y>0</Y>
+      </Point>
+      <Point>
+        <X>6</X>
+        <Y>20</Y>
+      </Point>
+      <Point>
+        <X>7</X>
+        <Y>40</Y>
+      </Point>
+      <Point>
+        <X>8</X>
+        <Y>60</Y>
+      </Point>
+      <Point>
+        <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
+        <Y>100</Y>
+      </Point>
+    </CurveShape>
+    <Resolution>16</Resolution>
+    <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
+    <SourceMain>None</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
+    <Divider>50</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
+  </Axis_Config>
+  <Axis_Config>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>false</IsOutEnabled>
+    <IsInverted>false</IsInverted>
+    <OffsetAngle>0</OffsetAngle>
+    <FilterLevel>0</FilterLevel>
+    <CurveShape>
+      <Point>
+        <X>0</X>
+        <Y>-100</Y>
+      </Point>
+      <Point>
+        <X>1</X>
+        <Y>-80</Y>
+      </Point>
+      <Point>
+        <X>2</X>
+        <Y>-60</Y>
+      </Point>
+      <Point>
+        <X>3</X>
+        <Y>-40</Y>
+      </Point>
+      <Point>
+        <X>4</X>
+        <Y>-20</Y>
+      </Point>
+      <Point>
+        <X>5</X>
+        <Y>0</Y>
+      </Point>
+      <Point>
+        <X>6</X>
+        <Y>20</Y>
+      </Point>
+      <Point>
+        <X>7</X>
+        <Y>40</Y>
+      </Point>
+      <Point>
+        <X>8</X>
+        <Y>60</Y>
+      </Point>
+      <Point>
+        <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
+        <Y>100</Y>
+      </Point>
+    </CurveShape>
+    <Resolution>16</Resolution>
+    <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
+    <SourceMain>None</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
+    <Divider>50</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
+  </Axis_Config>
+  <Axis_Config>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>false</IsOutEnabled>
+    <IsInverted>false</IsInverted>
+    <OffsetAngle>0</OffsetAngle>
+    <FilterLevel>0</FilterLevel>
+    <CurveShape>
+      <Point>
+        <X>0</X>
+        <Y>-100</Y>
+      </Point>
+      <Point>
+        <X>1</X>
+        <Y>-80</Y>
+      </Point>
+      <Point>
+        <X>2</X>
+        <Y>-60</Y>
+      </Point>
+      <Point>
+        <X>3</X>
+        <Y>-40</Y>
+      </Point>
+      <Point>
+        <X>4</X>
+        <Y>-20</Y>
+      </Point>
+      <Point>
+        <X>5</X>
+        <Y>0</Y>
+      </Point>
+      <Point>
+        <X>6</X>
+        <Y>20</Y>
+      </Point>
+      <Point>
+        <X>7</X>
+        <Y>40</Y>
+      </Point>
+      <Point>
+        <X>8</X>
+        <Y>60</Y>
+      </Point>
+      <Point>
+        <X>9</X>
+        <Y>80</Y>
+      </Point>
+      <Point>
+        <X>10</X>
+        <Y>100</Y>
+      </Point>
+    </CurveShape>
+    <Resolution>16</Resolution>
+    <Channel>0</Channel>
+    <I2cAddress>ADS1115_00</I2cAddress>
+    <Deadband>0</Deadband>
+    <IsDynamicDeadband>false</IsDynamicDeadband>
+    <SourceMain>None</SourceMain>
+    <SourceSecondary>X</SourceSecondary>
+    <Function>None</Function>
+    <Button1>0</Button1>
+    <Button2>0</Button2>
+    <Button3>0</Button3>
+    <Divider>50</Divider>
+    <Button1_Type>Down</Button1_Type>
+    <Button2_Type>Reset</Button2_Type>
+    <Button3_Type>Up</Button3_Type>
+    <Prescaler>100</Prescaler>
+    <IsCentered>false</IsCentered>
+    <IsAddressEnabled>false</IsAddressEnabled>
+  </Axis_Config>
+  <Axis_Config>
+    <CalibMin>-32767</CalibMin>
+    <CalibCenter>0</CalibCenter>
+    <CalibMax>32767</CalibMax>
+    <IsOutEnabled>false</IsOutEnabled>
     <IsInverted>false</IsInverted>
     <OffsetAngle>0</OffsetAngle>
     <FilterLevel>0</FilterLevel>
@@ -642,8 +642,8 @@
     <Type>Button_Normal</Type>
     <IsInverted>false</IsInverted>
     <IsDisabled>false</IsDisabled>
-    <IsEnabled>false</IsEnabled>
-    <PhysicalNumber>0</PhysicalNumber>
+    <IsEnabled>true</IsEnabled>
+    <PhysicalNumber>1</PhysicalNumber>
     <ShiftModificator>NoShift</ShiftModificator>
     <ButtonDelayNumber>No</ButtonDelayNumber>
     <ButtonToggleNumber>No</ButtonToggleNumber>
@@ -2150,8 +2150,8 @@
     <AxisNumber>0</AxisNumber>
   </LedPwmConfig>
   <LedConfig>
-    <InputNumber>0</InputNumber>
-    <Type>Normal</Type>
+    <InputNumber>1</InputNumber>
+    <Type>Inverted</Type>
   </LedConfig>
   <LedConfig>
     <InputNumber>0</InputNumber>

@@ -452,8 +452,10 @@ namespace FreeJoyConfigurator
         SPI_MOSI,
         SPI_MISO,
 
-        TLE5011_CS,
         TLE5011_GEN,
+        TLE5011_CS,
+        TLE5012_CS,
+        
 
         MCP3201_CS,
         MCP3202_CS,
@@ -461,6 +463,7 @@ namespace FreeJoyConfigurator
         MCP3208_CS,
 
         MLX90393_CS,
+        AS5048A_CS,
 
         ShiftReg_LATCH,
         ShiftReg_DATA,

@@ -61,14 +61,17 @@ namespace FreeJoyConfigurator
                     PinType.ShiftReg_LATCH,
                     PinType.ShiftReg_DATA,
                     PinType.TLE5011_CS,
+                    PinType.TLE5012_CS,
                     PinType.MCP3201_CS,
                     PinType.MCP3202_CS,
                     PinType.MCP3204_CS,
                     PinType.MCP3208_CS,
                     PinType.MLX90393_CS,
+                    PinType.AS5048A_CS,
                     PinType.LED_Single,
                     PinType.LED_Row,
                     PinType.LED_Column,
+                    
             };
 
             _selectedType = PinType.Not_Used;

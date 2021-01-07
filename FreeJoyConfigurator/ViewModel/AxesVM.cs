@@ -75,12 +75,14 @@ namespace FreeJoyConfigurator
             for (int i = 0; i < Config.PinConfig.Count; i++)
             {
                 if (Config.PinConfig[i] == PinType.Axis_Analog ||
-                    Config.PinConfig[i] == PinType.TLE5011_CS || 
+                    Config.PinConfig[i] == PinType.TLE5011_CS ||
+                    Config.PinConfig[i] == PinType.TLE5012_CS ||
                     Config.PinConfig[i] == PinType.MCP3201_CS ||
                     Config.PinConfig[i] == PinType.MCP3202_CS ||
                     Config.PinConfig[i] == PinType.MCP3204_CS ||
                     Config.PinConfig[i] == PinType.MCP3208_CS ||
-                    Config.PinConfig[i] == PinType.MLX90393_CS)
+                    Config.PinConfig[i] == PinType.MLX90393_CS ||
+                    Config.PinConfig[i] == PinType.AS5048A_CS)
                 {
                     foreach (var axis in Axes)
                     {
