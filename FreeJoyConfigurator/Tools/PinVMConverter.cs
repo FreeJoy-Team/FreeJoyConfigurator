@@ -61,7 +61,7 @@ namespace FreeJoyConfigurator
                     PinType.ShiftReg_LATCH,
                     PinType.ShiftReg_DATA,
                     PinType.TLE5011_CS,
-                    PinType.TLE5012_CS,
+                    PinType.TLE5012B_CS,
                     PinType.MCP3201_CS,
                     PinType.MCP3202_CS,
                     PinType.MCP3204_CS,

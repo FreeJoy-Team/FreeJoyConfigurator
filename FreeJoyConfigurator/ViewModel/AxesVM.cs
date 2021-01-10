@@ -76,7 +76,7 @@ namespace FreeJoyConfigurator
             {
                 if (Config.PinConfig[i] == PinType.Axis_Analog ||
                     Config.PinConfig[i] == PinType.TLE5011_CS ||
-                    Config.PinConfig[i] == PinType.TLE5012_CS ||
+                    Config.PinConfig[i] == PinType.TLE5012B_CS ||
                     Config.PinConfig[i] == PinType.MCP3201_CS ||
                     Config.PinConfig[i] == PinType.MCP3202_CS ||
                     Config.PinConfig[i] == PinType.MCP3204_CS ||

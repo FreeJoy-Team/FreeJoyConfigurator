@@ -31,6 +31,8 @@ namespace FreeJoyConfigurator
         private int _spiHalfDuplexCnt;
         private int _spiFullDuplexCnt;
 
+        private bool _genEnabled;
+
         private bool _isI2cEnabled;
 
         private int _ledRowCnt;
@@ -166,7 +168,7 @@ namespace FreeJoyConfigurator
                 if (i == 14)
                 {
                     tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    tmp[i].AllowedTypes.Remove(PinType.TLE5012_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.TLE5012B_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3201_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3202_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
@@ -180,7 +182,7 @@ namespace FreeJoyConfigurator
                 if (i == 15)
                 {
                     tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    tmp[i].AllowedTypes.Remove(PinType.TLE5012_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.TLE5012B_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3201_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3202_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
@@ -192,7 +194,7 @@ namespace FreeJoyConfigurator
                 if (i == 16)
                 {
                     tmp[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    tmp[i].AllowedTypes.Remove(PinType.TLE5012_CS);
+                    tmp[i].AllowedTypes.Remove(PinType.TLE5012B_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3201_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3202_CS);
                     tmp[i].AllowedTypes.Remove(PinType.MCP3204_CS);
@@ -238,7 +240,7 @@ namespace FreeJoyConfigurator
                 if (i == 14)
                 {
                     Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    Pins[i].AllowedTypes.Remove(PinType.TLE5012_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.TLE5012B_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3201_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3202_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
@@ -252,7 +254,7 @@ namespace FreeJoyConfigurator
                 if (i == 15)
                 {
                     Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    Pins[i].AllowedTypes.Remove(PinType.TLE5012_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.TLE5012B_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3201_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3202_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
@@ -264,7 +266,7 @@ namespace FreeJoyConfigurator
                 if (i == 16)
                 {
                     Pins[i].AllowedTypes.Remove(PinType.TLE5011_CS);
-                    Pins[i].AllowedTypes.Remove(PinType.TLE5012_CS);
+                    Pins[i].AllowedTypes.Remove(PinType.TLE5012B_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3201_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3202_CS);
                     Pins[i].AllowedTypes.Remove(PinType.MCP3204_CS);
@@ -320,6 +322,8 @@ namespace FreeJoyConfigurator
             _spiHalfDuplexCnt = 0;
             _spiFullDuplexCnt = 0;
 
+            _genEnabled = false;
+
             _isI2cEnabled = false;
 
             AxesError = false;
@@ -354,8 +358,9 @@ namespace FreeJoyConfigurator
                     SensorCnt++;
                     _spiDevicesCnt++;
                     _spiHalfDuplexCnt++;
+                    _genEnabled = true;
                 }
-                else if (Pins[i].SelectedType == PinType.TLE5012_CS)
+                else if (Pins[i].SelectedType == PinType.TLE5012B_CS)
                 {
                     SensorCnt++;
                     _spiDevicesCnt++;
@@ -438,7 +443,7 @@ namespace FreeJoyConfigurator
                 if (!Pins[14].AllowedTypes.Contains(PinType.SPI_SCK)) Pins[14].AllowedTypes.Insert(5, PinType.SPI_SCK);
 
                 //Pins[14].AllowedTypes.Remove(PinType.TLE5011_CS);
-                //Pins[14].AllowedTypes.Remove(PinType.TLE5012_CS);
+                //Pins[14].AllowedTypes.Remove(PinType.TLE5012B_CS);
                 //Pins[14].AllowedTypes.Remove(PinType.MCP3201_CS);
                 //Pins[14].AllowedTypes.Remove(PinType.MCP3202_CS);
                 //Pins[14].AllowedTypes.Remove(PinType.MCP3204_CS);
@@ -469,7 +474,7 @@ namespace FreeJoyConfigurator
                 if (!Pins[16].AllowedTypes.Contains(PinType.SPI_MOSI)) Pins[16].AllowedTypes.Insert(5, PinType.SPI_MOSI);
 
                 //Pins[16].AllowedTypes.Remove(PinType.TLE5011_CS);
-                //Pins[16].AllowedTypes.Remove(PinType.TLE5012_CS);
+                //Pins[16].AllowedTypes.Remove(PinType.TLE5012B_CS);
                 //Pins[16].AllowedTypes.Remove(PinType.ShiftReg_LATCH);
                 //Pins[16].AllowedTypes.Remove(PinType.ShiftReg_DATA);
 
@@ -704,9 +709,9 @@ namespace FreeJoyConfigurator
                     {
                         Pins[i].AllowedTypes.Add(PinType.TLE5011_CS);
                     }
-                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE5012_CS) && i != 14 && i != 16 && i != 17)
+                    if (!Pins[i].AllowedTypes.Contains(PinType.TLE5012B_CS) && i != 14 && i != 16 && i != 17)
                     {
-                        Pins[i].AllowedTypes.Add(PinType.TLE5012_CS);
+                        Pins[i].AllowedTypes.Add(PinType.TLE5012B_CS);
                     }
                     if (!Pins[i].AllowedTypes.Contains(PinType.MCP3201_CS) && i != 14 && i != 16 && i != 17)
                     {
@@ -758,7 +763,11 @@ namespace FreeJoyConfigurator
                 Pins[16].AllowedTypes.Add(PinType.SPI_MOSI);
                 Pins[16].SelectedType = PinType.SPI_MOSI;
 
-                //Pins[17].SelectedType = PinType.TLE5011_GEN;
+                
+            }
+            if (_genEnabled)
+            {
+                Pins[17].SelectedType = PinType.TLE5011_GEN;
             }
             if (_isI2cEnabled)
             {

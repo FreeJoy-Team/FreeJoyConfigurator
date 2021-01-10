@@ -454,7 +454,7 @@ namespace FreeJoyConfigurator
 
         TLE5011_GEN,
         TLE5011_CS,
-        TLE5012_CS,
+        TLE5012B_CS,
         
 
         MCP3201_CS,
