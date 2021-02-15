@@ -1,3 +1,6 @@
+
+**This version of configurator is no more supported! Use [FreeJoyConfiguratorQt](https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt) instead**
+
 # FreeJoy Configurator
 
 FreeJoy Configurator is a visual utility allowing you to setup your [FreeJoy](https://github.com/vostrenkov/FreeJoy) device for your own requirements.
