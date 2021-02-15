@@ -1,13 +1,11 @@
 
-**This version of configurator is no more supported! Use [FreeJoyConfiguratorQt](https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt) instead**
-
-# FreeJoy Configurator
+# This version of configurator is no more supported! Use [FreeJoyConfiguratorQt](https://github.com/FreeJoy-Team/FreeJoyConfiguratorQt) instead
 
 FreeJoy Configurator is a visual utility allowing you to setup your [FreeJoy](https://github.com/vostrenkov/FreeJoy) device for your own requirements.
 
 ![](https://github.com/FreeJoy-Team/FreeJoyWiki/blob/master/images/main.png)
 
-# Features
+### Features
 
 * Pin mapping configuration
 * Digital inputs configuration (buttons, toggle switches, encoders, etc.)
